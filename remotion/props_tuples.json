@@ -20,73 +20,134 @@
       "Beginner"
      ]
     },
-    "narration": "Day two. Today we learn tuples, and how they differ from lists.",
+    "narration": "Okay, day two. Yesterday we built a list of fruits. Today is almost the same thing, with one tiny change that matters a lot.",
     "audioFile": "audio/en_s1.mp3",
-    "durationSec": 3.675,
-    "durationInFrames": 129,
+    "durationSec": 7.675,
+    "durationInFrames": 249,
     "words": [
      {
-      "word": "Day",
+      "word": "Okay",
       "start": 0.1,
-      "end": 0.2
+      "end": 0.325
+     },
+     {
+      "word": "day",
+      "start": 0.35,
+      "end": 0.525
      },
      {
       "word": "two",
-      "start": 0.212,
-      "end": 0.475
+      "start": 0.537,
+      "end": 0.812
      },
      {
-      "word": "Today",
-      "start": 0.9,
-      "end": 1.15
+      "word": "Yesterday",
+      "start": 1.225,
+      "end": 1.75
      },
      {
       "word": "we",
-      "start": 1.163,
-      "end": 1.288
+      "start": 1.863,
+      "end": 1.988
      },
      {
-      "word": "learn",
-      "start": 1.3,
-      "end": 1.525
+      "word": "built",
+      "start": 2.0,
+      "end": 2.225
      },
      {
-      "word": "tuples",
-      "start": 1.538,
-      "end": 2.088
+      "word": "a",
+      "start": 2.237,
+      "end": 2.275
      },
      {
-      "word": "and",
-      "start": 2.362,
-      "end": 2.438
+      "word": "list",
+      "start": 2.288,
+      "end": 2.587
      },
      {
-      "word": "how",
-      "start": 2.45,
-      "end": 2.575
+      "word": "of",
+      "start": 2.6,
+      "end": 2.675
      },
      {
-      "word": "they",
-      "start": 2.587,
-      "end": 2.7
+      "word": "fruits",
+      "start": 2.688,
+      "end": 3.225
      },
      {
-      "word": "differ",
-      "start": 2.712,
-      "end": 2.987
+      "word": "Today",
+      "start": 3.65,
+      "end": 3.95
      },
      {
-      "word": "from",
-      "start": 3.0,
-      "end": 3.163
+      "word": "is",
+      "start": 3.962,
+      "end": 4.112
      },
      {
-      "word": "lists",
-      "start": 3.175,
-      "end": 3.675
+      "word": "almost",
+      "start": 4.125,
+      "end": 4.487
+     },
+     {
+      "word": "the",
+      "start": 4.5,
+      "end": 4.588
+     },
+     {
+      "word": "same",
+      "start": 4.6,
+      "end": 4.887
+     },
+     {
+      "word": "thing",
+      "start": 4.9,
+      "end": 5.288
+     },
+     {
+      "word": "with",
+      "start": 5.6,
+      "end": 5.737
+     },
+     {
+      "word": "one",
+      "start": 5.75,
+      "end": 6.0
+     },
+     {
+      "word": "tiny",
+      "start": 6.013,
+      "end": 6.338
+     },
+     {
+      "word": "change",
+      "start": 6.35,
+      "end": 6.712
+     },
+     {
+      "word": "that",
+      "start": 6.725,
+      "end": 6.875
+     },
+     {
+      "word": "matters",
+      "start": 6.888,
+      "end": 7.2
+     },
+     {
+      "word": "a",
+      "start": 7.213,
+      "end": 7.263
+     },
+     {
+      "word": "lot",
+      "start": 7.275,
+      "end": 7.675
      }
     ],
-    "popups": []
+    "popups": [],
+    "keysFile": null
    },
    {
     "id": "en_s2",
@@ -109,103 +170,138 @@
        "text": "print(fruits[0])"
       }
      ],
-     "startFrame": 62,
-     "typeFrames": 97
+     "startFrame": 3,
+     "typeFrames": 212
     },
-    "narration": "Start with our list from yesterday. Now change the square brackets to round brackets. That makes a tuple.",
+    "narration": "Look at this line. Square brackets make a list. Now I swap them for round brackets. That's it, that's a tuple. Same fruits, different rules.",
     "audioFile": "audio/en_s2.mp3",
-    "durationSec": 5.888,
-    "durationInFrames": 195,
+    "durationSec": 8.412,
+    "durationInFrames": 271,
     "words": [
      {
-      "word": "Start",
-      "start": 0.113,
-      "end": 0.35
+      "word": "Look",
+      "start": 0.1,
+      "end": 0.213
      },
      {
-      "word": "with",
-      "start": 0.362,
+      "word": "at",
+      "start": 0.225,
+      "end": 0.312
+     },
+     {
+      "word": "this",
+      "start": 0.325,
       "end": 0.5
      },
      {
-      "word": "our",
+      "word": "line",
       "start": 0.512,
-      "end": 0.637
+      "end": 0.8
      },
      {
-      "word": "list",
-      "start": 0.65,
-      "end": 0.95
-     },
-     {
-      "word": "from",
-      "start": 0.963,
-      "end": 1.113
-     },
-     {
-      "word": "yesterday",
-      "start": 1.125,
-      "end": 1.663
-     },
-     {
-      "word": "Now",
-      "start": 2.075,
-      "end": 2.263
-     },
-     {
-      "word": "change",
-      "start": 2.275,
-      "end": 2.637
-     },
-     {
-      "word": "the",
-      "start": 2.65,
-      "end": 2.737
-     },
-     {
-      "word": "square",
-      "start": 2.75,
-      "end": 3.1
+      "word": "Square",
+      "start": 1.212,
+      "end": 1.55
      },
      {
       "word": "brackets",
-      "start": 3.112,
-      "end": 3.625
+      "start": 1.562,
+      "end": 1.962
      },
      {
-      "word": "to",
-      "start": 3.712,
-      "end": 3.825
-     },
-     {
-      "word": "round",
-      "start": 3.837,
-      "end": 4.112
-     },
-     {
-      "word": "brackets",
-      "start": 4.125,
-      "end": 4.737
-     },
-     {
-      "word": "That",
-      "start": 5.162,
-      "end": 5.25
-     },
-     {
-      "word": "makes",
-      "start": 5.263,
-      "end": 5.425
+      "word": "make",
+      "start": 1.975,
+      "end": 2.113
      },
      {
       "word": "a",
-      "start": 5.438,
-      "end": 5.487
+      "start": 2.125,
+      "end": 2.163
+     },
+     {
+      "word": "list",
+      "start": 2.175,
+      "end": 2.6
+     },
+     {
+      "word": "Now",
+      "start": 3.013,
+      "end": 3.15
+     },
+     {
+      "word": "I",
+      "start": 3.163,
+      "end": 3.238
+     },
+     {
+      "word": "swap",
+      "start": 3.25,
+      "end": 3.6
+     },
+     {
+      "word": "them",
+      "start": 3.612,
+      "end": 3.737
+     },
+     {
+      "word": "for",
+      "start": 3.75,
+      "end": 3.9
+     },
+     {
+      "word": "round",
+      "start": 3.913,
+      "end": 4.138
+     },
+     {
+      "word": "brackets",
+      "start": 4.15,
+      "end": 4.75
+     },
+     {
+      "word": "That's",
+      "start": 5.175,
+      "end": 5.337
+     },
+     {
+      "word": "it",
+      "start": 5.35,
+      "end": 5.512
+     },
+     {
+      "word": "that's",
+      "start": 5.787,
+      "end": 5.975
+     },
+     {
+      "word": "a",
+      "start": 5.987,
+      "end": 6.037
      },
      {
       "word": "tuple",
-      "start": 5.5,
-      "end": 5.888
+      "start": 6.05,
+      "end": 6.462
+     },
+     {
+      "word": "Same",
+      "start": 6.875,
+      "end": 7.112
+     },
+     {
+      "word": "fruits",
+      "start": 7.125,
+      "end": 7.612
+     },
+     {
+      "word": "different",
+      "start": 7.713,
+      "end": 7.988
+     },
+     {
+      "word": "rules",
+      "start": 8.0,
+      "end": 8.412
      }
     ],
     "popups": [
@@ -215,9 +311,10 @@
       "kind": "tip",
       "x": "72%",
       "y": "30%",
-      "at": 3.837
+      "at": 3.913
      }
-    ]
+    ],
+    "keysFile": "sfx/keys_en_s2.wav"
    },
    {
     "id": "en_s3",
@@ -230,89 +327,115 @@
       2
      ],
      "startFrame": 3,
-     "typeFrames": 82
+     "typeFrames": 131
     },
-    "narration": "Now try to change the first item. Python stops us with an error.",
+    "narration": "Let's test those rules. Say I try to change the first fruit to kiwi. Watch what Python does.",
     "audioFile": "audio/en_s3.mp3",
-    "durationSec": 3.325,
-    "durationInFrames": 118,
+    "durationSec": 5.237,
+    "durationInFrames": 176,
     "words": [
      {
-      "word": "Now",
+      "word": "Let's",
       "start": 0.1,
-      "end": 0.213
+      "end": 0.25
+     },
+     {
+      "word": "test",
+      "start": 0.263,
+      "end": 0.55
+     },
+     {
+      "word": "those",
+      "start": 0.562,
+      "end": 0.775
+     },
+     {
+      "word": "rules",
+      "start": 0.787,
+      "end": 1.25
+     },
+     {
+      "word": "Say",
+      "start": 1.663,
+      "end": 1.8
+     },
+     {
+      "word": "I",
+      "start": 1.812,
+      "end": 1.863
      },
      {
       "word": "try",
-      "start": 0.225,
-      "end": 0.4
+      "start": 1.875,
+      "end": 2.05
      },
      {
       "word": "to",
-      "start": 0.412,
-      "end": 0.487
+      "start": 2.062,
+      "end": 2.138
      },
      {
       "word": "change",
-      "start": 0.5,
-      "end": 0.8
+      "start": 2.15,
+      "end": 2.487
      },
      {
       "word": "the",
-      "start": 0.812,
-      "end": 0.887
+      "start": 2.5,
+      "end": 2.575
      },
      {
       "word": "first",
-      "start": 0.9,
-      "end": 1.212
+      "start": 2.587,
+      "end": 2.938
      },
      {
-      "word": "item",
-      "start": 1.225,
-      "end": 1.488
+      "word": "fruit",
+      "start": 2.95,
+      "end": 3.2
+     },
+     {
+      "word": "to",
+      "start": 3.212,
+      "end": 3.3
+     },
+     {
+      "word": "kiwi",
+      "start": 3.312,
+      "end": 3.712
+     },
+     {
+      "word": "Watch",
+      "start": 4.125,
+      "end": 4.3
+     },
+     {
+      "word": "what",
+      "start": 4.312,
+      "end": 4.438
      },
      {
       "word": "Python",
-      "start": 1.913,
-      "end": 2.225
+      "start": 4.45,
+      "end": 4.838
      },
      {
-      "word": "stops",
-      "start": 2.237,
-      "end": 2.6
-     },
-     {
-      "word": "us",
-      "start": 2.612,
-      "end": 2.725
-     },
-     {
-      "word": "with",
-      "start": 2.737,
-      "end": 2.862
-     },
-     {
-      "word": "an",
-      "start": 2.875,
-      "end": 2.962
-     },
-     {
-      "word": "error",
-      "start": 2.975,
-      "end": 3.325
+      "word": "does",
+      "start": 4.85,
+      "end": 5.237
      }
     ],
     "popups": [
      {
-      "anchor": "error",
-      "text": "Tuples cannot be changed",
+      "anchor": "Say",
+      "text": "Changing a tuple item",
       "kind": "note",
       "x": "72%",
       "y": "62%",
-      "at": 2.975
+      "at": 1.663
      }
-    ]
+    ],
+    "keysFile": "sfx/keys_en_s3.wav"
    },
    {
     "id": "en_s4",
@@ -323,88 +446,164 @@
       "TypeError: 'tuple' object does not support item assignment"
      ]
     },
-    "narration": "The error says tuples cannot be changed. That is the point. Fixed data stays safe.",
+    "narration": "And there it is. A TypeError. Python is basically saying, a tuple cannot be changed. Honestly, that's the feature. When data should never change, a tuple protects it from you.",
     "audioFile": "audio/en_s4.mp3",
-    "durationSec": 4.913,
-    "durationInFrames": 166,
+    "durationSec": 10.787,
+    "durationInFrames": 342,
     "words": [
      {
-      "word": "The",
-      "start": 0.113,
+      "word": "And",
+      "start": 0.1,
       "end": 0.175
      },
      {
-      "word": "error",
+      "word": "there",
       "start": 0.188,
-      "end": 0.5
+      "end": 0.325
      },
      {
-      "word": "says",
-      "start": 0.512,
-      "end": 0.775
-     },
-     {
-      "word": "tuples",
-      "start": 0.787,
-      "end": 1.163
-     },
-     {
-      "word": "cannot",
-      "start": 1.175,
-      "end": 1.538
-     },
-     {
-      "word": "be",
-      "start": 1.55,
-      "end": 1.65
-     },
-     {
-      "word": "changed",
-      "start": 1.663,
-      "end": 2.188
-     },
-     {
-      "word": "That",
-      "start": 2.612,
-      "end": 2.7
+      "word": "it",
+      "start": 0.338,
+      "end": 0.4
      },
      {
       "word": "is",
+      "start": 0.412,
+      "end": 0.7
+     },
+     {
+      "word": "A",
+      "start": 1.113,
+      "end": 1.175
+     },
+     {
+      "word": "TypeError",
+      "start": 1.188,
+      "end": 1.762
+     },
+     {
+      "word": "Python",
+      "start": 2.188,
+      "end": 2.562
+     },
+     {
+      "word": "is",
+      "start": 2.575,
+      "end": 2.7
+     },
+     {
+      "word": "basically",
       "start": 2.712,
-      "end": 2.8
+      "end": 3.237
+     },
+     {
+      "word": "saying",
+      "start": 3.25,
+      "end": 3.712
+     },
+     {
+      "word": "a",
+      "start": 3.95,
+      "end": 3.988
+     },
+     {
+      "word": "tuple",
+      "start": 4.0,
+      "end": 4.35
+     },
+     {
+      "word": "cannot",
+      "start": 4.362,
+      "end": 4.725
+     },
+     {
+      "word": "be",
+      "start": 4.737,
+      "end": 4.837
+     },
+     {
+      "word": "changed",
+      "start": 4.85,
+      "end": 5.375
+     },
+     {
+      "word": "Honestly",
+      "start": 5.787,
+      "end": 6.237
+     },
+     {
+      "word": "that's",
+      "start": 6.525,
+      "end": 6.713
      },
      {
       "word": "the",
-      "start": 2.812,
-      "end": 2.9
+      "start": 6.725,
+      "end": 6.8
      },
      {
-      "word": "point",
-      "start": 2.913,
-      "end": 3.312
+      "word": "feature",
+      "start": 6.812,
+      "end": 7.263
      },
      {
-      "word": "Fixed",
-      "start": 3.763,
-      "end": 3.963
+      "word": "When",
+      "start": 7.688,
+      "end": 7.812
      },
      {
       "word": "data",
-      "start": 3.975,
-      "end": 4.2
+      "start": 7.825,
+      "end": 8.15
      },
      {
-      "word": "stays",
-      "start": 4.213,
-      "end": 4.5
+      "word": "should",
+      "start": 8.162,
+      "end": 8.4
      },
      {
-      "word": "safe",
-      "start": 4.513,
-      "end": 4.913
+      "word": "never",
+      "start": 8.412,
+      "end": 8.75
+     },
+     {
+      "word": "change",
+      "start": 8.762,
+      "end": 9.262
+     },
+     {
+      "word": "a",
+      "start": 9.488,
+      "end": 9.525
+     },
+     {
+      "word": "tuple",
+      "start": 9.537,
+      "end": 9.85
+     },
+     {
+      "word": "protects",
+      "start": 9.863,
+      "end": 10.288
+     },
+     {
+      "word": "it",
+      "start": 10.3,
+      "end": 10.388
+     },
+     {
+      "word": "from",
+      "start": 10.4,
+      "end": 10.588
+     },
+     {
+      "word": "you",
+      "start": 10.6,
+      "end": 10.787
      }
     ],
-    "popups": []
+    "popups": [],
+    "keysFile": null
    },
    {
     "id": "en_s5",
@@ -417,98 +616,159 @@
       "Use lists when data must change"
      ]
     },
-    "narration": "Recap. Tuples use round brackets. They are fixed after creation. Use lists when the data must change.",
+    "narration": "Quick recap. Round brackets, fixed data. Square brackets, data you can change. Pick the right one, and the next person who reads your code knows exactly what you meant.",
     "audioFile": "audio/en_s5.mp3",
-    "durationSec": 6.575,
-    "durationInFrames": 216,
+    "durationSec": 10.163,
+    "durationInFrames": 323,
     "words": [
      {
-      "word": "Recap",
-      "start": 0.1,
-      "end": 0.55
+      "word": "Quick",
+      "start": 0.113,
+      "end": 0.275
      },
      {
-      "word": "Tuples",
-      "start": 0.963,
-      "end": 1.262
+      "word": "recap",
+      "start": 0.287,
+      "end": 0.762
      },
      {
-      "word": "use",
-      "start": 1.275,
-      "end": 1.475
-     },
-     {
-      "word": "round",
-      "start": 1.488,
-      "end": 1.725
+      "word": "Round",
+      "start": 1.175,
+      "end": 1.387
      },
      {
       "word": "brackets",
-      "start": 1.738,
-      "end": 2.325
-     },
-     {
-      "word": "They",
-      "start": 2.737,
-      "end": 2.812
-     },
-     {
-      "word": "are",
-      "start": 2.825,
-      "end": 2.925
+      "start": 1.4,
+      "end": 1.987
      },
      {
       "word": "fixed",
-      "start": 2.938,
-      "end": 3.4
-     },
-     {
-      "word": "after",
-      "start": 3.413,
-      "end": 3.65
-     },
-     {
-      "word": "creation",
-      "start": 3.663,
-      "end": 4.188
-     },
-     {
-      "word": "Use",
-      "start": 4.6,
-      "end": 4.825
-     },
-     {
-      "word": "lists",
-      "start": 4.838,
-      "end": 5.225
-     },
-     {
-      "word": "when",
-      "start": 5.237,
-      "end": 5.337
-     },
-     {
-      "word": "the",
-      "start": 5.35,
-      "end": 5.462
+      "start": 2.175,
+      "end": 2.487
      },
      {
       "word": "data",
-      "start": 5.475,
-      "end": 5.762
+      "start": 2.5,
+      "end": 2.812
      },
      {
-      "word": "must",
-      "start": 5.775,
-      "end": 6.062
+      "word": "Square",
+      "start": 3.225,
+      "end": 3.562
+     },
+     {
+      "word": "brackets",
+      "start": 3.575,
+      "end": 4.175
+     },
+     {
+      "word": "data",
+      "start": 4.412,
+      "end": 4.65
+     },
+     {
+      "word": "you",
+      "start": 4.662,
+      "end": 4.787
+     },
+     {
+      "word": "can",
+      "start": 4.8,
+      "end": 4.925
      },
      {
       "word": "change",
-      "start": 6.075,
-      "end": 6.575
+      "start": 4.938,
+      "end": 5.438
+     },
+     {
+      "word": "Pick",
+      "start": 5.875,
+      "end": 6.025
+     },
+     {
+      "word": "the",
+      "start": 6.037,
+      "end": 6.125
+     },
+     {
+      "word": "right",
+      "start": 6.138,
+      "end": 6.375
+     },
+     {
+      "word": "one",
+      "start": 6.388,
+      "end": 6.663
+     },
+     {
+      "word": "and",
+      "start": 6.975,
+      "end": 7.037
+     },
+     {
+      "word": "the",
+      "start": 7.05,
+      "end": 7.125
+     },
+     {
+      "word": "next",
+      "start": 7.138,
+      "end": 7.375
+     },
+     {
+      "word": "person",
+      "start": 7.388,
+      "end": 7.737
+     },
+     {
+      "word": "who",
+      "start": 7.75,
+      "end": 7.9
+     },
+     {
+      "word": "reads",
+      "start": 7.912,
+      "end": 8.15
+     },
+     {
+      "word": "your",
+      "start": 8.162,
+      "end": 8.275
+     },
+     {
+      "word": "code",
+      "start": 8.287,
+      "end": 8.637
+     },
+     {
+      "word": "knows",
+      "start": 8.65,
+      "end": 8.95
+     },
+     {
+      "word": "exactly",
+      "start": 8.963,
+      "end": 9.537
+     },
+     {
+      "word": "what",
+      "start": 9.55,
+      "end": 9.688
+     },
+     {
+      "word": "you",
+      "start": 9.7,
+      "end": 9.787
+     },
+     {
+      "word": "meant",
+      "start": 9.8,
+      "end": 10.163
      }
     ],
-    "popups": []
+    "popups": [],
+    "keysFile": null
    }
   ]
  }

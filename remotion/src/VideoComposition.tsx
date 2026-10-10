@@ -82,7 +82,10 @@ export const VideoComposition: React.FC<{ project: ProjectData }> = ({ project }
               </div>
 
               {/* Sound: typing loop (code scenes) */}
-              {scene.type === 'TypingCode' && (
+              {scene.type === 'TypingCode' && (scene as any).keysFile && (
+                <Audio src={staticFile((scene as any).keysFile)} volume={0.9} />
+              )}
+              {scene.type === 'TypingCode' && !(scene as any).keysFile && (
                 <Audio src={staticFile('sfx/typing.wav')} loop volume={0.35} />
               )}
               {/* Sound: har popup par pop */}

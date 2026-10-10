@@ -1,33 +1,99 @@
 {
-  "title": "Python Tuples vs Lists",
-  "dayLabel": "Day 2 / 100",
-  "scenes": [
-    {"id": 1, "narration": "Day two. Today we learn tuples, and how they differ from lists.",
-     "remotion": {"type": "TitleCard", "props": {"title": "Python Tuples", "subtitle": "Lists, but fixed", "badge": "DAY 2 • PYTHON TUPLES", "tags": ["Python", "Tuples", "Beginner"]}}},
-
-    {"id": 2, "narration": "Start with our list from yesterday. Now change the square brackets to round brackets. That makes a tuple.",
-     "remotion": {"type": "TypingCode", "type_anchor": "Now",
-       "props": {"filename": "tuples.py", "language": "python",
-         "code": "fruits = (\"apple\", \"mango\", \"banana\")\nprint(fruits[0])"},
-       "previous_code": "fruits = [\"apple\", \"mango\", \"banana\"]\nprint(fruits[0])",
-       "popups": [
-         {"anchor": "round", "text": "Round brackets make a tuple", "kind": "tip", "x": "72%", "y": "30%"}
-       ]}},
-
-    {"id": 3, "narration": "Now try to change the first item. Python stops us with an error.",
-     "remotion": {"type": "TypingCode", "type_anchor": "Now",
-       "props": {"filename": "tuples.py", "language": "python",
-         "code": "fruits = (\"apple\", \"mango\", \"banana\")\nfruits[0] = \"kiwi\"", "highlightLines": [2]},
-       "popups": [
-         {"anchor": "error", "text": "Tuples cannot be changed", "kind": "note", "x": "72%", "y": "62%"}
-       ]}},
-
-    {"id": 4, "narration": "The error says tuples cannot be changed. That is the point. Fixed data stays safe.",
-     "remotion": {"type": "TerminalRun", "props": {"command": "python tuples.py",
-       "output": ["TypeError: 'tuple' object does not support item assignment"]}}},
-
-    {"id": 5, "narration": "Recap. Tuples use round brackets. They are fixed after creation. Use lists when the data must change.",
-     "remotion": {"type": "SummaryList", "props": {"title": "Recap",
-       "items": ["Tuples use round brackets ()", "Tuples are fixed after creation", "Use lists when data must change"]}}}
-  ]
+ "title": "Python Tuples vs Lists",
+ "dayLabel": "Day 2 / 100",
+ "scenes": [
+  {
+   "id": 1,
+   "narration": "Okay, day two. Yesterday we built a list of fruits. Today is almost the same thing, with one tiny change that matters a lot.",
+   "remotion": {
+    "type": "TitleCard",
+    "props": {
+     "title": "Python Tuples",
+     "subtitle": "Lists, but fixed",
+     "badge": "DAY 2 • PYTHON TUPLES",
+     "tags": [
+      "Python",
+      "Tuples",
+      "Beginner"
+     ]
+    }
+   }
+  },
+  {
+   "id": 2,
+   "narration": "Look at this line. Square brackets make a list. Now I swap them for round brackets. That's it, that's a tuple. Same fruits, different rules.",
+   "remotion": {
+    "type": "TypingCode",
+    "type_anchor": "Look",
+    "props": {
+     "filename": "tuples.py",
+     "language": "python",
+     "code": "fruits = (\"apple\", \"mango\", \"banana\")\nprint(fruits[0])"
+    },
+    "previous_code": "fruits = [\"apple\", \"mango\", \"banana\"]\nprint(fruits[0])",
+    "popups": [
+     {
+      "anchor": "round",
+      "text": "Round brackets make a tuple",
+      "kind": "tip",
+      "x": "72%",
+      "y": "30%"
+     }
+    ]
+   }
+  },
+  {
+   "id": 3,
+   "narration": "Let's test those rules. Say I try to change the first fruit to kiwi. Watch what Python does.",
+   "remotion": {
+    "type": "TypingCode",
+    "type_anchor": "Let's",
+    "props": {
+     "filename": "tuples.py",
+     "language": "python",
+     "code": "fruits = (\"apple\", \"mango\", \"banana\")\nfruits[0] = \"kiwi\"",
+     "highlightLines": [
+      2
+     ]
+    },
+    "popups": [
+     {
+      "anchor": "Say",
+      "text": "Changing a tuple item",
+      "kind": "note",
+      "x": "72%",
+      "y": "62%"
+     }
+    ]
+   }
+  },
+  {
+   "id": 4,
+   "narration": "And there it is. A TypeError. Python is basically saying, a tuple cannot be changed. Honestly, that's the feature. When data should never change, a tuple protects it from you.",
+   "remotion": {
+    "type": "TerminalRun",
+    "props": {
+     "command": "python tuples.py",
+     "output": [
+      "TypeError: 'tuple' object does not support item assignment"
+     ]
+    }
+   }
+  },
+  {
+   "id": 5,
+   "narration": "Quick recap. Round brackets, fixed data. Square brackets, data you can change. Pick the right one, and the next person who reads your code knows exactly what you meant.",
+   "remotion": {
+    "type": "SummaryList",
+    "props": {
+     "title": "Recap",
+     "items": [
+      "Tuples use round brackets ()",
+      "Tuples are fixed after creation",
+      "Use lists when data must change"
+     ]
+    }
+   }
+  }
+ ]
 }

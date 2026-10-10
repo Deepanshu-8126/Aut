@@ -14,9 +14,30 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from tts_words import synth_with_words  # noqa: E402
+from keyboard_sfx import keys_track, save_wav  # noqa: E402
+import random  # noqa: E402
 
 FPS = 30
 VOICE = {"en": "en-US-AndrewNeural", "hi": "hi-IN-SwaraNeural"}
+
+
+def key_events(props: dict) -> list:
+    """Har character ka time = typing progress ka same linear mapping jo TypingCode use karta hai."""
+    if props.get("diff"):
+        text = "".join(d["text"] + "\n" for d in props["diff"] if d["type"] == "add")
+    else:
+        text = props.get("code", "")
+    n = max(1, len(text))
+    start = props.get("startFrame", 0) / FPS
+    span = props.get("typeFrames", 0) / FPS
+    rnd = random.Random(5)
+    ev = []
+    for i, ch in enumerate(text):
+        t = start + (i + 1) * span / n + rnd.uniform(-0.008, 0.008)
+        kind = "enter" if ch == "\n" else "space" if ch == " " else "key"
+        if ch.strip():  # bina visible char ke keystroke nahi
+            ev.append((max(0.0, t), kind))
+    return ev
 
 
 def find_word_time(words: list, anchor: str, default: float = 0.0) -> float:
@@ -77,10 +98,14 @@ def build(script_path: Path, lang: str, out: Path, theme: str, clips: dict) -> N
         popups = []
         for pp in r.get("popups", []):
             popups.append({**pp, "at": round(find_word_time(words, pp["anchor"], 0.0), 3)})
+        keys_file = None
+        if typ == "TypingCode":
+            keys_file = f"sfx/keys_{sid}.wav"
+            save_wav(pub / keys_file, keys_track(key_events(props), dur + 0.6))
         frames = math.ceil((dur + 0.6) * FPS)  # 0.6s hold after narration
         scenes.append({"id": sid, "type": typ, "props": props, "narration": s["narration"],
                        "audioFile": f"audio/{sid}.mp3", "durationSec": round(dur, 3),
-                       "durationInFrames": frames, "words": words, "popups": popups})
+                       "durationInFrames": frames, "words": words, "popups": popups, "keysFile": keys_file})
         print(f"scene {s['id']}: {typ} {dur:.2f}s {len(words)} words", flush=True)
     project = {"title": script.get("title", ""), "aspectRatio": "16:9", "theme": theme,
                "dayLabel": script.get("dayLabel"), "bgm": "sfx/bgm.wav", "bgmVolume": 0.08, "scenes": scenes}
