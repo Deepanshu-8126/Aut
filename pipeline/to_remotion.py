@@ -71,7 +71,7 @@ def build(script_path: Path, lang: str, out: Path, theme: str, clips: dict) -> N
                        "durationInFrames": frames, "words": words, "popups": popups})
         print(f"scene {s['id']}: {typ} {dur:.2f}s {len(words)} words", flush=True)
     project = {"title": script.get("title", ""), "aspectRatio": "16:9", "theme": theme,
-               "dayLabel": script.get("dayLabel"), "scenes": scenes}
+               "dayLabel": script.get("dayLabel"), "bgm": "sfx/bgm.wav", "bgmVolume": 0.08, "scenes": scenes}
     out.write_text(json.dumps({"project": project}, ensure_ascii=False, indent=1), encoding="utf-8")  # Remotion input props
     print("props:", out)
 

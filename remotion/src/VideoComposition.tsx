@@ -1,5 +1,5 @@
 import React from 'react';
-import { Audio, Series, staticFile } from 'remotion';
+import { Audio, Series, Sequence, staticFile } from 'remotion';
 import { ProjectData, SceneData } from './types';
 import { Background } from './components/Background';
 import { TitleCard } from './components/TitleCard';
@@ -81,6 +81,16 @@ export const VideoComposition: React.FC<{ project: ProjectData }> = ({ project }
                 {renderSceneContent(scene)}
               </div>
 
+              {/* Sound: typing loop (code scenes) */}
+              {scene.type === 'TypingCode' && (
+                <Audio src={staticFile('sfx/typing.wav')} loop volume={0.35} />
+              )}
+              {/* Sound: har popup par pop */}
+              {((scene as any).popups || []).map((pp: any, pi: number) => (
+                <Sequence key={`pop${pi}`} from={Math.round((pp.at || 0) * 30)} layout="none">
+                  <Audio src={staticFile('sfx/pop.wav')} volume={0.5} />
+                </Sequence>
+              ))}
               {/* Teacher popups (scene ke andar, sec ke hisaab se) */}
               {((scene as any).popups || []).map((pp: any, pi: number) => (
                 <TeacherTip key={pi} text={pp.text} kind={pp.kind} x={pp.x} y={pp.y}
@@ -102,6 +112,9 @@ export const VideoComposition: React.FC<{ project: ProjectData }> = ({ project }
           );
         })}
       </Series>
+
+      {/* Background music (poori video mein, low volume) */}
+      <Audio src={staticFile((project as any).bgm || 'sfx/bgm.wav')} loop volume={(project as any).bgmVolume ?? 0.08} />
 
       {/* Progress footer, reference style: "Progress • Day N/30" */}
       {project.dayLabel && (

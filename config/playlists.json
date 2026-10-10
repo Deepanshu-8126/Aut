@@ -1,0 +1,35 @@
+{
+  "_note": "Har playlist ek series hai. days ka order = episode number. Gemini key aane par topics auto-suggest honge.",
+  "playlists": [
+    {
+      "id": "python-100-days",
+      "name": "Python in 100 Days",
+      "languages": ["en", "hi"],
+      "format": "long",
+      "theme": "light-grid",
+      "days": [
+        {"day": 1, "topic": "Python lists", "lesson": "tests/lesson_python_lists.json", "status": "rendered"},
+        {"day": 2, "topic": "Tuples vs lists", "lesson": null, "status": "todo"},
+        {"day": 3, "topic": "Dictionaries", "lesson": null, "status": "todo"}
+      ]
+    },
+    {
+      "id": "dsa-30-days",
+      "name": "DSA in 30 Days",
+      "languages": ["en", "hi"],
+      "format": "long",
+      "theme": "light-grid",
+      "days": [
+        {"day": 16, "topic": "BST insert, sum, curve", "lesson": "tests/sample_templates_en.json", "status": "old-engine"}
+      ]
+    },
+    {
+      "id": "coding-shorts",
+      "name": "Coding Shorts",
+      "languages": ["en"],
+      "format": "short",
+      "theme": "light-grid",
+      "days": []
+    }
+  ]
+}

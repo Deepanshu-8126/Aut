@@ -4,6 +4,8 @@
   "aspectRatio": "16:9",
   "theme": "light-grid",
   "dayLabel": "Day 1 / 30",
+  "bgm": "sfx/bgm.wav",
+  "bgmVolume": 0.08,
   "scenes": [
    {
     "id": "en_s1",
