@@ -1,0 +1,62 @@
+{
+ "title": "Binary Search in 15 seconds",
+ "description": "Day 15: halve the range every step.",
+ "tags": [
+  "dsa",
+  "binary search"
+ ],
+ "day_label": "Day 15 / 30",
+ "scenes": [
+  {
+   "id": 1,
+   "heading": "Looking for 23 in a sorted list",
+   "narration": "Here is a sorted list of sixteen numbers. Where is twenty three?",
+   "bullets": [],
+   "code": null,
+   "code_title": null,
+   "code_lang": null,
+   "diff": false,
+   "terminal": null,
+   "compare": null,
+   "tip": null,
+   "formula": null,
+   "manim": null
+  },
+  {
+   "id": 2,
+   "heading": "Cut the range in half",
+   "narration": "Start with the whole sorted list and check the middle, which is fifteen. Fifteen is smaller than twenty three, so we throw away the left half. Now check the new middle, which is twenty three. Found it in two checks, not sixteen.",
+   "bullets": [],
+   "code": null,
+   "code_title": null,
+   "code_lang": null,
+   "diff": false,
+   "terminal": null,
+   "compare": null,
+   "tip": null,
+   "formula": null,
+   "manim": {
+    "file": "halving.py",
+    "cls": "HalvingSearch"
+   }
+  },
+  {
+   "id": 3,
+   "heading": "Recap",
+   "narration": "Each step halves the search space. Subscribe for Day 16.",
+   "bullets": [
+    "Sorted input is required",
+    "Each check halves the range"
+   ],
+   "code": null,
+   "code_title": null,
+   "code_lang": null,
+   "diff": false,
+   "terminal": null,
+   "compare": null,
+   "tip": "Binary search needs sorted data.",
+   "formula": null,
+   "manim": null
+  }
+ ]
+}

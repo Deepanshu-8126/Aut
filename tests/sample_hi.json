@@ -1,0 +1,6 @@
+{"title":"बाइनरी सर्च ट्री क्या है","description":"BST का छोटा परिचय।","tags":["dsa"],
+"scenes":[
+{"id":1,"heading":"लिस्ट में सर्च धीमा क्यों है","narration":"साधारण लिस्ट में हर आइटम एक-एक करके देखना पड़ता है, इसलिए समय ज़्यादा लगता है।","bullets":["लीनियर सर्च: O(n)"],"code":null,"code_title":null,"formula":null},
+{"id":2,"heading":"बाइनरी सर्च ट्री","narration":"बाइनरी सर्च ट्री में छोटी वैल्यू बाईं तरफ और बड़ी वैल्यू दाईं तरफ रखी जाती है।","bullets":["बाएँ < नोड < दाएँ"],"code":"class Node:\n    def __init__(self, val):\n        self.val = val","code_title":"node.py","formula":null},
+{"id":3,"heading":"सर्च की लागत","narration":"हर कदम पर आधा ट्री हट जाता है, इसलिए संतुलित ट्री में लगभग log n कदम लगते हैं।","bullets":[],"code":null,"code_title":null,"formula":"T(n) = O(log n)"}
+]}

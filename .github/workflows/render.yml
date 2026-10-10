@@ -1,0 +1,64 @@
+name: Render video
+
+on:
+  workflow_dispatch:
+    inputs:
+      series:
+        description: "dsa | ai_ml | shorts_tips"
+        required: true
+        default: dsa
+        type: choice
+        options: [dsa, ai_ml, shorts_tips]
+      lang:
+        description: "en | hi | both"
+        required: true
+        default: both
+        type: choice
+        options: [en, hi, both]
+      topic:
+        description: "Khali chhodo to series se next topic uthega"
+        required: false
+        type: string
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: System deps (ffmpeg, LaTeX for MathTex)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libcairo2-dev libpango1.0-dev texlive-latex-base texlive-latex-extra texlive-fonts-recommended dvisvgm fonts-dejavu
+
+      - name: Python deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install manim edge-tts
+
+      - name: Node deps
+        run: npm ci
+
+      - name: Render
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          VOICE_API_TOKEN: ${{ secrets.VOICE_API_TOKEN }}
+        run: |
+          python3 -u pipeline/run.py --series "${{ inputs.series }}" --lang "${{ inputs.lang }}" \
+            ${{ inputs.topic != '' && format('--topic "{0}"', inputs.topic) || '' }}
+
+      - name: Upload video
+        uses: actions/upload-artifact@v4
+        with:
+          name: video-${{ inputs.series }}-${{ github.run_id }}
+          path: output/**/*.mp4
+          retention-days: 14

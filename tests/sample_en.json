@@ -1,0 +1,7 @@
+{"title":"Binary Search Tree in 60 Seconds","description":"Quick BST explainer.","tags":["dsa","bst"],
+"scenes":[
+{"id":1,"heading":"Why search is slow in a list","narration":"Searching a plain list takes time, because you may check every item one by one.","bullets":["Linear search: O(n)"],"code":null,"code_title":null,"code_lang":null,"diff":false,"formula":null},
+{"id":2,"heading":"Binary search tree","narration":"A binary search tree keeps smaller values on the left and bigger values on the right.","bullets":["Left < node < right"],"code":"class Node:\n    def __init__(self, val):\n        self.val = val\n        self.left = None\n        self.right = None","code_title":"node.py","code_lang":"python","diff":false,"formula":null},
+{"id":3,"heading":"Insert: add a diff line","narration":"Insert goes left or right until it finds an empty spot. Here is the change we make.","bullets":[],"code":"def insert(node, val):\n- return None\n+ if node is None:\n+     return Node(val)\n    if val < node.val:\n        node.left = insert(node.left, val)","code_title":"bst.py","code_lang":"python","diff":true,"formula":null},
+{"id":4,"heading":"Cost of a lookup","narration":"Each step throws away half the tree, so a balanced tree needs about log n steps.","bullets":[],"code":null,"code_title":null,"code_lang":null,"diff":false,"formula":"T(n) = O(\\log n)"}
+]}

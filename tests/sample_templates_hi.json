@@ -1,0 +1,99 @@
+{
+ "title": "Binary Search Tree, Sum aur Curve",
+ "description": "Day 16: teen visual lessons.",
+ "tags": [
+  "dsa",
+  "math"
+ ],
+ "day_label": "Day 16 / 30",
+ "scenes": [
+  {
+   "id": 1,
+   "heading": "Teen idea, teen visual",
+   "narration": "Aaj hum teen cheezein dekhenge, ek tree, ek sum, aur ek curve.",
+   "bullets": [],
+   "code": null,
+   "code_title": null,
+   "code_lang": null,
+   "diff": false,
+   "terminal": null,
+   "compare": null,
+   "tip": null,
+   "formula": null,
+   "manim": null
+  },
+  {
+   "id": 2,
+   "heading": "Search tree mein insert karna",
+   "narration": "Pehle pandrah insert karo, ye root ban jayega. Saat chhota hai, isliye left mein jayega. Tees... teevis bada hai, isliye right mein jayega. Gyarah, pandrah ke left mein jayega, phir saat ke right mein.",
+   "bullets": [],
+   "code": null,
+   "code_title": null,
+   "code_lang": null,
+   "diff": false,
+   "terminal": null,
+   "compare": null,
+   "tip": null,
+   "formula": null,
+   "manim": {
+    "file": "tree.py",
+    "cls": "BSTInsert"
+   }
+  },
+  {
+   "id": 3,
+   "heading": "Ek se n tak ka sum",
+   "narration": "Sum ko ek baar likho. Use ulta karke khud mein jodo. Har pair ka jod n plus ek hota hai. Do se bhaag do, to sum n guna n plus ek, upar do.",
+   "bullets": [],
+   "code": null,
+   "code_title": null,
+   "code_lang": null,
+   "diff": false,
+   "terminal": null,
+   "compare": null,
+   "tip": null,
+   "formula": "S = \\frac{n(n+1)}{2}",
+   "manim": {
+    "file": "derivation.py",
+    "cls": "EquationDerivation"
+   }
+  },
+  {
+   "id": 4,
+   "heading": "Slope aur area",
+   "narration": "Curve f of x barabar x square lo. x barabar ek par slope do hai. Zero se do tak area aath by teen hai. Slope batata hai ki kitni tezi se badal raha hai, aur area batata hai ki kitna jud raha hai.",
+   "bullets": [],
+   "code": null,
+   "code_title": null,
+   "code_lang": null,
+   "diff": false,
+   "terminal": null,
+   "compare": null,
+   "tip": null,
+   "formula": null,
+   "manim": {
+    "file": "graph.py",
+    "cls": "GraphCurve"
+   }
+  },
+  {
+   "id": 5,
+   "heading": "Recap",
+   "narration": "Tree mein sorted order kaam aata hai. Sum mein ulta karke pair banate hain. Curve mein slope aur area dekhte hain. Day satrah ke liye subscribe karo.",
+   "bullets": [
+    "Tree mein sorted order",
+    "Sum ke liye pairing",
+    "Curve mein slope aur area"
+   ],
+   "code": null,
+   "code_title": null,
+   "code_lang": null,
+   "diff": false,
+   "terminal": null,
+   "compare": null,
+   "tip": "Har idea ek baar haath se bana kar dekho.",
+   "formula": null,
+   "manim": null
+  }
+ ]
+}
