@@ -1,0 +1,66 @@
+"""One-command lesson video builder (Remotion engine).
+
+Steps: lesson JSON -> Remotion props (to_remotion.py) -> validate -> render MP4 -> audit frames.
+Har step fail hone par ruk jaata hai aur error dikhata hai.
+
+Usage:
+  python3 pipeline/build_video.py tests/lesson_python_lists.json --name lists_v5 --lang en --theme light-grid
+  python3 pipeline/build_video.py tests/lesson_python_tuples.json --name tuples_v5 --no-audit
+
+Output: output/remotion/<name>.mp4 (+ output/audit/<name>/ if audit on)
+"""
+import argparse
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+PIPE = ROOT / "pipeline"
+REMOTION = ROOT / "remotion"
+OUT = ROOT / "output" / "remotion"
+
+
+def step(title: str, cmd: list[str], cwd: Path) -> None:
+    print(f"\n==> {title}", flush=True)
+    t0 = time.time()
+    res = subprocess.run(cmd, cwd=cwd)
+    if res.returncode != 0:
+        print(f"!! FAILED: {title} (exit {res.returncode})", file=sys.stderr)
+        sys.exit(res.returncode)
+    print(f"   ok ({time.time() - t0:.0f}s)", flush=True)
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("lesson", help="lesson JSON (tests/*.json)")
+    ap.add_argument("--name", required=True, help="output name, e.g. lists_v5")
+    ap.add_argument("--lang", default="en", choices=["en", "hi"])
+    ap.add_argument("--theme", default="light-grid", choices=["light-grid", "dark-vdo"])
+    ap.add_argument("--no-audit", action="store_true", help="frame audit skip karo")
+    a = ap.parse_args()
+
+    if not (REMOTION / "node_modules").exists():
+        step("0/4 npm install (remotion deps)", ["npm", "install", "--no-audit", "--no-fund"], REMOTION)
+
+    props = REMOTION / f"props_{a.name}.json"
+    mp4 = OUT / f"{a.name}.mp4"
+    OUT.mkdir(parents=True, exist_ok=True)
+
+    step("1/4 Lesson -> Remotion props (TTS + word timing)",
+         [sys.executable, str(PIPE / "to_remotion.py"), a.lesson, a.lang, str(props),
+          "--theme", a.theme], ROOT)
+    step("2/4 Validate props",
+         [sys.executable, str(PIPE / "validate_props.py"), str(props)], ROOT)
+    step("3/4 Render MP4 (Remotion)",
+         ["npx", "remotion", "render", "Landscape", str(mp4),
+          f"--props={props.name}", "--log=error"], REMOTION)
+    if not a.no_audit:
+        step("4/4 Frame audit",
+             [sys.executable, str(PIPE / "audit_frames.py"), str(mp4), str(props)], ROOT)
+
+    print(f"\nDONE -> {mp4.relative_to(ROOT)}")
+
+
+if __name__ == "__main__":
+    main()
