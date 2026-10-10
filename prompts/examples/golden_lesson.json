@@ -1,0 +1,87 @@
+{
+  "title": "Python Lists: Store Many Values",
+  "dayLabel": "Day 1 / 30",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "You have three test marks. Do you make three separate variables? There's a better way. Put them in one list.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "One Variable, Many Values",
+          "subtitle": "Python lists in 2 minutes",
+          "badge": "DAY 1 • PYTHON LISTS",
+          "tags": ["Python", "Lists", "Beginner"]
+        }
+      }
+    },
+    {
+      "id": 2,
+      "narration": "First, we store three marks in one list. Then append adds a new mark at the end. Print marks zero shows the first value.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "First,",
+        "props": {
+          "filename": "marks.py",
+          "language": "python",
+          "code": "marks = [72, 85, 90]\nmarks.append(64)\nprint(marks[0])\nprint(len(marks))",
+          "highlightLines": [2]
+        },
+        "popups": [
+          {"anchor": "append", "text": "append() adds at the END", "kind": "tip", "x": "50%", "y": "15%"},
+          {"anchor": "zero", "text": "Index starts at 0", "kind": "tip", "x": "50%", "y": "15%"}
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Run the file. The first mark is 72. The length is 4, because we just added 64.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "python marks.py",
+          "output": ["72", "4"]
+        },
+        "popups": [
+          {"anchor": "length", "text": "len() counts the items", "kind": "note", "x": "50%", "y": "15%"}
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "Now the big question. Can a list change? Yes. A tuple is different. It stays fixed after you create it.",
+      "remotion": {
+        "type": "ComparisonCard",
+        "props": {
+          "title": "List vs Tuple",
+          "leftTitle": "Tuple",
+          "leftPoints": ["Fixed after creation", "Uses parentheses ()", "No append"],
+          "rightTitle": "List",
+          "rightPoints": ["Add and remove items", "Uses square brackets []", "Most used in Python"]
+        },
+        "popups": [
+          {"anchor": "change", "text": "Lists can change", "kind": "note", "x": "50%", "y": "15%"}
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Quick recap. A list holds many values. Index starts at zero. Your practice task: make a list of five marks, then append your own.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "Recap",
+          "items": [
+            "Lists store many values in one variable",
+            "append() adds at the end",
+            "Index starts at 0",
+            "Tuples are fixed, lists can change"
+          ]
+        },
+        "popups": [
+          {"anchor": "Practice", "text": "Make your own list today", "kind": "tip", "x": "50%", "y": "15%"}
+        ]
+      }
+    }
+  ]
+}

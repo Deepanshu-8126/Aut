@@ -16,7 +16,7 @@ export type SceneType =
   | 'OutroCard'
   | 'TerminalSplit'
   | 'ClassifierCard'
-  | 'ClusterGrid'
+  | 'ClusterGrid' | 'StatChart'
   | 'ManimClip'
   | 'TypingCode'
   | 'TerminalRun';

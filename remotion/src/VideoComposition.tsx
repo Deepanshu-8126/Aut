@@ -18,6 +18,7 @@ import { ManimClip } from './components/ManimClip';
 import { TypingCode } from './components/TypingCode';
 import { TerminalRun } from './components/TerminalRun';
 import { TeacherTip } from './components/TeacherTip';
+import { StatChart } from './components/StatChart';
 import { ThemeProvider } from './ThemeContext';
 
 export const VideoComposition: React.FC<{ project: ProjectData }> = ({ project }) => {
@@ -45,6 +46,11 @@ export const VideoComposition: React.FC<{ project: ProjectData }> = ({ project }
         const p = scene.props as any;
         const tf = p.typeFrames ?? Math.round((scene.durationInFrames || 90) * 0.3);
         return <TerminalRun {...p} typeFrames={tf} />;
+      }
+      case 'StatChart': {
+        const p = scene.props as any;
+        const tf = p.typeFrames ?? Math.round((scene.durationInFrames || 90) * 0.7);
+        return <StatChart {...p} typeFrames={tf} />;
       }
       case 'ManimClip':
         return <ManimClip {...(scene.props as any)} aspectRatio={aspectRatio} />;

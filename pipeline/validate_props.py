@@ -14,6 +14,7 @@ REQUIRED = {
     "MathVisualizer": ["formula"],
     "CodeExplainer": ["code"],
     "TypingCode": ["code"],
+    "StatChart": ["title", "kind"],
     "TerminalRun": ["command", "output"],
     "TerminalSplit": ["leftPane"],
     "ComparisonCard": ["leftPoints", "rightPoints"],

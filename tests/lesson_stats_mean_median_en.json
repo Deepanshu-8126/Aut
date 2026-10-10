@@ -1,0 +1,94 @@
+{
+  "title": "Mean vs Median: Which Average to Trust",
+  "dayLabel": "Stats 1",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Five students took a test. The teacher asks, what is the average mark? Let's find out, and see why one number can mislead you.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Mean vs Median",
+          "subtitle": "Which average should you trust?",
+          "badge": "STATS • BEGINNER",
+          "tags": ["Statistics", "Average", "Data"]
+        }
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Here are five marks. Four students score around forty. One student scores ninety five. Add them up and divide by five. The mean is fifty three point eight.",
+      "remotion": {
+        "type": "StatChart",
+        "props": {
+          "title": "Five students, one outlier",
+          "kind": "bar",
+          "labels": ["A", "B", "C", "D", "E"],
+          "values": [40, 42, 45, 47, 95],
+          "xLabel": "Student",
+          "yLabel": "Marks",
+          "formula": "mean = 269 / 5 = 53.8"
+        },
+        "popups": [
+          {"anchor": "ninety", "text": "One outlier: 95", "kind": "note", "x": "50%", "y": "15%"},
+          {"anchor": "mean", "text": "Sum divided by count", "kind": "tip", "x": "50%", "y": "15%"}
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "The median is the middle value after sorting. Sorted, the middle mark is forty five. The outlier ninety five does not pull it up.",
+      "remotion": {
+        "type": "StatChart",
+        "props": {
+          "title": "Median is the middle value",
+          "kind": "bar",
+          "labels": ["A", "B", "C", "D", "E"],
+          "values": [40, 42, 45, 47, 95],
+          "highlight": 2,
+          "xLabel": "Sorted marks",
+          "yLabel": "Marks",
+          "formula": "median = 45"
+        },
+        "popups": [
+          {"anchor": "middle", "text": "Middle of sorted list", "kind": "tip", "x": "50%", "y": "15%"}
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "So which average is fair? Mean uses every value. Median ignores extreme values. Use median when the data has big outliers, like salaries.",
+      "remotion": {
+        "type": "ComparisonCard",
+        "props": {
+          "title": "Mean vs Median",
+          "leftTitle": "Mean",
+          "leftPoints": ["Uses every value", "Pulled by outliers", "Good for even data"],
+          "rightTitle": "Median",
+          "rightPoints": ["Middle value after sorting", "Ignores extreme values", "Good for salaries"]
+        },
+        "popups": [
+          {"anchor": "outliers", "text": "Outliers move the mean", "kind": "note", "x": "50%", "y": "15%"}
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Quick recap. Mean is the total divided by count. Median is the middle value. Your practice task: find both for three numbers of your choice.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "Recap",
+          "items": [
+            "Mean = sum divided by count",
+            "Median = middle value after sorting",
+            "Outliers pull the mean, not the median"
+          ]
+        },
+        "popups": [
+          {"anchor": "Practice", "text": "Find both for your own numbers", "kind": "tip", "x": "50%", "y": "15%"}
+        ]
+      }
+    }
+  ]
+}

@@ -26,6 +26,12 @@ RULES
    "game-changer", "in today's fast-paced world", "it's important to note", "seamlessly",
    "robust", "leverage", "moreover", "furthermore".
 8. End with a practice task: "Try this on your own: ...".
+9. HOOK (scene 1): start with a question or a situation the viewer already has
+   ("You have three test marks. Do you make three variables?"). Never start with
+   "Today we're learning" or "In this video". Hook ko 2 sentences mein khatam karo.
+10. Code scenes: narration code ke saath match kare. Har code line ka reason ek sentence mein.
+11. Output scene: pehle command bolo, phir output ka matlab (ek line).
+12. Comparison scene: ek point per row, same ordering dono taraf.
 
 SCENE ORDER (one lesson)
 1. Hook: one question or relatable situation.
@@ -33,6 +39,9 @@ SCENE ORDER (one lesson)
 3. Output (terminal run).
 4. Common mistake or comparison.
 5. Recap: 3-4 short points, then a practice task.
+
+REFERENCE: prompts/examples/golden_lesson.json is the approved quality bar. Match its
+structure, sentence length, popup style and hook. Do not copy its topic.
 
 OUTPUT: valid JSON only, matching tests/lesson_python_lists.json:
 {

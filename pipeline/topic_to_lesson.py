@@ -28,7 +28,7 @@ TESTS = ROOT / "tests"
 MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
 API = "https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent?key={k}"
 
-ALLOWED_TYPES = {"TitleCard", "TypingCode", "TerminalRun", "ComparisonCard", "SummaryList"}
+ALLOWED_TYPES = {"TitleCard", "TypingCode", "TerminalRun", "ComparisonCard", "SummaryList", "StatChart"}
 BANNED = ["in this video", "let's dive in", "delve", "unlock", "game-changer", "game changer",
           "seamlessly", "robust", "leverage", "moreover", "furthermore", "fast-paced"]
 WPS_MIN, WPS_MAX = 1.6, 3.2   # words per second (spoken English/Hinglish)
@@ -65,6 +65,8 @@ def gate(topic: str, key: str) -> dict:
 def build_prompt(topic: str, series: str, lang: str, day: int | None) -> str:
     tpl = PROMPT.read_text(encoding="utf-8")
     lang_name = {"en": "English", "hi": "Hindi (Hinglish-Devanagari, English tech words in Latin)"}[lang]
+    golden = (ROOT / "prompts" / "examples" / "golden_lesson.json").read_text(encoding="utf-8")
+    tpl = tpl + "\n\nGOLDEN EXAMPLE (quality bar, different topic):\n" + golden
     return (tpl.replace("{LANG}", lang_name).replace("{TOPIC}", topic)
             .replace("{SERIES}", series or "standalone").replace("{DAY}", str(day or "n/a")))
 
@@ -113,7 +115,7 @@ def lint(lesson: dict, lang: str) -> list[str]:
             warns.append(f"{tag}: narration bahut chhota ({words} words)")
         if lo < SCENE_SEC_MIN or hi > SCENE_SEC_MAX:
             warns.append(f"{tag}: narration length ~{lo:.0f}-{hi:.0f}s (target {SCENE_SEC_MIN}-{SCENE_SEC_MAX}s)")
-        for p in s.get("popups") or []:
+        for p in (s.get("popups") or rem.get("popups") or []):
             a = p.get("anchor", "")
             if a and a.lower() not in low:
                 errs.append(f"{tag}: popup anchor '{a}' narration mein nahi hai")
