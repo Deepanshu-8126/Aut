@@ -1,0 +1,33 @@
+{
+  "title": "Python Tuples vs Lists",
+  "dayLabel": "Day 2 / 100",
+  "scenes": [
+    {"id": 1, "narration": "Day two. Today we learn tuples, and how they differ from lists.",
+     "remotion": {"type": "TitleCard", "props": {"title": "Python Tuples", "subtitle": "Lists, but fixed", "badge": "DAY 2 • PYTHON TUPLES", "tags": ["Python", "Tuples", "Beginner"]}}},
+
+    {"id": 2, "narration": "Start with our list from yesterday. Now change the square brackets to round brackets. That makes a tuple.",
+     "remotion": {"type": "TypingCode", "type_anchor": "Now",
+       "props": {"filename": "tuples.py", "language": "python",
+         "code": "fruits = (\"apple\", \"mango\", \"banana\")\nprint(fruits[0])"},
+       "previous_code": "fruits = [\"apple\", \"mango\", \"banana\"]\nprint(fruits[0])",
+       "popups": [
+         {"anchor": "round", "text": "Round brackets make a tuple", "kind": "tip", "x": "72%", "y": "30%"}
+       ]}},
+
+    {"id": 3, "narration": "Now try to change the first item. Python stops us with an error.",
+     "remotion": {"type": "TypingCode", "type_anchor": "Now",
+       "props": {"filename": "tuples.py", "language": "python",
+         "code": "fruits = (\"apple\", \"mango\", \"banana\")\nfruits[0] = \"kiwi\"", "highlightLines": [2]},
+       "popups": [
+         {"anchor": "error", "text": "Tuples cannot be changed", "kind": "note", "x": "72%", "y": "62%"}
+       ]}},
+
+    {"id": 4, "narration": "The error says tuples cannot be changed. That is the point. Fixed data stays safe.",
+     "remotion": {"type": "TerminalRun", "props": {"command": "python tuples.py",
+       "output": ["TypeError: 'tuple' object does not support item assignment"]}}},
+
+    {"id": 5, "narration": "Recap. Tuples use round brackets. They are fixed after creation. Use lists when the data must change.",
+     "remotion": {"type": "SummaryList", "props": {"title": "Recap",
+       "items": ["Tuples use round brackets ()", "Tuples are fixed after creation", "Use lists when data must change"]}}}
+  ]
+}

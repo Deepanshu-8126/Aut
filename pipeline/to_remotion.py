@@ -5,6 +5,7 @@ Usage:
 Audio + clips remotion/public/ mein jaate hain (staticFile se load hote hain).
 """
 import argparse
+import difflib
 import json
 import math
 import sys
@@ -58,6 +59,17 @@ def build(script_path: Path, lang: str, out: Path, theme: str, clips: dict) -> N
             s["_clip"] = clips[s["id"]]
         typ, props = scene_props(s)
         r = s.get("remotion") or {}
+        if typ == "TypingCode" and r.get("previous_code"):
+            old_lines = r["previous_code"].split("\n")
+            new_lines = props["code"].split("\n")
+            diff = []
+            for tag, i1, i2, j1, j2 in difflib.SequenceMatcher(a=old_lines, b=new_lines).get_opcodes():
+                if tag == "equal":
+                    diff += [{"type": "same", "text": x} for x in old_lines[i1:i2]]
+                else:
+                    diff += [{"type": "del", "text": x} for x in old_lines[i1:i2]]
+                    diff += [{"type": "add", "text": x} for x in new_lines[j1:j2]]
+            props["diff"] = diff
         if typ == "TypingCode":
             start = find_word_time(words, r.get("type_anchor", ""), 0.0) if r.get("type_anchor") else 0.0
             props["startFrame"] = round(start * FPS)
