@@ -1,0 +1,72 @@
+name: Daily video (autopilot)
+
+on:
+  schedule:
+    - cron: "30 14 * * *"   # 14:30 UTC = 20:00 IST roz
+  workflow_dispatch:
+    inputs:
+      series:
+        description: "series id (python-100-days, java-100-days, ...)"
+        required: true
+        default: python-100-days
+      lang:
+        description: "en, hi ya en,hi"
+        required: false
+        default: ""
+      upload:
+        description: "YouTube par upload karna hai?"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+      YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+      YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: System deps (ffmpeg, browser libs)
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg libnspr4 libnss3 libasound2t64
+
+      - name: Python deps
+        run: pip install -r requirements.txt
+
+      - name: Remotion deps
+        run: cd remotion && npm ci --no-audit --no-fund
+
+      - name: Autopilot (script -> video -> upload)
+        env:
+          SERIES: ${{ github.event.inputs.series || 'python-100-days' }}
+          LANGS: ${{ github.event.inputs.lang }}
+          DO_UPLOAD: ${{ github.event.inputs.upload || 'true' }}
+        run: |
+          ARGS="--series $SERIES"
+          [ -n "$LANGS" ] && ARGS="$ARGS --lang $LANGS"
+          [ "$DO_UPLOAD" = "true" ] && ARGS="$ARGS --upload"
+          python3 pipeline/autopilot.py $ARGS
+
+      - name: Save state and meta
+        run: |
+          git config user.name "yt-automator-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add state/ config/series.json tests/ output/meta/ || true
+          git commit -m "autopilot: daily run" || echo "nothing to commit"
+          git push || echo "push skipped"

@@ -1,61 +1,38 @@
 {
-  "series": {
-    "dsa": {
-      "name": "DSA in 30 Days",
+  "_note": "Har series ek daily pipeline hai. autopilot.py roz agla din uthata hai. youtube_playlist_* null ho to upload ke time playlist ban jaati hai (YouTube API setup ke baad).",
+  "series": [
+    {
+      "id": "python-100-days",
+      "name": "Python in 100 Days",
       "format": "long",
-      "topics": [
-        "Arrays and time complexity (Big-O)",
-        "Two pointers technique",
-        "Sliding window",
-        "Binary search",
-        "Linked list basics",
-        "Stack and monotonic stack",
-        "Queue and BFS",
-        "Binary search tree",
-        "Heap and priority queue",
-        "Hash map and hashing",
-        "Recursion and backtracking",
-        "Dynamic programming intro"
-      ]
+      "theme": "light-grid",
+      "langs": ["en", "hi"],
+      "curriculum": "config/curriculum/python_100.json",
+      "daily_slot_ist": "20:00",
+      "youtube_playlist": {"en": null, "hi": null},
+      "enabled": true
     },
-    "ai_ml": {
-      "name": "AI/ML Explained",
+    {
+      "id": "java-100-days",
+      "name": "Java in 100 Days",
       "format": "long",
-      "topics": [
-        "What is machine learning",
-        "Linear regression and gradient descent",
-        "Neural networks basics",
-        "Backpropagation",
-        "Overfitting and regularization",
-        "Decision trees",
-        "Attention mechanism",
-        "Transformers overview",
-        "Embeddings",
-        "Convolutional neural networks"
-      ]
+      "theme": "light-grid",
+      "langs": ["en", "hi"],
+      "curriculum": "config/curriculum/java_100.json",
+      "daily_slot_ist": "20:00",
+      "youtube_playlist": {"en": null, "hi": null},
+      "enabled": false
     },
-    "shorts_tips": {
-      "name": "Coding Shorts",
+    {
+      "id": "python-shorts",
+      "name": "Python Shorts",
       "format": "short",
-      "topics": [
-        "Python list vs tuple",
-        "Python list comprehension",
-        "Big-O of hash map lookup",
-        "Why binary search needs sorted input",
-        "Python generators"
-      ]
+      "theme": "light-grid",
+      "langs": ["en", "hi"],
+      "curriculum": "config/curriculum/python_100.json",
+      "daily_slot_ist": "18:00",
+      "youtube_playlist": {"en": null, "hi": null},
+      "enabled": false
     }
-  },
-  "languages": {
-    "en": {
-      "engine": "kokoro",
-      "voice": "am_michael",
-      "label": "English"
-    },
-    "hi": {
-      "engine": "edge",
-      "voice": "hi-IN-SwaraNeural",
-      "label": "Hindi"
-    }
-  }
+  ]
 }

@@ -1,0 +1,16 @@
+{
+  "title": "Standard Deviation: How Spread Out Is the Data",
+  "dayLabel": "Stats 3",
+  "scenes": [
+    {"id": 1, "narration": "Two classes have the same average mark. One class is consistent. The other is all over the place. How do we measure that spread?",
+     "remotion": {"type": "TitleCard", "props": {"title": "Standard Deviation", "subtitle": "How spread out is the data?", "badge": "STATS • SPREAD", "tags": ["Statistics", "Variance", "Std dev"]}}},
+    {"id": 2, "narration": "Here are eight values. Their mean is five. Each value sits at some distance from that mean. Look at how the bars are spread around it.",
+     "remotion": {"type": "StatChart", "props": {"title": "Eight values, mean 5", "kind": "histogram", "data": [2, 4, 4, 4, 5, 5, 7, 9], "bins": 4, "xLabel": "Value", "yLabel": "Count", "formula": "mean = 40 / 8 = 5"}, "popups": [{"anchor": "mean", "text": "Average is 5", "kind": "tip", "x": "50%", "y": "15%"}]}},
+    {"id": 3, "narration": "Standard deviation is the typical distance from the mean. For these values it is two. Most values lie within one sigma of the mean.",
+     "remotion": {"type": "StatChart", "props": {"title": "Bell curve: mean 5, sd 2", "kind": "normal", "mean": 5, "sd": 2, "xLabel": "Value", "formula": "variance = 32 / 8 = 4\nsd = sqrt(4) = 2"}, "popups": [{"anchor": "sigma", "text": "One sd each side", "kind": "note", "x": "50%", "y": "15%"}]}},
+    {"id": 4, "narration": "Variance is the average squared distance from the mean. Standard deviation is its square root. That brings the units back to normal numbers.",
+     "remotion": {"type": "ComparisonCard", "props": {"title": "Variance vs Std dev", "leftTitle": "Variance", "leftPoints": ["Average squared distance", "Units are squared", "Value 4 here"], "rightTitle": "Std dev", "rightPoints": ["Square root of variance", "Same units as data", "Value 2 here"]}, "popups": [{"anchor": "squared", "text": "Squared, then rooted back", "kind": "tip", "x": "50%", "y": "15%"}]}},
+    {"id": 5, "narration": "Quick recap. Mean gives the center. Standard deviation gives the spread. Your practice task: compute both for five numbers of your own.",
+     "remotion": {"type": "SummaryList", "props": {"title": "Recap", "items": ["Mean gives the center", "Variance is average squared distance", "Std dev is its square root", "Small sd means consistent data"]}, "popups": [{"anchor": "Practice", "text": "Do it with your own numbers", "kind": "tip", "x": "50%", "y": "15%"}]}}
+  ]
+}
