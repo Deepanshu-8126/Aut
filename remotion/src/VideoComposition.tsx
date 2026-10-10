@@ -14,6 +14,7 @@ import { ClassifierCard } from './components/ClassifierCard';
 import { ClusterGrid } from './components/ClusterGrid';
 import { SubtitleOverlay } from './components/SubtitleOverlay';
 import { getTheme } from './theme';
+import { ThemeProvider } from './ThemeContext';
 
 export const VideoComposition: React.FC<{ project: ProjectData }> = ({ project }) => {
   const { scenes, aspectRatio } = project;
@@ -47,6 +48,7 @@ export const VideoComposition: React.FC<{ project: ProjectData }> = ({ project }
   };
 
   return (
+    <ThemeProvider name={project.theme}>
     <div className="w-full h-full relative overflow-hidden font-sans select-none" style={{ color: theme.text }}>
       {/* Dynamic Background */}
       <Background aspectRatio={aspectRatio} theme={project.theme} />
@@ -79,5 +81,6 @@ export const VideoComposition: React.FC<{ project: ProjectData }> = ({ project }
         })}
       </Series>
     </div>
+    </ThemeProvider>
   );
 };

@@ -1,76 +1,60 @@
 import React from 'react';
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import { ComparisonCardProps } from '../types';
-import { Check, X, Zap } from 'lucide-react';
+import { useTheme } from '../ThemeContext';
 
-export const ComparisonCard: React.FC<
-  ComparisonCardProps & { aspectRatio: '9:16' | '16:9' }
-> = ({ title, leftTitle, leftPoints, rightTitle, rightPoints, aspectRatio }) => {
+// Two cards (List vs Generator style). Right card highlighted with the accent + green badge.
+export const ComparisonCard: React.FC<ComparisonCardProps & { aspectRatio: '9:16' | '16:9' }> = ({
+  title, leftTitle, leftPoints, rightTitle, rightPoints, aspectRatio,
+}) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
+  const t = useTheme();
+  const entrance = spring({ frame, fps, config: { damping: 14, mass: 0.9 } });
+  const vertical = aspectRatio === '9:16';
+  const light = t.name === 'light-grid';
 
-  const entrance = spring({
-    frame,
-    fps,
-    config: { damping: 14, mass: 0.9 },
+  const card = (highlight: boolean): React.CSSProperties => ({
+    flex: 1,
+    padding: 24,
+    borderRadius: 24,
+    background: highlight && !light ? t.accentSoft : t.card,
+    border: `${highlight ? 2 : 1}px solid ${highlight ? t.accent : t.cardBorder}`,
+    boxShadow: light ? '0 8px 24px rgba(15,23,42,0.06)' : 'none',
   });
 
-  const isVertical = aspectRatio === '9:16';
-
   return (
-    <div
-      className="w-full h-full flex flex-col items-center justify-center p-8 relative z-10"
-      style={{
-        transform: `scale(${interpolate(entrance, [0, 1], [0.92, 1])})`,
-        opacity: interpolate(entrance, [0, 1], [0, 1]),
-      }}
-    >
-      {/* Title */}
-      <h2
-        className={`font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-white to-cyan-400 mb-8 text-center drop-shadow-md ${
-          isVertical ? 'text-4xl max-w-xl' : 'text-4xl'
-        }`}
-      >
-        {title}
-      </h2>
+    <div className="w-full h-full flex flex-col items-center justify-center p-8 relative z-10"
+      style={{ transform: `scale(${interpolate(entrance, [0, 1], [0.92, 1])})`, opacity: interpolate(entrance, [0, 1], [0, 1]) }}>
+      <h2 className="font-black tracking-tight mb-8 text-center text-4xl" style={{ color: t.text }}>{title}</h2>
 
-      {/* Columns Container */}
-      <div
-        className={`flex gap-5 w-full ${
-          isVertical ? 'flex-col max-w-[940px] w-[94%]' : 'flex-row max-w-4xl'
-        }`}
-      >
-        {/* Left Column */}
-        <div className={`flex-1 bg-slate-900/80 border border-slate-800 rounded-3xl shadow-xl flex flex-col ${
-          isVertical ? 'p-6' : 'p-6'
-        }`}>
-          <div className="flex items-center gap-2.5 mb-3 pb-3 border-b border-slate-800">
-            <div className="w-3 h-3 rounded-full bg-rose-400" />
-            <h3 className={`font-bold text-slate-200 ${isVertical ? 'text-2xl' : 'text-xl'}`}>{leftTitle}</h3>
+      <div className={`flex gap-5 w-full ${vertical ? 'flex-col max-w-[940px] w-[94%]' : 'flex-row max-w-4xl'}`}>
+        <div className="flex flex-col" style={card(false)}>
+          <div className="flex items-center gap-2.5 mb-3 pb-3" style={{ borderBottom: `1px solid ${t.cardBorder}` }}>
+            <div className="w-3 h-3 rounded-full" style={{ background: '#f87171' }} />
+            <h3 className={`font-bold ${vertical ? 'text-2xl' : 'text-xl'}`} style={{ color: t.text }}>{leftTitle}</h3>
           </div>
           <ul className="space-y-2.5">
-            {leftPoints.map((point, idx) => (
-              <li key={idx} className={`flex items-start gap-3 text-slate-300 ${isVertical ? 'text-lg' : 'text-sm'}`}>
-                <span className="mt-2 w-2 h-2 rounded-full bg-rose-400 shrink-0" />
-                <span>{point}</span>
+            {leftPoints.map((p, i) => (
+              <li key={i} className={`flex items-start gap-3 ${vertical ? 'text-lg' : 'text-sm'}`} style={{ color: t.textMuted }}>
+                <span className="mt-2 w-2 h-2 rounded-full shrink-0" style={{ background: '#f87171' }} />
+                <span>{p}</span>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Right Column (Highlighted) */}
-        <div className={`flex-1 bg-gradient-to-b from-cyan-950/60 to-slate-900/90 border border-cyan-400/50 rounded-3xl shadow-[0_0_40px_rgba(56,189,248,0.25)] flex flex-col ${
-          isVertical ? 'p-6' : 'p-6'
-        }`}>
-          <div className="flex items-center gap-2.5 mb-3 pb-3 border-b border-cyan-900/60">
-            <Zap className="w-6 h-6 text-cyan-400" />
-            <h3 className={`font-bold text-cyan-200 ${isVertical ? 'text-2xl' : 'text-xl'}`}>{rightTitle}</h3>
+        <div className="flex flex-col" style={card(true)}>
+          <div className="flex items-center gap-2.5 mb-3 pb-3" style={{ borderBottom: `1px solid ${t.cardBorder}` }}>
+            <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: t.okBg, color: t.okText }}>
+              {rightTitle}
+            </span>
           </div>
           <ul className="space-y-2.5">
-            {rightPoints.map((point, idx) => (
-              <li key={idx} className={`flex items-start gap-3 text-cyan-100 font-medium ${isVertical ? 'text-lg' : 'text-sm'}`}>
-                <Check className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
-                <span>{point}</span>
+            {rightPoints.map((p, i) => (
+              <li key={i} className={`flex items-start gap-3 font-medium ${vertical ? 'text-lg' : 'text-sm'}`} style={{ color: t.text }}>
+                <span className="mt-1 font-bold" style={{ color: t.okText }}>✓</span>
+                <span>{p}</span>
               </li>
             ))}
           </ul>
