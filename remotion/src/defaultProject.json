@@ -855,5 +855,6 @@
     }
   ],
   "totalDurationFrames": 1684,
-  "totalDurationSec": 56.13
+  "totalDurationSec": 56.13,
+  "theme": "light-grid"
 }

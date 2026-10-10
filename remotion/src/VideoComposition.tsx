@@ -13,9 +13,11 @@ import { TerminalSplit } from './components/TerminalSplit';
 import { ClassifierCard } from './components/ClassifierCard';
 import { ClusterGrid } from './components/ClusterGrid';
 import { SubtitleOverlay } from './components/SubtitleOverlay';
+import { getTheme } from './theme';
 
 export const VideoComposition: React.FC<{ project: ProjectData }> = ({ project }) => {
   const { scenes, aspectRatio } = project;
+  const theme = getTheme(project.theme);
 
   const renderSceneContent = (scene: SceneData) => {
     switch (scene.type) {
@@ -45,9 +47,9 @@ export const VideoComposition: React.FC<{ project: ProjectData }> = ({ project }
   };
 
   return (
-    <div className="w-full h-full relative overflow-hidden bg-[#090d16] font-sans select-none">
+    <div className="w-full h-full relative overflow-hidden font-sans select-none" style={{ color: theme.text }}>
       {/* Dynamic Background */}
-      <Background aspectRatio={aspectRatio} />
+      <Background aspectRatio={aspectRatio} theme={project.theme} />
 
       {/* Sequential Scenes */}
       <Series>

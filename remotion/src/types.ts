@@ -141,7 +141,7 @@ export interface ProjectData {
   title: string;
   aspectRatio: AspectRatio;
   voice?: string;
-  theme?: 'dark-cyan' | 'cyberpunk' | 'minimal-dark';
+  theme?: 'light-grid' | 'dark-vdo'; // per-video theme choice
   totalDurationFrames?: number;
   totalDurationSec?: number;
   scenes: SceneData[];
