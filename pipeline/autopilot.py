@@ -20,6 +20,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from topic_to_lesson import build_prompt, gemini_json, lint, slugify  # noqa: E402
+from seo_meta import build_seo  # noqa: E402
 
 CONFIG = ROOT / "config" / "series.json"
 STATE = ROOT / "state" / "autopilot.json"
@@ -86,7 +87,7 @@ def make_thumb(series: dict, day: int, lang: str, lesson: Path) -> Path | None:
     return ROOT / "output" / "thumbs" / f"{series['id'].replace('-', '_')}_d{day:03d}_{lang}_thumb.png"
 
 
-def write_meta(series: dict, day: int, lang: str, lesson: Path, mp4: Path, thumb: Path | None = None) -> Path:
+def write_meta(series: dict, day: int, lang: str, lesson: Path, mp4: Path, thumb: Path | None = None, seo: dict | None = None) -> Path:
     data = json.loads(lesson.read_text(encoding="utf-8"))
     raw = re.sub(r"^.*?Day\s*\d+\s*[:\-|]\s*", "", data.get("title", ""), flags=re.I).strip()
     title = f"{series['name']} | Day {day}: {raw}"[:100]
@@ -94,6 +95,8 @@ def write_meta(series: dict, day: int, lang: str, lesson: Path, mp4: Path, thumb
     desc = (f"{first}\n\n{series['name']} - Day {day}.\n"
             "Practice task video ke end mein hai. Agla episode subscribe karke dekho.")
     tags = [series["name"].split(" in ")[0], "programming", "beginner", "tutorial"]
+    if seo:  # Gemini SEO metadata (title/description/tags) basic ki jagah
+        title, desc, tags = seo["title"], seo["description"], seo["tags"]
     META.mkdir(parents=True, exist_ok=True)
     out = META / f"{mp4.stem}.json"
     out.write_text(json.dumps({
@@ -144,7 +147,8 @@ def main() -> None:
         print(f"[{lang}] render")
         mp4 = render(series, day, lang, lesson)
         thumb = make_thumb(series, day, lang, lesson)
-        meta = write_meta(series, day, lang, lesson, mp4, thumb)
+        seo = build_seo(series["name"], topic, lang, lesson, key) if key else None
+        meta = write_meta(series, day, lang, lesson, mp4, thumb, seo)
         print(f"[{lang}] meta: {meta.name}")
         if a.notify:
             from telegram_notify import send_video  # noqa: E402

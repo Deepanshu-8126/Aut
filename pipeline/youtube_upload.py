@@ -68,6 +68,13 @@ def upload_one(meta_path: Path) -> str:
     while resp is None:
         _, resp = req.next_chunk()
     vid = resp["id"]
+    thumb = meta.get("thumbnail")
+    if thumb and (ROOT / thumb).exists():
+        try:
+            yt.thumbnails().set(videoId=vid, media_body=MediaFileUpload(str(ROOT / thumb), mimetype="image/png")).execute()
+            print(f"  thumbnail set: {thumb}")
+        except Exception as e:  # custom thumbnail ke liye channel verify hona zaroori hai
+            print(f"  [warn] thumbnail set fail (channel verify check karo): {e}")
     pid = meta.get("playlist_id") or _ensure_playlist(yt, meta["series"], meta["lang"])
     if pid:
         yt.playlistItems().insert(part="snippet", body={
