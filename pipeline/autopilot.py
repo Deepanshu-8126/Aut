@@ -10,6 +10,7 @@ Env (Gemini): GEMINI_API_KEY. Env (upload): YT_CLIENT_ID, YT_CLIENT_SECRET, YT_R
 """
 import argparse
 import json
+import re
 import os
 import subprocess
 import sys
@@ -74,9 +75,21 @@ def render(series: dict, day: int, lang: str, lesson: Path) -> Path:
     return ROOT / "output" / "remotion" / f"{name}.mp4"
 
 
-def write_meta(series: dict, day: int, lang: str, lesson: Path, mp4: Path) -> Path:
+def make_thumb(series: dict, day: int, lang: str, lesson: Path) -> Path | None:
+    """Lesson se thumbnail PNG (make_thumbnail.py). Fail ho to video block nahi hota."""
+    cmd = [sys.executable, str(ROOT / "pipeline" / "make_thumbnail.py"), "--lesson", str(lesson),
+           "--series", series["id"], "--day", str(day), "--total", str(series.get("total", 100)), "--lang", lang]
+    res = subprocess.run(cmd, cwd=ROOT)
+    if res.returncode != 0:
+        print("  [warn] thumbnail fail (video chalu hai)")
+        return None
+    return ROOT / "output" / "thumbs" / f"{series['id'].replace('-', '_')}_d{day:03d}_{lang}_thumb.png"
+
+
+def write_meta(series: dict, day: int, lang: str, lesson: Path, mp4: Path, thumb: Path | None = None) -> Path:
     data = json.loads(lesson.read_text(encoding="utf-8"))
-    title = f"{series['name']} | Day {day}: {data.get('title', '')}"[:100]
+    raw = re.sub(r"^.*?Day\s*\d+\s*[:\-|]\s*", "", data.get("title", ""), flags=re.I).strip()
+    title = f"{series['name']} | Day {day}: {raw}"[:100]
     first = data["scenes"][0]["narration"]
     desc = (f"{first}\n\n{series['name']} - Day {day}.\n"
             "Practice task video ke end mein hai. Agla episode subscribe karke dekho.")
@@ -84,7 +97,7 @@ def write_meta(series: dict, day: int, lang: str, lesson: Path, mp4: Path) -> Pa
     META.mkdir(parents=True, exist_ok=True)
     out = META / f"{mp4.stem}.json"
     out.write_text(json.dumps({
-        "video": str(mp4.relative_to(ROOT)), "title": title, "description": desc,
+        "video": str(mp4.relative_to(ROOT)), "thumbnail": (str(thumb.relative_to(ROOT)) if thumb else None), "title": title, "description": desc,
         "tags": tags, "lang": lang, "series": series["id"], "day": day,
         "playlist_id": series["youtube_playlist"].get(lang),
         "privacy": "public", "created": datetime.now().isoformat(timespec="seconds"),
@@ -99,6 +112,7 @@ def main() -> None:
     ap.add_argument("--day", type=int, help="specific day; default = agla din")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--upload", action="store_true")
+    ap.add_argument("--notify", action="store_true", help="Telegram par video bhejo (TELEGRAM_* env)")
     a = ap.parse_args()
 
     series = get_series(a.series)
@@ -129,8 +143,14 @@ def main() -> None:
         lesson = make_lesson(series, day, topic, lang, key)
         print(f"[{lang}] render")
         mp4 = render(series, day, lang, lesson)
-        meta = write_meta(series, day, lang, lesson, mp4)
+        thumb = make_thumb(series, day, lang, lesson)
+        meta = write_meta(series, day, lang, lesson, mp4, thumb)
         print(f"[{lang}] meta: {meta.name}")
+        if a.notify:
+            from telegram_notify import send_video  # noqa: E402
+            m = json.loads(meta.read_text(encoding="utf-8"))
+            send_video(mp4, m["title"], m["description"])
+            print(f"[{lang}] telegram: video sent")
         if a.upload:
             from youtube_upload import upload_one  # noqa: E402
             vid = upload_one(meta)

@@ -26,17 +26,17 @@ export const ComparisonCard: React.FC<ComparisonCardProps & { aspectRatio: '9:16
   return (
     <div className="w-full h-full flex flex-col items-center justify-center p-8 relative z-10"
       style={{ transform: `scale(${interpolate(entrance, [0, 1], [0.92, 1])})`, opacity: interpolate(entrance, [0, 1], [0, 1]) }}>
-      <h2 className="font-black tracking-tight mb-8 text-center text-4xl" style={{ color: t.text }}>{title}</h2>
+      <h2 className="font-black tracking-tight mb-10 text-center text-6xl" style={{ color: t.text }}>{title}</h2>
 
-      <div className={`flex gap-5 w-full ${vertical ? 'flex-col max-w-[940px] w-[94%]' : 'flex-row max-w-4xl'}`}>
+      <div className={`flex gap-5 w-full ${vertical ? 'flex-col max-w-[940px] w-[94%]' : 'flex-row max-w-6xl'}`}>
         <div className="flex flex-col" style={card(false)}>
           <div className="flex items-center gap-2.5 mb-3 pb-3" style={{ borderBottom: `1px solid ${t.cardBorder}` }}>
             <div className="w-3 h-3 rounded-full" style={{ background: '#f87171' }} />
-            <h3 className={`font-bold ${vertical ? 'text-2xl' : 'text-xl'}`} style={{ color: t.text }}>{leftTitle}</h3>
+            <h3 className={`font-bold ${vertical ? 'text-2xl' : 'text-4xl'}`} style={{ color: t.text }}>{leftTitle}</h3>
           </div>
           <ul className="space-y-2.5">
             {leftPoints.map((p, i) => (
-              <li key={i} className={`flex items-start gap-3 ${vertical ? 'text-lg' : 'text-sm'}`} style={{ color: t.textMuted }}>
+              <li key={i} className={`flex items-start gap-3 ${vertical ? 'text-lg' : 'text-3xl'}`} style={{ color: t.textMuted }}>
                 <span className="mt-2 w-2 h-2 rounded-full shrink-0" style={{ background: '#f87171' }} />
                 <span>{p}</span>
               </li>
@@ -46,13 +46,13 @@ export const ComparisonCard: React.FC<ComparisonCardProps & { aspectRatio: '9:16
 
         <div className="flex flex-col" style={card(true)}>
           <div className="flex items-center gap-2.5 mb-3 pb-3" style={{ borderBottom: `1px solid ${t.cardBorder}` }}>
-            <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: t.okBg, color: t.okText }}>
+            <span className="px-3 py-1 rounded-full text-xl font-bold" style={{ background: t.okBg, color: t.okText }}>
               {rightTitle}
             </span>
           </div>
           <ul className="space-y-2.5">
             {rightPoints.map((p, i) => (
-              <li key={i} className={`flex items-start gap-3 font-medium ${vertical ? 'text-lg' : 'text-sm'}`} style={{ color: t.text }}>
+              <li key={i} className={`flex items-start gap-3 font-medium ${vertical ? 'text-lg' : 'text-3xl'}`} style={{ color: t.text }}>
                 <span className="mt-1 font-bold" style={{ color: t.okText }}>✓</span>
                 <span>{p}</span>
               </li>

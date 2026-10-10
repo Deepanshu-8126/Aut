@@ -1,1 +1,33 @@
-{"next_index": {}, "done": []}
+{
+  "next_index": {},
+  "done": [
+    {
+      "series": "java-100-days",
+      "day": 1,
+      "lang": "en",
+      "video": "java_100_days_d001_en.mp4",
+      "at": "2026-10-10T07:13:49"
+    },
+    {
+      "series": "java-100-days",
+      "day": 1,
+      "lang": "en",
+      "video": "java_100_days_d001_en.mp4",
+      "at": "2026-10-10T07:33:17"
+    },
+    {
+      "series": "java-100-days",
+      "day": 1,
+      "lang": "en",
+      "video": "java_100_days_d001_en.mp4",
+      "at": "2026-10-10T07:43:52"
+    },
+    {
+      "series": "java-100-days",
+      "day": 1,
+      "lang": "en",
+      "video": "java_100_days_d001_en.mp4",
+      "at": "2026-10-10T08:15:43"
+    }
+  ]
+}

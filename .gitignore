@@ -10,3 +10,4 @@ __pycache__/
 *.wav
 *.mp3
 state.json
+remotion/props_*.json

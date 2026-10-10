@@ -17,9 +17,12 @@ import { getTheme } from './theme';
 import { ManimClip } from './components/ManimClip';
 import { TypingCode } from './components/TypingCode';
 import { TerminalRun } from './components/TerminalRun';
+import { BrowserSteps } from './components/BrowserSteps';
 import { TeacherTip } from './components/TeacherTip';
 import { StatChart } from './components/StatChart';
 import { ThemeProvider } from './ThemeContext';
+import { Camera } from './components/Camera';
+import { SceneFade, GlobalProgress, useTotalFrames, KeyIdea, ChapterLabel } from './components/SceneFx';
 
 export const VideoComposition: React.FC<{ project: ProjectData }> = ({ project }) => {
   const { scenes, aspectRatio } = project;
@@ -62,6 +65,8 @@ export const VideoComposition: React.FC<{ project: ProjectData }> = ({ project }
         return <TerminalSplit {...(scene.props as any)} aspectRatio={aspectRatio} />;
       case 'ClassifierCard':
         return <ClassifierCard {...(scene.props as any)} aspectRatio={aspectRatio} />;
+      case 'BrowserSteps':
+        return <BrowserSteps {...(scene.props as any)} stepAt={(scene as any).stepAt} aspectRatio={aspectRatio} />;
       case 'ClusterGrid':
         return <ClusterGrid {...(scene.props as any)} aspectRatio={aspectRatio} />;
       default:
@@ -84,7 +89,13 @@ export const VideoComposition: React.FC<{ project: ProjectData }> = ({ project }
             <Series.Sequence key={scene.id} durationInFrames={duration}>
               {/* Scene Visual */}
               <div className="w-full h-full relative z-10">
-                {renderSceneContent(scene)}
+                <SceneFade>
+                  <Camera keys={(scene as any).camera}>
+                    {renderSceneContent(scene)}
+                  </Camera>
+                </SceneFade>
+                {(scene as any).chapter && <ChapterLabel text={(scene as any).chapter} />}
+                {(scene as any).keyIdea && <KeyIdea text={(scene as any).keyIdea} />}
               </div>
 
               {/* Sound: typing loop (code scenes) */}
@@ -121,6 +132,9 @@ export const VideoComposition: React.FC<{ project: ProjectData }> = ({ project }
           );
         })}
       </Series>
+
+      {/* Top progress bar (poori video ka progress) */}
+      <GlobalProgress totalFrames={useTotalFrames(scenes)} />
 
       {/* Background music (poori video mein, low volume) */}
       <Audio src={staticFile((project as any).bgm || 'sfx/bgm.wav')} loop volume={(project as any).bgmVolume ?? 0.08} />

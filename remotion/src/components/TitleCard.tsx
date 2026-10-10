@@ -19,7 +19,7 @@ export const TitleCard: React.FC<TitleCardProps & { aspectRatio: '9:16' | '16:9'
   return (
     <div className="w-full h-full flex flex-col items-center justify-center p-8 relative z-10 text-center"
       style={{ transform: `scale(${scale})`, opacity }}>
-      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full font-mono text-sm tracking-wider uppercase mb-6"
+      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full font-mono text-xl tracking-wider uppercase mb-6"
         style={{ background: t.pillBg, color: t.pillText, border: light ? 'none' : `1px solid ${t.cardBorder}`,
           fontWeight: 700 }}>
         <span>{badge}</span>
@@ -33,7 +33,7 @@ export const TitleCard: React.FC<TitleCardProps & { aspectRatio: '9:16' | '16:9'
       </h1>
 
       {subtitle && (
-        <p className={`font-medium max-w-2xl mt-6 leading-relaxed ${vertical ? 'text-xl' : 'text-2xl'}`}
+        <p className={`font-medium max-w-2xl mt-6 leading-relaxed ${vertical ? 'text-xl' : 'text-3xl'}`}
           style={{ color: t.textMuted }}>
           {subtitle}
         </p>
@@ -42,7 +42,7 @@ export const TitleCard: React.FC<TitleCardProps & { aspectRatio: '9:16' | '16:9'
       {tags && tags.length > 0 && (
         <div className="flex flex-wrap items-center justify-center gap-2.5 mt-8 max-w-xl">
           {tags.map((tag, i) => (
-            <span key={i} className="px-3 py-1 rounded-lg font-mono text-xs tracking-wide"
+            <span key={i} className="px-3 py-1 rounded-lg font-mono text-lg tracking-wide"
               style={{ background: t.card, border: `1px solid ${t.cardBorder}`, color: t.accent }}>
               #{tag}
             </span>

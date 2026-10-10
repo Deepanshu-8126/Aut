@@ -1,0 +1,515 @@
+{
+  "series": "java-100-days",
+  "modules": [
+    "M1 Setup and Basics",
+    "M2 Decisions and Loops",
+    "M3 Arrays and Methods",
+    "M4 Object Oriented Programming",
+    "M5 Collections",
+    "M6 Exceptions and Files",
+    "M7 Modern Java",
+    "M8 Advanced and Projects"
+  ],
+  "topics": [
+    {
+      "day": 1,
+      "module": "M1 Setup and Basics",
+      "topic": "How Java runs: Hello World"
+    },
+    {
+      "day": 2,
+      "module": "M1 Setup and Basics",
+      "topic": "Install JDK and set up IDE"
+    },
+    {
+      "day": 3,
+      "module": "M1 Setup and Basics",
+      "topic": "Variables and naming rules"
+    },
+    {
+      "day": 4,
+      "module": "M1 Setup and Basics",
+      "topic": "Primitive data types"
+    },
+    {
+      "day": 5,
+      "module": "M1 Setup and Basics",
+      "topic": "Operators and expressions"
+    },
+    {
+      "day": 6,
+      "module": "M1 Setup and Basics",
+      "topic": "Taking input with Scanner"
+    },
+    {
+      "day": 7,
+      "module": "M1 Setup and Basics",
+      "topic": "String basics"
+    },
+    {
+      "day": 8,
+      "module": "M1 Setup and Basics",
+      "topic": "String methods"
+    },
+    {
+      "day": 9,
+      "module": "M1 Setup and Basics",
+      "topic": "Type casting"
+    },
+    {
+      "day": 10,
+      "module": "M1 Setup and Basics",
+      "topic": "Constants with final"
+    },
+    {
+      "day": 11,
+      "module": "M2 Decisions and Loops",
+      "topic": "if else"
+    },
+    {
+      "day": 12,
+      "module": "M2 Decisions and Loops",
+      "topic": "switch statement"
+    },
+    {
+      "day": 13,
+      "module": "M2 Decisions and Loops",
+      "topic": "while loop"
+    },
+    {
+      "day": 14,
+      "module": "M2 Decisions and Loops",
+      "topic": "do while loop"
+    },
+    {
+      "day": 15,
+      "module": "M2 Decisions and Loops",
+      "topic": "for loop"
+    },
+    {
+      "day": 16,
+      "module": "M2 Decisions and Loops",
+      "topic": "for each loop"
+    },
+    {
+      "day": 17,
+      "module": "M2 Decisions and Loops",
+      "topic": "break and continue"
+    },
+    {
+      "day": 18,
+      "module": "M2 Decisions and Loops",
+      "topic": "Nested loops"
+    },
+    {
+      "day": 19,
+      "module": "M2 Decisions and Loops",
+      "topic": "Ternary operator"
+    },
+    {
+      "day": 20,
+      "module": "M2 Decisions and Loops",
+      "topic": "Labeled break"
+    },
+    {
+      "day": 21,
+      "module": "M3 Arrays and Methods",
+      "topic": "Arrays basics"
+    },
+    {
+      "day": 22,
+      "module": "M3 Arrays and Methods",
+      "topic": "Looping through arrays"
+    },
+    {
+      "day": 23,
+      "module": "M3 Arrays and Methods",
+      "topic": "2D arrays"
+    },
+    {
+      "day": 24,
+      "module": "M3 Arrays and Methods",
+      "topic": "Arrays utility class"
+    },
+    {
+      "day": 25,
+      "module": "M3 Arrays and Methods",
+      "topic": "Methods basics"
+    },
+    {
+      "day": 26,
+      "module": "M3 Arrays and Methods",
+      "topic": "Parameters and return values"
+    },
+    {
+      "day": 27,
+      "module": "M3 Arrays and Methods",
+      "topic": "Method overloading"
+    },
+    {
+      "day": 28,
+      "module": "M3 Arrays and Methods",
+      "topic": "Varargs"
+    },
+    {
+      "day": 29,
+      "module": "M3 Arrays and Methods",
+      "topic": "Recursion basics"
+    },
+    {
+      "day": 30,
+      "module": "M3 Arrays and Methods",
+      "topic": "Recursion examples"
+    },
+    {
+      "day": 31,
+      "module": "M3 Arrays and Methods",
+      "topic": "Static keyword"
+    },
+    {
+      "day": 32,
+      "module": "M3 Arrays and Methods",
+      "topic": "Scope of variables"
+    },
+    {
+      "day": 33,
+      "module": "M3 Arrays and Methods",
+      "topic": "Pass by value"
+    },
+    {
+      "day": 34,
+      "module": "M3 Arrays and Methods",
+      "topic": "Method practice project"
+    },
+    {
+      "day": 35,
+      "module": "M3 Arrays and Methods",
+      "topic": "Module 3 review quiz"
+    },
+    {
+      "day": 36,
+      "module": "M4 Object Oriented Programming",
+      "topic": "Classes and objects"
+    },
+    {
+      "day": 37,
+      "module": "M4 Object Oriented Programming",
+      "topic": "Constructors"
+    },
+    {
+      "day": 38,
+      "module": "M4 Object Oriented Programming",
+      "topic": "this keyword"
+    },
+    {
+      "day": 39,
+      "module": "M4 Object Oriented Programming",
+      "topic": "Getters and setters"
+    },
+    {
+      "day": 40,
+      "module": "M4 Object Oriented Programming",
+      "topic": "Encapsulation"
+    },
+    {
+      "day": 41,
+      "module": "M4 Object Oriented Programming",
+      "topic": "Access modifiers"
+    },
+    {
+      "day": 42,
+      "module": "M4 Object Oriented Programming",
+      "topic": "Static members"
+    },
+    {
+      "day": 43,
+      "module": "M4 Object Oriented Programming",
+      "topic": "Packages"
+    },
+    {
+      "day": 44,
+      "module": "M4 Object Oriented Programming",
+      "topic": "Inheritance"
+    },
+    {
+      "day": 45,
+      "module": "M4 Object Oriented Programming",
+      "topic": "super keyword"
+    },
+    {
+      "day": 46,
+      "module": "M4 Object Oriented Programming",
+      "topic": "Method overriding"
+    },
+    {
+      "day": 47,
+      "module": "M4 Object Oriented Programming",
+      "topic": "Polymorphism"
+    },
+    {
+      "day": 48,
+      "module": "M4 Object Oriented Programming",
+      "topic": "Abstract classes"
+    },
+    {
+      "day": 49,
+      "module": "M4 Object Oriented Programming",
+      "topic": "Interfaces"
+    },
+    {
+      "day": 50,
+      "module": "M4 Object Oriented Programming",
+      "topic": "instanceof and casting"
+    },
+    {
+      "day": 51,
+      "module": "M4 Object Oriented Programming",
+      "topic": "toString method"
+    },
+    {
+      "day": 52,
+      "module": "M4 Object Oriented Programming",
+      "topic": "equals and hashCode"
+    },
+    {
+      "day": 53,
+      "module": "M4 Object Oriented Programming",
+      "topic": "Arrays of objects"
+    },
+    {
+      "day": 54,
+      "module": "M4 Object Oriented Programming",
+      "topic": "Object oriented mini project"
+    },
+    {
+      "day": 55,
+      "module": "M4 Object Oriented Programming",
+      "topic": "Module 4 review"
+    },
+    {
+      "day": 56,
+      "module": "M5 Collections",
+      "topic": "ArrayList"
+    },
+    {
+      "day": 57,
+      "module": "M5 Collections",
+      "topic": "LinkedList"
+    },
+    {
+      "day": 58,
+      "module": "M5 Collections",
+      "topic": "HashMap"
+    },
+    {
+      "day": 59,
+      "module": "M5 Collections",
+      "topic": "HashSet"
+    },
+    {
+      "day": 60,
+      "module": "M5 Collections",
+      "topic": "TreeMap and TreeSet"
+    },
+    {
+      "day": 61,
+      "module": "M5 Collections",
+      "topic": "Iterator"
+    },
+    {
+      "day": 62,
+      "module": "M5 Collections",
+      "topic": "Generics basics"
+    },
+    {
+      "day": 63,
+      "module": "M5 Collections",
+      "topic": "Sorting with Collections.sort"
+    },
+    {
+      "day": 64,
+      "module": "M5 Collections",
+      "topic": "Comparable interface"
+    },
+    {
+      "day": 65,
+      "module": "M5 Collections",
+      "topic": "Comparator"
+    },
+    {
+      "day": 66,
+      "module": "M5 Collections",
+      "topic": "Stack class"
+    },
+    {
+      "day": 67,
+      "module": "M5 Collections",
+      "topic": "Queue and PriorityQueue"
+    },
+    {
+      "day": 68,
+      "module": "M5 Collections",
+      "topic": "Deque"
+    },
+    {
+      "day": 69,
+      "module": "M5 Collections",
+      "topic": "Looping over maps"
+    },
+    {
+      "day": 70,
+      "module": "M5 Collections",
+      "topic": "Collections mini project"
+    },
+    {
+      "day": 71,
+      "module": "M6 Exceptions and Files",
+      "topic": "Exceptions basics"
+    },
+    {
+      "day": 72,
+      "module": "M6 Exceptions and Files",
+      "topic": "try catch"
+    },
+    {
+      "day": 73,
+      "module": "M6 Exceptions and Files",
+      "topic": "finally block"
+    },
+    {
+      "day": 74,
+      "module": "M6 Exceptions and Files",
+      "topic": "Custom exceptions"
+    },
+    {
+      "day": 75,
+      "module": "M6 Exceptions and Files",
+      "topic": "try with resources"
+    },
+    {
+      "day": 76,
+      "module": "M6 Exceptions and Files",
+      "topic": "Reading files"
+    },
+    {
+      "day": 77,
+      "module": "M6 Exceptions and Files",
+      "topic": "Writing files"
+    },
+    {
+      "day": 78,
+      "module": "M6 Exceptions and Files",
+      "topic": "File paths and Path API"
+    },
+    {
+      "day": 79,
+      "module": "M6 Exceptions and Files",
+      "topic": "Serialization basics"
+    },
+    {
+      "day": 80,
+      "module": "M6 Exceptions and Files",
+      "topic": "Logging basics"
+    },
+    {
+      "day": 81,
+      "module": "M7 Modern Java",
+      "topic": "Lambda expressions"
+    },
+    {
+      "day": 82,
+      "module": "M7 Modern Java",
+      "topic": "Functional interfaces"
+    },
+    {
+      "day": 83,
+      "module": "M7 Modern Java",
+      "topic": "Streams: map and filter"
+    },
+    {
+      "day": 84,
+      "module": "M7 Modern Java",
+      "topic": "Streams: collect"
+    },
+    {
+      "day": 85,
+      "module": "M7 Modern Java",
+      "topic": "Optional class"
+    },
+    {
+      "day": 86,
+      "module": "M7 Modern Java",
+      "topic": "Records"
+    },
+    {
+      "day": 87,
+      "module": "M7 Modern Java",
+      "topic": "Enums"
+    },
+    {
+      "day": 88,
+      "module": "M7 Modern Java",
+      "topic": "Switch expressions"
+    },
+    {
+      "day": 89,
+      "module": "M7 Modern Java",
+      "topic": "var keyword"
+    },
+    {
+      "day": 90,
+      "module": "M7 Modern Java",
+      "topic": "Text blocks"
+    },
+    {
+      "day": 91,
+      "module": "M8 Advanced and Projects",
+      "topic": "Threads basics"
+    },
+    {
+      "day": 92,
+      "module": "M8 Advanced and Projects",
+      "topic": "Synchronization"
+    },
+    {
+      "day": 93,
+      "module": "M8 Advanced and Projects",
+      "topic": "ExecutorService"
+    },
+    {
+      "day": 94,
+      "module": "M8 Advanced and Projects",
+      "topic": "JDBC and database connection"
+    },
+    {
+      "day": 95,
+      "module": "M8 Advanced and Projects",
+      "topic": "SQL with Java"
+    },
+    {
+      "day": 96,
+      "module": "M8 Advanced and Projects",
+      "topic": "REST API basics"
+    },
+    {
+      "day": 97,
+      "module": "M8 Advanced and Projects",
+      "topic": "Maven and Gradle"
+    },
+    {
+      "day": 98,
+      "module": "M8 Advanced and Projects",
+      "topic": "Unit testing with JUnit"
+    },
+    {
+      "day": 99,
+      "module": "M8 Advanced and Projects",
+      "topic": "Mini project planning"
+    },
+    {
+      "day": 100,
+      "module": "M8 Advanced and Projects",
+      "topic": "Final project and next steps"
+    }
+  ]
+}

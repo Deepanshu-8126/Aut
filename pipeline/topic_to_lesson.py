@@ -28,11 +28,14 @@ TESTS = ROOT / "tests"
 MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
 API = "https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent?key={k}"
 
-ALLOWED_TYPES = {"TitleCard", "TypingCode", "TerminalRun", "ComparisonCard", "SummaryList", "StatChart"}
+ALLOWED_TYPES = {"TitleCard", "TypingCode", "TerminalRun", "ComparisonCard", "SummaryList", "StatChart", "ArchitectureFlow", "OutroCard", "CodeExplainer", "BrowserSteps"}
 BANNED = ["in this video", "let's dive in", "delve", "unlock", "game-changer", "game changer",
           "seamlessly", "robust", "leverage", "moreover", "furthermore", "fast-paced"]
 WPS_MIN, WPS_MAX = 1.6, 3.2   # words per second (spoken English/Hinglish)
-SCENE_SEC_MIN, SCENE_SEC_MAX = 4, 30
+SCENE_SEC_MIN, SCENE_SEC_MAX = 10, 30   # slow teaching: scene 10-30 sec
+MIN_SCENES = 12
+MIN_WORDS = 20      # isse kam narration = jaldi bolna (error)
+TARGET_WORDS = 25   # isse kam = warning
 
 
 def gemini_json(prompt: str, key: str) -> dict:
@@ -92,8 +95,12 @@ def lint(lesson: dict, lang: str) -> list[str]:
     if not lesson.get("title"):
         errs.append("title missing")
     scenes = lesson.get("scenes") or []
-    if len(scenes) < 4:
-        errs.append(f"scenes kam hain ({len(scenes)}), kam se kam 4 chahiye")
+    if len(scenes) < MIN_SCENES:
+        errs.append(f"scenes kam hain ({len(scenes)}), kam se kam {MIN_SCENES} chahiye (slow teaching)")
+    # Concept pehle, code baad mein: pehle 2 scenes mein code/terminal nahi
+    for i, s0 in enumerate(scenes[:2], 1):
+        if (s0.get("remotion") or {}).get("type") in ("TypingCode", "TerminalRun"):
+            errs.append(f"scene {i}: pehle concept samjhao, code/terminal scene pehle 2 mein nahi")
     for i, s in enumerate(scenes, 1):
         tag = f"scene {i}"
         narr = (s.get("narration") or "").strip()
@@ -111,8 +118,14 @@ def lint(lesson: dict, lang: str) -> list[str]:
                 errs.append(f"{tag}: banned phrase '{b}' (AI jaisa lagega)")
         words = len(narr.split())
         lo, hi = words / WPS_MAX, words / WPS_MIN   # seconds range
-        if words < 6:
-            warns.append(f"{tag}: narration bahut chhota ({words} words)")
+        if words < MIN_WORDS:
+            errs.append(f"{tag}: narration bahut chhota ({words} words, kam se kam {MIN_WORDS}) - slow samjhao")
+        elif words < TARGET_WORDS:
+            warns.append(f"{tag}: narration thoda chhota ({words} words)")
+        for cam in (rem.get("camera") or []):
+            ca = cam.get("at")
+            if ca and ca.lower() not in low:
+                errs.append(f"{tag}: camera anchor '{ca}' narration mein nahi hai")
         if lo < SCENE_SEC_MIN or hi > SCENE_SEC_MAX:
             warns.append(f"{tag}: narration length ~{lo:.0f}-{hi:.0f}s (target {SCENE_SEC_MIN}-{SCENE_SEC_MAX}s)")
         for p in (s.get("popups") or rem.get("popups") or []):
@@ -122,6 +135,26 @@ def lint(lesson: dict, lang: str) -> list[str]:
         ta = rem.get("type_anchor")
         if ta and ta.lower() not in low:
             errs.append(f"{tag}: type_anchor '{ta}' narration mein nahi hai")
+    for i, x in enumerate(scenes, 1):
+        rem = x.get("remotion") or {}
+        if rem.get("type") == "BrowserSteps":
+            st = (rem.get("props") or {}).get("steps") or []
+            if len(st) < 2:
+                errs.append(f"scene {i}: BrowserSteps mein kam se kam 2 steps chahiye")
+            for j, step in enumerate(st, 1):
+                if step.get("type") == "click" and not step.get("label"):
+                    errs.append(f"scene {i} step {j}: click step ko label chahiye")
+                if step.get("type") == "navigate" and not step.get("url"):
+                    warns.append(f"scene {i} step {j}: navigate step mein url nahi")
+    # Visual recommendations (warning): chapter label + key idea cards
+    if not any(((x.get("remotion") or {}).get("chapter") or x.get("chapter")) for x in scenes):
+        warns.append("chapter label kisi scene mein nahi (module ka naam dikhao)")
+    if not any(((x.get("remotion") or {}).get("keyIdea") or x.get("keyIdea")) for x in scenes):
+        warns.append("keyIdea kisi scene mein nahi (2-3 key takeaway cards daalo)")
+    for i, x in enumerate(scenes, 1):
+        ki = (x.get("remotion") or {}).get("keyIdea") or x.get("keyIdea")
+        if ki and len(ki.split()) > 10:
+            warns.append(f"scene {i}: keyIdea 10 words se bada ({len(ki.split())})")
     if warns:
         print("WARN:\n  " + "\n  ".join(warns))
     return errs

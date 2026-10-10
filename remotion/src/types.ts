@@ -19,7 +19,8 @@ export type SceneType =
   | 'ClusterGrid' | 'StatChart'
   | 'ManimClip'
   | 'TypingCode'
-  | 'TerminalRun';
+  | 'TerminalRun'
+  | 'BrowserSteps';
 
 export interface TitleCardProps {
   title: string;
@@ -130,6 +131,7 @@ export type SceneProps =
 
 export interface SceneData {
   id: string;
+  camera?: { t: number; zoom?: number; x?: number; y?: number }[];
   type: SceneType;
   narration: string;
   audioFile?: string;

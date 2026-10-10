@@ -2,15 +2,150 @@
   "title": "Outliers: Find the Value That Doesn't Belong",
   "dayLabel": "Stats 2",
   "scenes": [
-    {"id": 1, "narration": "Eleven salaries, and one number looks wrong. Do you delete it? Let's learn how statisticians decide, using a box plot.",
-     "remotion": {"type": "TitleCard", "props": {"title": "Outliers", "subtitle": "Find the value that doesn't belong", "badge": "STATS • OUTLIERS", "tags": ["Statistics", "Box plot", "IQR"]}}},
-    {"id": 2, "narration": "This box plot shows the eleven values. The box covers the middle half of the data. The line inside is the median, eighteen. The box width is the IQR.",
-     "remotion": {"type": "StatChart", "props": {"title": "Box plot of eleven values", "kind": "boxplot", "data": [12, 14, 15, 15, 16, 18, 19, 21, 22, 23, 95], "formula": "IQR = Q3 - Q1\n= 22 - 15 = 7", "xLabel": "All values"}, "popups": [{"anchor": "median", "text": "Middle value: 18", "kind": "tip", "x": "50%", "y": "15%"}]}},
-    {"id": 3, "narration": "The same data as a histogram. Most values sit between twelve and twenty three. One bar stands far away, near ninety five.",
-     "remotion": {"type": "StatChart", "props": {"title": "Same data as a histogram", "kind": "histogram", "data": [12, 14, 15, 15, 16, 18, 19, 21, 22, 23, 95], "bins": 5, "xLabel": "Value", "yLabel": "Count", "formula": "Most data: 12 to 23\nOne far value: 95"}, "popups": [{"anchor": "ninety", "text": "Far from the rest", "kind": "note", "x": "50%", "y": "15%"}]}},
-    {"id": 4, "narration": "The outlier rule. Lower fence is Q1 minus one point five IQR. Upper fence is Q3 plus one point five IQR. Anything outside the fences is an outlier.",
-     "remotion": {"type": "ComparisonCard", "props": {"title": "Outlier fences", "leftTitle": "Lower fence", "leftPoints": ["Q1 - 1.5 x IQR", "15 - 10.5 = 4.5", "No value below 4.5"], "rightTitle": "Upper fence", "rightPoints": ["Q3 + 1.5 x IQR", "22 + 10.5 = 32.5", "95 is above 32.5, outlier"]}, "popups": [{"anchor": "outlier", "text": "Outside the fences", "kind": "tip", "x": "50%", "y": "15%"}]}},
-    {"id": 5, "narration": "Quick recap. The median resists outliers. The IQR measures the middle spread. Your practice task: find the fences for your own list of numbers.",
-     "remotion": {"type": "SummaryList", "props": {"title": "Recap", "items": ["Median is the middle value", "IQR = Q3 minus Q1", "Outside 1.5 IQR fences = outlier", "Check before you delete anything"]}, "popups": [{"anchor": "Practice", "text": "Use your own numbers", "kind": "tip", "x": "50%", "y": "15%"}]}}
+    {
+      "id": 1,
+      "narration": "Eleven salaries, and one number looks wrong. Do you delete it? Let's learn how statisticians decide, using a box plot.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Outliers",
+          "subtitle": "Find the value that doesn't belong",
+          "badge": "STATS • OUTLIERS",
+          "tags": [
+            "Statistics",
+            "Box plot",
+            "IQR"
+          ]
+        }
+      }
+    },
+    {
+      "id": 2,
+      "narration": "This box plot shows the eleven values. The box covers the middle half of the data. The line inside is the median, eighteen. The box width is the IQR.",
+      "remotion": {
+        "type": "StatChart",
+        "props": {
+          "title": "Box plot of eleven values",
+          "kind": "boxplot",
+          "data": [
+            12,
+            14,
+            15,
+            15,
+            16,
+            18,
+            19,
+            21,
+            22,
+            23,
+            95
+          ],
+          "formula": "IQR = Q3 - Q1\n= 22 - 15 = 7",
+          "xLabel": "All values"
+        },
+        "popups": [
+          {
+            "anchor": "median",
+            "text": "Middle value: 18",
+            "kind": "tip",
+            "x": "50%",
+            "y": "15%"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "The same data as a histogram. Most values sit between twelve and twenty three. One bar stands far away, near ninety five.",
+      "remotion": {
+        "type": "StatChart",
+        "props": {
+          "title": "Same data as a histogram",
+          "kind": "histogram",
+          "data": [
+            12,
+            14,
+            15,
+            15,
+            16,
+            18,
+            19,
+            21,
+            22,
+            23,
+            95
+          ],
+          "xLabel": "Value (bin width 10)",
+          "yLabel": "Count",
+          "formula": "Most data: 12 to 23\nOne far value: 95",
+          "binWidth": 10
+        },
+        "popups": [
+          {
+            "anchor": "ninety",
+            "text": "Far from the rest",
+            "kind": "note",
+            "x": "50%",
+            "y": "15%"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "The outlier rule. Lower fence is Q1 minus one point five IQR. Upper fence is Q3 plus one point five IQR. Anything outside the fences is an outlier.",
+      "remotion": {
+        "type": "ComparisonCard",
+        "props": {
+          "title": "Outlier fences",
+          "leftTitle": "Lower fence",
+          "leftPoints": [
+            "Q1 - 1.5 x IQR",
+            "15 - 10.5 = 4.5",
+            "No value below 4.5"
+          ],
+          "rightTitle": "Upper fence",
+          "rightPoints": [
+            "Q3 + 1.5 x IQR",
+            "22 + 10.5 = 32.5",
+            "95 is above 32.5, outlier"
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "outlier",
+            "text": "Outside the fences",
+            "kind": "tip",
+            "x": "50%",
+            "y": "15%"
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Quick recap. The median resists outliers. The IQR measures the middle spread. Your practice task: find the fences for your own list of numbers.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "Recap",
+          "items": [
+            "Median is the middle value",
+            "IQR = Q3 minus Q1",
+            "Outside 1.5 IQR fences = outlier",
+            "Check before you delete anything"
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "Practice",
+            "text": "Use your own numbers",
+            "kind": "tip",
+            "x": "50%",
+            "y": "15%"
+          }
+        ]
+      }
+    }
   ]
 }

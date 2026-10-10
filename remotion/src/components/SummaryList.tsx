@@ -15,8 +15,8 @@ export const SummaryList: React.FC<SummaryListProps & { aspectRatio: '9:16' | '1
   return (
     <div className="w-full h-full flex flex-col items-center justify-center p-8 relative z-10"
       style={{ transform: `scale(${interpolate(entrance, [0, 1], [0.92, 1])})`, opacity: interpolate(entrance, [0, 1], [0, 1]) }}>
-      <h2 className="font-black tracking-tight text-4xl mb-8 text-center" style={{ color: t.text }}>{title}</h2>
-      <div className={`w-full flex flex-col gap-4 ${vertical ? 'max-w-[940px] w-[94%]' : 'max-w-2xl'}`}>
+      <h2 className="font-black tracking-tight text-6xl mb-10 text-center" style={{ color: t.text }}>{title}</h2>
+      <div className={`w-full flex flex-col gap-4 ${vertical ? 'max-w-[940px] w-[94%]' : 'max-w-5xl'}`}>
         {items.map((item, idx) => {
           const s = spring({ frame: frame - idx * 8, fps, config: { damping: 12 } });
           return (
@@ -28,9 +28,9 @@ export const SummaryList: React.FC<SummaryListProps & { aspectRatio: '9:16' | '1
                 border: `1px solid ${t.cardBorder}`,
                 boxShadow: light ? '0 6px 18px rgba(15,23,42,0.06)' : 'none',
               }}>
-              <div className={`rounded-xl flex items-center justify-center shrink-0 font-bold ${vertical ? 'w-10 h-10 text-xl' : 'w-8 h-8'}`}
+              <div className={`rounded-xl flex items-center justify-center shrink-0 font-bold ${vertical ? 'w-10 h-10 text-xl' : 'w-12 h-12 text-2xl'}`}
                 style={{ background: t.okBg, color: t.okText }}>✓</div>
-              <p className={`font-medium leading-snug ${vertical ? 'text-xl' : 'text-lg'}`} style={{ color: t.text }}>{item}</p>
+              <p className={`font-medium leading-snug ${vertical ? 'text-xl' : 'text-3xl'}`} style={{ color: t.text }}>{item}</p>
             </div>
           );
         })}

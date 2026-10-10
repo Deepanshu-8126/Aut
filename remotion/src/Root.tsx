@@ -1,6 +1,8 @@
 import React from 'react';
 import { Composition } from 'remotion';
 import { VideoComposition } from './VideoComposition';
+import { Thumbnail } from './Thumbnail';
+import defaultThumb from './defaultThumb.json';
 import defaultProject from './defaultProject.json';
 import { ProjectData } from './types';
 import './styles/global.css';
@@ -35,6 +37,17 @@ export const RemotionRoot: React.FC = () => {
         calculateMetadata={({ props }) => ({
           durationInFrames: Math.max(1, (props.project.scenes || []).reduce((a: number, s: any) => a + (s.durationInFrames || 90), 0)),
         })}
+      />
+
+      {/* Thumbnail still (1280x720), props: pipeline/make_thumbnail.py */}
+      <Composition
+        id="Thumbnail"
+        component={Thumbnail as any}
+        durationInFrames={1}
+        fps={30}
+        width={1280}
+        height={720}
+        defaultProps={defaultThumb as any}
       />
 
       {/* 9:16 Shorts / Reels / TikTok Composition */}

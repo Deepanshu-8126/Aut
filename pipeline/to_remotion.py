@@ -1,3 +1,4 @@
+import re
 """Script JSON -> Remotion project JSON (+ narration mp3 with word timings).
 
 Usage:
@@ -76,7 +77,8 @@ def build(script_path: Path, lang: str, out: Path, theme: str, clips: dict) -> N
     (pub / "audio").mkdir(parents=True, exist_ok=True)
     scenes = []
     for s in script["scenes"]:
-        sid = f"{lang}_s{s['id']}"
+        # lesson ka naam prefix: do lessons ki audio/sfx kabhi overwrite na hon
+        sid = f"{script_path.stem}_{lang}_s{s['id']}"
         if lang == "hi":
             audio_rel = f"audio/{sid}.wav"
             dur, words = tts_parler_hi.synth_with_words(s["narration"], pub / audio_rel)
@@ -86,6 +88,34 @@ def build(script_path: Path, lang: str, out: Path, theme: str, clips: dict) -> N
         if s.get("manim") and s["id"] in clips:
             s["_clip"] = clips[s["id"]]
         typ, props = scene_props(s)
+        if typ == "BrowserSteps":
+            st = props.get("steps", [])
+            n = max(1, len(st))
+            times = []
+            for i, step in enumerate(st):
+                at = step.get("at")
+                times.append(find_word_time(words, at, -1.0) if at else -1.0)
+            stepat = [t_i if t_i >= 0 else i * dur / n for i, t_i in enumerate(times)]
+            for i in range(1, len(stepat)):
+                stepat[i] = max(stepat[i], stepat[i - 1] + 1.0)
+            props["stepAt"] = [round(x, 3) for x in stepat]
+        # ArchitectureFlow: har step ka start time narration ke step-title word se (warna barabar baant)
+        if typ == "ArchitectureFlow" and not props.get("stepAt"):
+            dur_s = dur
+            steps = props.get("steps", [])
+            n = max(1, len(steps))
+            times = []
+            for i, st in enumerate(steps):
+                words_in = [w for w in re.findall(r"[A-Za-z]+", st.get("title", "")) if len(w) > 2]
+                t_i = find_word_time(words, words_in[0], -1.0) if words_in else -1.0
+                times.append(t_i)
+            fallback = [i * dur_s / n for i in range(n)]
+            stepat = []
+            for i, t_i in enumerate(times):
+                stepat.append(t_i if t_i >= 0 else fallback[i])
+            for i in range(1, len(stepat)):
+                stepat[i] = max(stepat[i], stepat[i - 1] + 0.5)
+            props["stepAt"] = [round(x, 3) for x in stepat]
         r = s.get("remotion") or {}
         if typ == "TypingCode" and r.get("previous_code"):
             old_lines = r["previous_code"].split("\n")
@@ -105,6 +135,15 @@ def build(script_path: Path, lang: str, out: Path, theme: str, clips: dict) -> N
         popups = []
         for pp in r.get("popups", []):
             popups.append({**pp, "at": round(find_word_time(words, pp["anchor"], 0.0), 3)})
+        # Camera keyframes: {"at": "word in narration" | "t": sec, "zoom", "x", "y"}
+        camera = []
+        for k in (r.get("camera") or s.get("camera") or []):
+            t = k.get("t")
+            if t is None:
+                t = find_word_time(words, k.get("at", ""), 0.0)
+            camera.append({"t": round(float(t), 3), "zoom": k.get("zoom", 1.0),
+                           "x": k.get("x", 50), "y": k.get("y", 50)})
+        camera.sort(key=lambda c: c["t"])
         keys_file = None
         if typ == "TypingCode":
             keys_file = f"sfx/keys_{sid}.wav"
@@ -112,7 +151,9 @@ def build(script_path: Path, lang: str, out: Path, theme: str, clips: dict) -> N
         frames = math.ceil((dur + 0.6) * FPS)  # 0.6s hold after narration
         scenes.append({"id": sid, "type": typ, "props": props, "narration": s["narration"],
                        "audioFile": audio_rel, "durationSec": round(dur, 3),
-                       "durationInFrames": frames, "words": words, "popups": popups, "keysFile": keys_file})
+                       "durationInFrames": frames, "words": words, "popups": popups, "keysFile": keys_file, "camera": camera,
+                       "stepAt": props.get("stepAt"), "chapter": r.get("chapter") or s.get("chapter"),
+                       "keyIdea": r.get("keyIdea") or s.get("keyIdea")})
         print(f"scene {s['id']}: {typ} {dur:.2f}s {len(words)} words", flush=True)
     project = {"title": script.get("title", ""), "aspectRatio": "16:9", "theme": theme,
                "dayLabel": script.get("dayLabel"), "bgm": "sfx/bgm.wav", "bgmVolume": 0.08, "scenes": scenes}

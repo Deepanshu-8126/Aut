@@ -49,7 +49,7 @@ export const TypingCode: React.FC<{ code: string; filename?: string; language?: 
 
   return (
     <div className="w-full h-full flex items-center justify-center p-10 relative z-10">
-      <div className="w-full max-w-5xl rounded-3xl overflow-hidden" style={{ background: t.codeBg, border: `1px solid ${t.cardBorder}`,
+      <div className="w-full max-w-6xl rounded-3xl overflow-hidden" style={{ background: t.codeBg, border: `1px solid ${t.cardBorder}`,
         boxShadow: light ? '0 22px 60px rgba(15,23,42,0.14)' : '0 25px 70px rgba(0,0,0,0.85)' }}>
         <div className="px-6 py-4 flex items-center justify-between" style={{ background: t.winBar, borderBottom: `1px solid ${t.cardBorder}` }}>
           <div className="flex items-center gap-2.5">
@@ -57,10 +57,10 @@ export const TypingCode: React.FC<{ code: string; filename?: string; language?: 
             <div className="w-3.5 h-3.5 rounded-full" style={{ background: '#febc2e' }} />
             <div className="w-3.5 h-3.5 rounded-full" style={{ background: '#28c840' }} />
           </div>
-          <div className="font-mono text-sm px-3 py-1 rounded-lg" style={{ color: t.codeText, background: t.codeBg, border: `1px solid ${t.cardBorder}` }}>{filename}</div>
+          <div className="font-mono text-xl px-4 py-1.5 rounded-lg" style={{ color: t.codeText, background: t.codeBg, border: `1px solid ${t.cardBorder}` }}>{filename}</div>
           <div className="font-mono text-xs uppercase tracking-wider" style={{ color: t.textMuted }}>{language}</div>
         </div>
-        <div className="font-mono text-2xl leading-relaxed p-8 min-h-[360px]" style={{ whiteSpace: 'pre' }}>
+        <div className="font-mono text-4xl leading-relaxed p-10 min-h-[420px]" style={{ whiteSpace: 'pre' }}>
           {allLines.map((line, idx) => {
             const n = idx + 1;
             const isLineShown = idx < lines.length;
@@ -70,9 +70,9 @@ export const TypingCode: React.FC<{ code: string; filename?: string; language?: 
             return (
               <div key={idx} className="flex items-center rounded-md px-2"
                 style={{ background: hl ? t.accentSoft : 'transparent', borderLeft: hl ? `4px solid ${t.accent}` : '4px solid transparent', minHeight: 40 }}>
-                <span className="w-10 text-right pr-5 text-base select-none" style={{ color: t.textMuted }}>{n}</span>
+                <span className="w-14 text-right pr-6 text-2xl select-none" style={{ color: t.textMuted }}>{n}</span>
                 <span>{highlightPy(text, t)}</span>
-                {isCurrent && cursorOn && <span style={{ display: 'inline-block', width: 12, height: 28, background: t.accent, marginLeft: 2 }} />}
+                {isCurrent && cursorOn && <span style={{ display: 'inline-block', width: 16, height: 40, background: t.accent, marginLeft: 2 }} />}
               </div>
             );
           })}
@@ -99,7 +99,7 @@ const DiffMorph: React.FC<{ diff: DiffLine[]; filename: string; language: string
 
   return (
     <div className="w-full h-full flex items-center justify-center p-10 relative z-10">
-      <div className="w-full max-w-5xl rounded-3xl overflow-hidden" style={{ background: t.codeBg, border: `1px solid ${t.cardBorder}`,
+      <div className="w-full max-w-6xl rounded-3xl overflow-hidden" style={{ background: t.codeBg, border: `1px solid ${t.cardBorder}`,
         boxShadow: light ? '0 22px 60px rgba(15,23,42,0.14)' : '0 25px 70px rgba(0,0,0,0.85)' }}>
         <div className="px-6 py-4 flex items-center justify-between" style={{ background: t.winBar, borderBottom: `1px solid ${t.cardBorder}` }}>
           <div className="flex items-center gap-2.5">
@@ -107,10 +107,10 @@ const DiffMorph: React.FC<{ diff: DiffLine[]; filename: string; language: string
             <div className="w-3.5 h-3.5 rounded-full" style={{ background: '#febc2e' }} />
             <div className="w-3.5 h-3.5 rounded-full" style={{ background: '#28c840' }} />
           </div>
-          <div className="font-mono text-sm px-3 py-1 rounded-lg" style={{ color: t.codeText, background: t.codeBg, border: `1px solid ${t.cardBorder}` }}>{filename}</div>
+          <div className="font-mono text-xl px-4 py-1.5 rounded-lg" style={{ color: t.codeText, background: t.codeBg, border: `1px solid ${t.cardBorder}` }}>{filename}</div>
           <div className="font-mono text-xs uppercase tracking-wider" style={{ color: t.textMuted }}>{language}</div>
         </div>
-        <div className="font-mono text-2xl leading-relaxed p-8 min-h-[360px]" style={{ whiteSpace: 'pre' }}>
+        <div className="font-mono text-4xl leading-relaxed p-10 min-h-[420px]" style={{ whiteSpace: 'pre' }}>
           {diff.map((d, idx) => {
             let opacity = 1;
             let text = d.text;
@@ -132,7 +132,7 @@ const DiffMorph: React.FC<{ diff: DiffLine[]; filename: string; language: string
             if (opacity === 0 && d.type === 'add') return <div key={idx} style={{ minHeight: 40 }} />;
             return (
               <div key={idx} className="flex items-center rounded-md px-2" style={{ background: bg, opacity, minHeight: 40 }}>
-                <span className="w-10 text-right pr-5 text-base select-none" style={{ color: t.textMuted }}>{idx + 1}</span>
+                <span className="w-14 text-right pr-6 text-2xl select-none" style={{ color: t.textMuted }}>{idx + 1}</span>
                 <span style={{ textDecoration: deco }}>{highlightPy(text, t)}</span>
               </div>
             );

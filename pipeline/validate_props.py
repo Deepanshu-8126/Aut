@@ -23,6 +23,8 @@ REQUIRED = {
     "ArchitectureFlow": ["steps"],
     "ClassifierCard": [],
     "ClusterGrid": [],
+    "BrowserSteps": ["steps"],
+    "CodeExplainer": ["code"],
 }
 
 

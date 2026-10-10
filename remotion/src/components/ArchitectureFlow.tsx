@@ -1,106 +1,84 @@
 import React from 'react';
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import { ArchitectureFlowProps } from '../types';
-import { ArrowDown, ArrowRight, CheckCircle2, CircleDot } from 'lucide-react';
+import { useTheme } from '../ThemeContext';
 
+// Flow / tree / roadmap diagram. Light-grid theme mein clear, narration ke saath steps move karte hain.
+// stepAt (seconds, pipeline se): har step kab active hota hai. Na ho to activeStepIndex fixed rehta hai.
 export const ArchitectureFlow: React.FC<
-  ArchitectureFlowProps & { aspectRatio: '9:16' | '16:9' }
-> = ({ title, steps, activeStepIndex = 0, aspectRatio }) => {
+  ArchitectureFlowProps & { aspectRatio: '9:16' | '16:9'; stepAt?: number[] }
+> = ({ title, steps, activeStepIndex = 0, aspectRatio, stepAt }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
+  const t = useTheme();
+  const vertical = aspectRatio === '9:16';
 
-  const entrance = spring({
-    frame,
-    fps,
-    config: { damping: 14, mass: 0.9 },
-  });
+  const entrance = spring({ frame, fps, config: { damping: 16, mass: 0.8 } });
 
-  const isVertical = aspectRatio === '9:16';
+  let active = activeStepIndex;
+  if (stepAt && stepAt.length === steps.length) {
+    const sec = frame / fps;
+    active = 0;
+    for (let i = 0; i < stepAt.length; i++) if (sec >= stepAt[i]) active = i;
+  }
 
   return (
     <div
-      className="w-full h-full flex flex-col items-center justify-center p-8 relative z-10"
       style={{
-        transform: `scale(${interpolate(entrance, [0, 1], [0.92, 1])})`,
+        width: '100%', height: '100%', display: 'flex', flexDirection: 'column',
+        alignItems: 'center', justifyContent: 'center', padding: vertical ? 40 : 60,
+        transform: `scale(${interpolate(entrance, [0, 1], [0.94, 1])})`,
         opacity: interpolate(entrance, [0, 1], [0, 1]),
       }}
     >
-      {/* Title */}
-      <h2
-        className={`font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-white to-cyan-400 mb-8 text-center drop-shadow-md ${
-          isVertical ? 'text-4xl max-w-xl' : 'text-4xl'
-        }`}
-      >
+      <div style={{ fontSize: vertical ? 56 : 52, fontWeight: 900, color: t.text, letterSpacing: -1, marginBottom: vertical ? 50 : 44, textAlign: 'center' }}>
         {title}
-      </h2>
+      </div>
 
-      {/* Steps Flow Container */}
-      <div
-        className={`flex items-center justify-center gap-3.5 w-full ${
-          isVertical ? 'flex-col max-w-[940px] w-[94%]' : 'flex-row max-w-5xl'
-        }`}
-      >
+      <div style={{
+        display: 'flex', flexDirection: vertical ? 'column' : 'row', alignItems: 'center',
+        justifyContent: 'center', gap: vertical ? 14 : 40, width: '100%',
+      }}>
         {steps.map((step, idx) => {
-          const isActive = idx === activeStepIndex;
-          const isDone = idx < activeStepIndex;
-          const isPending = idx > activeStepIndex;
-
+          const isActive = idx === active;
+          const isDone = idx < active;
+          const isPending = idx > active;
+          const cardW = vertical ? '92%' : 340;
+          const border = isActive ? t.accent : isDone ? '#86efac' : t.cardBorder;
           return (
             <React.Fragment key={idx}>
-              {/* Step Card */}
-              <div
-                className={`relative flex flex-col items-center justify-center rounded-2xl border transition-all duration-300 text-center ${
-                  isVertical ? 'w-full py-5 px-6' : 'flex-1 min-w-[140px] h-32 p-4'
-                } ${
-                  isActive
-                    ? 'bg-gradient-to-b from-cyan-900/60 to-slate-900/90 border-cyan-400 shadow-[0_0_35px_rgba(56,189,248,0.4)] scale-105'
-                    : isDone
-                    ? 'bg-slate-900/80 border-cyan-700/50 opacity-90'
-                    : 'bg-slate-900/40 border-slate-800 opacity-40'
-                }`}
-              >
-                {/* Step Indicator */}
-                <div className="flex items-center gap-2 mb-2">
-                  {isDone ? (
-                    <CheckCircle2 className={`${isVertical ? 'w-5 h-5' : 'w-4 h-4'} text-emerald-400`} />
-                  ) : isActive ? (
-                    <CircleDot className={`${isVertical ? 'w-5 h-5' : 'w-4 h-4'} text-cyan-400 animate-spin`} />
-                  ) : (
-                    <span className={`${isVertical ? 'w-5 h-5 text-xs' : 'w-4 h-4 text-[10px]'} rounded-full border border-slate-600 flex items-center justify-center text-slate-500 font-mono`}>
-                      {idx + 1}
-                    </span>
-                  )}
-                  <span
-                    className={`font-mono uppercase tracking-wider ${isVertical ? 'text-sm' : 'text-xs'} ${
-                      isActive ? 'text-cyan-300 font-bold' : isDone ? 'text-emerald-400' : 'text-slate-500'
-                    }`}
-                  >
-                    Step {idx + 1}
-                  </span>
+              <div style={{
+                position: 'relative', width: cardW, minHeight: vertical ? 120 : 230, padding: vertical ? '18px 16px' : '40px 22px 26px',
+                boxSizing: 'border-box', borderRadius: 22, background: isActive ? t.accentSoft : t.card,
+                border: `3px solid ${border}`,
+                boxShadow: isActive ? `0 18px 40px -12px ${t.accent}66` : '0 6px 16px rgba(15,23,42,0.06)',
+                opacity: isPending ? 0.45 : 1,
+                transform: isActive ? 'scale(1.06)' : 'scale(1)',
+                transition: 'none',
+                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center',
+              }}>
+                <div style={{
+                  position: 'absolute', top: -16, left: 18, background: isDone ? '#16a34a' : isActive ? t.accent : '#9ca3af',
+                  color: '#fff', fontFamily: 'monospace', fontSize: vertical ? 18 : 24, fontWeight: 800, borderRadius: 999, padding: '4px 12px',
+                }}>
+                  {isDone ? 'DONE' : `STEP ${idx + 1}`}
                 </div>
-
-                {/* Step Title */}
-                <h3
-                  className={`font-bold leading-tight ${
-                    isVertical ? 'text-2xl' : 'text-base'
-                  } ${isActive ? 'text-white' : 'text-slate-300'}`}
-                >
-                  {step.title}
-                </h3>
-
-                {/* Step Description */}
+                <div style={{ fontSize: vertical ? 34 : 40, fontWeight: 800, color: t.text, lineHeight: 1.15 }}>{step.title}</div>
                 {step.desc && (
-                  <p className={`text-slate-400 mt-1.5 ${isVertical ? 'text-base' : 'text-xs'}`}>{step.desc}</p>
+                  <div style={{ marginTop: 10, fontSize: vertical ? 24 : 29, color: t.textMuted, lineHeight: 1.3 }}>{step.desc}</div>
                 )}
               </div>
 
-              {/* Connector Arrow */}
               {idx < steps.length - 1 && (
-                <div className="flex items-center justify-center text-slate-500">
-                  {isVertical ? (
-                    <ArrowDown className={`w-5 h-5 ${isDone ? 'text-cyan-400' : 'text-slate-600'}`} />
-                  ) : (
-                    <ArrowRight className={`w-5 h-5 ${isDone ? 'text-cyan-400' : 'text-slate-600'}`} />
+                <div style={{ position: 'relative', width: vertical ? 4 : 72, height: vertical ? 40 : 4,
+                  background: isDone ? '#86efac' : '#d1d5db', borderRadius: 2, flexShrink: 0 }}>
+                  {isDone && (
+                    // Moving dot: data flow ka animation
+                    <div style={{
+                      position: 'absolute', width: 12, height: 12, borderRadius: 6, background: t.accent,
+                      top: vertical ? `${(frame % 24) / 24 * 100}%` : -4,
+                      left: vertical ? -4 : `${(frame % 24) / 24 * 100}%`,
+                    }} />
                   )}
                 </div>
               )}

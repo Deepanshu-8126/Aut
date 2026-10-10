@@ -43,7 +43,7 @@ export const CodeExplainer: React.FC<CodeExplainerProps & { aspectRatio: '9:16' 
   return (
     <div className="w-full h-full flex flex-col items-center justify-center p-6 relative z-10"
       style={{ transform: `scale(${scale})`, opacity }}>
-      <div className={`w-full rounded-3xl overflow-hidden flex flex-col ${vertical ? 'max-w-[940px] w-[94%]' : 'max-w-4xl'}`}
+      <div className={`w-full rounded-3xl overflow-hidden flex flex-col ${vertical ? 'max-w-[940px] w-[94%]' : 'max-w-6xl'}`}
         style={{
           background: t.codeBg,
           border: `1px solid ${light ? '#e5e7eb' : t.cardBorder}`,
@@ -56,17 +56,17 @@ export const CodeExplainer: React.FC<CodeExplainerProps & { aspectRatio: '9:16' 
             <div className="w-3.5 h-3.5 rounded-full" style={{ background: '#febc2e' }} />
             <div className="w-3.5 h-3.5 rounded-full" style={{ background: '#28c840' }} />
           </div>
-          <div className={`flex items-center gap-2 font-mono px-3.5 py-1.5 rounded-lg ${vertical ? 'text-base' : 'text-xs'}`}
+          <div className={`flex items-center gap-2 font-mono px-3.5 py-1.5 rounded-lg ${vertical ? 'text-base' : 'text-lg'}`}
             style={{ color: t.codeText, background: t.codeBg, border: `1px solid ${t.cardBorder}` }}>
             <FileCode className="w-4 h-4" style={{ color: t.accent }} />
             <span>{filename}</span>
           </div>
-          <div className={`font-mono uppercase tracking-wider ${vertical ? 'text-sm' : 'text-[11px]'}`} style={{ color: t.textMuted }}>
+          <div className={`font-mono uppercase tracking-wider ${vertical ? 'text-sm' : 'text-base'}`} style={{ color: t.textMuted }}>
             {language}
           </div>
         </div>
 
-        <div className={`font-mono leading-relaxed overflow-x-auto ${vertical ? 'p-8 text-xl' : 'p-6 text-sm'}`}>
+        <div className={`font-mono leading-relaxed overflow-x-auto ${vertical ? 'p-8 text-xl' : 'p-8 text-3xl'}`}>
           {lines.slice(0, visibleLineCount).map((rawLine, idx) => {
             const lineNum = idx + 1;
             const isHighlighted = highlightLines.includes(lineNum);
@@ -83,25 +83,33 @@ export const CodeExplainer: React.FC<CodeExplainerProps & { aspectRatio: '9:16' 
               <div key={idx} className="relative flex items-center px-3 py-1 rounded-md"
                 style={{
                   background: isHighlighted ? t.accentSoft : 'transparent',
-                  borderLeft: isHighlighted ? `4px solid ${t.accent}` : '4px solid transparent',
+                  borderLeft: isHighlighted ? `6px solid ${t.accent}` : '6px solid transparent',
+                  // Focus mode: highlight hone par baaki lines dim ho jaati hain
+                  opacity: highlightLines.length > 0 && !isHighlighted ? 0.32 : 1,
+                  boxShadow: isHighlighted ? `0 8px 24px -10px ${t.accent}88` : 'none',
+                  transition: 'opacity 0.2s',
                 }}>
-                <span className={`select-none text-right pr-4 font-mono ${vertical ? 'w-10 text-base' : 'w-8 text-xs'}`}
+                <span className={`select-none text-right pr-4 font-mono ${vertical ? 'w-10 text-base' : 'w-12 text-2xl'}`}
                   style={{ color: isHighlighted ? t.accent : t.textMuted, fontWeight: isHighlighted ? 700 : 400 }}>
                   {lineNum}
                 </span>
                 <span className="flex-1" style={{ color: t.codeText }}
                   dangerouslySetInnerHTML={{ __html: lineHtml || rawLine.replace(/ /g, '&nbsp;') }} />
-                {lineNote && (
-                  <div className={`ml-3 rounded-lg font-sans flex items-center gap-1.5 ${vertical ? 'px-3 py-1 text-sm' : 'px-2.5 py-0.5 text-[11px]'}`}
-                    style={{ background: t.okBg, color: t.okText, border: `1px solid ${t.okText}33` }}>
-                    <CheckCircle2 className={vertical ? 'w-4 h-4' : 'w-3 h-3'} />
-                    <span>{lineNote.note}</span>
-                  </div>
-                )}
               </div>
             );
           })}
         </div>
+        {lineNotes.length > 0 && (
+          <div className={`flex flex-col gap-2 border-t ${vertical ? 'p-6' : 'px-8 py-5'}`} style={{ borderColor: t.cardBorder }}>
+            {lineNotes.map((n, i) => (
+              <div key={i} className={`flex items-center gap-3 rounded-xl font-sans font-semibold ${vertical ? 'px-4 py-2 text-lg' : 'px-5 py-3 text-2xl'}`}
+                style={{ background: t.okBg, color: t.okText, border: `1px solid ${t.okText}33` }}>
+                <CheckCircle2 className={vertical ? 'w-5 h-5 shrink-0' : 'w-7 h-7 shrink-0'} />
+                <span>Line {n.line}: {n.note}</span>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

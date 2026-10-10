@@ -19,6 +19,7 @@ export interface StatChartProps {
   points?: [number, number][];
   data?: number[];           // histogram / boxplot raw values
   bins?: number;             // histogram bin count (default 6)
+  binWidth?: number;         // histogram fixed bin width (e.g. 10) -> bins 10-20, 20-30 ...; bins prop ignore
   mean?: number;             // normal
   sd?: number;               // normal
   showRegression?: boolean;  // scatter
@@ -30,7 +31,7 @@ export interface StatChartProps {
   typeFrames?: number;
 }
 
-const W = 760, H = 480, PAD = 60;
+const W = 880, H = 540, PAD = 70;
 
 const quantile = (sorted: number[], q: number) => {
   const pos = (sorted.length - 1) * q;
@@ -38,9 +39,19 @@ const quantile = (sorted: number[], q: number) => {
   return sorted[lo] + (sorted[hi] - sorted[lo]) * (pos - lo);
 };
 
+const medianOf = (a: number[]) => {
+  const m = Math.floor(a.length / 2);
+  return a.length % 2 ? a[m] : (a[m - 1] + a[m]) / 2;
+};
+
+// Median-of-halves method (school/Tukey): odd n mein median ko halves se bahar rakhte hain.
 const boxStats = (data: number[]) => {
   const s = [...data].sort((a, b) => a - b);
-  const q1 = quantile(s, 0.25), med = quantile(s, 0.5), q3 = quantile(s, 0.75);
+  const n = s.length;
+  const med = medianOf(s);
+  const lower = s.slice(0, Math.floor(n / 2));
+  const upper = s.slice(Math.ceil(n / 2));
+  const q1 = medianOf(lower), q3 = medianOf(upper);
   const iqr = q3 - q1;
   const loF = q1 - 1.5 * iqr, hiF = q3 + 1.5 * iqr;
   const inside = s.filter((v) => v >= loF && v <= hiF);
@@ -49,7 +60,7 @@ const boxStats = (data: number[]) => {
 };
 
 export const StatChart: React.FC<StatChartProps> = ({
-  title, kind, labels = [], values = [], points = [], data = [], bins = 6,
+  title, kind, labels = [], values = [], points = [], data = [], bins = 6, binWidth,
   mean = 0, sd = 1, showRegression = false, xLabel, yLabel, formula, highlight,
   startFrame = 0, typeFrames = 90,
 }) => {
@@ -118,53 +129,106 @@ export const StatChart: React.FC<StatChartProps> = ({
           strokeDasharray={len} strokeDashoffset={len * (1 - p)} />
       );
     }
+    const xStep = maxX > 30 ? 10 : maxX > 12 ? 5 : maxX > 6 ? 2 : 1;
+    const yStep = maxY > 30 ? 10 : maxY > 12 ? 5 : maxY > 6 ? 2 : 1;
+    const xT = Array.from({ length: Math.floor(maxX / xStep) + 1 }, (_, k) => k * xStep);
+    const yT = Array.from({ length: Math.floor(maxY / yStep) + 1 }, (_, k) => k * yStep);
     body = (
       <g>
-        {points.slice(0, shown).map((q, i) => <circle key={i} cx={sx(q[0])} cy={sy(q[1])} r={9} fill={t.accent} opacity={0.85} />)}
+        {yT.map((v) => (
+          <g key={`sy${v}`}>
+            <line x1={PAD} y1={sy(v)} x2={W - PAD} y2={sy(v)} stroke={t.cardBorder} strokeWidth={1} />
+            <text x={PAD - 10} y={sy(v) + 6} textAnchor="end" fontSize={18} fill={t.textMuted}>{v}</text>
+          </g>
+        ))}
+        {xT.map((v) => (
+          <text key={`sx${v}`} x={sx(v)} y={H - PAD + 28} textAnchor="middle" fontSize={18} fill={t.textMuted}>{v}</text>
+        ))}
+        {points.slice(0, shown).map((q, i) => <circle key={i} cx={sx(q[0])} cy={sy(q[1])} r={10} fill={t.accent} opacity={0.9} />)}
         {reg}
       </g>
     );
   } else if (kind === 'histogram') {
     const lo = Math.min(...data), hi = Math.max(...data);
-    const w = (hi - lo) / bins || 1;
-    const counts = Array.from({ length: bins }, (_, i) =>
-      data.filter((v) => v >= lo + i * w && (i === bins - 1 ? v <= hi : v < lo + (i + 1) * w)).length);
+    const bw = binWidth && binWidth > 0 ? binWidth : 0;
+    const start = bw ? Math.floor(lo / bw) * bw : lo;
+    const nBins = bw ? Math.floor(hi / bw) - Math.floor(lo / bw) + 1 : bins;
+    const w = bw || (hi - lo) / bins || 1;
+    const counts = Array.from({ length: nBins }, (_, i) =>
+      data.filter((v) => v >= start + i * w && (i === nBins - 1 ? v <= start + (i + 1) * w : v < start + (i + 1) * w)).length);
     const maxC = Math.max(1, ...counts);
-    const slot = plotW / bins;
-    body = counts.map((c, i) => {
-      const h = (c / maxC) * plotH * p;
-      const x = PAD + slot * i;
-      return (
-        <g key={i}>
-          <rect x={x + 3} y={H - PAD - h} width={slot - 6} height={h} fill={t.accentSoft} stroke={t.accent} strokeWidth={2} />
-          <text x={x + slot / 2} y={H - PAD - h - 8} textAnchor="middle" fontSize={20} fill={t.text} opacity={p > 0.6 ? 1 : 0}>{c}</text>
-          <text x={x + slot / 2} y={H - PAD + 28} textAnchor="middle" fontSize={18} fill={t.textMuted}>{(lo + i * w).toFixed(0)}</text>
-        </g>
-      );
-    });
+    const slot = plotW / nBins;
+    const yStep = maxC <= 6 ? 1 : 2;
+    const yTicks = Array.from({ length: Math.floor(maxC / yStep) + 1 }, (_, k) => k * yStep);
+    body = (
+      <g>
+        {yTicks.map((k) => {
+          const y = H - PAD - (k / maxC) * plotH;
+          return (
+            <g key={`yt${k}`}>
+              <line x1={PAD} y1={y} x2={W - PAD} y2={y} stroke={t.cardBorder} strokeWidth={1} />
+              <text x={PAD - 10} y={y + 6} textAnchor="end" fontSize={18} fill={t.textMuted}>{k}</text>
+            </g>
+          );
+        })}
+        {counts.map((c, i) => {
+          const h = (c / maxC) * plotH * p;
+          const x = PAD + slot * i;
+          const a = start + i * w, b = a + w;
+          return (
+            <g key={i}>
+              <rect x={x + 3} y={H - PAD - h} width={slot - 6} height={h} fill={t.accentSoft} stroke={t.accent} strokeWidth={2} />
+              {c > 0 && <text x={x + slot / 2} y={H - PAD - h - 8} textAnchor="middle" fontSize={22} fill={t.text} opacity={p > 0.6 ? 1 : 0}>{c}</text>}
+              <text x={x + slot / 2} y={H - PAD + 28} textAnchor="middle" fontSize={bw ? 17 : 18} fill={t.textMuted}>
+                {bw ? `${a}-${b}` : a.toFixed(0)}
+              </text>
+            </g>
+          );
+        })}
+      </g>
+    );
   } else if (kind === 'boxplot') {
     const s = boxStats(data);
-    const lo = s.min - 5, hi = s.max + 5;
-    const sy = (v: number) => H - PAD - ((v - lo) / (hi - lo)) * plotH;
-    const cx = W / 2, bw = 180;
-    const g = p;
+    // Zoomed axis: box + whiskers readable rahe. Outlier (fence se bahar) top edge par "off scale" marker.
+    const lo = Math.max(0, Math.floor((s.min - 4) / 5) * 5);
+    const hi = Math.ceil((Math.max(s.hi, s.q3) + 6) / 5) * 5;
+    const clampV = (v: number) => Math.min(hi, Math.max(lo, v));
+    const sy = (v: number) => H - PAD - ((clampV(v) - lo) / (hi - lo)) * plotH;
+    const tickStep = (hi - lo) > 40 ? 10 : 5;
+    const ticks: number[] = [];
+    for (let v = lo; v <= hi; v += tickStep) ticks.push(v);
+    const cx = W / 2 - 40, bw = 200;
+    const offScale = s.outliers.filter((v) => v > hi);
     body = (
-      <g opacity={g}>
+      <g opacity={p}>
+        {ticks.map((v) => (
+          <g key={`bt${v}`}>
+            <line x1={PAD} y1={sy(v)} x2={W - PAD} y2={sy(v)} stroke={t.cardBorder} strokeWidth={1} />
+            <text x={PAD - 10} y={sy(v) + 6} textAnchor="end" fontSize={18} fill={t.textMuted}>{v}</text>
+          </g>
+        ))}
+        {/* whiskers */}
         <line x1={cx} y1={sy(s.lo)} x2={cx} y2={sy(s.q1)} stroke={t.text} strokeWidth={3} />
         <line x1={cx} y1={sy(s.q3)} x2={cx} y2={sy(s.hi)} stroke={t.text} strokeWidth={3} />
-        <line x1={cx - 50} y1={sy(s.lo)} x2={cx + 50} y2={sy(s.lo)} stroke={t.text} strokeWidth={3} />
-        <line x1={cx - 50} y1={sy(s.hi)} x2={cx + 50} y2={sy(s.hi)} stroke={t.text} strokeWidth={3} />
+        <line x1={cx - 60} y1={sy(s.lo)} x2={cx + 60} y2={sy(s.lo)} stroke={t.text} strokeWidth={3} />
+        <line x1={cx - 60} y1={sy(s.hi)} x2={cx + 60} y2={sy(s.hi)} stroke={t.text} strokeWidth={3} />
+        {/* box Q1..Q3 */}
         <rect x={cx - bw / 2} y={sy(s.q3)} width={bw} height={sy(s.q1) - sy(s.q3)} fill={t.accentSoft} stroke={t.accent} strokeWidth={3} rx={6} />
         <line x1={cx - bw / 2} y1={sy(s.med)} x2={cx + bw / 2} y2={sy(s.med)} stroke={t.accent} strokeWidth={5} />
-        <text x={cx + bw / 2 + 14} y={sy(s.med) + 7} fontSize={20} fill={t.text}>median {s.med.toFixed(1)}</text>
-        {s.outliers.map((v, i) => (
-          <circle key={i} cx={cx} cy={sy(v)} r={10} fill="#ef4444" opacity={p > 0.5 ? 1 : 0} />
+        {/* labels on the right, spaced apart */}
+        <text x={cx + bw / 2 + 16} y={sy(s.q3) + 6} fontSize={22} fill={t.textMuted}>Q3 = {s.q3.toFixed(0)}</text>
+        <text x={cx + bw / 2 + 16} y={sy(s.med) + 7} fontSize={22} fill={t.text} fontWeight={700}>median = {s.med.toFixed(0)}</text>
+        <text x={cx + bw / 2 + 16} y={sy(s.q1) + 6} fontSize={22} fill={t.textMuted}>Q1 = {s.q1.toFixed(0)}</text>
+        {/* outliers */}
+        {s.outliers.filter((v) => v <= hi).map((v, i) => (
+          <circle key={`o${i}`} cx={cx} cy={sy(v)} r={10} fill="#ef4444" opacity={p > 0.5 ? 1 : 0} />
         ))}
-        {s.outliers.length > 0 && (
-          <text x={cx - bw / 2 - 14} y={sy(s.outliers[0]) + 7} textAnchor="end" fontSize={20} fill="#ef4444">
-            outlier {s.outliers.map((v) => v.toFixed(0)).join(', ')}
-          </text>
-        )}
+        {offScale.map((v, i) => (
+          <g key={`off${i}`} opacity={p > 0.5 ? 1 : 0}>
+            <path d={`M${cx - 14},${PAD + 16} L${cx},${PAD + 2} L${cx + 14},${PAD + 16} Z`} fill="#ef4444" />
+            <text x={cx + 26} y={PAD + 12} fontSize={22} fill="#ef4444" fontWeight={700}>outlier {v.toFixed(0)} (off scale)</text>
+          </g>
+        ))}
       </g>
     );
   } else if (kind === 'normal') {

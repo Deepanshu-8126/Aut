@@ -1,0 +1,440 @@
+{
+  "title": "Java Day 1: What Java Is, and Your First Program",
+  "dayLabel": "Day 1 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Welcome to Java in one hundred days. This is Day one. Today we answer three questions. What is Java? What is a class? And how does our first program run? Take it slow. We start from zero.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "What Is Java?",
+          "subtitle": "Class, program, and your first run",
+          "badge": "DAY 1 • JAVA BASICS",
+          "tags": [
+            "Java",
+            "Beginner",
+            "Module 1"
+          ]
+        }
+      },
+      "chapter": "M1 Setup and Basics"
+    },
+    {
+      "id": 2,
+      "narration": "Your computer understands only zeros and ones. That is called machine code. Nobody wants to write zeros and ones all day. So we write in a language like Java. It reads much closer to English.",
+      "remotion": {
+        "type": "ArchitectureFlow",
+        "props": {
+          "title": "Why Do We Need Java?",
+          "steps": [
+            {
+              "title": "You write Java",
+              "desc": "Readable words and symbols"
+            },
+            {
+              "title": "Translation",
+              "desc": "A tool converts it for the computer"
+            },
+            {
+              "title": "Computer runs it",
+              "desc": "Zeros and ones, handled for you"
+            }
+          ],
+          "activeStepIndex": 0
+        }
+      },
+      "chapter": "M1 Setup and Basics",
+      "keyIdea": "Java lets us write readable code"
+    },
+    {
+      "id": 3,
+      "narration": "Here is the difference. Machine code is a long row of zeros and ones. Java looks like words. Which one would you rather read? And the same Java code can run on Windows, Mac, and Linux.",
+      "remotion": {
+        "type": "ComparisonCard",
+        "props": {
+          "title": "Machine Code vs Java",
+          "leftTitle": "Machine Code",
+          "leftPoints": [
+            "Only zeros and ones",
+            "Very hard for humans",
+            "Different for each chip"
+          ],
+          "rightTitle": "Java",
+          "rightPoints": [
+            "Words like print and class",
+            "Easy to read and fix",
+            "Runs on many systems"
+          ]
+        }
+      },
+      "chapter": "M1 Setup and Basics"
+    },
+    {
+      "id": 4,
+      "narration": "To write Java, you install a kit called the JDK. It stands for Java Development Kit. Inside it are two tools that matter today. javac is the compiler. The JVM is the machine that runs your program.",
+      "remotion": {
+        "type": "ArchitectureFlow",
+        "props": {
+          "title": "What Is Inside the JDK",
+          "steps": [
+            {
+              "title": "JDK",
+              "desc": "The kit you install"
+            },
+            {
+              "title": "javac",
+              "desc": "The compiler: translates your code"
+            },
+            {
+              "title": "JVM",
+              "desc": "Runs the translated code"
+            }
+          ],
+          "activeStepIndex": 0
+        }
+      },
+      "chapter": "M1 Setup and Basics",
+      "keyIdea": "JDK is the kit you install"
+    },
+    {
+      "id": 5,
+      "narration": "Now follow one program from start to finish. You write Hello dot java. javac turns it into Hello dot class. That file holds bytecode, a middle language. The JVM reads the bytecode and runs it.",
+      "remotion": {
+        "type": "ArchitectureFlow",
+        "props": {
+          "title": "The Journey of Your Program",
+          "steps": [
+            {
+              "title": "Hello.java",
+              "desc": "Your source code"
+            },
+            {
+              "title": "javac",
+              "desc": "Compiles it"
+            },
+            {
+              "title": "Hello.class",
+              "desc": "Bytecode, the middle form"
+            },
+            {
+              "title": "JVM",
+              "desc": "Runs it and prints the output"
+            }
+          ],
+          "activeStepIndex": 0
+        }
+      },
+      "camera": [
+        {
+          "at": "JVM",
+          "zoom": 1.0,
+          "x": 50,
+          "y": 50
+        }
+      ],
+      "chapter": "M1 Setup and Basics"
+    },
+    {
+      "id": 6,
+      "narration": "Now the most important word today. A class is a blueprint. Think of a cookie cutter. It does not make cookies by itself. An object is a real cookie, made from that cutter. One class can make many objects.",
+      "remotion": {
+        "type": "ArchitectureFlow",
+        "props": {
+          "title": "Class and Object",
+          "steps": [
+            {
+              "title": "Class",
+              "desc": "The blueprint, the cookie cutter"
+            },
+            {
+              "title": "Object",
+              "desc": "A real thing made from the class"
+            },
+            {
+              "title": "More objects",
+              "desc": "Many cookies from one cutter"
+            }
+          ],
+          "activeStepIndex": 0
+        }
+      },
+      "chapter": "M1 Setup and Basics",
+      "keyIdea": "A class is a blueprint"
+    },
+    {
+      "id": 7,
+      "narration": "Every Java program has a simple shape, like a tree. At the top is a class. Inside the class is the main method. That is the starting point. Inside main, you write statements. Each statement is one instruction for the computer.",
+      "remotion": {
+        "type": "ArchitectureFlow",
+        "props": {
+          "title": "The Shape of a Java Program",
+          "steps": [
+            {
+              "title": "class",
+              "desc": "The container at the top"
+            },
+            {
+              "title": "main method",
+              "desc": "Where Java starts running"
+            },
+            {
+              "title": "Statements",
+              "desc": "One instruction per line"
+            }
+          ],
+          "activeStepIndex": 0
+        }
+      },
+      "chapter": "M1 Setup and Basics",
+      "keyIdea": "Every program starts at main"
+    },
+    {
+      "id": 8,
+      "narration": "Before we type, install the tools. Step one. Install the latest LTS JDK. LTS means long term support, a stable version. Step two. Open a terminal and type java dash version. If you see a version number, you are ready.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "Day 1 Setup Checklist",
+          "items": [
+            "Install the latest LTS JDK",
+            "Open a terminal and run: java -version",
+            "Check that a version number appears",
+            "Install VS Code or IntelliJ IDEA",
+            "Create a folder named java-100"
+          ]
+        }
+      },
+      "chapter": "M1 Setup and Basics"
+    },
+    {
+      "id": 9,
+      "narration": "Now create a file named Hello dot java in that folder. Type the whole program. Do not worry about every line yet. We explain each line in the next scenes.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Now create",
+        "props": {
+          "filename": "Hello.java",
+          "language": "java",
+          "code": "public class Hello {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, Java!\");\n    }\n}",
+          "highlightLines": []
+        }
+      },
+      "chapter": "M1 Setup and Basics"
+    },
+    {
+      "id": 10,
+      "narration": "Look at line one. public class Hello. This line creates a class named Hello. The word class tells Java that this is a blueprint. The name must match the file name exactly.",
+      "remotion": {
+        "type": "CodeExplainer",
+        "props": {
+          "language": "java",
+          "filename": "Hello.java",
+          "code": "public class Hello {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, Java!\");\n    }\n}",
+          "highlightLines": [
+            1
+          ],
+          "lineNotes": [
+            {
+              "line": 1,
+              "note": "A blueprint named Hello"
+            }
+          ]
+        }
+      },
+      "camera": [
+        {
+          "at": "Look",
+          "zoom": 1.0,
+          "x": 50,
+          "y": 50
+        },
+        {
+          "at": "line",
+          "zoom": 1.6,
+          "x": 30,
+          "y": 25
+        },
+        {
+          "at": "match",
+          "zoom": 1.0,
+          "x": 50,
+          "y": 50
+        }
+      ],
+      "chapter": "M1 Setup and Basics"
+    },
+    {
+      "id": 11,
+      "narration": "Line two starts the main method. This is where Java begins running your program. Words like public, static, and void are keywords. For today, just know they are required. We learn each one later.",
+      "remotion": {
+        "type": "CodeExplainer",
+        "props": {
+          "language": "java",
+          "filename": "Hello.java",
+          "code": "public class Hello {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, Java!\");\n    }\n}",
+          "highlightLines": [
+            2
+          ],
+          "lineNotes": [
+            {
+              "line": 2,
+              "note": "Java starts running here"
+            }
+          ]
+        }
+      },
+      "camera": [
+        {
+          "at": "main",
+          "zoom": 1.0,
+          "x": 50,
+          "y": 50
+        },
+        {
+          "at": "starts",
+          "zoom": 1.6,
+          "x": 35,
+          "y": 40
+        }
+      ],
+      "chapter": "M1 Setup and Basics"
+    },
+    {
+      "id": 12,
+      "narration": "Line three does the actual work. System dot out dot println prints a line of text on the screen. The text goes inside brackets and double quotes. The quotes tell Java this is text, not code.",
+      "remotion": {
+        "type": "CodeExplainer",
+        "props": {
+          "language": "java",
+          "filename": "Hello.java",
+          "code": "public class Hello {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, Java!\");\n    }\n}",
+          "highlightLines": [
+            3
+          ],
+          "lineNotes": [
+            {
+              "line": 3,
+              "note": "Prints one line of text"
+            }
+          ]
+        }
+      },
+      "camera": [
+        {
+          "at": "println",
+          "zoom": 1.8,
+          "x": 40,
+          "y": 55
+        },
+        {
+          "at": "quotes",
+          "zoom": 1.0,
+          "x": 50,
+          "y": 50
+        }
+      ],
+      "chapter": "M1 Setup and Basics",
+      "keyIdea": "println prints one line"
+    },
+    {
+      "id": 13,
+      "narration": "Open the terminal in the same folder. Run javac Hello dot java. No output means the compile worked. Then run java Hello, without dot java. Now you see the output on screen.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "javac Hello.java && java Hello",
+          "output": [
+            "Hello, Java!"
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "compile",
+            "text": "Silent means compile worked",
+            "kind": "note",
+            "x": "50%",
+            "y": "15%"
+          }
+        ]
+      },
+      "chapter": "M1 Setup and Basics"
+    },
+    {
+      "id": 14,
+      "narration": "Common mistake. Suppose your file is named hello dot java, with a small h. Java gives an error. It says the public class should be in a file named Hello dot java. Java is case sensitive, so capitals matter.",
+      "remotion": {
+        "type": "ComparisonCard",
+        "props": {
+          "title": "File Name Must Match",
+          "leftTitle": "Correct",
+          "leftPoints": [
+            "File: Hello.java",
+            "public class Hello",
+            "Compiles and runs"
+          ],
+          "rightTitle": "Common Mistake",
+          "rightPoints": [
+            "File: hello.java",
+            "public class Hello",
+            "Error: should be Hello.java"
+          ]
+        }
+      },
+      "chapter": "M1 Setup and Basics"
+    },
+    {
+      "id": 15,
+      "narration": "Let's recap, slowly. A class is a blueprint. The main method is where Java starts. javac compiles your code into bytecode. The JVM runs that bytecode. These four ideas are the base for the whole series.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "Recap",
+          "items": [
+            "A class is a blueprint",
+            "The main method is where Java starts",
+            "javac compiles code into bytecode",
+            "The JVM runs the bytecode"
+          ]
+        }
+      },
+      "chapter": "M1 Setup and Basics",
+      "keyIdea": "Compile first, then run"
+    },
+    {
+      "id": 16,
+      "narration": "Now your practice task. Try this on your own. Change the text inside println to your own name. Then add a second println line below it. If you see an error, read it slowly. Errors are your teacher.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "Practice Task",
+          "items": [
+            "Change the text to your own name",
+            "Add a second System.out.println line",
+            "Run javac and java again",
+            "Read any error message slowly"
+          ]
+        }
+      },
+      "chapter": "M1 Setup and Basics"
+    },
+    {
+      "id": 17,
+      "narration": "That was Day one. You wrote a real Java program and understood each line of it. Keep your Hello file safe, because we will reuse it. Tomorrow we store data in variables, step by step. Subscribe, and I will see you on Day two.",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "See you on Day 2",
+          "subtitle": "Next: Variables and naming rules",
+          "youtubePrompt": "Subscribe for Day 2"
+        }
+      },
+      "chapter": "M1 Setup and Basics"
+    }
+  ],
+  "thumbnail": {
+    "title": "What Is Java?",
+    "highlight": "Java",
+    "subtitle": "Learn Java from zero"
+  }
+}

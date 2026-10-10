@@ -38,6 +38,7 @@ def main() -> None:
     ap.add_argument("--lang", default="en", choices=["en", "hi"])
     ap.add_argument("--theme", default="light-grid", choices=["light-grid", "dark-vdo"])
     ap.add_argument("--no-audit", action="store_true", help="frame audit skip karo")
+    ap.add_argument("--skip-qa", action="store_true", help="layout QA gate skip karo (default: ON, fail par render ruk jaata hai)")
     a = ap.parse_args()
 
     if not (REMOTION / "node_modules").exists():
@@ -52,6 +53,9 @@ def main() -> None:
           "--theme", a.theme], ROOT)
     step("2/4 Validate props",
          [sys.executable, str(PIPE / "validate_props.py"), str(props)], ROOT)
+    if not a.skip_qa:
+        step("2b/4 Layout QA gate (stills, blank/overflow check)",
+             [sys.executable, str(PIPE / "qa_gate.py"), str(props), a.name], ROOT)
     step("3/4 Render MP4 (Remotion)",
          ["npx", "remotion", "render", "Landscape", str(mp4),
           f"--props={props.name}", "--log=error"], REMOTION)

@@ -6,32 +6,58 @@
       "name": "Python in 100 Days",
       "format": "long",
       "theme": "light-grid",
-      "langs": ["en", "hi"],
+      "langs": [
+        "en",
+        "hi"
+      ],
       "curriculum": "config/curriculum/python_100.json",
       "daily_slot_ist": "20:00",
-      "youtube_playlist": {"en": null, "hi": null},
-      "enabled": true
+      "youtube_playlist": {
+        "en": null,
+        "hi": null
+      },
+      "enabled": true,
+      "keyword": "Python",
+      "short_name": "Python 100",
+      "accent": "#16a34a",
+      "thumb_motif": "snake"
     },
     {
       "id": "java-100-days",
       "name": "Java in 100 Days",
       "format": "long",
       "theme": "light-grid",
-      "langs": ["en", "hi"],
+      "langs": [
+        "en",
+        "hi"
+      ],
       "curriculum": "config/curriculum/java_100.json",
       "daily_slot_ist": "20:00",
-      "youtube_playlist": {"en": null, "hi": null},
-      "enabled": false
+      "youtube_playlist": {
+        "en": null,
+        "hi": null
+      },
+      "enabled": false,
+      "keyword": "Java",
+      "short_name": "Java 100",
+      "accent": "#2563eb",
+      "thumb_motif": "none"
     },
     {
       "id": "python-shorts",
       "name": "Python Shorts",
       "format": "short",
       "theme": "light-grid",
-      "langs": ["en", "hi"],
+      "langs": [
+        "en",
+        "hi"
+      ],
       "curriculum": "config/curriculum/python_100.json",
       "daily_slot_ist": "18:00",
-      "youtube_playlist": {"en": null, "hi": null},
+      "youtube_playlist": {
+        "en": null,
+        "hi": null
+      },
       "enabled": false
     }
   ]

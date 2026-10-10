@@ -1,0 +1,11 @@
+{
+ "title": "What Is Java?",
+ "highlight": "Java",
+ "badge": "DAY 1 • JAVA 100",
+ "subtitle": "Learn Java from zero",
+ "code": "public class Hello {",
+ "codeTitle": "Hello.java",
+ "codeHighlightLine": 1,
+ "footer": "Progress • Day 1 / 100",
+ "accent": "#2563eb"
+}
