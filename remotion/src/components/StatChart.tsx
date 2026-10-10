@@ -18,7 +18,7 @@ export interface StatChartProps {
   typeFrames?: number;
 }
 
-const W = 760, H = 430, PAD = 60;
+const W = 760, H = 480, PAD = 60;
 
 export const StatChart: React.FC<StatChartProps> = ({
   title, kind, labels = [], values = [], points = [], xLabel, yLabel, formula,
@@ -37,7 +37,7 @@ export const StatChart: React.FC<StatChartProps> = ({
     <g>
       <line x1={PAD} y1={H - PAD} x2={W - PAD} y2={H - PAD} stroke={t.textMuted} strokeWidth={2} />
       <line x1={PAD} y1={PAD} x2={PAD} y2={H - PAD} stroke={t.textMuted} strokeWidth={2} />
-      {xLabel && <text x={W / 2} y={H - PAD + 70} textAnchor="middle" fontSize={20} fill={t.textMuted}>{xLabel}</text>}
+      {xLabel && <text x={W / 2} y={H - 14} textAnchor="middle" fontSize={20} fill={t.textMuted}>{xLabel}</text>}
       {yLabel && <text x={PAD} y={PAD - 16} fontSize={20} fill={t.textMuted}>{yLabel}</text>}
     </g>
   );
