@@ -17,7 +17,9 @@ export type SceneType =
   | 'TerminalSplit'
   | 'ClassifierCard'
   | 'ClusterGrid'
-  | 'ManimClip';
+  | 'ManimClip'
+  | 'TypingCode'
+  | 'TerminalRun';
 
 export interface TitleCardProps {
   title: string;
@@ -143,6 +145,7 @@ export interface ProjectData {
   aspectRatio: AspectRatio;
   voice?: string;
   theme?: 'light-grid' | 'dark-vdo'; // per-video theme choice
+  dayLabel?: string; // footer: Day 1 / 30
   totalDurationFrames?: number;
   totalDurationSec?: number;
   scenes: SceneData[];

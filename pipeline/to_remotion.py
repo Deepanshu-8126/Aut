@@ -18,7 +18,18 @@ FPS = 30
 VOICE = {"en": "en-US-AndrewNeural", "hi": "hi-IN-SwaraNeural"}
 
 
+def find_word_time(words: list, anchor: str, default: float = 0.0) -> float:
+    """Narration ke word ka start time (sync anchor). Pehla match jo anchor se shuru ho."""
+    for w in words:
+        if w["word"].strip(",.!?").lower().startswith(anchor.strip(",.!?").lower()):
+            return w["start"]
+    return default
+
+
 def scene_props(s: dict) -> tuple[str, dict]:
+    if s.get("remotion"):
+        r = s["remotion"]
+        return r["type"], dict(r.get("props", {}))
     if s.get("manim") and s.get("_clip"):
         return "ManimClip", {"src": s.get("_clip", ""), "heading": s.get("heading")}
     if s.get("formula"):
@@ -46,13 +57,21 @@ def build(script_path: Path, lang: str, out: Path, theme: str, clips: dict) -> N
         if s.get("manim") and s["id"] in clips:
             s["_clip"] = clips[s["id"]]
         typ, props = scene_props(s)
+        r = s.get("remotion") or {}
+        if typ == "TypingCode":
+            start = find_word_time(words, r.get("type_anchor", ""), 0.0) if r.get("type_anchor") else 0.0
+            props["startFrame"] = round(start * FPS)
+            props["typeFrames"] = max(30, round((dur - start) * FPS * 0.85))
+        popups = []
+        for pp in r.get("popups", []):
+            popups.append({**pp, "at": round(find_word_time(words, pp["anchor"], 0.0), 3)})
         frames = math.ceil((dur + 0.6) * FPS)  # 0.6s hold after narration
         scenes.append({"id": sid, "type": typ, "props": props, "narration": s["narration"],
                        "audioFile": f"audio/{sid}.mp3", "durationSec": round(dur, 3),
-                       "durationInFrames": frames, "words": words})
+                       "durationInFrames": frames, "words": words, "popups": popups})
         print(f"scene {s['id']}: {typ} {dur:.2f}s {len(words)} words", flush=True)
     project = {"title": script.get("title", ""), "aspectRatio": "16:9", "theme": theme,
-               "scenes": scenes}
+               "dayLabel": script.get("dayLabel"), "scenes": scenes}
     out.write_text(json.dumps({"project": project}, ensure_ascii=False, indent=1), encoding="utf-8")  # Remotion input props
     print("props:", out)
 

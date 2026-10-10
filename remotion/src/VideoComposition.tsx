@@ -15,6 +15,9 @@ import { ClusterGrid } from './components/ClusterGrid';
 import { SubtitleOverlay } from './components/SubtitleOverlay';
 import { getTheme } from './theme';
 import { ManimClip } from './components/ManimClip';
+import { TypingCode } from './components/TypingCode';
+import { TerminalRun } from './components/TerminalRun';
+import { TeacherTip } from './components/TeacherTip';
 import { ThemeProvider } from './ThemeContext';
 
 export const VideoComposition: React.FC<{ project: ProjectData }> = ({ project }) => {
@@ -33,6 +36,16 @@ export const VideoComposition: React.FC<{ project: ProjectData }> = ({ project }
         return <MathVisualizer {...(scene.props as any)} aspectRatio={aspectRatio} />;
       case 'ComparisonCard':
         return <ComparisonCard {...(scene.props as any)} aspectRatio={aspectRatio} />;
+      case 'TypingCode': {
+        const p = scene.props as any;
+        const tf = p.typeFrames ?? Math.round((scene.durationInFrames || 90) * 0.8);
+        return <TypingCode {...p} typeFrames={tf} />;
+      }
+      case 'TerminalRun': {
+        const p = scene.props as any;
+        const tf = p.typeFrames ?? Math.round((scene.durationInFrames || 90) * 0.3);
+        return <TerminalRun {...p} typeFrames={tf} />;
+      }
       case 'ManimClip':
         return <ManimClip {...(scene.props as any)} aspectRatio={aspectRatio} />;
       case 'SummaryList':
@@ -68,6 +81,12 @@ export const VideoComposition: React.FC<{ project: ProjectData }> = ({ project }
                 {renderSceneContent(scene)}
               </div>
 
+              {/* Teacher popups (scene ke andar, sec ke hisaab se) */}
+              {((scene as any).popups || []).map((pp: any, pi: number) => (
+                <TeacherTip key={pi} text={pp.text} kind={pp.kind} x={pp.x} y={pp.y}
+                  startFrame={Math.round((pp.at || 0) * 30)} hideAfter={pp.hideAfter ? Math.round(pp.hideAfter * 30) : undefined} />
+              ))}
+
               {/* Subtitles Overlay */}
               <SubtitleOverlay
                 words={scene.words}
@@ -83,6 +102,13 @@ export const VideoComposition: React.FC<{ project: ProjectData }> = ({ project }
           );
         })}
       </Series>
+
+      {/* Progress footer, reference style: "Progress • Day N/30" */}
+      {project.dayLabel && (
+        <div className="absolute left-0 right-0 bottom-3 flex justify-center pointer-events-none z-50">
+          <div className="font-mono text-base" style={{ color: theme.textMuted }}>Progress • {project.dayLabel}</div>
+        </div>
+      )}
     </div>
     </ThemeProvider>
   );
