@@ -14,6 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from tts_words import synth_with_words  # noqa: E402
+import tts_kokoro_hi  # noqa: E402  (Hindi: Kokoro per-word, exact sync)
 from keyboard_sfx import keys_track, save_wav  # noqa: E402
 import random  # noqa: E402
 
@@ -76,8 +77,12 @@ def build(script_path: Path, lang: str, out: Path, theme: str, clips: dict) -> N
     scenes = []
     for s in script["scenes"]:
         sid = f"{lang}_s{s['id']}"
-        mp3 = pub / "audio" / f"{sid}.mp3"
-        dur, words = synth_with_words(s["narration"], VOICE[lang], mp3, rate=VOICE_RATE)
+        if lang == "hi":
+            audio_rel = f"audio/{sid}.wav"
+            dur, words = tts_kokoro_hi.synth_with_words(s["narration"], pub / audio_rel)
+        else:
+            audio_rel = f"audio/{sid}.mp3"
+            dur, words = synth_with_words(s["narration"], VOICE[lang], pub / audio_rel, rate=VOICE_RATE)
         if s.get("manim") and s["id"] in clips:
             s["_clip"] = clips[s["id"]]
         typ, props = scene_props(s)
@@ -106,7 +111,7 @@ def build(script_path: Path, lang: str, out: Path, theme: str, clips: dict) -> N
             save_wav(pub / keys_file, keys_track(key_events(props), dur + 0.6))
         frames = math.ceil((dur + 0.6) * FPS)  # 0.6s hold after narration
         scenes.append({"id": sid, "type": typ, "props": props, "narration": s["narration"],
-                       "audioFile": f"audio/{sid}.mp3", "durationSec": round(dur, 3),
+                       "audioFile": audio_rel, "durationSec": round(dur, 3),
                        "durationInFrames": frames, "words": words, "popups": popups, "keysFile": keys_file})
         print(f"scene {s['id']}: {typ} {dur:.2f}s {len(words)} words", flush=True)
     project = {"title": script.get("title", ""), "aspectRatio": "16:9", "theme": theme,
