@@ -1,0 +1,125 @@
+{
+  "series": "dsa-30-days",
+  "topics": [
+    {
+      "day": 1,
+      "topic": "Arrays: index aur traversal"
+    },
+    {
+      "day": 2,
+      "topic": "Time complexity (Big O) samjho"
+    },
+    {
+      "day": 3,
+      "topic": "Space complexity"
+    },
+    {
+      "day": 4,
+      "topic": "Linear search"
+    },
+    {
+      "day": 5,
+      "topic": "Binary search"
+    },
+    {
+      "day": 6,
+      "topic": "Two pointers technique"
+    },
+    {
+      "day": 7,
+      "topic": "Sliding window"
+    },
+    {
+      "day": 8,
+      "topic": "Prefix sum"
+    },
+    {
+      "day": 9,
+      "topic": "Bubble sort aur selection sort"
+    },
+    {
+      "day": 10,
+      "topic": "Insertion sort"
+    },
+    {
+      "day": 11,
+      "topic": "Merge sort"
+    },
+    {
+      "day": 12,
+      "topic": "Quick sort"
+    },
+    {
+      "day": 13,
+      "topic": "Counting sort aur sorting ki tulna"
+    },
+    {
+      "day": 14,
+      "topic": "Strings aur character frequency"
+    },
+    {
+      "day": 15,
+      "topic": "Hash map basics"
+    },
+    {
+      "day": 16,
+      "topic": "Hash set aur duplicates"
+    },
+    {
+      "day": 17,
+      "topic": "Linked list basics"
+    },
+    {
+      "day": 18,
+      "topic": "Reverse a linked list"
+    },
+    {
+      "day": 19,
+      "topic": "Stack basics"
+    },
+    {
+      "day": 20,
+      "topic": "Valid parentheses (stack use)"
+    },
+    {
+      "day": 21,
+      "topic": "Queue basics"
+    },
+    {
+      "day": 22,
+      "topic": "Monotonic stack"
+    },
+    {
+      "day": 23,
+      "topic": "Recursion basics"
+    },
+    {
+      "day": 24,
+      "topic": "Trees basics"
+    },
+    {
+      "day": 25,
+      "topic": "Binary tree traversal"
+    },
+    {
+      "day": 26,
+      "topic": "Binary search tree"
+    },
+    {
+      "day": 27,
+      "topic": "Heap aur priority queue"
+    },
+    {
+      "day": 28,
+      "topic": "Graph basics (adjacency list)"
+    },
+    {
+      "day": 29,
+      "topic": "BFS (Breadth First Search)"
+    },
+    {
+      "day": 30,
+      "topic": "DFS (Depth First Search)"
+    }
+  ]
+}
