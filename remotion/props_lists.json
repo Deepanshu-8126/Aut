@@ -1,0 +1,661 @@
+{
+ "project": {
+  "title": "Python Lists in 2 Minutes",
+  "aspectRatio": "16:9",
+  "theme": "light-grid",
+  "dayLabel": "Day 1 / 30",
+  "bgm": "sfx/bgm.wav",
+  "bgmVolume": 0.08,
+  "scenes": [
+   {
+    "id": "en_s1",
+    "type": "TitleCard",
+    "props": {
+     "title": "Python Lists",
+     "subtitle": "One variable, many values",
+     "badge": "DAY 1 • PYTHON LISTS",
+     "tags": [
+      "Python",
+      "Lists",
+      "Beginner"
+     ]
+    },
+    "narration": "Today we're learning Python lists. A list holds many values in one variable. Let's see how it works.",
+    "audioFile": "audio/en_s1.mp3",
+    "durationSec": 6.793,
+    "durationInFrames": 222,
+    "words": [
+     {
+      "word": "Today",
+      "start": 0.109,
+      "end": 0.394
+     },
+     {
+      "word": "we're",
+      "start": 0.408,
+      "end": 0.543
+     },
+     {
+      "word": "learning",
+      "start": 0.557,
+      "end": 0.842
+     },
+     {
+      "word": "Python",
+      "start": 0.856,
+      "end": 1.345
+     },
+     {
+      "word": "lists",
+      "start": 1.359,
+      "end": 1.889
+     },
+     {
+      "word": "A",
+      "start": 2.337,
+      "end": 2.391
+     },
+     {
+      "word": "list",
+      "start": 2.405,
+      "end": 2.717
+     },
+     {
+      "word": "holds",
+      "start": 2.731,
+      "end": 3.071
+     },
+     {
+      "word": "many",
+      "start": 3.084,
+      "end": 3.505
+     },
+     {
+      "word": "values",
+      "start": 3.519,
+      "end": 4.171
+     },
+     {
+      "word": "in",
+      "start": 4.307,
+      "end": 4.457
+     },
+     {
+      "word": "one",
+      "start": 4.47,
+      "end": 4.701
+     },
+     {
+      "word": "variable",
+      "start": 4.715,
+      "end": 5.312
+     },
+     {
+      "word": "Let's",
+      "start": 5.761,
+      "end": 5.897
+     },
+     {
+      "word": "see",
+      "start": 5.91,
+      "end": 6.046
+     },
+     {
+      "word": "how",
+      "start": 6.06,
+      "end": 6.196
+     },
+     {
+      "word": "it",
+      "start": 6.209,
+      "end": 6.291
+     },
+     {
+      "word": "works",
+      "start": 6.304,
+      "end": 6.793
+     }
+    ],
+    "popups": [],
+    "keysFile": null
+   },
+   {
+    "id": "en_s2",
+    "type": "TypingCode",
+    "props": {
+     "filename": "lists.py",
+     "language": "python",
+     "code": "fruits = [\"apple\", \"mango\", \"banana\"]\nfruits.append(\"kiwi\")\nprint(fruits[0])\nprint(len(fruits))",
+     "highlightLines": [
+      2
+     ],
+     "startFrame": 5,
+     "typeFrames": 308
+    },
+    "narration": "First, we make a list of three fruits. Next, append adds kiwi at the end. Index zero gives the first item, apple. And len tells you how many items there are.",
+    "audioFile": "audio/en_s2.mp3",
+    "durationSec": 10.842,
+    "durationInFrames": 344,
+    "words": [
+     {
+      "word": "First",
+      "start": 0.163,
+      "end": 0.53
+     },
+     {
+      "word": "we",
+      "start": 0.802,
+      "end": 0.924
+     },
+     {
+      "word": "make",
+      "start": 0.938,
+      "end": 1.128
+     },
+     {
+      "word": "a",
+      "start": 1.141,
+      "end": 1.182
+     },
+     {
+      "word": "list",
+      "start": 1.196,
+      "end": 1.535
+     },
+     {
+      "word": "of",
+      "start": 1.549,
+      "end": 1.644
+     },
+     {
+      "word": "three",
+      "start": 1.658,
+      "end": 1.943
+     },
+     {
+      "word": "fruits",
+      "start": 1.957,
+      "end": 2.554
+     },
+     {
+      "word": "Next",
+      "start": 3.003,
+      "end": 3.41
+     },
+     {
+      "word": "append",
+      "start": 3.641,
+      "end": 3.967
+     },
+     {
+      "word": "adds",
+      "start": 3.981,
+      "end": 4.226
+     },
+     {
+      "word": "kiwi",
+      "start": 4.239,
+      "end": 4.633
+     },
+     {
+      "word": "at",
+      "start": 4.647,
+      "end": 4.742
+     },
+     {
+      "word": "the",
+      "start": 4.755,
+      "end": 4.837
+     },
+     {
+      "word": "end",
+      "start": 4.851,
+      "end": 5.258
+     },
+     {
+      "word": "Index",
+      "start": 5.707,
+      "end": 6.073
+     },
+     {
+      "word": "zero",
+      "start": 6.087,
+      "end": 6.495
+     },
+     {
+      "word": "gives",
+      "start": 6.508,
+      "end": 6.753
+     },
+     {
+      "word": "the",
+      "start": 6.766,
+      "end": 6.861
+     },
+     {
+      "word": "first",
+      "start": 6.875,
+      "end": 7.337
+     },
+     {
+      "word": "item",
+      "start": 7.351,
+      "end": 7.69
+     },
+     {
+      "word": "apple",
+      "start": 7.921,
+      "end": 8.315
+     },
+     {
+      "word": "And",
+      "start": 8.764,
+      "end": 8.899
+     },
+     {
+      "word": "len",
+      "start": 8.913,
+      "end": 9.117
+     },
+     {
+      "word": "tells",
+      "start": 9.13,
+      "end": 9.402
+     },
+     {
+      "word": "you",
+      "start": 9.416,
+      "end": 9.511
+     },
+     {
+      "word": "how",
+      "start": 9.524,
+      "end": 9.687
+     },
+     {
+      "word": "many",
+      "start": 9.701,
+      "end": 10.014
+     },
+     {
+      "word": "items",
+      "start": 10.027,
+      "end": 10.34
+     },
+     {
+      "word": "there",
+      "start": 10.353,
+      "end": 10.543
+     },
+     {
+      "word": "are",
+      "start": 10.557,
+      "end": 10.842
+     }
+    ],
+    "popups": [
+     {
+      "anchor": "append",
+      "text": "append() adds at the END",
+      "kind": "tip",
+      "x": "50%",
+      "y": "15%",
+      "at": 3.641
+     },
+     {
+      "anchor": "Index",
+      "text": "Index starts at 0",
+      "kind": "tip",
+      "x": "50%",
+      "y": "15%",
+      "at": 5.707
+     },
+     {
+      "anchor": "len",
+      "text": "len() counts items",
+      "kind": "note",
+      "x": "50%",
+      "y": "15%",
+      "at": 8.913
+     }
+    ],
+    "keysFile": "sfx/keys_en_s2.wav"
+   },
+   {
+    "id": "en_s3",
+    "type": "TerminalRun",
+    "props": {
+     "command": "python lists.py",
+     "output": [
+      "apple",
+      "4"
+     ]
+    },
+    "narration": "Run the file. You get apple first, then four, because we just added kiwi.",
+    "audioFile": "audio/en_s3.mp3",
+    "durationSec": 5.136,
+    "durationInFrames": 173,
+    "words": [
+     {
+      "word": "Run",
+      "start": 0.109,
+      "end": 0.231
+     },
+     {
+      "word": "the",
+      "start": 0.245,
+      "end": 0.326
+     },
+     {
+      "word": "file",
+      "start": 0.34,
+      "end": 0.774
+     },
+     {
+      "word": "You",
+      "start": 1.223,
+      "end": 1.318
+     },
+     {
+      "word": "get",
+      "start": 1.332,
+      "end": 1.495
+     },
+     {
+      "word": "apple",
+      "start": 1.508,
+      "end": 1.793
+     },
+     {
+      "word": "first",
+      "start": 1.807,
+      "end": 2.418
+     },
+     {
+      "word": "then",
+      "start": 2.69,
+      "end": 2.88
+     },
+     {
+      "word": "four",
+      "start": 2.894,
+      "end": 3.37
+     },
+     {
+      "word": "because",
+      "start": 3.682,
+      "end": 3.967
+     },
+     {
+      "word": "we",
+      "start": 3.981,
+      "end": 4.103
+     },
+     {
+      "word": "just",
+      "start": 4.117,
+      "end": 4.389
+     },
+     {
+      "word": "added",
+      "start": 4.402,
+      "end": 4.687
+     },
+     {
+      "word": "kiwi",
+      "start": 4.701,
+      "end": 5.136
+     }
+    ],
+    "popups": [],
+    "keysFile": null
+   },
+   {
+    "id": "en_s4",
+    "type": "ComparisonCard",
+    "props": {
+     "title": "List vs Tuple",
+     "leftTitle": "Tuple",
+     "leftPoints": [
+      "Fixed after creation",
+      "Uses parentheses ()",
+      "Cannot append"
+     ],
+     "rightTitle": "List",
+     "rightPoints": [
+      "Add and remove items",
+      "Uses square brackets []",
+      "Most used in Python"
+     ]
+    },
+    "narration": "A tuple is fixed after creation. A list can change. That's the big difference.",
+    "audioFile": "audio/en_s4.mp3",
+    "durationSec": 5.136,
+    "durationInFrames": 173,
+    "words": [
+     {
+      "word": "A",
+      "start": 0.109,
+      "end": 0.177
+     },
+     {
+      "word": "tuple",
+      "start": 0.19,
+      "end": 0.571
+     },
+     {
+      "word": "is",
+      "start": 0.584,
+      "end": 0.72
+     },
+     {
+      "word": "fixed",
+      "start": 0.734,
+      "end": 1.209
+     },
+     {
+      "word": "after",
+      "start": 1.223,
+      "end": 1.495
+     },
+     {
+      "word": "creation",
+      "start": 1.508,
+      "end": 2.079
+     },
+     {
+      "word": "A",
+      "start": 2.527,
+      "end": 2.581
+     },
+     {
+      "word": "list",
+      "start": 2.595,
+      "end": 2.84
+     },
+     {
+      "word": "can",
+      "start": 2.853,
+      "end": 2.989
+     },
+     {
+      "word": "change",
+      "start": 3.003,
+      "end": 3.546
+     },
+     {
+      "word": "That's",
+      "start": 4.008,
+      "end": 4.171
+     },
+     {
+      "word": "the",
+      "start": 4.185,
+      "end": 4.293
+     },
+     {
+      "word": "big",
+      "start": 4.307,
+      "end": 4.511
+     },
+     {
+      "word": "difference",
+      "start": 4.524,
+      "end": 5.136
+     }
+    ],
+    "popups": [
+     {
+      "anchor": "change",
+      "text": "Lists can change",
+      "kind": "note",
+      "x": "50%",
+      "y": "15%",
+      "at": 3.003
+     }
+    ],
+    "keysFile": null
+   },
+   {
+    "id": "en_s5",
+    "type": "SummaryList",
+    "props": {
+     "title": "Recap",
+     "items": [
+      "Lists store many values in one variable",
+      "append() adds at the end",
+      "Index starts at 0",
+      "Tuples are fixed, lists can change"
+     ]
+    },
+    "narration": "Recap. A list stores many values. Append adds to the end. Index starts at zero. Practice by making your own list today.",
+    "audioFile": "audio/en_s5.mp3",
+    "durationSec": 8.791,
+    "durationInFrames": 282,
+    "words": [
+     {
+      "word": "Recap",
+      "start": 0.109,
+      "end": 0.598
+     },
+     {
+      "word": "A",
+      "start": 1.046,
+      "end": 1.101
+     },
+     {
+      "word": "list",
+      "start": 1.114,
+      "end": 1.386
+     },
+     {
+      "word": "stores",
+      "start": 1.399,
+      "end": 1.848
+     },
+     {
+      "word": "many",
+      "start": 1.861,
+      "end": 2.174
+     },
+     {
+      "word": "values",
+      "start": 2.188,
+      "end": 2.826
+     },
+     {
+      "word": "Append",
+      "start": 3.274,
+      "end": 3.614
+     },
+     {
+      "word": "adds",
+      "start": 3.723,
+      "end": 3.995
+     },
+     {
+      "word": "to",
+      "start": 4.008,
+      "end": 4.103
+     },
+     {
+      "word": "the",
+      "start": 4.117,
+      "end": 4.239
+     },
+     {
+      "word": "end",
+      "start": 4.253,
+      "end": 4.66
+     },
+     {
+      "word": "Index",
+      "start": 5.109,
+      "end": 5.421
+     },
+     {
+      "word": "starts",
+      "start": 5.435,
+      "end": 5.802
+     },
+     {
+      "word": "at",
+      "start": 5.815,
+      "end": 5.897
+     },
+     {
+      "word": "zero",
+      "start": 5.91,
+      "end": 6.386
+     },
+     {
+      "word": "Practice",
+      "start": 6.848,
+      "end": 7.255
+     },
+     {
+      "word": "by",
+      "start": 7.269,
+      "end": 7.405
+     },
+     {
+      "word": "making",
+      "start": 7.418,
+      "end": 7.799
+     },
+     {
+      "word": "your",
+      "start": 7.812,
+      "end": 7.976
+     },
+     {
+      "word": "own",
+      "start": 7.989,
+      "end": 8.179
+     },
+     {
+      "word": "list",
+      "start": 8.193,
+      "end": 8.41
+     },
+     {
+      "word": "today",
+      "start": 8.424,
+      "end": 8.791
+     }
+    ],
+    "popups": [
+     {
+      "anchor": "Practice",
+      "text": "Make your own list today",
+      "kind": "tip",
+      "x": "50%",
+      "y": "15%",
+      "at": 6.848
+     }
+    ],
+    "keysFile": null
+   }
+  ]
+ }
+}

@@ -51,15 +51,15 @@ def keys_track(events: list[tuple[float, str]], duration: float, seed: int = 11)
     for t, kind in events:
         if bank:
             click = bank[rng.integers(len(bank))] * rng.uniform(0.85, 1.0)
-            if kind != "key":
-                click = click * 0.8  # space/enter thoda dheemi
+            click = np.convolve(click, np.ones(3) / 3, mode="same")  # high-end thoda kam (kathor nahi lagta)
+            click = click * (0.8 if kind != "key" else 1.0)  # space/enter thoda dheemi
         else:
             click = _key(rng, kind)
         i = int(t * SR)
         if i >= total:
             continue
         m = min(len(click), total - i)
-        track[i:i + m] += click[:m] * (0.45 if kind == "key" else 0.6)
+        track[i:i + m] += click[:m] * (0.32 if kind == "key" else 0.4)
     return track
 
 

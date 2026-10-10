@@ -18,6 +18,8 @@ from keyboard_sfx import keys_track, save_wav  # noqa: E402
 import random  # noqa: E402
 
 FPS = 30
+VOICE_RATE = "-8%"   # thoda slow, teacher jaisa pace
+TYPE_TAIL = 0.4      # typing narration khatam hone se 0.4s pehle khatam
 VOICE = {"en": "en-US-AndrewNeural", "hi": "hi-IN-SwaraNeural"}
 
 
@@ -75,7 +77,7 @@ def build(script_path: Path, lang: str, out: Path, theme: str, clips: dict) -> N
     for s in script["scenes"]:
         sid = f"{lang}_s{s['id']}"
         mp3 = pub / "audio" / f"{sid}.mp3"
-        dur, words = synth_with_words(s["narration"], VOICE[lang], mp3)
+        dur, words = synth_with_words(s["narration"], VOICE[lang], mp3, rate=VOICE_RATE)
         if s.get("manim") and s["id"] in clips:
             s["_clip"] = clips[s["id"]]
         typ, props = scene_props(s)
@@ -94,7 +96,7 @@ def build(script_path: Path, lang: str, out: Path, theme: str, clips: dict) -> N
         if typ == "TypingCode":
             start = find_word_time(words, r.get("type_anchor", ""), 0.0) if r.get("type_anchor") else 0.0
             props["startFrame"] = round(start * FPS)
-            props["typeFrames"] = max(30, round((dur - start) * FPS * 0.85))
+            props["typeFrames"] = max(30, round((dur - start - TYPE_TAIL) * FPS))
         popups = []
         for pp in r.get("popups", []):
             popups.append({**pp, "at": round(find_word_time(words, pp["anchor"], 0.0), 3)})
