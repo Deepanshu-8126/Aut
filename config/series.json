@@ -1,5 +1,5 @@
 {
-  "_note": "Har series ek daily pipeline hai. autopilot.py roz agla din uthata hai. youtube_playlist_* null ho to upload ke time playlist ban jaati hai (YouTube API setup ke baad).",
+  "_note": "Har series ek daily pipeline hai. autopilot.py roz agla din uthata hai. youtube_playlist_* null ho to upload ke time playlist ban jaati hai (YouTube API setup ke baad). privacy: unlisted = YouTube par sirf link se dikhe; aap review karke public karo. public karna ho to \"public\" likho.",
   "series": [
     {
       "id": "python-100-days",
@@ -20,7 +20,8 @@
       "keyword": "Python",
       "short_name": "Python 100",
       "accent": "#16a34a",
-      "thumb_motif": "snake"
+      "thumb_motif": "snake",
+      "privacy": "unlisted"
     },
     {
       "id": "java-100-days",
@@ -41,7 +42,8 @@
       "keyword": "Java",
       "short_name": "Java 100",
       "accent": "#2563eb",
-      "thumb_motif": "none"
+      "thumb_motif": "none",
+      "privacy": "unlisted"
     },
     {
       "id": "python-shorts",
@@ -58,7 +60,8 @@
         "en": null,
         "hi": null
       },
-      "enabled": false
+      "enabled": false,
+      "privacy": "unlisted"
     }
   ]
 }

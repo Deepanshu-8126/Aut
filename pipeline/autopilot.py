@@ -103,7 +103,7 @@ def write_meta(series: dict, day: int, lang: str, lesson: Path, mp4: Path, thumb
         "video": str(mp4.relative_to(ROOT)), "thumbnail": (str(thumb.relative_to(ROOT)) if thumb else None), "title": title, "description": desc,
         "tags": tags, "lang": lang, "series": series["id"], "day": day,
         "playlist_id": series["youtube_playlist"].get(lang),
-        "privacy": "public", "created": datetime.now().isoformat(timespec="seconds"),
+        "privacy": series.get("privacy", "unlisted"), "created": datetime.now().isoformat(timespec="seconds"),
     }, ensure_ascii=False, indent=2), encoding="utf-8")
     return out
 
@@ -153,8 +153,12 @@ def main() -> None:
         if a.notify:
             from telegram_notify import send_video  # noqa: E402
             m = json.loads(meta.read_text(encoding="utf-8"))
+            from telegram_notify import send_photo  # noqa: E402
             send_video(mp4, m["title"], m["description"])
             print(f"[{lang}] telegram: video sent")
+            if m.get("thumbnail") and (ROOT / m["thumbnail"]).exists():
+                send_photo(ROOT / m["thumbnail"], f"Thumbnail: {m['title']} (privacy: {m['privacy']})")
+                print(f"[{lang}] telegram: thumbnail sent")
         if a.upload:
             from youtube_upload import upload_one  # noqa: E402
             vid = upload_one(meta)

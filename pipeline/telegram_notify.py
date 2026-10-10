@@ -75,6 +75,16 @@ def send_text(text: str) -> dict:
     return _post("sendMessage", {"chat_id": chat, "text": text})
 
 
+def send_photo(photo: Path, caption: str) -> dict:
+    """Thumbnail Telegram par bhejta hai (review ke liye)."""
+    _, chat = _env()
+    return _post(
+        "sendPhoto",
+        {"chat_id": chat, "caption": caption[:1024]},
+        file_field=("photo", str(photo)),
+    )
+
+
 def send_video(video: Path, title: str, description: str) -> dict:
     _, chat = _env()
     caption = build_caption(title, description)
