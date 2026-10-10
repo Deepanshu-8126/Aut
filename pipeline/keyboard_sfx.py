@@ -29,12 +29,32 @@ def _key(rng, kind: str) -> np.ndarray:
     return x
 
 
+BANK_DIR = Path(__file__).resolve().parent.parent / "remotion" / "public" / "sfx" / "keys"
+
+
+def _load_bank() -> list[np.ndarray]:
+    """Real keyboard recordings (Freesound CC0, mccreery/509171, individual key clips). Fallback: synth."""
+    if not BANK_DIR.exists():
+        return []
+    bank = []
+    for f in sorted(BANK_DIR.glob("*.wav")):
+        with wave.open(str(f), "rb") as w:
+            bank.append(np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(float) / 32768)
+    return bank
+
+
 def keys_track(events: list[tuple[float, str]], duration: float, seed: int = 11) -> np.ndarray:
     rng = np.random.default_rng(seed)
     total = int((duration + 0.5) * SR)
     track = np.zeros(total)
+    bank = _load_bank()
     for t, kind in events:
-        click = _key(rng, kind)
+        if bank:
+            click = bank[rng.integers(len(bank))] * rng.uniform(0.85, 1.0)
+            if kind != "key":
+                click = click * 0.8  # space/enter thoda dheemi
+        else:
+            click = _key(rng, kind)
         i = int(t * SR)
         if i >= total:
             continue
