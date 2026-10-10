@@ -14,6 +14,7 @@ import { ClassifierCard } from './components/ClassifierCard';
 import { ClusterGrid } from './components/ClusterGrid';
 import { SubtitleOverlay } from './components/SubtitleOverlay';
 import { getTheme } from './theme';
+import { ManimClip } from './components/ManimClip';
 import { ThemeProvider } from './ThemeContext';
 
 export const VideoComposition: React.FC<{ project: ProjectData }> = ({ project }) => {
@@ -32,6 +33,8 @@ export const VideoComposition: React.FC<{ project: ProjectData }> = ({ project }
         return <MathVisualizer {...(scene.props as any)} aspectRatio={aspectRatio} />;
       case 'ComparisonCard':
         return <ComparisonCard {...(scene.props as any)} aspectRatio={aspectRatio} />;
+      case 'ManimClip':
+        return <ManimClip {...(scene.props as any)} aspectRatio={aspectRatio} />;
       case 'SummaryList':
         return <SummaryList {...(scene.props as any)} aspectRatio={aspectRatio} />;
       case 'OutroCard':

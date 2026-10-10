@@ -16,7 +16,8 @@ export type SceneType =
   | 'OutroCard'
   | 'TerminalSplit'
   | 'ClassifierCard'
-  | 'ClusterGrid';
+  | 'ClusterGrid'
+  | 'ManimClip';
 
 export interface TitleCardProps {
   title: string;

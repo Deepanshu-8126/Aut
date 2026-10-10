@@ -32,6 +32,9 @@ export const RemotionRoot: React.FC = () => {
         defaultProps={{
           project: landscapeProject,
         }}
+        calculateMetadata={({ props }) => ({
+          durationInFrames: Math.max(1, (props.project.scenes || []).reduce((a: number, s: any) => a + (s.durationInFrames || 90), 0)),
+        })}
       />
 
       {/* 9:16 Shorts / Reels / TikTok Composition */}

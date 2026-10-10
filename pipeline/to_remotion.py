@@ -1,0 +1,69 @@
+"""Script JSON -> Remotion project JSON (+ narration mp3 with word timings).
+
+Usage:
+  python3 pipeline/to_remotion.py <script.json> <lang> <out_props.json> [--theme light-grid|dark-vdo]
+Audio + clips remotion/public/ mein jaate hain (staticFile se load hote hain).
+"""
+import argparse
+import json
+import math
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from tts_words import synth_with_words  # noqa: E402
+
+FPS = 30
+VOICE = {"en": "en-US-AndrewNeural", "hi": "hi-IN-SwaraNeural"}
+
+
+def scene_props(s: dict) -> tuple[str, dict]:
+    if s.get("manim") and s.get("_clip"):
+        return "ManimClip", {"src": s.get("_clip", ""), "heading": s.get("heading")}
+    if s.get("formula"):
+        return "MathVisualizer", {"title": s.get("heading"), "formula": s["formula"]}
+    if s.get("code"):
+        return "CodeExplainer", {"code": s["code"], "language": s.get("code_lang") or "python",
+                                 "filename": s.get("code_title") or "main.py", "highlightLines": []}
+    if not s.get("bullets") and not s.get("tip") and s["id"] == 1:
+        return "TitleCard", {"title": s.get("heading"), "subtitle": s.get("narration", ""), "badge": "DSA"}
+    items = list(s.get("bullets") or [])
+    if s.get("tip"):
+        items.append("Tip: " + s["tip"])
+    return "SummaryList", {"title": s.get("heading"), "items": items or [s.get("narration", "")]}
+
+
+def build(script_path: Path, lang: str, out: Path, theme: str, clips: dict) -> None:
+    script = json.loads(script_path.read_text(encoding="utf-8"))
+    pub = ROOT / "remotion" / "public"
+    (pub / "audio").mkdir(parents=True, exist_ok=True)
+    scenes = []
+    for s in script["scenes"]:
+        sid = f"{lang}_s{s['id']}"
+        mp3 = pub / "audio" / f"{sid}.mp3"
+        dur, words = synth_with_words(s["narration"], VOICE[lang], mp3)
+        if s.get("manim") and s["id"] in clips:
+            s["_clip"] = clips[s["id"]]
+        typ, props = scene_props(s)
+        frames = math.ceil((dur + 0.6) * FPS)  # 0.6s hold after narration
+        scenes.append({"id": sid, "type": typ, "props": props, "narration": s["narration"],
+                       "audioFile": f"audio/{sid}.mp3", "durationSec": round(dur, 3),
+                       "durationInFrames": frames, "words": words})
+        print(f"scene {s['id']}: {typ} {dur:.2f}s {len(words)} words", flush=True)
+    project = {"title": script.get("title", ""), "aspectRatio": "16:9", "theme": theme,
+               "scenes": scenes}
+    out.write_text(json.dumps({"project": project}, ensure_ascii=False, indent=1), encoding="utf-8")  # Remotion input props
+    print("props:", out)
+
+
+if __name__ == "__main__":
+    ap = argparse.ArgumentParser()
+    ap.add_argument("script")
+    ap.add_argument("lang", choices=["en", "hi"])
+    ap.add_argument("out")
+    ap.add_argument("--theme", default="light-grid")
+    ap.add_argument("--clip", action="append", default=[], help="scene_id=path/in/public.mp4")
+    a = ap.parse_args()
+    clips = {int(k): v for k, v in (c.split("=", 1) for c in a.clip)}
+    build(Path(a.script), a.lang, Path(a.out), a.theme, clips)
