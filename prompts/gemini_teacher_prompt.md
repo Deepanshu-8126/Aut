@@ -74,8 +74,18 @@ Every scene can have remotion.camera: a list of keyframes. Each keyframe:
 - BrowserSteps: setup / install / repo tutorials. props: title, steps[].
   Step types: {"type":"navigate","url":"...","pageTitle":"...","headline":"...","subtitle":"...","buttons":["Download"],"note":"...","at":"word"}
   and {"type":"click","label":"Download","headline":"...","note":"...","at":"word"}. Min 2 steps.
+
+- DSA / data-structure visuals (kisi bhi topic ke liye: array, tree, graph, stack/queue). Har step ek state hai, aur "at" woh narration word hai jispar step shuru ho. Har step ka "label" ek chhoti line (narration jaisi).
+  - ArrayViz: props {title, values:[...], steps:[{at, label, pointers:{"left":0,"right":4}, window:[l,r], highlight:[idx], compare:[i,j]}]}. Two pointers, sliding window, binary search, sorting ke liye.
+  - TreeViz: props {title, root:"A", nodes:[{id:"A",value:5,left:"B",right:"C"}, ...], steps:[{at, label, visit:"A"}]}. Traversal order ke liye har step mein ek visit id. Har node ka id unique ho.
+  - GraphViz: props {title, nodes:[{id:"A",label:"A"}], edges:[["A","B"]], steps:[{at, label, current:"A", visited:["A"], queue:["B"], stack:["B"]}]}. BFS mein queue, DFS mein stack dikhao.
+  - StackQueueViz: props {title, kind:"stack" ya "queue", steps:[{at, op:"push"|"pop"|"enqueue"|"dequeue", value, label}]}. State har step par apply hota hai (push/pop ya enqueue/dequeue).
+  Rules: 2+ steps. Steps mein state consistent rakho (pop sirf jab stack mein kuch ho). Values chhote rakho (max 8 values). Har DSA scene 1 concept dikhaye.
   RULE: setup topic (install, tools, repo, IDE) mein ye scene ZAROOR daalo. Generic page use karo, kisi brand ka asli logo/UI copy mat banao.
   Har step ka "at" narration ka word ho (jis par wo step shuru ho).
+- DiagramFlow: boxes + animated arrows, kisi bhi topic ke liye (flow, pipeline, request path, process, relation). props: {title, nodes:[{id,label,sub?}], edges:[{from,to,label?}], steps:[{at, label, focus?:[nodeId], arrow?:edgeIndex}]}.
+  Rules: 2+ nodes, 1+ edges, 2+ steps. Har edge ke from/to node id exist karni chahiye. arrow edge ka index (0 se shuru) hona chahiye. Max 6 nodes. Har step par ek naya arrow ya focus.
+- VISUAL PICKER (har scene se pehle socho): data structure (array/tree/graph/stack/queue) -> ArrayViz/TreeViz/GraphViz/StackQueueViz. Ek cheez se doosri cheez tak jaata hai (flow, steps, request, pipeline, life-cycle) -> DiagramFlow. Setup/install -> BrowserSteps. Code -> TypingCode/CodeExplainer. Koi bhi aur -> ArchitectureFlow ya SummaryList. Ek lesson mein visuals mix karo, sirf ek type repeat mat karo.
 - OutroCard: last scene only. props: title, subtitle, youtubePrompt.
 
 ## 5b. Visual editing (recommended, har lesson mein)

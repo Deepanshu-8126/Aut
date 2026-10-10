@@ -18,6 +18,11 @@ import { ManimClip } from './components/ManimClip';
 import { TypingCode } from './components/TypingCode';
 import { TerminalRun } from './components/TerminalRun';
 import { BrowserSteps } from './components/BrowserSteps';
+import { ArrayViz } from './components/ArrayViz';
+import { TreeViz } from './components/TreeViz';
+import { GraphViz } from './components/GraphViz';
+import { StackQueueViz } from './components/StackQueueViz';
+import { DiagramFlow } from './components/DiagramFlow';
 import { TeacherTip } from './components/TeacherTip';
 import { StatChart } from './components/StatChart';
 import { ThemeProvider } from './ThemeContext';
@@ -67,6 +72,16 @@ export const VideoComposition: React.FC<{ project: ProjectData }> = ({ project }
         return <ClassifierCard {...(scene.props as any)} aspectRatio={aspectRatio} />;
       case 'BrowserSteps':
         return <BrowserSteps {...(scene.props as any)} stepAt={(scene as any).stepAt} aspectRatio={aspectRatio} />;
+      case 'ArrayViz':
+        return <ArrayViz {...(scene.props as any)} stepAt={(scene as any).stepAt} aspectRatio={aspectRatio} />;
+      case 'TreeViz':
+        return <TreeViz {...(scene.props as any)} stepAt={(scene as any).stepAt} aspectRatio={aspectRatio} />;
+      case 'GraphViz':
+        return <GraphViz {...(scene.props as any)} stepAt={(scene as any).stepAt} aspectRatio={aspectRatio} />;
+      case 'DiagramFlow':
+        return <DiagramFlow {...(scene.props as any)} stepAt={(scene as any).stepAt} aspectRatio={aspectRatio} />;
+      case 'StackQueueViz':
+        return <StackQueueViz {...(scene.props as any)} stepAt={(scene as any).stepAt} aspectRatio={aspectRatio} />;
       case 'ClusterGrid':
         return <ClusterGrid {...(scene.props as any)} aspectRatio={aspectRatio} />;
       default:

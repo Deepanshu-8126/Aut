@@ -1,0 +1,266 @@
+{
+  "title": "DSA Day 1: Visuals test",
+  "scenes": [
+    {
+      "id": 1,
+      "heading": "DSA Visuals",
+      "narration": "Today we see how data structures move, step by step, on screen. Let's start with two pointers.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Two Pointers",
+          "subtitle": "Array par do index ek saath chalte hain",
+          "badge": "DSA"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "heading": "Two pointers in an array",
+      "narration": "Put one pointer at the left end and one at the right end. Check the sum, then move the pointer that helps.",
+      "remotion": {
+        "type": "ArrayViz",
+        "props": {
+          "title": "Sorted array: target 9",
+          "values": [
+            1,
+            3,
+            4,
+            6,
+            8,
+            11
+          ],
+          "steps": [
+            {
+              "at": "left",
+              "label": "Left = 1, right = 11. Sum 12, bahut bada.",
+              "pointers": {
+                "L": 0,
+                "R": 5
+              },
+              "compare": [
+                0,
+                5
+              ]
+            },
+            {
+              "at": "Check",
+              "label": "Sum 12 > 9, isliye right ko left karo.",
+              "pointers": {
+                "L": 0,
+                "R": 4
+              },
+              "compare": [
+                0,
+                4
+              ]
+            },
+            {
+              "at": "move",
+              "label": "Sum 9 mil gaya! Answer mila.",
+              "pointers": {
+                "L": 1,
+                "R": 3
+              },
+              "highlight": [
+                1,
+                3
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": 3,
+      "heading": "Tree inorder",
+      "narration": "In-order traversal means left subtree first, then the node, then the right subtree.",
+      "remotion": {
+        "type": "TreeViz",
+        "props": {
+          "title": "Inorder traversal",
+          "root": "4",
+          "nodes": [
+            {
+              "id": "4",
+              "value": 4,
+              "left": "2",
+              "right": "6"
+            },
+            {
+              "id": "2",
+              "value": 2,
+              "left": "1",
+              "right": "3"
+            },
+            {
+              "id": "6",
+              "value": 6,
+              "left": "5",
+              "right": "7"
+            },
+            {
+              "id": "1",
+              "value": 1
+            },
+            {
+              "id": "3",
+              "value": 3
+            },
+            {
+              "id": "5",
+              "value": 5
+            },
+            {
+              "id": "7",
+              "value": 7
+            }
+          ],
+          "steps": [
+            {
+              "at": "left",
+              "label": "Pehle left: 1",
+              "visit": "1"
+            },
+            {
+              "at": "node",
+              "label": "Phir node 2",
+              "visit": "2"
+            },
+            {
+              "at": "right",
+              "label": "Phir right: 3",
+              "visit": "3"
+            },
+            {
+              "at": "root",
+              "label": "Root 4",
+              "visit": "4"
+            },
+            {
+              "at": "finally",
+              "label": "Last 5, 6, 7 (same order)",
+              "visit": "5"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": 4,
+      "heading": "BFS on a graph",
+      "narration": "BFS visits neighbours level by level, using a queue.",
+      "remotion": {
+        "type": "GraphViz",
+        "props": {
+          "title": "BFS from A",
+          "nodes": [
+            {
+              "id": "A",
+              "label": "A"
+            },
+            {
+              "id": "B",
+              "label": "B"
+            },
+            {
+              "id": "C",
+              "label": "C"
+            },
+            {
+              "id": "D",
+              "label": "D"
+            }
+          ],
+          "edges": [
+            [
+              "A",
+              "B"
+            ],
+            [
+              "A",
+              "C"
+            ],
+            [
+              "B",
+              "D"
+            ]
+          ],
+          "steps": [
+            {
+              "at": "start",
+              "label": "Queue mein A daalo",
+              "current": "A",
+              "visited": [
+                "A"
+              ],
+              "queue": [
+                "A"
+              ]
+            },
+            {
+              "at": "neighbours",
+              "label": "A ke neighbours B aur C queue mein",
+              "current": "B",
+              "visited": [
+                "A",
+                "B",
+                "C"
+              ],
+              "queue": [
+                "B",
+                "C"
+              ]
+            },
+            {
+              "at": "level",
+              "label": "B se D milta hai",
+              "current": "D",
+              "visited": [
+                "A",
+                "B",
+                "C",
+                "D"
+              ],
+              "queue": [
+                "C",
+                "D"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": 5,
+      "heading": "Stack basics",
+      "narration": "A stack works last in, first out. The last item pushed is the first one popped.",
+      "remotion": {
+        "type": "StackQueueViz",
+        "props": {
+          "title": "Stack operations",
+          "kind": "stack",
+          "steps": [
+            {
+              "at": "push",
+              "op": "push",
+              "value": 10,
+              "label": "Push 10"
+            },
+            {
+              "at": "second",
+              "op": "push",
+              "value": 20,
+              "label": "Push 20 upar"
+            },
+            {
+              "at": "pop",
+              "op": "pop",
+              "label": "Pop: 20 nikla (last in, first out)"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

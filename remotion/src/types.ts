@@ -20,7 +20,8 @@ export type SceneType =
   | 'ManimClip'
   | 'TypingCode'
   | 'TerminalRun'
-  | 'BrowserSteps';
+  | 'BrowserSteps'
+  | 'ArrayViz' | 'TreeViz' | 'GraphViz' | 'StackQueueViz' | 'DiagramFlow';
 
 export interface TitleCardProps {
   title: string;

@@ -28,7 +28,8 @@ TESTS = ROOT / "tests"
 MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
 API = "https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent?key={k}"
 
-ALLOWED_TYPES = {"TitleCard", "TypingCode", "TerminalRun", "ComparisonCard", "SummaryList", "StatChart", "ArchitectureFlow", "OutroCard", "CodeExplainer", "BrowserSteps"}
+ALLOWED_TYPES = {"TitleCard", "TypingCode", "TerminalRun", "ComparisonCard", "SummaryList", "StatChart", "ArchitectureFlow", "OutroCard", "CodeExplainer", "BrowserSteps",
+                 "ArrayViz", "TreeViz", "GraphViz", "StackQueueViz", "DiagramFlow"}
 BANNED = ["in this video", "let's dive in", "delve", "unlock", "game-changer", "game changer",
           "seamlessly", "robust", "leverage", "moreover", "furthermore", "fast-paced"]
 WPS_MIN, WPS_MAX = 1.6, 3.2   # words per second (spoken English/Hinglish)
@@ -146,6 +147,47 @@ def lint(lesson: dict, lang: str) -> list[str]:
                     errs.append(f"scene {i} step {j}: click step ko label chahiye")
                 if step.get("type") == "navigate" and not step.get("url"):
                     warns.append(f"scene {i} step {j}: navigate step mein url nahi")
+    # DSA visuals: steps zaroori, aur har step ka label
+    dsa_req = {"ArrayViz": ["values"], "TreeViz": ["root", "nodes"], "GraphViz": ["nodes", "edges"], "StackQueueViz": ["kind"]}
+    for i, x in enumerate(scenes, 1):
+        rem = x.get("remotion") or {}
+        typ = rem.get("type")
+        if typ not in dsa_req:
+            continue
+        props = rem.get("props") or {}
+        st = props.get("steps") or []
+        if len(st) < 2:
+            errs.append(f"scene {i}: {typ} mein kam se kam 2 steps chahiye (har step ek state)")
+        for j, step in enumerate(st, 1):
+            if not step.get("label"):
+                errs.append(f"scene {i} step {j}: {typ} step ko label chahiye")
+        for key in dsa_req[typ]:
+            if not props.get(key):
+                errs.append(f"scene {i}: {typ} mein '{key}' missing")
+    # DiagramFlow (boxes + arrows): nodes/edges valid, arrow index edges ke andar, step label
+    for i, x in enumerate(scenes, 1):
+        rem = x.get("remotion") or {}
+        if rem.get("type") != "DiagramFlow":
+            continue
+        props = rem.get("props") or {}
+        nodes = props.get("nodes") or []
+        edges = props.get("edges") or []
+        ids = {n.get("id") for n in nodes}
+        if len(nodes) < 2:
+            errs.append(f"scene {i}: DiagramFlow mein kam se kam 2 nodes chahiye")
+        if not edges:
+            errs.append(f"scene {i}: DiagramFlow mein edges (arrows) chahiye")
+        for j, e in enumerate(edges):
+            if e.get("from") not in ids or e.get("to") not in ids:
+                errs.append(f"scene {i}: edge {j} ke from/to node id exist nahi karte")
+        st = props.get("steps") or []
+        if len(st) < 2:
+            errs.append(f"scene {i}: DiagramFlow mein kam se kam 2 steps chahiye")
+        for j, step in enumerate(st, 1):
+            if not step.get("label"):
+                errs.append(f"scene {i} step {j}: DiagramFlow step ko label chahiye")
+            if "arrow" in step and not (isinstance(step["arrow"], int) and 0 <= step["arrow"] < len(edges)):
+                errs.append(f"scene {i} step {j}: arrow index galat hai")
     # Visual recommendations (warning): chapter label + key idea cards
     if not any(((x.get("remotion") or {}).get("chapter") or x.get("chapter")) for x in scenes):
         warns.append("chapter label kisi scene mein nahi (module ka naam dikhao)")
@@ -192,8 +234,19 @@ def main() -> None:
     topic = g.get("normalized_topic") or a.topic
     lesson = gemini_json(build_prompt(topic, a.series, a.lang, a.day), key)
     errs = lint(lesson, a.lang)
+    # Auto-repair: lint fail hone par error Gemini ko wapas bhejo, max 2 baar
+    for attempt in range(1, 3):
+        if not errs:
+            break
+        print(f"auto-repair {attempt}: {len(errs)} error(s) -> Gemini se fix karwa rahe hain")
+        fix = (build_prompt(topic, a.series, a.lang, a.day)
+               + "\n\nPichla JSON ye errors ke saath reject hua:\n- " + "\n- ".join(errs)
+               + "\n\nPichla JSON:\n" + json.dumps(lesson, ensure_ascii=False)
+               + "\n\nSirf corrected full lesson JSON do. Upar wale errors fix karo, baaki sab same rakho.")
+        lesson = gemini_json(fix, key)
+        errs = lint(lesson, a.lang)
     if errs:
-        print("LINT FAILED:\n  " + "\n  ".join(errs))
+        print("LINT FAILED (auto-repair ke baad bhi):\n  " + "\n  ".join(errs))
         sys.exit(4)
     out = TESTS / f"lesson_{slugify(topic)}_{a.lang}.json"
     out.write_text(json.dumps(lesson, ensure_ascii=False, indent=2), encoding="utf-8")

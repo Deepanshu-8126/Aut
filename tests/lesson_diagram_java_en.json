@@ -1,0 +1,192 @@
+{
+  "title": "How Java runs your code",
+  "scenes": [
+    {
+      "id": 1,
+      "heading": "How Java runs your code",
+      "narration": "Let us see what happens when you run a Java program. Your code goes through a few steps before it runs on your computer. Follow the arrows one by one.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "How Java runs your code",
+          "subtitle": "Source se output tak",
+          "badge": "Java basics",
+          "tags": [
+            "Java",
+            "JVM"
+          ]
+        }
+      }
+    },
+    {
+      "id": 2,
+      "heading": "The journey",
+      "narration": "First you write a dot java file. Then the javac compiler turns it into bytecode, a dot class file. Next, the JVM loads that bytecode and runs it on your machine.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "Java ka safar",
+          "nodes": [
+            {
+              "id": "src",
+              "label": "Hello.java",
+              "sub": "tum likhte ho"
+            },
+            {
+              "id": "javac",
+              "label": "javac",
+              "sub": "compiler"
+            },
+            {
+              "id": "cls",
+              "label": "Hello.class",
+              "sub": "bytecode"
+            },
+            {
+              "id": "jvm",
+              "label": "JVM",
+              "sub": "run karta hai"
+            }
+          ],
+          "edges": [
+            {
+              "from": "src",
+              "to": "javac"
+            },
+            {
+              "from": "javac",
+              "to": "cls"
+            },
+            {
+              "from": "cls",
+              "to": "jvm"
+            }
+          ],
+          "steps": [
+            {
+              "at": "dot",
+              "label": "Pehle tum Hello.java likhte ho",
+              "focus": [
+                "src"
+              ]
+            },
+            {
+              "at": "compiler",
+              "label": "javac isse bytecode banata hai",
+              "arrow": 0,
+              "focus": [
+                "javac"
+              ]
+            },
+            {
+              "at": "bytecode",
+              "label": "Result: Hello.class",
+              "arrow": 1,
+              "focus": [
+                "cls"
+              ]
+            },
+            {
+              "at": "JVM",
+              "label": "JVM ise chalata hai",
+              "arrow": 2,
+              "focus": [
+                "jvm"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": 3,
+      "heading": "Why bytecode",
+      "narration": "Bytecode is the same on every computer. Only the JVM changes for each system. That is why Java code can run on Windows, Linux, and Mac without changes.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "Ek code, sab jagah",
+          "nodes": [
+            {
+              "id": "b",
+              "label": "Bytecode",
+              "sub": "ek hi file"
+            },
+            {
+              "id": "w",
+              "label": "JVM Windows"
+            },
+            {
+              "id": "l",
+              "label": "JVM Linux"
+            },
+            {
+              "id": "m",
+              "label": "JVM Mac"
+            }
+          ],
+          "edges": [
+            {
+              "from": "b",
+              "to": "w"
+            },
+            {
+              "from": "b",
+              "to": "l"
+            },
+            {
+              "from": "b",
+              "to": "m"
+            }
+          ],
+          "steps": [
+            {
+              "at": "same",
+              "label": "Bytecode sab jagah same hai",
+              "focus": [
+                "b"
+              ]
+            },
+            {
+              "at": "Windows",
+              "label": "Windows par JVM chalega",
+              "arrow": 0,
+              "focus": [
+                "w"
+              ]
+            },
+            {
+              "at": "Linux",
+              "label": "Linux par bhi",
+              "arrow": 1,
+              "focus": [
+                "l"
+              ]
+            },
+            {
+              "at": "Mac",
+              "label": "Mac par bhi",
+              "arrow": 2,
+              "focus": [
+                "m"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": 4,
+      "heading": "Recap",
+      "narration": "Remember the path. Source code becomes bytecode with javac, and the JVM runs that bytecode. Thanks for watching, see you in the next lesson.",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Yaad rakho",
+          "subtitle": "Source, javac, bytecode, JVM",
+          "youtubePrompt": "Next lesson dekho"
+        }
+      }
+    }
+  ]
+}

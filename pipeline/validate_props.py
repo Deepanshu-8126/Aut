@@ -24,6 +24,11 @@ REQUIRED = {
     "ClassifierCard": [],
     "ClusterGrid": [],
     "BrowserSteps": ["steps"],
+    "ArrayViz": ["values", "steps"],
+    "TreeViz": ["root", "nodes", "steps"],
+    "GraphViz": ["nodes", "edges", "steps"],
+    "StackQueueViz": ["kind", "steps"],
+    "DiagramFlow": ["nodes", "edges", "steps"],
     "CodeExplainer": ["code"],
 }
 

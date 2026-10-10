@@ -52,6 +52,10 @@ def find_word_time(words: list, anchor: str, default: float = 0.0) -> float:
     return default
 
 
+# Step-based visuals: steps[] ka har item narration ke saath sync hota hai
+STEP_TYPES = {"BrowserSteps", "ArrayViz", "TreeViz", "GraphViz", "StackQueueViz", "DiagramFlow"}
+
+
 def scene_props(s: dict) -> tuple[str, dict]:
     if s.get("remotion"):
         r = s["remotion"]
@@ -88,7 +92,7 @@ def build(script_path: Path, lang: str, out: Path, theme: str, clips: dict) -> N
         if s.get("manim") and s["id"] in clips:
             s["_clip"] = clips[s["id"]]
         typ, props = scene_props(s)
-        if typ == "BrowserSteps":
+        if typ in STEP_TYPES:  # BrowserSteps + DSA visuals: step ka start narration ke "at" word se
             st = props.get("steps", [])
             n = max(1, len(st))
             times = []

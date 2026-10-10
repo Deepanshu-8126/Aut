@@ -11,5 +11,5 @@ if [ ! -x remotion/node_modules/.bin/remotion ]; then
   echo "[setup] npm install (remotion)"
   (cd remotion && npm install --no-audit --no-fund)
 fi
-python3 -c "import PIL, edge_tts" 2>/dev/null || echo "[setup] WARN: python deps (pillow / edge-tts) check karo: pip install -r requirements.txt"
+python3 -c "import PIL, edge_tts" 2>/dev/null || { echo "[setup] pip: pillow, edge-tts"; pip install -q pillow edge-tts; }
 echo "[setup] OK"
