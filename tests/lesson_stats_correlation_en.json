@@ -1,0 +1,16 @@
+{
+  "title": "Correlation: When Two Things Move Together",
+  "dayLabel": "Stats 4",
+  "scenes": [
+    {"id": 1, "narration": "Does studying more really raise your marks? Let's look at real data, and see what correlation tells us.",
+     "remotion": {"type": "TitleCard", "props": {"title": "Correlation", "subtitle": "Do two things move together?", "badge": "STATS • RELATIONSHIPS", "tags": ["Statistics", "Scatter", "Regression"]}}},
+    {"id": 2, "narration": "Each dot is one student. Hours studied go on the bottom. Marks go up the side. The line shows the trend, and it goes up.",
+     "remotion": {"type": "StatChart", "props": {"title": "Hours studied vs marks", "kind": "scatter", "points": [[1, 35], [2, 40], [3, 50], [4, 55], [5, 62], [6, 70], [7, 74], [8, 85]], "showRegression": true, "xLabel": "Hours studied", "yLabel": "Marks", "formula": "r is close to +1\nstrong positive"}, "popups": [{"anchor": "trend", "text": "Points rise together", "kind": "tip", "x": "50%", "y": "15%"}]}},
+    {"id": 3, "narration": "The correlation coefficient r runs from minus one to plus one. Close to plus one means both rise together. Close to zero means no clear link.",
+     "remotion": {"type": "ComparisonCard", "props": {"title": "Reading r", "leftTitle": "r near 0", "leftPoints": ["No clear link", "Points look random", "Predict nothing"], "rightTitle": "r near +1", "rightPoints": ["Strong positive link", "Points on a rising line", "Trend is useful"]}, "popups": [{"anchor": "coefficient", "text": "Ranges from -1 to +1", "kind": "note", "x": "50%", "y": "15%"}]}},
+    {"id": 4, "narration": "Careful. Correlation is not causation. Ice cream sales and drowning both rise in summer. Something else, the heat, drives both.",
+     "remotion": {"type": "ComparisonCard", "props": {"title": "Correlation is not causation", "leftTitle": "Correlation", "leftPoints": ["Two things move together", "Measured by r", "Can be a hidden cause"], "rightTitle": "Causation", "rightPoints": ["One thing makes the other", "Needs experiments", "Stronger proof"]}, "popups": [{"anchor": "causation", "text": "Strong link is not proof", "kind": "note", "x": "50%", "y": "15%"}]}},
+    {"id": 5, "narration": "Quick recap. Correlation measures a link. It does not prove cause. Your practice task: plot two columns from your own data and look at the trend.",
+     "remotion": {"type": "SummaryList", "props": {"title": "Recap", "items": ["r runs from -1 to +1", "Near +1 means move together", "Correlation is not causation", "Always plot before you trust r"]}, "popups": [{"anchor": "Practice", "text": "Plot your own data", "kind": "tip", "x": "50%", "y": "15%"}]}}
+  ]
+}
