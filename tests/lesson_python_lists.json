@@ -1,31 +1,132 @@
 {
-  "title": "Python Lists in 2 Minutes",
-  "dayLabel": "Day 1 / 30",
-  "scenes": [
-    {"id": 1, "narration": "Today we learn Python lists. A list stores many values in one variable. Let's build one step by step.",
-     "remotion": {"type": "TitleCard", "props": {"title": "Python Lists", "subtitle": "One variable, many values", "badge": "DAY 1 • PYTHON LISTS", "tags": ["Python", "Lists", "Beginner"]}}},
-
-    {"id": 2, "narration": "First, we create a list called fruits with three items. Next, append adds kiwi at the end. Index zero gives the first item, apple. And len tells us how many items there are.",
-     "remotion": {"type": "TypingCode", "type_anchor": "First,",
-       "props": {"filename": "lists.py", "language": "python", "code": "fruits = [\"apple\", \"mango\", \"banana\"]\nfruits.append(\"kiwi\")\nprint(fruits[0])\nprint(len(fruits))", "highlightLines": [2]},
-       "popups": [
-         {"anchor": "append", "text": "append() adds at the END", "kind": "tip", "x": "72%", "y": "30%"},
-         {"anchor": "Index", "text": "Index starts at 0", "kind": "tip", "x": "72%", "y": "62%"},
-         {"anchor": "len", "text": "len() counts items", "kind": "note", "x": "72%", "y": "80%"}
-       ]}},
-
-    {"id": 3, "narration": "Run the file, and you see the output. Apple first, then four, because we added kiwi.",
-     "remotion": {"type": "TerminalRun", "props": {"command": "python lists.py", "output": ["apple", "4"]}}},
-
-    {"id": 4, "narration": "A tuple is fixed after creation. A list can change. That is the big difference between them.",
-     "remotion": {"type": "ComparisonCard", "props": {"title": "List vs Tuple",
-        "leftTitle": "Tuple", "leftPoints": ["Fixed after creation", "Uses parentheses ()", "Cannot append"],
-        "rightTitle": "List", "rightPoints": ["Add and remove items", "Uses square brackets []", "Most used in Python"]},
-       "popups": [{"anchor": "change", "text": "Lists can change", "kind": "note", "x": "50%", "y": "14%"}]}},
-
-    {"id": 5, "narration": "Recap. Lists store many values. Append adds at the end. Index starts at zero. Tuples are fixed. Practice by making your own list today.",
-     "remotion": {"type": "SummaryList", "props": {"title": "Recap",
-        "items": ["Lists store many values in one variable", "append() adds at the end", "Index starts at 0", "Tuples are fixed, lists can change"]},
-       "popups": [{"anchor": "Practice", "text": "Make your own list today", "kind": "tip", "x": "50%", "y": "86%"}]}}
-  ]
+ "title": "Python Lists in 2 Minutes",
+ "dayLabel": "Day 1 / 30",
+ "scenes": [
+  {
+   "id": 1,
+   "narration": "Today we're learning Python lists. A list holds many values in one variable. Let's see how it works.",
+   "remotion": {
+    "type": "TitleCard",
+    "props": {
+     "title": "Python Lists",
+     "subtitle": "One variable, many values",
+     "badge": "DAY 1 • PYTHON LISTS",
+     "tags": [
+      "Python",
+      "Lists",
+      "Beginner"
+     ]
+    }
+   }
+  },
+  {
+   "id": 2,
+   "narration": "First, we make a list of three fruits. Next, append adds kiwi at the end. Index zero gives the first item, apple. And len tells you how many items there are.",
+   "remotion": {
+    "type": "TypingCode",
+    "type_anchor": "First,",
+    "props": {
+     "filename": "lists.py",
+     "language": "python",
+     "code": "fruits = [\"apple\", \"mango\", \"banana\"]\nfruits.append(\"kiwi\")\nprint(fruits[0])\nprint(len(fruits))",
+     "highlightLines": [
+      2
+     ]
+    },
+    "popups": [
+     {
+      "anchor": "append",
+      "text": "append() adds at the END",
+      "kind": "tip",
+      "x": "50%",
+      "y": "15%"
+     },
+     {
+      "anchor": "Index",
+      "text": "Index starts at 0",
+      "kind": "tip",
+      "x": "50%",
+      "y": "15%"
+     },
+     {
+      "anchor": "len",
+      "text": "len() counts items",
+      "kind": "note",
+      "x": "50%",
+      "y": "15%"
+     }
+    ]
+   }
+  },
+  {
+   "id": 3,
+   "narration": "Run the file. You get apple first, then four, because we just added kiwi.",
+   "remotion": {
+    "type": "TerminalRun",
+    "props": {
+     "command": "python lists.py",
+     "output": [
+      "apple",
+      "4"
+     ]
+    }
+   }
+  },
+  {
+   "id": 4,
+   "narration": "A tuple is fixed after creation. A list can change. That's the big difference.",
+   "remotion": {
+    "type": "ComparisonCard",
+    "props": {
+     "title": "List vs Tuple",
+     "leftTitle": "Tuple",
+     "leftPoints": [
+      "Fixed after creation",
+      "Uses parentheses ()",
+      "Cannot append"
+     ],
+     "rightTitle": "List",
+     "rightPoints": [
+      "Add and remove items",
+      "Uses square brackets []",
+      "Most used in Python"
+     ]
+    },
+    "popups": [
+     {
+      "anchor": "change",
+      "text": "Lists can change",
+      "kind": "note",
+      "x": "50%",
+      "y": "15%"
+     }
+    ]
+   }
+  },
+  {
+   "id": 5,
+   "narration": "Recap. A list stores many values. Append adds to the end. Index starts at zero. Practice by making your own list today.",
+   "remotion": {
+    "type": "SummaryList",
+    "props": {
+     "title": "Recap",
+     "items": [
+      "Lists store many values in one variable",
+      "append() adds at the end",
+      "Index starts at 0",
+      "Tuples are fixed, lists can change"
+     ]
+    },
+    "popups": [
+     {
+      "anchor": "Practice",
+      "text": "Make your own list today",
+      "kind": "tip",
+      "x": "50%",
+      "y": "15%"
+     }
+    ]
+   }
+  }
+ ]
 }
