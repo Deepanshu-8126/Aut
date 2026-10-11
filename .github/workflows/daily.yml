@@ -58,6 +58,11 @@ jobs:
       - name: Remotion deps
         run: cd remotion && npm ci --no-audit --no-fund
 
+      - name: Generate audio assets (music + sfx, git mein .wav nahi hoti)
+        run: |
+          python3 pipeline/make_bgm.py
+          python3 pipeline/make_sfx.py
+
       - name: Autopilot (script -> video -> upload)
         env:
           SERIES: ${{ github.event.inputs.series || 'python-100-days' }}

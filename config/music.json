@@ -1,0 +1,27 @@
+{
+  "default": "bgm_calm",
+  "volume": 0.07,
+  "tracks": {
+    "bgm_calm": {
+      "file": "music/bgm_calm.wav",
+      "label": "Calm pad (C major)",
+      "loop_sec": 32.0
+    },
+    "bgm_soft": {
+      "file": "music/bgm_soft.wav",
+      "label": "Soft plucks (A minor)",
+      "loop_sec": 32.0
+    },
+    "bgm_warm": {
+      "file": "music/bgm_warm.wav",
+      "label": "Warm drone (low, shimmer)",
+      "loop_sec": 32.0
+    },
+    "bgm_night": {
+      "file": "music/bgm_night.wav",
+      "label": "Night air (slow, breathy)",
+      "loop_sec": 32.0
+    }
+  },
+  "note": "Original generated ambient loops (no beats). Lesson JSON mein \"bgm\": \"bgm_soft\" likh kar track badal sakte ho; warna default."
+}

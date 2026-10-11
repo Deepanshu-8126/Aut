@@ -7,3 +7,4 @@ google-auth>=2.29
 # Hindi TTS (Indic Parler-TTS). Heavy: GPU ya 8GB+ RAM par chalta hai.
 parler-tts>=0.2
 torch>=2.2
+scipy>=1.11

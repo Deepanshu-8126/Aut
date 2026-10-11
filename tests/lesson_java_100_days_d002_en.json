@@ -1,0 +1,378 @@
+{
+  "title": "Java Day 2: Install JDK and set up your editor",
+  "scenes": [
+    {
+      "id": 1,
+      "heading": "Java Day 2",
+      "narration": "Welcome to Java, day two. Yesterday you saw how Java runs a program. Today we get your computer ready. Do not worry, we will go one step at a time, and you will not feel lost.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Java Day 2",
+          "subtitle": "Install JDK and set up your editor",
+          "badge": "Java 100 Days",
+          "tags": [
+            "JDK",
+            "IDE"
+          ]
+        }
+      }
+    },
+    {
+      "id": 2,
+      "heading": "What is the JDK",
+      "narration": "First, what is the JDK? Think of it as a toolbox. It has everything you need to write Java code and run it. Without this toolbox, your computer does not understand Java at all.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "What the JDK means",
+          "items": [
+            "A toolbox for Java",
+            "Lets you write Java code",
+            "Lets your computer run it"
+          ]
+        }
+      }
+    },
+    {
+      "id": 3,
+      "heading": "Parts of the JDK",
+      "narration": "Inside the JDK there are two main parts. The first is javac. It is the compiler. It reads your code and checks it. The second is the JVM, the Java Virtual Machine. It runs your finished program.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "Two main parts",
+          "nodes": [
+            {
+              "id": "jdk",
+              "label": "JDK",
+              "sub": "the toolbox"
+            },
+            {
+              "id": "javac",
+              "label": "javac",
+              "sub": "compiler"
+            },
+            {
+              "id": "jvm",
+              "label": "JVM",
+              "sub": "runs program"
+            }
+          ],
+          "edges": [
+            {
+              "from": "jdk",
+              "to": "javac"
+            },
+            {
+              "from": "jdk",
+              "to": "jvm"
+            }
+          ],
+          "steps": [
+            {
+              "at": "JDK",
+              "label": "JDK has two main parts",
+              "focus": [
+                "jdk"
+              ]
+            },
+            {
+              "at": "javac",
+              "label": "javac reads and checks code",
+              "arrow": 0,
+              "focus": [
+                "javac"
+              ]
+            },
+            {
+              "at": "JVM",
+              "label": "JVM runs your program",
+              "arrow": 1,
+              "focus": [
+                "jvm"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": 4,
+      "heading": "Why we need it",
+      "narration": "Why do we need this? Imagine trying to cook without a stove. You could try, but it would be very hard. Without the JDK, you cannot compile Java code or run it. The toolbox makes both steps simple.",
+      "remotion": {
+        "type": "ComparisonCard",
+        "props": {
+          "title": "Without JDK vs With JDK",
+          "leftTitle": "Without JDK",
+          "leftPoints": [
+            "Cannot compile code",
+            "Cannot run Java programs"
+          ],
+          "rightTitle": "With JDK",
+          "rightPoints": [
+            "javac compiles your code",
+            "JVM runs your code"
+          ]
+        }
+      }
+    },
+    {
+      "id": 5,
+      "heading": "Today's map",
+      "narration": "Here is the full map for today. First, download the JDK. Next, install it. Then check it in the terminal. Last, open an IDE and write your first code.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "Today's map",
+          "nodes": [
+            {
+              "id": "dl",
+              "label": "Download",
+              "sub": "JDK"
+            },
+            {
+              "id": "in",
+              "label": "Install",
+              "sub": "run installer"
+            },
+            {
+              "id": "ck",
+              "label": "Check",
+              "sub": "java -version"
+            },
+            {
+              "id": "ide",
+              "label": "IDE",
+              "sub": "write code"
+            }
+          ],
+          "edges": [
+            {
+              "from": "dl",
+              "to": "in"
+            },
+            {
+              "from": "in",
+              "to": "ck"
+            },
+            {
+              "from": "ck",
+              "to": "ide"
+            }
+          ],
+          "steps": [
+            {
+              "at": "download",
+              "label": "Step 1: download",
+              "focus": [
+                "dl"
+              ]
+            },
+            {
+              "at": "install",
+              "label": "Step 2: install",
+              "arrow": 0,
+              "focus": [
+                "in"
+              ]
+            },
+            {
+              "at": "check",
+              "label": "Step 3: check",
+              "arrow": 1,
+              "focus": [
+                "ck"
+              ]
+            },
+            {
+              "at": "IDE",
+              "label": "Step 4: IDE",
+              "arrow": 2,
+              "focus": [
+                "ide"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": 6,
+      "heading": "Download the JDK",
+      "narration": "Step one. Go to the official Adoptium website. Choose the latest LTS version. LTS means long-term support, so it stays stable for years. Then download the installer for your system.",
+      "remotion": {
+        "type": "BrowserSteps",
+        "props": {
+          "title": "Download the JDK",
+          "steps": [
+            {
+              "type": "navigate",
+              "url": "adoptium.net",
+              "pageTitle": "Adoptium",
+              "headline": "Pick the latest LTS version",
+              "subtitle": "LTS = stable for years",
+              "buttons": [
+                "Download"
+              ],
+              "note": "Choose your operating system",
+              "at": "Adoptium"
+            },
+            {
+              "type": "click",
+              "label": "Download",
+              "headline": "Run the installer",
+              "note": "Keep the default options",
+              "at": "installer"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": 7,
+      "heading": "Your first code",
+      "narration": "Now a tiny Java file, so you can see what code looks like. Read it slowly. The word class names your program. The main method is where Java starts running your code.",
+      "remotion": {
+        "type": "TypingCode",
+        "props": {
+          "filename": "Hello.java",
+          "language": "java",
+          "code": "public class Hello {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, Java!\");\n    }\n}",
+          "highlightLines": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": 8,
+      "heading": "Line three",
+      "narration": "Look at line three. This line prints text on the screen. System dot out dot println means print this. The words inside the quotes are what you see when the program runs.",
+      "remotion": {
+        "type": "TypingCode",
+        "props": {
+          "filename": "Hello.java",
+          "language": "java",
+          "code": "public class Hello {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, Java!\");\n    }\n}",
+          "highlightLines": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "id": 9,
+      "heading": "Compile and run",
+      "narration": "Now run it. First type javac Hello dot java to compile. Then type java Hello to run it. If you see Hello, Java on the screen, your setup works. That is a win.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "javac Hello.java && java Hello",
+          "output": [
+            "Hello, Java!"
+          ]
+        }
+      }
+    },
+    {
+      "id": 10,
+      "heading": "Check the install",
+      "narration": "Before that, check your install. Type java dash version in the terminal. You will see a version number. Yours may be different from this one, and that is fine.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "java -version",
+          "output": [
+            "openjdk version \"21.0.4\"",
+            "OpenJDK Runtime Environment",
+            "OpenJDK 64-Bit Server VM"
+          ]
+        }
+      }
+    },
+    {
+      "id": 11,
+      "heading": "Common mistake",
+      "narration": "Here is a common mistake. You see command not found. This means your computer cannot find Java yet. Usually, you just need to close and reopen the terminal after installing, so it can find the new path.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "java -version",
+          "output": [
+            "java: command not found"
+          ]
+        }
+      }
+    },
+    {
+      "id": 12,
+      "heading": "Choose an IDE",
+      "narration": "Next, choose an IDE. An IDE is your writing desk for code. IntelliJ IDEA is great for Java. VS Code is light and free, with a Java extension. Pick one, and stick with it for this course.",
+      "remotion": {
+        "type": "ComparisonCard",
+        "props": {
+          "title": "Pick an IDE",
+          "leftTitle": "IntelliJ IDEA",
+          "leftPoints": [
+            "Built for Java",
+            "Heavier, but has a lot"
+          ],
+          "rightTitle": "VS Code",
+          "rightPoints": [
+            "Light and free",
+            "Needs the Java extension"
+          ]
+        }
+      }
+    },
+    {
+      "id": 13,
+      "heading": "Recap",
+      "narration": "Let us recap. The JDK is a toolbox for Java. javac compiles your code, and the JVM runs it. Install the latest LTS version, then check it with java dash version. Pick one IDE.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "Recap",
+          "items": [
+            "JDK = toolbox for Java",
+            "javac compiles, JVM runs",
+            "Install LTS, then check it",
+            "Pick one IDE"
+          ]
+        }
+      }
+    },
+    {
+      "id": 14,
+      "heading": "Practice task",
+      "narration": "Your practice task for today. Install the JDK. Run java dash version. Write your version in the comments. Stuck? Tell me the error message, and we will fix it together.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "Practice task",
+          "items": [
+            "Install the JDK on your computer",
+            "Run java -version",
+            "Write your version in the comments"
+          ]
+        }
+      }
+    },
+    {
+      "id": 15,
+      "heading": "See you",
+      "narration": "That is day two. You now have a Java toolbox and an editor. Next lesson, we write our first real program. See you tomorrow.",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Day 2 complete",
+          "subtitle": "Next: first real program",
+          "youtubePrompt": "Next lesson dekho"
+        }
+      }
+    }
+  ]
+}
