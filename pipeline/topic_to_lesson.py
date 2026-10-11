@@ -66,13 +66,46 @@ def gate(topic: str, key: str) -> dict:
     return gemini_json(GATE_PROMPT + topic, key)
 
 
-def build_prompt(topic: str, series: str, lang: str, day: int | None) -> str:
+def build_prompt(topic: str, series: str, lang: str, day: int | None, fmt: str = "long") -> str:
     tpl = PROMPT.read_text(encoding="utf-8")
     lang_name = {"en": "English", "hi": "Hindi (Hinglish-Devanagari, English tech words in Latin)"}[lang]
     golden = (ROOT / "prompts" / "examples" / "golden_lesson.json").read_text(encoding="utf-8")
     tpl = tpl + "\n\nGOLDEN EXAMPLE (quality bar, different topic):\n" + golden
+    if fmt == "short":
+        tpl = tpl + SHORT_NOTE
     return (tpl.replace("{LANG}", lang_name).replace("{TOPIC}", topic)
             .replace("{SERIES}", series or "standalone").replace("{DAY}", str(day or "n/a")))
+
+
+SHORT_NOTE = """
+
+SHORT FORMAT (YouTube Short, 9:16, 40 to 45 seconds total):
+- Exactly 4 or 5 scenes. Total narration 100 to 125 words across all scenes.
+- Scene 1 is a hook: a question or surprising fact in the first 3 seconds. Use TitleCard or a DSA/diagram visual.
+- One single idea only. No long setup. Each scene 8 to 14 seconds.
+- Last scene: OutroCard with a short call to action ("Full lesson ke liye link dekho"). Keep it English.
+- Use only the allowed scene types. Visuals stay simple (big text, one diagram).
+"""
+
+
+def lint_short(lesson: dict) -> list[str]:
+    """Shorts ke liye lint: 4-5 scenes, total 100-125 words, allowed types, banned phrases."""
+    errs = []
+    scenes = lesson.get("scenes") or []
+    if not 4 <= len(scenes) <= 5:
+        errs.append(f"short: scenes {len(scenes)} (4 ya 5 chahiye)")
+    total = sum(len((x.get("narration") or "").split()) for x in scenes)
+    if not 100 <= total <= 125:
+        errs.append(f"short: total narration {total} words (100-125 chahiye, ~40-45 sec)")
+    for i, x in enumerate(scenes, 1):
+        rem = x.get("remotion") or {}
+        if rem.get("type") not in ALLOWED_TYPES:
+            errs.append(f"short scene {i}: unknown type '{rem.get('type')}'")
+        low = (x.get("narration") or "").lower()
+        for b in BANNED:
+            if b in low:
+                errs.append(f"short scene {i}: banned phrase '{b}'")
+    return errs
 
 
 def looks_like_gibberish(topic: str) -> bool:

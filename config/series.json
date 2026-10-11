@@ -7,8 +7,7 @@
       "format": "long",
       "theme": "light-grid",
       "langs": [
-        "en",
-        "hi"
+        "en"
       ],
       "curriculum": "config/curriculum/python_100.json",
       "daily_slot_ist": "20:00",
@@ -29,8 +28,7 @@
       "format": "long",
       "theme": "light-grid",
       "langs": [
-        "en",
-        "hi"
+        "en"
       ],
       "curriculum": "config/curriculum/java_100.json",
       "daily_slot_ist": "20:00",
@@ -51,8 +49,7 @@
       "format": "short",
       "theme": "light-grid",
       "langs": [
-        "en",
-        "hi"
+        "en"
       ],
       "curriculum": "config/curriculum/python_100.json",
       "daily_slot_ist": "18:00",
@@ -60,8 +57,13 @@
         "en": null,
         "hi": null
       },
-      "enabled": false,
-      "privacy": "unlisted"
+      "enabled": true,
+      "privacy": "unlisted",
+      "target_sec": [
+        40,
+        45
+      ],
+      "aspect": "9:16"
     },
     {
       "id": "dsa-30-days",
@@ -69,8 +71,7 @@
       "format": "long",
       "theme": "light-grid",
       "langs": [
-        "en",
-        "hi"
+        "en"
       ],
       "curriculum": "config/curriculum/dsa_30.json",
       "daily_slot_ist": "21:00",

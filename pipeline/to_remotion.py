@@ -159,8 +159,15 @@ def build(script_path: Path, lang: str, out: Path, theme: str, clips: dict) -> N
                        "stepAt": props.get("stepAt"), "chapter": r.get("chapter") or s.get("chapter"),
                        "keyIdea": r.get("keyIdea") or s.get("keyIdea")})
         print(f"scene {s['id']}: {typ} {dur:.2f}s {len(words)} words", flush=True)
-    project = {"title": script.get("title", ""), "aspectRatio": "16:9", "theme": theme,
-               "dayLabel": script.get("dayLabel"), "bgm": "sfx/bgm.wav", "bgmVolume": 0.08, "scenes": scenes}
+    # Background music: config/music.json se track (lesson mein "bgm" key se override)
+    mcfg = json.loads((ROOT / "config" / "music.json").read_text(encoding="utf-8"))
+    track = script.get("bgm") or mcfg["default"]
+    if track not in mcfg["tracks"]:
+        raise SystemExit(f"bgm track '{track}' config/music.json mein nahi hai")
+    project = {"title": script.get("title", ""), "aspectRatio": script.get("aspectRatio", "16:9"), "theme": theme,
+               "dayLabel": script.get("dayLabel"), "bgm": mcfg["tracks"][track]["file"],
+               "bgmVolume": mcfg["volume"], "scenes": scenes}
+    print(f"bgm: {track} @ {mcfg['volume']}", flush=True)
     out.write_text(json.dumps({"project": project}, ensure_ascii=False, indent=1), encoding="utf-8")  # Remotion input props
     print("props:", out)
 

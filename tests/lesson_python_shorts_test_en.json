@@ -1,0 +1,79 @@
+{
+  "title": "Python list short",
+  "aspectRatio": "9:16",
+  "scenes": [
+    {
+      "id": 1,
+      "heading": "Hook",
+      "narration": "Want to store many values in one place? Python lists do exactly that. Let me show you in under a minute. Stay with me, this is quick and simple.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Python list in 45 sec",
+          "subtitle": "One box, many values",
+          "badge": "Python Shorts",
+          "tags": [
+            "Python",
+            "list"
+          ]
+        }
+      }
+    },
+    {
+      "id": 2,
+      "heading": "What is a list",
+      "narration": "A list holds many values in order. Think of it like a row of lunch boxes. Each box has a number, starting from zero. You can open any box by its number.",
+      "remotion": {
+        "type": "ArrayViz",
+        "props": {
+          "title": "A Python list",
+          "values": [
+            10,
+            20,
+            30,
+            40
+          ],
+          "steps": [
+            {
+              "at": "row",
+              "label": "Index 0 is 10"
+            },
+            {
+              "at": "number",
+              "label": "Index 2 is 30",
+              "pointers": {
+                "left": 2
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": 3,
+      "heading": "Make one",
+      "narration": "To make a list, use square brackets. Put values inside and separate them with commas. Then print the list to see all values at once. It is that simple.",
+      "remotion": {
+        "type": "TypingCode",
+        "props": {
+          "filename": "main.py",
+          "language": "python",
+          "code": "fruits = [\"apple\", \"mango\", \"banana\"]\nprint(fruits[1])"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "heading": "Outro",
+      "narration": "That is a list. You store many values, and you read them by index. Try making your own list today. Full lesson ke liye link dekho, and see you next short.",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Python List",
+          "subtitle": "Full lesson link niche",
+          "youtubePrompt": "Full lesson dekho"
+        }
+      }
+    }
+  ]
+}

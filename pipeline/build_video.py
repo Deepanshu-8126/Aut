@@ -10,6 +10,7 @@ Usage:
 Output: output/remotion/<name>.mp4 (+ output/audit/<name>/ if audit on)
 """
 import argparse
+import json
 import subprocess
 import sys
 import time
@@ -29,6 +30,12 @@ def step(title: str, cmd: list[str], cwd: Path) -> None:
         print(f"!! FAILED: {title} (exit {res.returncode})", file=sys.stderr)
         sys.exit(res.returncode)
     print(f"   ok ({time.time() - t0:.0f}s)", flush=True)
+
+
+def comp_for(props: Path) -> str:
+    """9:16 props -> Shorts composition (1080x1920), warna Landscape (1920x1080)."""
+    proj = json.loads(props.read_text(encoding="utf-8")).get("project", {})
+    return "Shorts" if proj.get("aspectRatio") == "9:16" else "Landscape"
 
 
 def main() -> None:
@@ -55,9 +62,9 @@ def main() -> None:
          [sys.executable, str(PIPE / "validate_props.py"), str(props)], ROOT)
     if not a.skip_qa:
         step("2b/4 Layout QA gate (stills, blank/overflow check)",
-             [sys.executable, str(PIPE / "qa_gate.py"), str(props), a.name], ROOT)
+             [sys.executable, str(PIPE / "qa_gate.py"), str(props), a.name, "--composition", comp_for(props)], ROOT)
     step("3/4 Render MP4 (Remotion)",
-         ["npx", "remotion", "render", "Landscape", str(mp4),
+         ["npx", "remotion", "render", comp_for(props), str(mp4),
           f"--props={props.name}", "--log=error"], REMOTION)
     if not a.no_audit:
         step("4/4 Frame audit",

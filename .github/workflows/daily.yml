@@ -6,9 +6,15 @@ on:
   workflow_dispatch:
     inputs:
       series:
-        description: "series id (python-100-days, java-100-days, ...)"
+        description: "Kaun sa video banana hai"
+        type: choice
         required: true
         default: python-100-days
+        options:
+          - python-100-days
+          - java-100-days
+          - dsa-30-days
+          - python-shorts
       lang:
         description: "en, hi ya en,hi"
         required: false

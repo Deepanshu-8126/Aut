@@ -19,7 +19,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from topic_to_lesson import build_prompt, gemini_json, lint, slugify  # noqa: E402
+from topic_to_lesson import build_prompt, gemini_json, lint, lint_short, slugify  # noqa: E402
 from seo_meta import build_seo  # noqa: E402
 
 CONFIG = ROOT / "config" / "series.json"
@@ -57,8 +57,13 @@ def make_lesson(series: dict, day: int, topic: str, lang: str, key: str) -> Path
         return path
     if not key:
         raise SystemExit("GEMINI_API_KEY nahi hai. Script generate nahi ho sakti.")
-    lesson = gemini_json(build_prompt(topic, series["name"], lang, day), key)
-    errs = lint(lesson, lang)
+    fmt = series.get("format", "long")
+    lesson = gemini_json(build_prompt(topic, series["name"], lang, day, fmt), key)
+    if fmt == "short":
+        lesson["aspectRatio"] = "9:16"
+        errs = lint_short(lesson)
+    else:
+        errs = lint(lesson, lang)
     if errs:
         raise SystemExit("LINT FAILED:\n  " + "\n  ".join(errs))
     path.write_text(json.dumps(lesson, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -115,13 +120,12 @@ def main() -> None:
     ap.add_argument("--day", type=int, help="specific day; default = agla din")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--upload", action="store_true")
+    ap.add_argument("--manual", action="store_true", help="disabled series ko bhi sirf manual run ke liye chalao")
     ap.add_argument("--notify", action="store_true", help="Telegram par video bhejo (TELEGRAM_* env)")
     a = ap.parse_args()
 
     series = get_series(a.series)
-    if series["format"] != "long":
-        raise SystemExit(f"'{series['format']}' format abhi supported nahi (Shorts layout pending)")
-    if not series.get("enabled") and not a.day:
+    if not series.get("enabled") and not a.day and not a.manual:
         raise SystemExit("series enabled nahi hai (config mein enabled: true karo)")
 
     curriculum = json.loads((ROOT / series["curriculum"]).read_text(encoding="utf-8"))["topics"]
