@@ -57,6 +57,8 @@ jobs:
           SERIES: ${{ github.event.inputs.series || 'python-100-days' }}
           LANGS: ${{ github.event.inputs.lang }}
           DO_UPLOAD: ${{ github.event.inputs.upload || 'true' }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           ARGS="--series $SERIES"
           [ -n "$LANGS" ] && ARGS="$ARGS --lang $LANGS"
