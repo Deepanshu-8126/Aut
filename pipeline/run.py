@@ -89,29 +89,40 @@ def prerender_code(script: dict) -> dict[int, dict]:
 
 def render_manim(scene: dict, work: Path, dur: float) -> str:
     """Render a 3b1b-style Manim scene and fit it to the narration length. Returns relative clip path."""
-    spec = scene["manim"]
-    src = ROOT / "pipeline" / "manim_scenes" / spec["file"]
-    media = work / "manim"
-    # scale beat lengths so they add up exactly to the scene's narration length
-    beats = scene.get("_beats") or [dur]
-    total = sum(beats) or 1.0
-    beats = [b * dur / total for b in beats]
-    env = {**os.environ, "MANIM_BEATS": json.dumps(beats)}
-    res = subprocess.run(["python3", "-m", "manim", "-qm", "--fps", "30", "-r", "1920,1080",
-                          "--media_dir", str(media), str(src), spec["cls"]],
-                         cwd=src.parent, capture_output=True, text=True, env=env)
-    if res.returncode != 0:
-        tail = "\n".join((res.stdout + res.stderr).splitlines()[-25:])
-        raise RuntimeError(f"Manim failed for {spec['cls']}:\n{tail}")
-    raw = next(media.rglob(f"{spec['cls']}.mp4"))
-    clip_rel = f"clips/s{scene['id']}.mp4"
-    out = work / clip_rel
-    out.parent.mkdir(parents=True, exist_ok=True)
-    # freeze last frame if animation is shorter than narration, trim if longer
-    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(raw), "-vf",
-                    "tpad=stop_mode=clone:stop_duration=60", "-t", f"{dur:.3f}", "-an",
-                    "-c:v", "libx264", "-pix_fmt", "yuv420p", str(out)], check=True)
-    return clip_rel
+    try:
+        spec = scene.get("manim")
+        if not isinstance(spec, dict) or not spec.get("file") or not spec.get("cls"):
+            return ""
+        src = ROOT / "pipeline" / "manim_scenes" / spec["file"]
+        if not src.exists():
+            print(f"[Manim] Scene file {spec['file']} not found, skipping animation.")
+            return ""
+        media = work / "manim"
+        beats = scene.get("_beats") or [dur]
+        total = sum(beats) or 1.0
+        beats = [b * dur / total for b in beats]
+        env = {**os.environ, "MANIM_BEATS": json.dumps(beats)}
+        res = subprocess.run(["python3", "-m", "manim", "-qm", "--fps", "30", "-r", "1920,1080",
+                              "--media_dir", str(media), str(src), spec["cls"]],
+                             cwd=src.parent, capture_output=True, text=True, env=env)
+        if res.returncode != 0:
+            print(f"[Manim] Render failed for {spec['cls']}, falling back to slide layout.")
+            return ""
+        matches = list(media.rglob(f"{spec['cls']}.mp4"))
+        if not matches:
+            return ""
+        raw = matches[0]
+        clip_rel = f"clips/s{scene['id']}.mp4"
+        out = work / clip_rel
+        out.parent.mkdir(parents=True, exist_ok=True)
+        # freeze last frame if animation is shorter than narration, trim if longer
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(raw), "-vf",
+                        "tpad=stop_mode=clone:stop_duration=60", "-t", f"{dur:.3f}", "-an",
+                        "-c:v", "libx264", "-pix_fmt", "yuv420p", str(out)], check=True)
+        return clip_rel
+    except Exception as e:
+        print(f"[Manim] Warning: animation error ({e}), proceeding with standard slide.")
+        return ""
 
 
 def load_state() -> dict:
