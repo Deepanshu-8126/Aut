@@ -2,6 +2,7 @@ edge-tts>=6.1
 soundfile>=0.12
 numpy>=1.26
 requests>=2.31
+google-genai>=0.1.0
 google-api-python-client>=2.120
 google-auth>=2.29
 # Hindi TTS (Indic Parler-TTS). Heavy: GPU ya 8GB+ RAM par chalta hai.
