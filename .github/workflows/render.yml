@@ -23,7 +23,11 @@ on:
         type: choice
         options: [en, hi, both]
       topic:
-        description: "Khali chhodo to series se next topic uthega"
+        description: "Topic / Title (Khali chhodo to series se next topic uthega)"
+        required: false
+        type: string
+      script:
+        description: "Apni Custom Script (Optional - Khali chhodo to Gemini AI auto generate karega)"
         required: false
         type: string
 
@@ -62,12 +66,17 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           VOICE_API_TOKEN: ${{ secrets.VOICE_API_TOKEN }}
+          SCRIPT_INPUT: ${{ inputs.script }}
         run: |
+          ARGS="--series '${{ inputs.series }}' --lang '${{ inputs.lang }}'"
           if [ -n "${{ inputs.topic }}" ]; then
-            python3 -u pipeline/run.py --series "${{ inputs.series }}" --lang "${{ inputs.lang }}" --topic "${{ inputs.topic }}"
-          else
-            python3 -u pipeline/run.py --series "${{ inputs.series }}" --lang "${{ inputs.lang }}"
+            ARGS="$ARGS --topic '${{ inputs.topic }}'"
           fi
+          if [ -n "$SCRIPT_INPUT" ]; then
+            printf '%s' "$SCRIPT_INPUT" > custom_script.txt
+            ARGS="$ARGS --script-file custom_script.txt"
+          fi
+          eval "python3 -u pipeline/run.py $ARGS"
 
       - name: Upload video
         uses: actions/upload-artifact@v4

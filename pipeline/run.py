@@ -229,13 +229,43 @@ def main() -> None:
     ap.add_argument("--series", required=True, help="Series identifier (e.g. dsa, python-100-days, python-shorts)")
     ap.add_argument("--lang", default="en", choices=["en", "hi", "both"])
     ap.add_argument("--topic", help="custom topic (default: next topic from series)")
-    ap.add_argument("--script-file", help="pre-written script JSON (Gemini skip)")
+    ap.add_argument("--script", help="custom script raw text or JSON")
+    ap.add_argument("--script-file", help="pre-written script JSON or text file")
     args = ap.parse_args()
 
     state = load_state()
     topic = args.topic or pick_topic(args.series, state)
     langs = ["en", "hi"] if args.lang == "both" else [args.lang]
-    fixed_script = json.loads(Path(args.script_file).read_text(encoding="utf-8")) if args.script_file else None
+
+    fixed_script = None
+    raw_script_input = None
+    if args.script_file and Path(args.script_file).exists():
+        raw_script_input = Path(args.script_file).read_text(encoding="utf-8").strip()
+    elif args.script:
+        raw_script_input = args.script.strip()
+
+    if raw_script_input:
+        if raw_script_input.startswith("{") and raw_script_input.endswith("}"):
+            try:
+                fixed_script = json.loads(raw_script_input)
+            except Exception:
+                fixed_script = None
+        if not fixed_script:
+            # Auto-split text paragraphs into scenes
+            paragraphs = [p.strip() for p in raw_script_input.split("\n\n") if p.strip()] or [raw_script_input]
+            scenes = []
+            for idx, para in enumerate(paragraphs, start=1):
+                scenes.append({
+                    "id": idx,
+                    "heading": f"{topic} (Part {idx})" if idx > 1 else topic,
+                    "narration": para
+                })
+            fixed_script = {
+                "title": topic,
+                "description": f"Video about {topic}",
+                "tags": [args.series, "viral", "facts"],
+                "scenes": scenes
+            }
 
     for lang in langs:
         out = build_one(args.series, lang, topic, fixed_script)
