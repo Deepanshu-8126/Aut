@@ -4,11 +4,18 @@ on:
   workflow_dispatch:
     inputs:
       series:
-        description: "dsa | ai_ml | shorts_tips"
+        description: "Choose series: dsa, python-100-days, python-shorts, etc."
         required: true
         default: dsa
         type: choice
-        options: [dsa, ai_ml, shorts_tips]
+        options:
+          - dsa
+          - python-100-days
+          - dsa-30-days
+          - python-shorts
+          - java-100-days
+          - ai_ml
+          - shorts_tips
       lang:
         description: "en | hi | both"
         required: true

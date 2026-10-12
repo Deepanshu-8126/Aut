@@ -60,10 +60,16 @@ def synth_edge(text: str, voice: str, out: Path) -> float:
 
 
 def synth_lang(lang_cfg: dict, text: str, out: Path) -> float:
-    """Dispatch by the language's configured engine."""
-    if lang_cfg.get("engine") == "kokoro":
-        return synth_kokoro(text, lang_cfg["voice"], out)
-    return synth_edge(text, lang_cfg["voice"], out)
+    """Dispatch by the language's configured engine with automatic fallback to edge-tts."""
+    if lang_cfg.get("engine") == "kokoro" and Path("/opt/kokoro/kokoro-v1.0.onnx").exists():
+        try:
+            return synth_kokoro(text, lang_cfg["voice"], out)
+        except Exception as e:
+            print(f"[TTS] Kokoro unavailable ({e}), falling back to edge-tts.")
+    voice = lang_cfg.get("voice", "")
+    if not voice or "am_" in voice or "af_" in voice:
+        voice = "en-US-ChristopherNeural"
+    return synth_edge(text, voice, out)
 
 
 def split_sentences(text: str) -> list[str]:

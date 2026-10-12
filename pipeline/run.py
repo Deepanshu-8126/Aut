@@ -12,6 +12,7 @@ import os
 import shutil
 import subprocess
 import sys
+import tempfile
 from datetime import datetime
 from pathlib import Path
 
@@ -24,10 +25,53 @@ ROOT = Path(__file__).resolve().parent.parent
 CONFIG = json.loads((ROOT / "config" / "series.json").read_text(encoding="utf-8"))
 STATE_FILE = ROOT / "state.json"
 OUT = ROOT / "output"
-RENDER_TMP = Path(os.environ.get("RENDER_TMPDIR", "/home/user/.render-tmp"))
+RENDER_TMP = Path(os.environ.get("RENDER_TMPDIR", tempfile.gettempdir())) / "render-tmp"
+NODE = shutil.which("node") or os.environ.get("NODE_BIN", "node")
+
+SERIES_ALIASES = {
+    "dsa": "dsa-30-days",
+    "dsa-30-days": "dsa-30-days",
+    "python": "python-100-days",
+    "python-100-days": "python-100-days",
+    "python-shorts": "python-shorts",
+    "shorts": "python-shorts",
+    "shorts_tips": "python-shorts",
+    "java": "java-100-days",
+    "java-100-days": "java-100-days",
+    "ai_ml": "python-100-days",
+    "ai-ml": "python-100-days",
+}
+
+DEFAULT_LANGUAGES = {
+    "en": {"engine": "edge", "voice": "en-US-ChristopherNeural", "label": "English"},
+    "hi": {"engine": "edge", "voice": "hi-IN-SwaraNeural", "label": "Hindi"},
+}
 
 
-NODE = os.environ.get("NODE_BIN", "/usr/local/bin/node")
+def get_series_config(series_key: str) -> dict:
+    resolved_id = SERIES_ALIASES.get(series_key.lower(), series_key)
+    raw_series = CONFIG.get("series", [])
+    if isinstance(raw_series, dict):
+        if series_key in raw_series:
+            return raw_series[series_key]
+        if resolved_id in raw_series:
+            return raw_series[resolved_id]
+    elif isinstance(raw_series, list):
+        for s in raw_series:
+            if s.get("id") == resolved_id or s.get("id") == series_key:
+                return s
+    return {
+        "id": resolved_id,
+        "name": resolved_id.replace("-", " ").replace("_", " ").title(),
+        "format": "short" if "short" in resolved_id else "long",
+    }
+
+
+def get_lang_config(lang: str) -> dict:
+    languages = CONFIG.get("languages", DEFAULT_LANGUAGES)
+    if isinstance(languages, dict) and lang in languages:
+        return languages[lang]
+    return DEFAULT_LANGUAGES.get(lang, {"engine": "edge", "voice": "en-US-ChristopherNeural", "label": lang})
 
 
 def prerender_code(script: dict) -> dict[int, dict]:
@@ -79,17 +123,40 @@ def save_state(state: dict) -> None:
 
 
 def pick_topic(series_key: str, state: dict) -> str:
-    topics = CONFIG["series"][series_key]["topics"]
-    idx = state["next_index"].get(series_key, 0)
+    series = get_series_config(series_key)
+    raw_topics = []
+    if "topics" in series and isinstance(series["topics"], list) and series["topics"]:
+        raw_topics = series["topics"]
+    elif "curriculum" in series:
+        curr_path = ROOT / series["curriculum"]
+        if curr_path.exists():
+            try:
+                curr_data = json.loads(curr_path.read_text(encoding="utf-8"))
+                raw_topics = curr_data.get("topics", [])
+            except Exception:
+                raw_topics = []
+
+    topics = []
+    for t in raw_topics:
+        if isinstance(t, dict):
+            topics.append(t.get("topic", str(t)))
+        elif isinstance(t, str):
+            topics.append(t)
+
+    if not topics:
+        return f"{series.get('name', series_key)} Lesson"
+
+    idx = state.get("next_index", {}).get(series_key, 0)
     if idx >= len(topics):
-        raise SystemExit(f"Series '{series_key}' ke saare topics ho gaye. config/series.json mein naye add karo.")
+        idx = 0
     return topics[idx]
 
 
 def build_one(series_key: str, lang: str, topic: str, script: dict | None) -> Path:
-    series = CONFIG["series"][series_key]
-    fmt = series["format"]
-    slug = f"{series_key}_{datetime.now():%Y%m%d_%H%M%S}_{lang}"
+    series = get_series_config(series_key)
+    fmt = series.get("format", "long")
+    sid = series.get("id", series_key)
+    slug = f"{sid}_{datetime.now():%Y%m%d_%H%M%S}_{lang}"
     work = ROOT / "work" / slug
     (work / "audio").mkdir(parents=True, exist_ok=True)
 
@@ -98,7 +165,7 @@ def build_one(series_key: str, lang: str, topic: str, script: dict | None) -> Pa
         script = generate_script(series["name"], fmt, topic, lang)
     (work / "script.json").write_text(json.dumps(script, ensure_ascii=False, indent=2))
 
-    lang_cfg = CONFIG["languages"][lang]
+    lang_cfg = get_lang_config(lang)
     durations, audio_files = [], []
     for scene in script["scenes"]:
         rel = f"audio/scene{scene['id']}.mp3"
@@ -127,26 +194,28 @@ def build_one(series_key: str, lang: str, topic: str, script: dict | None) -> Pa
         encoding="utf-8")
     (work / "hyperframes.json").write_text(json.dumps({"$schema": "https://hyperframes.heygen.com/schema/hyperframes.json"}, indent=2))
 
-    out_dir = OUT / series_key / lang
+    out_dir = OUT / sid / lang
     out_dir.mkdir(parents=True, exist_ok=True)
     out_file = out_dir / f"{slug}.mp4"
     print(f"[{lang}] Render ho raha hai -> {out_file}")
     RENDER_TMP.mkdir(parents=True, exist_ok=True)
+    cache_dir = Path.home() / ".hf-extract-cache"
+    cache_dir.mkdir(parents=True, exist_ok=True)
     env = {**os.environ, "TMPDIR": str(RENDER_TMP), "HYPERFRAMES_SKIP_SKILLS": "1",
-           "HYPERFRAMES_EXTRACT_CACHE_DIR": "/home/user/.hf-extract-cache"}
+           "HYPERFRAMES_EXTRACT_CACHE_DIR": str(cache_dir)}
     subprocess.run(
         ["npx", "-y", "hyperframes@0.8.143", "render", "--output", str(out_file.resolve())],
         cwd=work, env=env, check=True,
     )
     meta = {"title": script.get("title"), "description": script.get("description"),
-            "tags": script.get("tags", []), "series": series_key, "language": lang, "topic": topic}
+            "tags": script.get("tags", []), "series": sid, "language": lang, "topic": topic}
     out_file.with_suffix(".json").write_text(json.dumps(meta, ensure_ascii=False, indent=2))
     return out_file
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--series", required=True, choices=list(CONFIG["series"]))
+    ap.add_argument("--series", required=True, help="Series identifier (e.g. dsa, python-100-days, python-shorts)")
     ap.add_argument("--lang", default="en", choices=["en", "hi", "both"])
     ap.add_argument("--topic", help="custom topic (default: next topic from series)")
     ap.add_argument("--script-file", help="pre-written script JSON (Gemini skip)")
@@ -162,9 +231,9 @@ def main() -> None:
         print(f"✔ Done: {out}")
 
     if not args.topic:
-        state["next_index"][args.series] = state["next_index"].get(args.series, 0) + 1
-    state["done"].append({"series": args.series, "topic": topic, "langs": langs,
-                          "at": datetime.now().isoformat(timespec="seconds")})
+        state.setdefault("next_index", {})[args.series] = state.get("next_index", {}).get(args.series, 0) + 1
+    state.setdefault("done", []).append({"series": args.series, "topic": topic, "langs": langs,
+                                         "at": datetime.now().isoformat(timespec="seconds")})
     save_state(state)
 
 
