@@ -24,12 +24,23 @@ TRENDS_CTA = "\n\n🔥 Trending topics dekhne ke liye: https://trends.google.com
 API = "https://api.telegram.org/bot{token}/{method}"
 
 
+def _load_dotenv():
+    env_file = Path(__file__).resolve().parent.parent / ".env"
+    if env_file.exists():
+        for line in env_file.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, v = line.split("=", 1)
+                os.environ.setdefault(k.strip(), v.strip().strip("'\""))
+
 def _env():
+    _load_dotenv()
     token = os.environ.get("TELEGRAM_BOT_TOKEN")
     chat = os.environ.get("TELEGRAM_CHAT_ID")
     if not token or not chat:
         sys.exit("TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID set nahi hain")
     return token, chat
+
 
 
 def build_caption(title: str, description: str) -> str:

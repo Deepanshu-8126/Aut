@@ -9,7 +9,9 @@ from google.genai import types
 
 ROOT = Path(__file__).resolve().parent.parent
 SYSTEM_PROMPT = (ROOT / "prompts" / "script_system_prompt.md").read_text(encoding="utf-8")
-MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+MODEL = os.environ.get("GEMINI_MODEL", "gemini-3-flash-preview")
+
+
 
 
 def _extract_json(text: str) -> dict:
@@ -18,10 +20,22 @@ def _extract_json(text: str) -> dict:
     return json.loads(text)
 
 
+def _load_dotenv():
+    env_file = ROOT / ".env"
+    if env_file.exists():
+        for line in env_file.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, v = line.split("=", 1)
+                os.environ.setdefault(k.strip(), v.strip().strip("'\""))
+
+
 def generate_script(series_name: str, fmt: str, topic: str, language: str) -> dict:
+    _load_dotenv()
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
         raise RuntimeError("GEMINI_API_KEY environment variable set nahi hai.")
+
 
     client = genai.Client(api_key=api_key)
     prompt = (

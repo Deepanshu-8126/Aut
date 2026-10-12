@@ -23,10 +23,25 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+
+def _load_dotenv():
+    env_file = ROOT / ".env"
+    if env_file.exists():
+        for line in env_file.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, v = line.split("=", 1)
+                os.environ.setdefault(k.strip(), v.strip().strip("'\""))
+
+_load_dotenv()
+
 PROMPT = ROOT / "prompts" / "gemini_teacher_prompt.md"
 TESTS = ROOT / "tests"
-MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+MODEL = os.environ.get("GEMINI_MODEL", "gemini-3-flash-preview")
+
+
 API = "https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent?key={k}"
+
 
 ALLOWED_TYPES = {"TitleCard", "TypingCode", "TerminalRun", "ComparisonCard", "SummaryList", "StatChart", "ArchitectureFlow", "OutroCard", "CodeExplainer", "BrowserSteps",
                  "ArrayViz", "TreeViz", "GraphViz", "StackQueueViz", "DiagramFlow"}
@@ -40,14 +55,32 @@ TARGET_WORDS = 25   # isse kam = warning
 
 
 def gemini_json(prompt: str, key: str) -> dict:
+    import time
     body = {"contents": [{"parts": [{"text": prompt}]}],
             "generationConfig": {"responseMimeType": "application/json", "temperature": 0.6}}
-    req = urllib.request.Request(API.format(m=MODEL, k=key), data=json.dumps(body).encode(),
-                                 headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=180) as r:
-        data = json.loads(r.read())
-    text = data["candidates"][0]["content"]["parts"][0]["text"]
-    return json.loads(text)
+    models_to_try = [MODEL, "gemini-3.1-flash-lite-preview", "gemini-3-flash-preview"]
+    last_err = None
+    for m in models_to_try:
+        for attempt in range(3):
+            try:
+                url = API.format(m=m, k=key)
+                req = urllib.request.Request(url, data=json.dumps(body).encode(),
+                                             headers={"Content-Type": "application/json"})
+                with urllib.request.urlopen(req, timeout=180) as r:
+                    data = json.loads(r.read())
+                text = data["candidates"][0]["content"]["parts"][0]["text"]
+                return json.loads(text)
+            except urllib.error.HTTPError as e:
+                last_err = e
+                if e.code in (503, 429):
+                    time.sleep(2 * (attempt + 1))
+                    continue
+                break
+            except Exception as e:
+                last_err = e
+                time.sleep(1)
+    raise last_err or RuntimeError("Gemini API calls failed.")
+
 
 
 GATE_PROMPT = """You check whether a text is a real, teachable topic for a coding or AI-tools
