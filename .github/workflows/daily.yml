@@ -2,19 +2,19 @@ name: Daily video (autopilot)
 
 on:
   schedule:
-    - cron: "30 14 * * *"   # 14:30 UTC = 20:00 IST roz
+    - cron: "0 8 * * *"   # 08:00 UTC = 13:30 IST (1:30 PM IST, 1 se 2 PM ke beech)
   workflow_dispatch:
     inputs:
       series:
         description: "Kaun sa video banana hai"
         type: choice
         required: true
-        default: python-100-days
+        default: python-shorts
         options:
+          - python-shorts
           - python-100-days
           - java-100-days
           - dsa-30-days
-          - python-shorts
       lang:
         description: "en, hi ya en,hi"
         required: false
@@ -22,7 +22,7 @@ on:
       upload:
         description: "YouTube par upload karna hai?"
         type: boolean
-        default: false
+        default: true
 
 permissions:
   contents: write
@@ -56,7 +56,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Remotion deps
-        run: cd remotion && npm ci --no-audit --no-fund
+        run: cd remotion && (npm ci --no-audit --no-fund || npm install --no-audit --no-fund)
 
       - name: Generate audio assets (music + sfx, git mein .wav nahi hoti)
         run: |
@@ -65,9 +65,9 @@ jobs:
 
       - name: Autopilot (script -> video -> upload)
         env:
-          SERIES: ${{ github.event.inputs.series || 'python-100-days' }}
+          SERIES: ${{ github.event.inputs.series || 'python-shorts' }}
           LANGS: ${{ github.event.inputs.lang }}
-          DO_UPLOAD: ${{ github.event.inputs.upload || 'true' }}
+          DO_UPLOAD: ${{ github.event_name == 'schedule' || github.event.inputs.upload == 'true' || github.event.inputs.upload == true }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |

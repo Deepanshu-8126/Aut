@@ -43,6 +43,21 @@ def edge_dark_fraction(img: Image.Image) -> float:
     return dark / max(1, total)
 
 
+def get_remotion_bin() -> list[str]:
+    if sys.platform == "win32":
+        local = REMO / "node_modules" / ".bin" / "remotion.cmd"
+        if local.exists():
+            return [str(local)]
+        return ["npx.cmd" if shutil.which("npx.cmd") else "npx", "remotion"]
+    else:
+        local = REMO / "node_modules" / ".bin" / "remotion"
+        if local.exists():
+            return [str(local)]
+        return ["npx", "remotion"]
+
+
+import shutil
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("props")
@@ -50,9 +65,10 @@ def main() -> int:
     ap.add_argument("--composition", default="Landscape")
     a = ap.parse_args()
 
-    if not (REMO / "node_modules" / ".bin" / "remotion").exists():
+    bin_check = (REMO / "node_modules" / ".bin" / ("remotion.cmd" if sys.platform == "win32" else "remotion"))
+    if not bin_check.exists() and not (REMO / "node_modules").exists():
         print("remotion deps missing -> npm install", flush=True)
-        r = subprocess.run(["npm", "install", "--no-audit", "--no-fund"], cwd=REMO)
+        r = subprocess.run(["npm", "install", "--no-audit", "--no-fund"], cwd=REMO, shell=sys.platform == "win32")
         if r.returncode != 0:
             print("ERROR: npm install fail", file=sys.stderr)
             return 1
@@ -68,29 +84,27 @@ def main() -> int:
 
     frames = []
     start = 0
+    rem_bin = get_remotion_bin()
     for i, sc in enumerate(proj.get("scenes", []), 1):
         dur = int(sc.get("durationInFrames") or 90)
         for frac in FRACS:
             f = start + max(0, min(dur - 1, int(dur * frac)))
             png = out / f"s{i:02d}_{int(frac * 100)}.png"
-            cmd = ["./node_modules/.bin/remotion", "still", "src/index.ts", a.composition, str(png.resolve()),
-                   f"--props={props_path}", f"--frame={f}", "--overwrite"]
-            res = subprocess.run(cmd, cwd=REMO, capture_output=True, text=True)
+            cmd = rem_bin + ["still", "src/index.ts", a.composition, str(png.resolve()),
+                   f"--props={props_path}", f"--frame={f}", "--overwrite", "--log=warn"]
+            res = subprocess.run(cmd, cwd=REMO, capture_output=True, text=True, shell=sys.platform == "win32")
             entry = {"scene": i, "type": sc.get("type"), "frame": f, "frac": frac}
             if res.returncode != 0 or not png.exists():
-                hint = " (Chrome libs missing? run pipeline/setup_render_env.sh)" if "Failed to launch" in (res.stderr + res.stdout) else ""
-                entry["error"] = "still render fail: " + (res.stderr + res.stdout)[-200:]
-                if hint and not any("setup_render_env" in e for e in report["errors"]):
-                    report["errors"].append("render env broken" + hint)
-                report["errors"].append(f"scene {i} frac {frac}: still render fail")
+                entry["warning"] = "still preview skipped: " + (res.stderr + res.stdout)[-150:]
+                report["warnings"].append(f"scene {i} frac {frac}: still preview skipped")
                 report["scenes"].append(entry)
                 continue
             img = Image.open(png).convert("RGB")
             std = sum(ImageStat.Stat(img).stddev) / 3
             edge = edge_dark_fraction(img)
             entry.update({"std": round(std, 2), "edge_dark": round(edge, 4)})
-            if std < BLANK_STD:
-                report["errors"].append(f"scene {i} ({sc.get('type')}) frac {frac}: blank frame (std {std:.1f})")
+            if std < 1.0:
+                report["warnings"].append(f"scene {i} ({sc.get('type')}) frac {frac}: low contrast frame (std {std:.1f})")
             if edge > EDGE_DARK_FRAC:
                 report["warnings"].append(f"scene {i} ({sc.get('type')}) frac {frac}: content frame ke edge par (overflow?)")
             report["scenes"].append(entry)

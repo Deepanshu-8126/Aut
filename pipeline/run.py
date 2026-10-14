@@ -102,7 +102,7 @@ def render_manim(scene: dict, work: Path, dur: float) -> str:
         total = sum(beats) or 1.0
         beats = [b * dur / total for b in beats]
         env = {**os.environ, "MANIM_BEATS": json.dumps(beats)}
-        res = subprocess.run(["python3", "-m", "manim", "-qm", "--fps", "30", "-r", "1920,1080",
+        res = subprocess.run([sys.executable, "-m", "manim", "-qm", "--fps", "30", "-r", "1920,1080",
                               "--media_dir", str(media), str(src), spec["cls"]],
                              cwd=src.parent, capture_output=True, text=True, env=env)
         if res.returncode != 0:
@@ -216,7 +216,7 @@ def build_one(series_key: str, lang: str, topic: str, script: dict | None) -> Pa
            "HYPERFRAMES_EXTRACT_CACHE_DIR": str(cache_dir)}
     subprocess.run(
         ["npx", "-y", "hyperframes@0.8.143", "render", "--output", str(out_file.resolve())],
-        cwd=work, env=env, check=True,
+        cwd=work, env=env, check=True, shell=sys.platform == "win32",
     )
     meta = {"title": script.get("title"), "description": script.get("description"),
             "tags": script.get("tags", []), "series": sid, "language": lang, "topic": topic}

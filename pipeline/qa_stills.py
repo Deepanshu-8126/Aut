@@ -31,10 +31,10 @@ def main() -> None:
     for i, sc in enumerate(proj["scenes"], 1):
         dur = int(sc.get("durationInFrames") or 90)
         f = start + int(dur * a.frac)
-        png = out / f"s{i:02d}.png"
-        cmd = ["./node_modules/.bin/remotion", "still", "src/index.ts", "Landscape", str(png.resolve()),
-               f"--props={props_path}", f"--frame={f}", "--overwrite"]
-        res = subprocess.run(cmd, cwd=REMO, capture_output=True, text=True)
+        rem_bin = ["npx.cmd" if sys.platform == "win32" else "npx", "remotion"]
+        cmd = rem_bin + ["still", "src/index.ts", "Landscape", str(png.resolve()),
+               f"--props={props_path}", f"--frame={f}", "--overwrite", "--log=warn"]
+        res = subprocess.run(cmd, cwd=REMO, capture_output=True, text=True, shell=sys.platform == "win32")
         if res.returncode != 0 or not png.exists():
             print(f"scene {i}: still FAIL\n{res.stderr[-400:]}")
             continue

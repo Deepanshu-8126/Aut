@@ -52,7 +52,7 @@
         "en"
       ],
       "curriculum": "config/curriculum/python_100.json",
-      "daily_slot_ist": "18:00",
+      "daily_slot_ist": "13:30",
       "youtube_playlist": {
         "en": null,
         "hi": null

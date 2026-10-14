@@ -84,8 +84,8 @@ def render(props: dict, name: str) -> Path:
     props_file.write_text(json.dumps(props, ensure_ascii=False, indent=1), encoding="utf-8")
     png = OUT / f"{name}.png"
     cmd = ["npx", "remotion", "still", "src/index.ts", "Thumbnail", str(png),
-           f"--props={props_file}", "--overwrite"]
-    res = subprocess.run(cmd, cwd=REMOTION)
+           f"--props={props_file}", "--overwrite", "--log=warn"]
+    res = subprocess.run(cmd, cwd=REMOTION, shell=sys.platform == "win32")
     if res.returncode != 0 or not png.exists():
         raise SystemExit("thumbnail render fail")
     return png
