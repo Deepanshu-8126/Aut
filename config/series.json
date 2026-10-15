@@ -58,7 +58,7 @@
         "hi": null
       },
       "enabled": true,
-      "privacy": "unlisted",
+      "privacy": "public",
       "target_sec": [
         40,
         45
