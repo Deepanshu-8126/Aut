@@ -73,16 +73,17 @@ def main() -> None:
 
     # High-speed optimized Remotion render
     is_win = sys.platform == "win32"
-    gl_backend = "--gl=angle" if is_win else "--gl=swiftshader"
+    concurrency = "4" if is_win else "2"
     render_cmd = [
         "npx", "remotion", "render", comp_for(props), str(mp4),
         f"--props={props.name}",
-        "--concurrency=4",
-        gl_backend,
+        f"--concurrency={concurrency}",
         "--jpeg-quality=85",
         "--pixel-format=yuv420p",
         "--log=warn"
     ]
+    if is_win:
+        render_cmd.append("--gl=angle")
     step("3/4 Render MP4 (High-Speed Remotion Engine)", render_cmd, REMOTION)
 
     if not a.no_audit:

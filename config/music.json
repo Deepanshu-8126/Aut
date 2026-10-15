@@ -1,6 +1,6 @@
 {
   "default": "bgm_calm",
-  "volume": 0.07,
+  "volume": 0.12,
   "tracks": {
     "bgm_calm": {
       "file": "music/bgm_calm.wav",
@@ -23,5 +23,5 @@
       "loop_sec": 32.0
     }
   },
-  "note": "Original generated ambient loops (no beats). Lesson JSON mein \"bgm\": \"bgm_soft\" likh kar track badal sakte ho; warna default."
+  "note": "Original generated ambient loops (no beats). Series ke liye 'music' key se track chuno."
 }

@@ -52,7 +52,7 @@ jobs:
           node-version: "20"
 
       - name: System deps (ffmpeg, browser libs)
-        run: sudo apt-get update && sudo apt-get install -y ffmpeg libnspr4 libnss3 libasound2t64
+        run: sudo apt-get update && (sudo apt-get install -y ffmpeg libnspr4 libnss3 libasound2t64 || sudo apt-get install -y ffmpeg libnspr4 libnss3 libasound2)
 
       - name: Python deps
         run: pip install -r requirements.txt
@@ -101,4 +101,5 @@ jobs:
           git config user.email "bot@users.noreply.github.com"
           git add state/ config/series.json tests/ output/meta/ || true
           git commit -m "autopilot: daily run" || echo "nothing to commit"
+          git pull --rebase origin main || true
           git push || echo "push skipped"

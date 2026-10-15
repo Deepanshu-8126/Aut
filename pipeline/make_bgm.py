@@ -57,6 +57,7 @@ def norm(x, peak=0.5):
     x = x - np.mean(x)
     return x / (np.max(np.abs(x)) + 1e-9) * peak
 
+OUT.mkdir(parents=True, exist_ok=True)
 manifest = {}
 for name, tr in TRACKS.items():
     sig = norm(tr["sig"])
