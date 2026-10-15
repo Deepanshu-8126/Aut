@@ -51,8 +51,10 @@ jobs:
         with:
           node-version: "20"
 
-      - name: System deps (ffmpeg, browser libs)
-        run: sudo apt-get update && (sudo apt-get install -y ffmpeg libnspr4 libnss3 libasound2t64 || sudo apt-get install -y ffmpeg libnspr4 libnss3 libasound2)
+      - name: System deps (ffmpeg, headless chrome & remotion libs)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libnspr4 libnss3 libgbm1 libatk-bridge2.0-0 libgtk-3-0 libx11-xcb1 libxcomposite1 libxdamage1 libxrandr2 libdrm2 libxkbcommon0 fonts-dejavu libasound2t64 || sudo apt-get install -y libasound2
 
       - name: Python deps
         run: pip install -r requirements.txt
@@ -71,6 +73,7 @@ jobs:
           EVENT_SCHEDULE: ${{ github.event.schedule }}
           LANGS: ${{ github.event.inputs.lang }}
           DO_UPLOAD: ${{ github.event_name == 'schedule' || github.event.inputs.upload == 'true' || github.event.inputs.upload == true }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
@@ -90,10 +93,22 @@ jobs:
             fi
           fi
           echo "Selected Series: $TARGET_SERIES"
-          ARGS="--series $TARGET_SERIES"
+          ARGS="--series $TARGET_SERIES --notify"
           [ -n "$LANGS" ] && ARGS="$ARGS --lang $LANGS"
           [ "$DO_UPLOAD" = "true" ] && ARGS="$ARGS --upload"
           python3 pipeline/autopilot.py $ARGS
+
+      - name: Upload Video Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coding-video-${{ github.run_id }}
+          path: |
+            output/**/*.mp4
+            output/**/*.png
+            output/meta/*.json
+          retention-days: 14
+          if-no-files-found: warn
 
       - name: Save state and meta
         run: |
