@@ -2,18 +2,20 @@ name: Daily video (autopilot)
 
 on:
   schedule:
-    - cron: "0 8 * * *"   # 08:00 UTC = 13:30 IST (1:30 PM IST, 1 se 2 PM ke beech)
+    - cron: "0 8 * * *"   # 08:00 UTC = 13:30 IST (1:30 PM IST) -> Python Shorts
+    - cron: "0 20 * * *"  # 20:00 UTC = 01:30 IST (1:30 AM IST) -> Java 100 Days Long Video
   workflow_dispatch:
     inputs:
       series:
-        description: "Kaun sa video banana hai"
+        description: "Kaun sa video banana hai (auto = time slot ke hisaab se)"
         type: choice
         required: true
-        default: python-shorts
+        default: auto
         options:
+          - auto
+          - java-100-days
           - python-shorts
           - python-100-days
-          - java-100-days
           - dsa-30-days
       lang:
         description: "en, hi ya en,hi"
@@ -65,13 +67,30 @@ jobs:
 
       - name: Autopilot (script -> video -> upload)
         env:
-          SERIES: ${{ github.event.inputs.series || 'python-shorts' }}
+          INPUT_SERIES: ${{ github.event.inputs.series }}
+          EVENT_SCHEDULE: ${{ github.event.schedule }}
           LANGS: ${{ github.event.inputs.lang }}
           DO_UPLOAD: ${{ github.event_name == 'schedule' || github.event.inputs.upload == 'true' || github.event.inputs.upload == true }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          ARGS="--series $SERIES"
+          if [ -n "$INPUT_SERIES" ] && [ "$INPUT_SERIES" != "auto" ]; then
+            TARGET_SERIES="$INPUT_SERIES"
+          elif [ "$EVENT_SCHEDULE" = "0 20 * * *" ]; then
+            TARGET_SERIES="java-100-days"
+          elif [ "$EVENT_SCHEDULE" = "0 8 * * *" ]; then
+            TARGET_SERIES="python-shorts"
+          else
+            # Fallback by UTC hour: 18-23 or 0-3 = Night slot (Java long video), else afternoon slot (Python shorts)
+            H=$(date -u +%H)
+            if [ "$H" -ge 18 ] || [ "$H" -le 3 ]; then
+              TARGET_SERIES="java-100-days"
+            else
+              TARGET_SERIES="python-shorts"
+            fi
+          fi
+          echo "Selected Series: $TARGET_SERIES"
+          ARGS="--series $TARGET_SERIES"
           [ -n "$LANGS" ] && ARGS="$ARGS --lang $LANGS"
           [ "$DO_UPLOAD" = "true" ] && ARGS="$ARGS --upload"
           python3 pipeline/autopilot.py $ARGS

@@ -31,17 +31,17 @@
         "en"
       ],
       "curriculum": "config/curriculum/java_100.json",
-      "daily_slot_ist": "20:00",
+      "daily_slot_ist": "01:30",
       "youtube_playlist": {
         "en": null,
         "hi": null
       },
-      "enabled": false,
+      "enabled": true,
       "keyword": "Java",
       "short_name": "Java 100",
       "accent": "#2563eb",
       "thumb_motif": "none",
-      "privacy": "unlisted"
+      "privacy": "public"
     },
     {
       "id": "python-shorts",

@@ -74,7 +74,7 @@ def make_lesson(series: dict, day: int, topic: str, lang: str, key: str) -> Path
 def render(series: dict, day: int, lang: str, lesson: Path) -> Path:
     name = f"{series['id'].replace('-', '_')}_d{day:03d}_{lang}"
     cmd = [sys.executable, str(ROOT / "pipeline" / "build_video.py"), str(lesson),
-           "--name", name, "--lang", lang, "--theme", series["theme"]]
+           "--name", name, "--lang", lang, "--theme", series["theme"], "--fast"]
     res = subprocess.run(cmd, cwd=ROOT)
     if res.returncode != 0:
         raise SystemExit(f"render fail: {name}")
@@ -94,12 +94,21 @@ def make_thumb(series: dict, day: int, lang: str, lesson: Path) -> Path | None:
 
 def write_meta(series: dict, day: int, lang: str, lesson: Path, mp4: Path, thumb: Path | None = None, seo: dict | None = None) -> Path:
     data = json.loads(lesson.read_text(encoding="utf-8"))
+    kw = series.get("keyword") or series["name"].split(" in ")[0]
     raw = re.sub(r"^.*?Day\s*\d+\s*[:\-|]\s*", "", data.get("title", ""), flags=re.I).strip()
     title = f"{series['name']} | Day {day}: {raw}"[:100]
     first = data["scenes"][0]["narration"]
-    desc = (f"{first}\n\n{series['name']} - Day {day}.\n"
-            "Practice task video ke end mein hai. Agla episode subscribe karke dekho.")
-    tags = [series["name"].split(" in ")[0], "programming", "beginner", "tutorial"]
+    desc = (f"{first}\n\n"
+            f"📌 Welcome to Day {day} of {series['name']}!\n"
+            f"Topic: {raw}\n\n"
+            "💡 Practice task video ke end mein hai. Try it out and comment your solution!\n"
+            "🔔 Series follow karne ke liye Subscribe zaroor karein aur playlist save karein.\n\n"
+            f"#{kw} #Learn{kw} #Coding #Programming #100DaysOfCode #{kw}Tutorial")
+    tags = [
+        kw, f"{kw} tutorial", f"learn {kw.lower()}", f"{kw.lower()} for beginners",
+        series["name"], f"day {day}", "coding", "programming", "software engineering",
+        "computer science", f"{kw.lower()} course", "learn to code", "coding tutorial"
+    ]
     if seo:  # Gemini SEO metadata (title/description/tags) basic ki jagah
         title, desc, tags = seo["title"], seo["description"], seo["tags"]
     META.mkdir(parents=True, exist_ok=True)

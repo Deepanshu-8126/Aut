@@ -78,12 +78,26 @@ def build_props(lesson: dict, series: dict, day: int, total: int) -> dict:
     return props
 
 
+def get_remotion_bin() -> list[str]:
+    import shutil
+    if sys.platform == "win32":
+        local = REMOTION / "node_modules" / ".bin" / "remotion.cmd"
+        if local.exists():
+            return [str(local)]
+        return ["npx.cmd" if shutil.which("npx.cmd") else "npx", "remotion"]
+    else:
+        local = REMOTION / "node_modules" / ".bin" / "remotion"
+        if local.exists():
+            return [str(local)]
+        return ["npx", "remotion"]
+
+
 def render(props: dict, name: str) -> Path:
     OUT.mkdir(parents=True, exist_ok=True)
     props_file = OUT / f"{name}.props.json"
     props_file.write_text(json.dumps(props, ensure_ascii=False, indent=1), encoding="utf-8")
     png = OUT / f"{name}.png"
-    cmd = ["npx", "remotion", "still", "src/index.ts", "Thumbnail", str(png),
+    cmd = get_remotion_bin() + ["still", "src/index.ts", "Thumbnail", str(png),
            f"--props={props_file}", "--overwrite", "--log=warn"]
     res = subprocess.run(cmd, cwd=REMOTION, shell=sys.platform == "win32")
     if res.returncode != 0 or not png.exists():

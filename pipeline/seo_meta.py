@@ -16,7 +16,7 @@ DESC_MIN = 200
 TAGS_MAX = 15
 TAGS_CHARS = 450  # YouTube ki tags limit ke andar
 
-PROMPT = """You write YouTube SEO metadata for an educational video.
+PROMPT = """You write viral, high-ranking YouTube SEO metadata for an educational programming tutorial.
 
 Series: {series}
 Day/Topic: {topic}
@@ -25,14 +25,19 @@ Lesson summary (first scenes narration): {summary}
 
 Return ONLY JSON:
 {{
-  "title": "...",          // max 80 chars, primary keyword pehle, clickable, clickbait nahi (misleading nahi)
-  "description": "...",    // 3-4 short paragraphs, pehle 2 lines mein main keyword, 200-600 chars, ends with a line: "Practice task video ke end mein hai."
-  "tags": ["...", "..."]   // 10-15 relevant search keywords (short phrases), same language
+  "title": "...",          // max 80 chars, high-CTR, curiosity/benefit-driven, primary keyword first (e.g. "Java in 100 Days | Day 1: How Java Runs & Hello World")
+  "description": "...",    // Comprehensive, high-engagement description (300-800 chars):
+                           // 1. Hook explaining what viewer will learn & why it matters
+                           // 2. Key concepts covered in this episode
+                           // 3. Call-to-action: "Practice task video ke end mein hai. Comment your solution below!"
+                           // 4. Playlist & Subscribe reminder
+                           // 5. 5-8 trending viral hashtags at the very bottom (e.g. #Java #JavaTutorial #LearnJava #Coding #Programming #100DaysOfCode)
+  "tags": ["...", "..."]   // 12-18 highly searched viral YouTube tags and long-tail keywords (e.g. "java tutorial for beginners", "how java works", "java hello world", "core java", "learn java programming", "java course")
 }}
 Rules:
-- Title aur description ki language = {lang_name}. English keywords chalenge agar tech terms hain.
-- Gibberish ya fake claims mat likho. Sirf lesson ke content se related.
-- Hashtags description ke end mein 3 tak.
+- Title aur description ki language = {lang_name}. English technical keywords allowed.
+- Strictly relevant to the lesson, highly engaging, click-worthy but never misleading.
+- Description must end with 5-8 viral hashtags with # prefix.
 """
 
 
