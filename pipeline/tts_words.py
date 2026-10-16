@@ -23,7 +23,7 @@ def _synth_kokoro(text: str, voice: str, out: Path):
 
         lang_code = 'h' if voice.startswith('h') and any(ord(c) > 127 for c in text) else 'a'
         pipeline = KPipeline(lang_code=lang_code)
-        generator = pipeline(text, voice=voice, speed=1.05)
+        generator = pipeline(text, voice=voice, speed=0.96)
 
         all_audios = []
         words = []
