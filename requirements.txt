@@ -5,7 +5,7 @@ requests>=2.31
 google-genai>=0.1.0
 google-api-python-client>=2.120
 google-auth>=2.29
-# Hindi TTS (Indic Parler-TTS) is optional for GPU machines:
-# parler-tts>=0.2
-# torch>=2.2
 scipy>=1.11
+torch
+kokoro>=0.8.4
+misaki[en]
