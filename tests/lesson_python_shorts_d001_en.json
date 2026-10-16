@@ -1,165 +1,97 @@
 {
-  "title": "Python Variables and Data Types",
+  "title": "Python Variables and Data Types in 45 Seconds",
+  "aspectRatio": "9:16",
   "dayLabel": "Day 1 / 100",
   "scenes": [
     {
       "id": 1,
-      "narration": "Kya aapne kabhi socha hai ki computer aapka naam ya score kaise yaad rakhta hai? Yeh sab variables ka kamaal hai.",
+      "heading": "Variables Hook",
+      "narration": "Ever wondered how computers store your name or your high score? It all starts with variables. In 45 seconds, let's master them in Python.",
       "remotion": {
         "type": "TitleCard",
         "props": {
-          "title": "Variables in Python",
-          "subtitle": "Storing data like a pro",
-          "badge": "DAY 1 • PYTHON BASICS",
+          "title": "Python Variables",
+          "subtitle": "Master the basics in 45 seconds",
+          "badge": "DAY 1 • PYTHON SHORTS",
           "tags": [
             "Python",
-            "Beginner",
-            "Coding"
+            "Variables",
+            "Beginner"
           ]
-        },
-        "chapter": "M1 Basics",
-        "keyIdea": "Variables store data"
+        }
       }
     },
     {
       "id": 2,
-      "narration": "Variable ek box ki tarah hota hai. Is box par aap ek label lagate hain, jaise age, aur andar koi value rakhte hain, jaise 25.",
+      "heading": "Storage Box Analogy",
+      "narration": "Think of a variable as a labeled storage box. The label is the name, like score, and what goes inside is the value, like 100.",
       "remotion": {
         "type": "DiagramFlow",
         "props": {
-          "title": "Variable Analogy",
+          "title": "Variable = Labeled Storage Box",
           "nodes": [
-            {
-              "id": "box",
-              "label": "Box",
-              "sub": "Memory"
-            },
-            {
-              "id": "label",
-              "label": "Label",
-              "sub": "Variable Name"
-            },
-            {
-              "id": "value",
-              "label": "Value",
-              "sub": "Data"
-            }
+            { "id": "label", "label": "Label: score" },
+            { "id": "box", "label": "Box: Memory" },
+            { "id": "val", "label": "Value: 100" }
           ],
           "edges": [
-            {
-              "from": "label",
-              "to": "box"
-            },
-            {
-              "from": "value",
-              "to": "box"
-            }
+            { "from": "label", "to": "box" },
+            { "from": "box", "to": "val" }
           ],
           "steps": [
-            {
-              "at": "box",
-              "label": "Memory space created",
-              "focus": [
-                "box"
-              ]
-            },
-            {
-              "at": "label",
-              "label": "Naming the variable",
-              "arrow": 0
-            },
-            {
-              "at": "value",
-              "label": "Storing data",
-              "arrow": 1
-            }
+            { "at": "labeled", "label": "Name your variable" },
+            { "at": "inside", "label": "Store the value" }
           ]
-        },
-        "camera": [
-          {
-            "at": "box",
-            "zoom": 1.2,
-            "x": 50,
-            "y": 50
-          }
-        ],
-        "popups": [
-          {
-            "anchor": "box",
-            "text": "Variable = Container",
-            "kind": "tip"
-          }
-        ]
+        }
       }
     },
     {
       "id": 3,
-      "narration": "Python mein variable banana bahut aasaan hai. Bas likhiye name equal to Rahul. Yahan name variable hai aur Rahul uska data hai.",
+      "heading": "Code Example",
+      "narration": "In Python, creating a variable is instant. Just write user equals Alice, and age equals 20. No complicated keywords needed.",
       "remotion": {
         "type": "TypingCode",
-        "type_anchor": "Bas",
+        "type_anchor": "write",
         "props": {
-          "filename": "hello.py",
+          "filename": "main.py",
           "language": "python",
-          "code": "name = \"Rahul\"\nage = 25\nscore = 95.5\nprint(name)",
-          "highlightLines": [
-            1
-          ]
+          "code": "user = \"Alice\"\nage = 20\nprint(user, age)",
+          "highlightLines": [1, 2]
         },
-        "camera": [
-          {
-            "at": "name",
-            "zoom": 1.7,
-            "x": 40,
-            "y": 20
-          }
-        ],
         "popups": [
-          {
-            "anchor": "equal",
-            "text": "Assignment operator",
-            "kind": "note"
-          }
+          { "anchor": "Alice", "text": "user stores text", "kind": "tip", "x": "50%", "y": "20%" },
+          { "anchor": "20", "text": "age stores a number", "kind": "tip", "x": "50%", "y": "20%" }
         ]
       }
     },
     {
       "id": 4,
-      "narration": "Alag data ke liye alag types hote hain. Text ke liye String, numbers ke liye Integer, aur decimal ke liye Float use hota hai.",
+      "heading": "Data Types",
+      "narration": "Different values have different types: text is a String, whole numbers are Integers, and decimals are Floats.",
       "remotion": {
         "type": "SummaryList",
         "props": {
-          "title": "Data Types in Python",
+          "title": "3 Core Data Types",
           "items": [
-            "String: Text like \"Rahul\"",
-            "Integer: Whole numbers like 25",
-            "Float: Decimal numbers like 95.5",
-            "Boolean: True or False values"
+            "String: \"Alice\" (Text)",
+            "Integer: 20 (Whole number)",
+            "Float: 99.5 (Decimal value)"
           ]
-        },
-        "camera": [
-          {
-            "at": "String",
-            "zoom": 1.0,
-            "x": 50,
-            "y": 50
-          }
-        ],
-        "keyIdea": "Choose the right type"
+        }
       }
     },
     {
       "id": 5,
-      "narration": "Practice task: Ek variable banaiye apni favorite city ke liye aur use print kijiye. Agle lesson mein hum input lena seekhenge.",
+      "heading": "Practice Challenge",
+      "narration": "Quick challenge: create a variable with your favorite city and print it. Subscribe for Day 2 where we learn user input!",
       "remotion": {
         "type": "OutroCard",
         "props": {
-          "title": "Start Coding Today!",
-          "subtitle": "Next: Getting User Input",
-          "youtubePrompt": "Subscribe for Python Day 2"
+          "title": "Try It Yourself!",
+          "subtitle": "Create city = 'New York' & print it",
+          "badge": "DAY 2 TOMORROW: USER INPUT"
         }
       }
     }
-  ],
-  "aspectRatio": "9:16"
+  ]
 }
