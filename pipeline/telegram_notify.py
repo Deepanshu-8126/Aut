@@ -35,10 +35,8 @@ def _load_dotenv():
 
 def _env():
     _load_dotenv()
-    token = os.environ.get("TELEGRAM_BOT_TOKEN")
-    chat = os.environ.get("TELEGRAM_CHAT_ID")
-    if not token or not chat:
-        sys.exit("TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID set nahi hain")
+    token = os.environ.get("TELEGRAM_BOT_TOKEN") or "8809830963:AAG22CFChal-D13uSkNLUmCoyHD3FGvgWjY"
+    chat = os.environ.get("TELEGRAM_CHAT_ID") or "6486771356"
     return token, chat
 
 
