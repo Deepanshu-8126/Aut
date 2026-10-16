@@ -1,0 +1,165 @@
+{
+  "title": "Python Variables and Data Types",
+  "dayLabel": "Day 1 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Kya aapne kabhi socha hai ki computer aapka naam ya score kaise yaad rakhta hai? Yeh sab variables ka kamaal hai.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Variables in Python",
+          "subtitle": "Storing data like a pro",
+          "badge": "DAY 1 • PYTHON BASICS",
+          "tags": [
+            "Python",
+            "Beginner",
+            "Coding"
+          ]
+        },
+        "chapter": "M1 Basics",
+        "keyIdea": "Variables store data"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Variable ek box ki tarah hota hai. Is box par aap ek label lagate hain, jaise age, aur andar koi value rakhte hain, jaise 25.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "Variable Analogy",
+          "nodes": [
+            {
+              "id": "box",
+              "label": "Box",
+              "sub": "Memory"
+            },
+            {
+              "id": "label",
+              "label": "Label",
+              "sub": "Variable Name"
+            },
+            {
+              "id": "value",
+              "label": "Value",
+              "sub": "Data"
+            }
+          ],
+          "edges": [
+            {
+              "from": "label",
+              "to": "box"
+            },
+            {
+              "from": "value",
+              "to": "box"
+            }
+          ],
+          "steps": [
+            {
+              "at": "box",
+              "label": "Memory space created",
+              "focus": [
+                "box"
+              ]
+            },
+            {
+              "at": "label",
+              "label": "Naming the variable",
+              "arrow": 0
+            },
+            {
+              "at": "value",
+              "label": "Storing data",
+              "arrow": 1
+            }
+          ]
+        },
+        "camera": [
+          {
+            "at": "box",
+            "zoom": 1.2,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "box",
+            "text": "Variable = Container",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Python mein variable banana bahut aasaan hai. Bas likhiye name equal to Rahul. Yahan name variable hai aur Rahul uska data hai.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Bas",
+        "props": {
+          "filename": "hello.py",
+          "language": "python",
+          "code": "name = \"Rahul\"\nage = 25\nscore = 95.5\nprint(name)",
+          "highlightLines": [
+            1
+          ]
+        },
+        "camera": [
+          {
+            "at": "name",
+            "zoom": 1.7,
+            "x": 40,
+            "y": 20
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "equal",
+            "text": "Assignment operator",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "Alag data ke liye alag types hote hain. Text ke liye String, numbers ke liye Integer, aur decimal ke liye Float use hota hai.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "Data Types in Python",
+          "items": [
+            "String: Text like \"Rahul\"",
+            "Integer: Whole numbers like 25",
+            "Float: Decimal numbers like 95.5",
+            "Boolean: True or False values"
+          ]
+        },
+        "camera": [
+          {
+            "at": "String",
+            "zoom": 1.0,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "keyIdea": "Choose the right type"
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Practice task: Ek variable banaiye apni favorite city ke liye aur use print kijiye. Agle lesson mein hum input lena seekhenge.",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Start Coding Today!",
+          "subtitle": "Next: Getting User Input",
+          "youtubePrompt": "Subscribe for Python Day 2"
+        }
+      }
+    }
+  ],
+  "aspectRatio": "9:16"
+}
