@@ -29,6 +29,10 @@ on:
         options:
           - hf_beta
           - hm_omega
+      day:
+        description: "Day number (optional, e.g. 1)"
+        required: false
+        default: ""
       upload:
         description: "YouTube par upload karna hai?"
         type: boolean
@@ -81,6 +85,7 @@ jobs:
           EVENT_SCHEDULE: ${{ github.event.schedule }}
           LANGS: ${{ github.event.inputs.lang }}
           VOICE: ${{ github.event.inputs.voice || 'hf_beta' }}
+          DAY: ${{ github.event.inputs.day }}
           DO_UPLOAD: ${{ github.event_name == 'schedule' || github.event.inputs.upload == 'true' || github.event.inputs.upload == true }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -107,6 +112,7 @@ jobs:
           echo "Selected Series: $TARGET_SERIES | Voice: $VOICE"
           ARGS="--series $TARGET_SERIES --notify --voice $VOICE"
           [ -n "$LANGS" ] && ARGS="$ARGS --lang $LANGS"
+          [ -n "$DAY" ] && ARGS="$ARGS --day $DAY"
           [ "$DO_UPLOAD" = "true" ] && ARGS="$ARGS --upload"
           python3 pipeline/autopilot.py $ARGS
 
