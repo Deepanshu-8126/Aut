@@ -101,7 +101,7 @@ def gate(topic: str, key: str) -> dict:
 
 def build_prompt(topic: str, series: str, lang: str, day: int | None, fmt: str = "long") -> str:
     tpl = PROMPT.read_text(encoding="utf-8")
-    lang_name = {"en": "English", "hi": "Hindi (Hinglish-Devanagari, English tech words in Latin)"}[lang]
+    lang_name = {"en": "100% Pure Conversational American English (NO Hindi, NO Hinglish words)", "hi": "Hindi (Hinglish-Devanagari, English tech words in Latin)"}[lang]
     golden = (ROOT / "prompts" / "examples" / "golden_lesson.json").read_text(encoding="utf-8")
     tpl = tpl + "\n\nGOLDEN EXAMPLE (quality bar, different topic):\n" + golden
     if fmt == "short":
@@ -114,15 +114,18 @@ SHORT_NOTE = """
 
 SHORT FORMAT (YouTube Short, 9:16, 40 to 45 seconds total):
 - Exactly 4 or 5 scenes. Total narration 100 to 125 words across all scenes.
+- LANGUAGE REQUIREMENT: Narration must be 100% pure, natural, fluent American English. Do NOT mix Hindi or Hinglish words.
 - Scene 1 is a hook: a question or surprising fact in the first 3 seconds. Use TitleCard or a DSA/diagram visual.
 - One single idea only. No long setup. Each scene 8 to 14 seconds.
-- Last scene: OutroCard with a short call to action ("Full lesson ke liye link dekho"). Keep it English.
+- Last scene: OutroCard with a short call to action ("Check the channel for the full lesson!").
 - Use only the allowed scene types. Visuals stay simple (big text, one diagram).
 """
 
+HINGLISH_WORDS = {"kya", "hai", "aapne", "socha", "kaise", "mein", "aasaan", "likhiye", "iska", "alag", "hota", "kijiye", "seekhenge", "banaiye", "kamaal", "ek", "hum"}
 
-def lint_short(lesson: dict) -> list[str]:
-    """Shorts ke liye lint: 4-5 scenes, total 100-125 words, allowed types, banned phrases."""
+
+def lint_short(lesson: dict, lang: str = "en") -> list[str]:
+    """Shorts ke liye lint: 4-5 scenes, total 75-150 words, allowed types, banned phrases, language purity."""
     errs = []
     scenes = lesson.get("scenes") or []
     if not 4 <= len(scenes) <= 5:
@@ -134,10 +137,15 @@ def lint_short(lesson: dict) -> list[str]:
         rem = x.get("remotion") or {}
         if rem.get("type") not in ALLOWED_TYPES:
             errs.append(f"short scene {i}: unknown type '{rem.get('type')}'")
-        low = (x.get("narration") or "").lower()
+        narr_lower = (x.get("narration") or "").lower()
         for b in BANNED:
-            if b in low:
+            if b in narr_lower:
                 errs.append(f"short scene {i}: banned phrase '{b}'")
+        if lang == "en":
+            words_in = set(re.findall(r"[a-z]+", narr_lower))
+            found_hi = words_in.intersection(HINGLISH_WORDS)
+            if found_hi:
+                errs.append(f"short scene {i}: Hindi/Hinglish word detected in English script: {found_hi}")
     return errs
 
 
