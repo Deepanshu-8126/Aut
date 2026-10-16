@@ -71,7 +71,7 @@ def make_lesson(series: dict, day: int, topic: str, lang: str, key: str) -> Path
     return path
 
 
-def render(series: dict, day: int, lang: str, lesson: Path, voice: str = "hf_beta") -> Path:
+def render(series: dict, day: int, lang: str, lesson: Path, voice: str = "am_michael") -> Path:
     name = f"{series['id'].replace('-', '_')}_d{day:03d}_{lang}"
     cmd = [sys.executable, str(ROOT / "pipeline" / "build_video.py"), str(lesson),
            "--name", name, "--lang", lang, "--theme", series["theme"], "--voice", voice, "--fast"]
@@ -131,7 +131,7 @@ def main() -> None:
     ap.add_argument("--upload", action="store_true")
     ap.add_argument("--manual", action="store_true", help="disabled series ko bhi sirf manual run ke liye chalao")
     ap.add_argument("--notify", action="store_true", help="Telegram par video bhejo (TELEGRAM_* env)")
-    ap.add_argument("--voice", default="hf_beta", help="Kokoro voice: hf_beta (female) or hm_omega (male)")
+    ap.add_argument("--voice", default="am_michael", help="Kokoro voice: am_michael (USA English), hf_beta (Hindi female)")
     a = ap.parse_args()
 
     series = get_series(a.series)
@@ -146,8 +146,9 @@ def main() -> None:
         raise SystemExit("curriculum khatam")
     topic = curriculum[day - 1]["topic"]
     langs = (a.lang or ",".join(series["langs"])).split(",")
+    voice = a.voice if a.voice != "am_michael" else (series.get("voice") or a.voice)
 
-    print(f"series={series['id']} day={day} topic='{topic}' langs={langs} voice={a.voice}")
+    print(f"series={series['id']} day={day} topic='{topic}' langs={langs} voice={voice}")
     if a.dry_run:
         for lang in langs:
             print(f"  would build: {lesson_path(series['id'], day, lang).name} -> render -> meta")
@@ -158,8 +159,8 @@ def main() -> None:
     for lang in langs:
         print(f"\n[{lang}] script")
         lesson = make_lesson(series, day, topic, lang, key)
-        print(f"[{lang}] render (voice: {a.voice})")
-        mp4 = render(series, day, lang, lesson, voice=a.voice)
+        print(f"[{lang}] render (voice: {voice})")
+        mp4 = render(series, day, lang, lesson, voice=voice)
         thumb = make_thumb(series, day, lang, lesson)
         seo = build_seo(series["name"], topic, lang, lesson, key) if key else None
         meta = write_meta(series, day, lang, lesson, mp4, thumb, seo)
