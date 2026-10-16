@@ -91,7 +91,7 @@ async def _run_edge(text: str, voice: str, out: Path, rate: str):
 
 def synth_with_words(text: str, voice: str, out: Path, rate: str = "+0%"):
     out.parent.mkdir(parents=True, exist_ok=True)
-    voice_lower = (voice or "hf_beta").lower()
+    voice_lower = (voice or "am_michael").lower()
 
     # 1. Try Kokoro-82M if requested or default
     if voice_lower in KOKORO_VOICES or voice_lower.startswith(("hf_", "hm_", "af_", "am_")):
@@ -99,15 +99,19 @@ def synth_with_words(text: str, voice: str, out: Path, rate: str = "+0%"):
         if res is not None:
             return res
 
-    # 2. Edge-TTS Fallback (Natural Indian voices, avoid robotic Christopher/Andrew)
-    if any(m in voice_lower for m in ["omega", "male", "guy", "prabhat"]):
+    # 2. Edge-TTS Fallback (USA English for American voices, Indian English for Indian voices)
+    if any(m in voice_lower for m in ["michael", "guy", "christopher", "us_male"]):
+        edge_voice = "en-US-GuyNeural"
+    elif any(f in voice_lower for f in ["bella", "heart", "jenny", "us_female"]):
+        edge_voice = "en-US-JennyNeural"
+    elif any(m in voice_lower for m in ["omega", "prabhat"]):
         edge_voice = "en-IN-PrabhatNeural"
-    elif any(f in voice_lower for f in ["beta", "female", "neerja", "jenny"]):
+    elif any(f in voice_lower for f in ["beta", "female", "neerja"]):
         edge_voice = "en-IN-NeerjaNeural"
     elif voice.startswith("hi-") or voice.startswith("en-"):
         edge_voice = voice
     else:
-        edge_voice = "en-IN-NeerjaNeural"
+        edge_voice = "en-US-GuyNeural"
 
     words = asyncio.run(_run_edge(text, edge_voice, out, rate))
     end = words[-1]["end"] if words else 0.0
