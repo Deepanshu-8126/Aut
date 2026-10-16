@@ -53,15 +53,22 @@ def lesson_path(sid: str, day: int, lang: str) -> Path:
 def make_lesson(series: dict, day: int, topic: str, lang: str, key: str) -> Path:
     path = lesson_path(series["id"], day, lang)
     if path.exists():
-        print(f"  lesson pehle se hai: {path.name}")
-        return path
+        try:
+            existing = json.loads(path.read_text(encoding="utf-8"))
+            errs = lint_short(existing, lang) if series.get("format") == "short" else lint(existing, lang)
+            if not errs:
+                print(f"  lesson pehle se hai: {path.name}")
+                return path
+            print(f"  existing lesson rejected ({errs}), re-generating...")
+        except Exception:
+            pass
     if not key:
         raise SystemExit("GEMINI_API_KEY nahi hai. Script generate nahi ho sakti.")
     fmt = series.get("format", "long")
     lesson = gemini_json(build_prompt(topic, series["name"], lang, day, fmt), key)
     if fmt == "short":
         lesson["aspectRatio"] = "9:16"
-        errs = lint_short(lesson)
+        errs = lint_short(lesson, lang)
     else:
         errs = lint(lesson, lang)
     if errs:
