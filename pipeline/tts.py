@@ -62,7 +62,7 @@ def synth_edge(text: str, voice: str, out: Path) -> float:
 def synth_lang(lang_cfg: dict, text: str, out: Path) -> float:
     """Dispatch by the language's configured engine with automatic fallback to local Kokoro."""
     out.parent.mkdir(parents=True, exist_ok=True)
-    voice = lang_cfg.get("voice") or "hf_beta"
+    voice = lang_cfg.get("voice") or ("am_michael" if lang_cfg.get("lang") == "en" else "hf_beta")
     try:
         from kokoro import KPipeline
         import soundfile as sf
@@ -86,15 +86,17 @@ def synth_lang(lang_cfg: dict, text: str, out: Path) -> float:
     except Exception as e:
         print(f"[TTS] Local Kokoro notice: {e}, attempting natural fallback...")
 
-    # Natural Indian fallback voices (avoid robotic Christopher/Andrew)
-    if any(m in voice.lower() for m in ["omega", "male", "prabhat"]):
+    # USA & Indian fallback voices
+    if any(m in voice.lower() for m in ["michael", "guy", "christopher"]):
+        edge_voice = "en-US-GuyNeural"
+    elif any(m in voice.lower() for m in ["omega", "male", "prabhat"]):
         edge_voice = "en-IN-PrabhatNeural"
     elif any(f in voice.lower() for f in ["beta", "female", "neerja"]):
         edge_voice = "en-IN-NeerjaNeural"
     elif voice.startswith("hi-") or voice.startswith("en-"):
         edge_voice = voice
     else:
-        edge_voice = "en-IN-NeerjaNeural"
+        edge_voice = "en-US-GuyNeural"
     return synth_edge(text, edge_voice, out)
 
 
