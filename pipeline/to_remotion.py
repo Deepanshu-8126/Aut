@@ -22,7 +22,7 @@ import random  # noqa: E402
 FPS = 30
 VOICE_RATE = "-8%"   # thoda slow, teacher jaisa pace
 TYPE_TAIL = 0.4      # typing narration khatam hone se 0.4s pehle khatam
-VOICE = {"en": "hf_beta", "hi": "hf_beta"}
+VOICE = {"en": "am_michael", "hi": "hf_beta"}
 
 
 def key_events(props: dict) -> list:
@@ -75,12 +75,12 @@ def scene_props(s: dict) -> tuple[str, dict]:
     return "SummaryList", {"title": s.get("heading"), "items": items or [s.get("narration", "")]}
 
 
-def build(script_path: Path, lang: str, out: Path, theme: str, clips: dict, voice: str = "hf_beta") -> None:
+def build(script_path: Path, lang: str, out: Path, theme: str, clips: dict, voice: str = "am_michael") -> None:
     script = json.loads(script_path.read_text(encoding="utf-8"))
     pub = ROOT / "remotion" / "public"
     (pub / "audio").mkdir(parents=True, exist_ok=True)
     scenes = []
-    selected_voice = voice or VOICE.get(lang, "hf_beta")
+    selected_voice = voice or VOICE.get(lang, "am_michael")
     for s in script["scenes"]:
         # lesson ka naam prefix: do lessons ki audio/sfx kabhi overwrite na hon
         sid = f"{script_path.stem}_{lang}_s{s['id']}"
@@ -179,7 +179,7 @@ if __name__ == "__main__":
     ap.add_argument("lang", choices=["en", "hi"])
     ap.add_argument("out")
     ap.add_argument("--theme", default="light-grid")
-    ap.add_argument("--voice", default="hf_beta", help="Kokoro voice (hf_beta, hm_omega)")
+    ap.add_argument("--voice", default="am_michael", help="Kokoro voice (am_michael, af_heart, hf_beta, hm_omega)")
     ap.add_argument("--clip", action="append", default=[], help="scene_id=path/in/public.mp4")
     a = ap.parse_args()
     clips = {int(k): v for k, v in (c.split("=", 1) for c in a.clip)}
