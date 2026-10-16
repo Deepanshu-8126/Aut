@@ -22,7 +22,7 @@ import random  # noqa: E402
 FPS = 30
 VOICE_RATE = "-8%"   # thoda slow, teacher jaisa pace
 TYPE_TAIL = 0.4      # typing narration khatam hone se 0.4s pehle khatam
-VOICE = {"en": "en-US-AndrewNeural", "hi": "hi-IN-SwaraNeural"}
+VOICE = {"en": "hf_beta", "hi": "hf_beta"}
 
 
 def key_events(props: dict) -> list:
@@ -75,20 +75,21 @@ def scene_props(s: dict) -> tuple[str, dict]:
     return "SummaryList", {"title": s.get("heading"), "items": items or [s.get("narration", "")]}
 
 
-def build(script_path: Path, lang: str, out: Path, theme: str, clips: dict) -> None:
+def build(script_path: Path, lang: str, out: Path, theme: str, clips: dict, voice: str = "hf_beta") -> None:
     script = json.loads(script_path.read_text(encoding="utf-8"))
     pub = ROOT / "remotion" / "public"
     (pub / "audio").mkdir(parents=True, exist_ok=True)
     scenes = []
+    selected_voice = voice or VOICE.get(lang, "hf_beta")
     for s in script["scenes"]:
         # lesson ka naam prefix: do lessons ki audio/sfx kabhi overwrite na hon
         sid = f"{script_path.stem}_{lang}_s{s['id']}"
-        if lang == "hi":
+        if lang == "hi" and not selected_voice.startswith(("hf_", "hm_")):
             audio_rel = f"audio/{sid}.wav"
             dur, words = tts_parler_hi.synth_with_words(s["narration"], pub / audio_rel)
         else:
             audio_rel = f"audio/{sid}.mp3"
-            dur, words = synth_with_words(s["narration"], VOICE[lang], pub / audio_rel, rate=VOICE_RATE)
+            dur, words = synth_with_words(s["narration"], selected_voice, pub / audio_rel, rate=VOICE_RATE)
         if s.get("manim") and s["id"] in clips:
             s["_clip"] = clips[s["id"]]
         typ, props = scene_props(s)
@@ -178,7 +179,8 @@ if __name__ == "__main__":
     ap.add_argument("lang", choices=["en", "hi"])
     ap.add_argument("out")
     ap.add_argument("--theme", default="light-grid")
+    ap.add_argument("--voice", default="hf_beta", help="Kokoro voice (hf_beta, hm_omega)")
     ap.add_argument("--clip", action="append", default=[], help="scene_id=path/in/public.mp4")
     a = ap.parse_args()
     clips = {int(k): v for k, v in (c.split("=", 1) for c in a.clip)}
-    build(Path(a.script), a.lang, Path(a.out), a.theme, clips)
+    build(Path(a.script), a.lang, Path(a.out), a.theme, clips, a.voice)
