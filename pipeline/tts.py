@@ -60,16 +60,42 @@ def synth_edge(text: str, voice: str, out: Path) -> float:
 
 
 def synth_lang(lang_cfg: dict, text: str, out: Path) -> float:
-    """Dispatch by the language's configured engine with automatic fallback to edge-tts."""
-    if lang_cfg.get("engine") == "kokoro" and Path("/opt/kokoro/kokoro-v1.0.onnx").exists():
-        try:
-            return synth_kokoro(text, lang_cfg["voice"], out)
-        except Exception as e:
-            print(f"[TTS] Kokoro unavailable ({e}), falling back to edge-tts.")
-    voice = lang_cfg.get("voice", "")
-    if not voice or "am_" in voice or "af_" in voice:
-        voice = "en-US-ChristopherNeural"
-    return synth_edge(text, voice, out)
+    """Dispatch by the language's configured engine with automatic fallback to local Kokoro."""
+    out.parent.mkdir(parents=True, exist_ok=True)
+    voice = lang_cfg.get("voice") or "hf_beta"
+    try:
+        from kokoro import KPipeline
+        import soundfile as sf
+        import numpy as np
+        lang_code = 'h' if lang_cfg.get("lang") == "hi" else 'a'
+        pipeline = KPipeline(lang_code=lang_code)
+        generator = pipeline(text, voice=voice, speed=1.05)
+        chunks = []
+        for res in generator:
+            ca = getattr(res, "audio", None)
+            if ca is None and isinstance(res, (tuple, list)):
+                ca = res[-1]
+            if ca is not None:
+                chunks.append(ca)
+        if chunks:
+            full = np.concatenate(chunks)
+            wav_path = out.with_suffix(".wav")
+            sf.write(str(wav_path), full, 24000)
+            _to_mp3(wav_path, out)
+            return audio_duration(out)
+    except Exception as e:
+        print(f"[TTS] Local Kokoro notice: {e}, attempting natural fallback...")
+
+    # Natural Indian fallback voices (avoid robotic Christopher/Andrew)
+    if any(m in voice.lower() for m in ["omega", "male", "prabhat"]):
+        edge_voice = "en-IN-PrabhatNeural"
+    elif any(f in voice.lower() for f in ["beta", "female", "neerja"]):
+        edge_voice = "en-IN-NeerjaNeural"
+    elif voice.startswith("hi-") or voice.startswith("en-"):
+        edge_voice = voice
+    else:
+        edge_voice = "en-IN-NeerjaNeural"
+    return synth_edge(text, edge_voice, out)
 
 
 def split_sentences(text: str) -> list[str]:
