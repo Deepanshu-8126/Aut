@@ -6,6 +6,7 @@
       "name": "Python in 100 Days",
       "format": "long",
       "theme": "light-grid",
+      "voice": "am_michael",
       "langs": [
         "en"
       ],
@@ -48,6 +49,7 @@
       "name": "Python Shorts",
       "format": "short",
       "theme": "light-grid",
+      "voice": "am_michael",
       "langs": [
         "en"
       ],
