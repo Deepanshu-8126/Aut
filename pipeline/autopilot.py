@@ -71,10 +71,10 @@ def make_lesson(series: dict, day: int, topic: str, lang: str, key: str) -> Path
     return path
 
 
-def render(series: dict, day: int, lang: str, lesson: Path) -> Path:
+def render(series: dict, day: int, lang: str, lesson: Path, voice: str = "hf_beta") -> Path:
     name = f"{series['id'].replace('-', '_')}_d{day:03d}_{lang}"
     cmd = [sys.executable, str(ROOT / "pipeline" / "build_video.py"), str(lesson),
-           "--name", name, "--lang", lang, "--theme", series["theme"], "--fast"]
+           "--name", name, "--lang", lang, "--theme", series["theme"], "--voice", voice, "--fast"]
     res = subprocess.run(cmd, cwd=ROOT)
     if res.returncode != 0:
         raise SystemExit(f"render fail: {name}")
@@ -131,6 +131,7 @@ def main() -> None:
     ap.add_argument("--upload", action="store_true")
     ap.add_argument("--manual", action="store_true", help="disabled series ko bhi sirf manual run ke liye chalao")
     ap.add_argument("--notify", action="store_true", help="Telegram par video bhejo (TELEGRAM_* env)")
+    ap.add_argument("--voice", default="hf_beta", help="Kokoro voice: hf_beta (female) or hm_omega (male)")
     a = ap.parse_args()
 
     series = get_series(a.series)
@@ -146,7 +147,7 @@ def main() -> None:
     topic = curriculum[day - 1]["topic"]
     langs = (a.lang or ",".join(series["langs"])).split(",")
 
-    print(f"series={series['id']} day={day} topic='{topic}' langs={langs}")
+    print(f"series={series['id']} day={day} topic='{topic}' langs={langs} voice={a.voice}")
     if a.dry_run:
         for lang in langs:
             print(f"  would build: {lesson_path(series['id'], day, lang).name} -> render -> meta")
@@ -157,8 +158,8 @@ def main() -> None:
     for lang in langs:
         print(f"\n[{lang}] script")
         lesson = make_lesson(series, day, topic, lang, key)
-        print(f"[{lang}] render")
-        mp4 = render(series, day, lang, lesson)
+        print(f"[{lang}] render (voice: {a.voice})")
+        mp4 = render(series, day, lang, lesson, voice=a.voice)
         thumb = make_thumb(series, day, lang, lesson)
         seo = build_seo(series["name"], topic, lang, lesson, key) if key else None
         meta = write_meta(series, day, lang, lesson, mp4, thumb, seo)
