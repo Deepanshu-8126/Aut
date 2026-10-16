@@ -22,11 +22,13 @@ on:
         required: false
         default: ""
       voice:
-        description: "Voice: hf_beta (Female Kokoro) ya hm_omega (Male Kokoro)"
+        description: "Voice: am_michael (Kokoro USA Male), af_heart (Kokoro Studio Female), hf_beta, hm_omega"
         type: choice
         required: true
-        default: hf_beta
+        default: am_michael
         options:
+          - am_michael
+          - af_heart
           - hf_beta
           - hm_omega
       day:
@@ -84,7 +86,7 @@ jobs:
           INPUT_SERIES: ${{ github.event.inputs.series }}
           EVENT_SCHEDULE: ${{ github.event.schedule }}
           LANGS: ${{ github.event.inputs.lang }}
-          VOICE: ${{ github.event.inputs.voice || 'hf_beta' }}
+          VOICE: ${{ github.event.inputs.voice || 'am_michael' }}
           DAY: ${{ github.event.inputs.day }}
           DO_UPLOAD: ${{ github.event_name == 'schedule' || github.event.inputs.upload == 'true' || github.event.inputs.upload == true }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
