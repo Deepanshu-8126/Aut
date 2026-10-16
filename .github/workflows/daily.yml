@@ -21,6 +21,14 @@ on:
         description: "en, hi ya en,hi"
         required: false
         default: ""
+      voice:
+        description: "Voice: hf_beta (Female Kokoro) ya hm_omega (Male Kokoro)"
+        type: choice
+        required: true
+        default: hf_beta
+        options:
+          - hf_beta
+          - hm_omega
       upload:
         description: "YouTube par upload karna hai?"
         type: boolean
@@ -54,10 +62,10 @@ jobs:
       - name: System deps (ffmpeg, headless chrome & remotion libs)
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg libnspr4 libnss3 libgbm1 libatk-bridge2.0-0 libgtk-3-0 libx11-xcb1 libxcomposite1 libxdamage1 libxrandr2 libdrm2 libxkbcommon0 fonts-dejavu libasound2t64 || sudo apt-get install -y libasound2
+          sudo apt-get install -y ffmpeg libnspr4 libnss3 libgbm1 libatk-bridge2.0-0 libgtk-3-0 libx11-xcb1 libxcomposite1 libxdamage1 libxrandr2 libdrm2 libxkbcommon0 fonts-dejavu espeak-ng libasound2t64 || sudo apt-get install -y libasound2 espeak-ng
 
       - name: Python deps
-        run: pip install -r requirements.txt
+        run: pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
 
       - name: Remotion deps
         run: cd remotion && (npm ci --no-audit --no-fund || npm install --no-audit --no-fund)
@@ -72,6 +80,7 @@ jobs:
           INPUT_SERIES: ${{ github.event.inputs.series }}
           EVENT_SCHEDULE: ${{ github.event.schedule }}
           LANGS: ${{ github.event.inputs.lang }}
+          VOICE: ${{ github.event.inputs.voice || 'hf_beta' }}
           DO_UPLOAD: ${{ github.event_name == 'schedule' || github.event.inputs.upload == 'true' || github.event.inputs.upload == true }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -95,8 +104,8 @@ jobs:
               TARGET_SERIES="python-shorts"
             fi
           fi
-          echo "Selected Series: $TARGET_SERIES"
-          ARGS="--series $TARGET_SERIES --notify"
+          echo "Selected Series: $TARGET_SERIES | Voice: $VOICE"
+          ARGS="--series $TARGET_SERIES --notify --voice $VOICE"
           [ -n "$LANGS" ] && ARGS="$ARGS --lang $LANGS"
           [ "$DO_UPLOAD" = "true" ] && ARGS="$ARGS --upload"
           python3 pipeline/autopilot.py $ARGS
