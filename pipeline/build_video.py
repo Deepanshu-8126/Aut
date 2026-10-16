@@ -46,7 +46,7 @@ def main() -> None:
     ap.add_argument("--name", required=True, help="output name, e.g. lists_v5")
     ap.add_argument("--lang", default="en", choices=["en", "hi"])
     ap.add_argument("--theme", default="light-grid", choices=["light-grid", "dark-vdo"])
-    ap.add_argument("--voice", default="hf_beta", help="Kokoro voice (hf_beta, hm_omega)")
+    ap.add_argument("--voice", default="am_michael", help="Kokoro voice (am_michael, af_heart, hf_beta, hm_omega)")
     ap.add_argument("--fast", action="store_true", help="Fast mode: skip stills QA & frame audit for maximum speed")
     ap.add_argument("--no-audit", action="store_true", help="frame audit skip karo")
     ap.add_argument("--skip-qa", action="store_true", help="layout QA gate skip karo (default: ON, fail par render ruk jaata hai)")
