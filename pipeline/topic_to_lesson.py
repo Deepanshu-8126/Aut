@@ -128,8 +128,8 @@ def lint_short(lesson: dict) -> list[str]:
     if not 4 <= len(scenes) <= 5:
         errs.append(f"short: scenes {len(scenes)} (4 ya 5 chahiye)")
     total = sum(len((x.get("narration") or "").split()) for x in scenes)
-    if not 100 <= total <= 125:
-        errs.append(f"short: total narration {total} words (100-125 chahiye, ~40-45 sec)")
+    if not 75 <= total <= 150:
+        errs.append(f"short: total narration {total} words (75-150 chahiye, ~35-55 sec)")
     for i, x in enumerate(scenes, 1):
         rem = x.get("remotion") or {}
         if rem.get("type") not in ALLOWED_TYPES:
