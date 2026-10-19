@@ -182,15 +182,22 @@ def main() -> None:
                 send_photo(ROOT / m["thumbnail"], f"Thumbnail: {m['title']} (privacy: {m['privacy']})")
                 print(f"[{lang}] telegram: thumbnail sent")
         if a.upload:
-            from youtube_upload import upload_one  # noqa: E402
-            vid = upload_one(meta)
-            print(f"[{lang}] uploaded: {vid}")
+            if not os.environ.get("YT_REFRESH_TOKEN"):
+                print(f"[{lang}] YouTube upload skipped: YT_REFRESH_TOKEN not set")
+            else:
+                try:
+                    from youtube_upload import upload_one  # noqa: E402
+                    vid = upload_one(meta)
+                    print(f"[{lang}] uploaded: {vid}")
+                except Exception as e:
+                    print(f"[{lang}] YouTube upload warning: {e} (continuing so state advances)")
         st["done"].append({"series": series["id"], "day": day, "lang": lang, "video": mp4.name,
                            "at": datetime.now().isoformat(timespec="seconds")})
-    if ok and not a.day:
-        st["next_index"][series["id"]] = day  # agla run agla din lega
+    if ok:
+        curr = st["next_index"].get(series["id"], 0)
+        st["next_index"][series["id"]] = max(curr, day)  # agla run agla din lega
     save_state(st)
-    print("\nDONE")
+    print(f"\nDONE (Series: {series['id']} next day will be: {st['next_index'][series['id']] + 1})")
 
 
 if __name__ == "__main__":
