@@ -8,11 +8,11 @@ export interface CameraKey {
   y?: number;     // zoom center, % (0-100) vertical
 }
 
-// Scene visual ko smooth zoom in/out karta hai. Keyframes ke beech ease-in-out.
-export const Camera: React.FC<{ keys?: CameraKey[]; children: React.ReactNode }> = ({ keys, children }) => {
+// Scene visual ko smooth zoom in/out karta hai. 9:16 vertical shorts me zoom disable rehta hai (fixed stable layout).
+export const Camera: React.FC<{ keys?: CameraKey[]; aspectRatio?: '9:16' | '16:9'; children: React.ReactNode }> = ({ keys, aspectRatio, children }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  if (!keys || keys.length === 0) return <>{children}</>;
+  if (!keys || keys.length === 0 || aspectRatio === '9:16') return <>{children}</>;
 
   const ks = [...keys].sort((a, b) => a.t - b.t).map((k) => ({
     t: k.t, zoom: k.zoom ?? 1, x: k.x ?? 50, y: k.y ?? 50,
