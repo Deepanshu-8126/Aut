@@ -182,8 +182,10 @@ def main() -> None:
                 send_photo(ROOT / m["thumbnail"], f"Thumbnail: {m['title']} (privacy: {m['privacy']})")
                 print(f"[{lang}] telegram: thumbnail sent")
         if a.upload:
-            if not os.environ.get("YT_REFRESH_TOKEN"):
-                print(f"[{lang}] YouTube upload skipped: YT_REFRESH_TOKEN not set")
+            rt = os.environ.get("YT_REFRESH_TOKEN", "").strip()
+            cid = os.environ.get("YT_CLIENT_ID", "").strip()
+            if not (rt and cid):
+                print(f"[{lang}] YouTube upload skipped: YT_REFRESH_TOKEN or YT_CLIENT_ID not set")
             else:
                 try:
                     from youtube_upload import upload_one  # noqa: E402
