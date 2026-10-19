@@ -105,7 +105,7 @@ export const VideoComposition: React.FC<{ project: ProjectData }> = ({ project }
               {/* Scene Visual */}
               <div className="w-full h-full relative z-10">
                 <SceneFade>
-                  <Camera keys={(scene as any).camera}>
+                  <Camera keys={(scene as any).camera} aspectRatio={aspectRatio}>
                     {renderSceneContent(scene)}
                   </Camera>
                 </SceneFade>
