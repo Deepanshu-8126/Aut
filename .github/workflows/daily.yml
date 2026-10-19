@@ -88,7 +88,7 @@ jobs:
           LANGS: ${{ github.event.inputs.lang }}
           VOICE: ${{ github.event.inputs.voice || 'am_michael' }}
           DAY: ${{ github.event.inputs.day }}
-          DO_UPLOAD: ${{ github.event_name == 'schedule' || github.event.inputs.upload == 'true' || github.event.inputs.upload == true }}
+          DO_UPLOAD: ${{ (github.event_name == 'schedule' || github.event.inputs.upload == 'true' || github.event.inputs.upload == true) && secrets.YT_REFRESH_TOKEN != '' }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -131,10 +131,11 @@ jobs:
           if-no-files-found: warn
 
       - name: Save state and meta
+        if: always()
         run: |
           git config user.name "yt-automator-bot"
           git config user.email "bot@users.noreply.github.com"
           git add state/ config/series.json tests/ output/meta/ || true
-          git commit -m "autopilot: daily run" || echo "nothing to commit"
+          git commit -m "autopilot: update series state [skip ci]" || echo "nothing to commit"
           git pull --rebase origin main || true
           git push || echo "push skipped"
