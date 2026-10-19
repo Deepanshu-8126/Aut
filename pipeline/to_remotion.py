@@ -140,15 +140,17 @@ def build(script_path: Path, lang: str, out: Path, theme: str, clips: dict, voic
         popups = []
         for pp in r.get("popups", []):
             popups.append({**pp, "at": round(find_word_time(words, pp["anchor"], 0.0), 3)})
-        # Camera keyframes: {"at": "word in narration" | "t": sec, "zoom", "x", "y"}
+        # Camera keyframes: vertical 9:16 shorts me zoom disable rehta hai (fixed stable layout)
         camera = []
-        for k in (r.get("camera") or s.get("camera") or []):
-            t = k.get("t")
-            if t is None:
-                t = find_word_time(words, k.get("at", ""), 0.0)
-            camera.append({"t": round(float(t), 3), "zoom": k.get("zoom", 1.0),
-                           "x": k.get("x", 50), "y": k.get("y", 50)})
-        camera.sort(key=lambda c: c["t"])
+        is_vertical = script.get("aspectRatio") == "9:16"
+        if not is_vertical:
+            for k in (r.get("camera") or s.get("camera") or []):
+                t = k.get("t")
+                if t is None:
+                    t = find_word_time(words, k.get("at", ""), 0.0)
+                camera.append({"t": round(float(t), 3), "zoom": min(float(k.get("zoom", 1.0)), 1.15),
+                               "x": k.get("x", 50), "y": k.get("y", 50)})
+            camera.sort(key=lambda c: c["t"])
         keys_file = None
         if typ == "TypingCode":
             keys_file = f"sfx/keys_{sid}.wav"
