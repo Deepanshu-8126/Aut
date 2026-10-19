@@ -3,7 +3,7 @@ name: Daily video (autopilot)
 on:
   schedule:
     - cron: "0 8 * * *"   # 08:00 UTC = 13:30 IST (1:30 PM IST) -> Python Shorts
-    - cron: "0 20 * * *"  # 20:00 UTC = 01:30 IST (1:30 AM IST) -> Java 100 Days Long Video
+    - cron: "0 18 * * *"  # 18:00 UTC = 23:30 IST (11:30 PM IST) -> Java 100 Days Long Video
   workflow_dispatch:
     inputs:
       series:
