@@ -20,11 +20,16 @@ SCOPES = ["https://www.googleapis.com/auth/youtube.upload", "https://www.googlea
 def _service():
     from google.oauth2.credentials import Credentials
     from googleapiclient.discovery import build
+    rt = os.environ.get("YT_REFRESH_TOKEN", "").strip()
+    cid = os.environ.get("YT_CLIENT_ID", "").strip()
+    csec = os.environ.get("YT_CLIENT_SECRET", "").strip()
+    if not (rt and cid and csec):
+        raise ValueError(f"Missing YouTube OAuth credentials: YT_REFRESH_TOKEN={bool(rt)}, YT_CLIENT_ID={bool(cid)}, YT_CLIENT_SECRET={bool(csec)}")
     creds = Credentials(
         token=None,
-        refresh_token=os.environ["YT_REFRESH_TOKEN"],
-        client_id=os.environ["YT_CLIENT_ID"],
-        client_secret=os.environ["YT_CLIENT_SECRET"],
+        refresh_token=rt,
+        client_id=cid,
+        client_secret=csec,
         token_uri="https://oauth2.googleapis.com/token",
         scopes=SCOPES,
     )
