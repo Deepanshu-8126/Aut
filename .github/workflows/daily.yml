@@ -98,7 +98,7 @@ jobs:
         run: |
           if [ -n "$INPUT_SERIES" ] && [ "$INPUT_SERIES" != "auto" ]; then
             TARGET_SERIES="$INPUT_SERIES"
-          elif [ "$EVENT_SCHEDULE" = "0 20 * * *" ]; then
+          elif [ "$EVENT_SCHEDULE" = "0 18 * * *" ] || [ "$EVENT_SCHEDULE" = "0 20 * * *" ]; then
             TARGET_SERIES="java-100-days"
           elif [ "$EVENT_SCHEDULE" = "0 8 * * *" ]; then
             TARGET_SERIES="python-shorts"
