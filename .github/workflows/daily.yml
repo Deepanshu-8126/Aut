@@ -88,7 +88,7 @@ jobs:
           LANGS: ${{ github.event.inputs.lang }}
           VOICE: ${{ github.event.inputs.voice || 'am_michael' }}
           DAY: ${{ github.event.inputs.day }}
-          DO_UPLOAD: ${{ (github.event_name == 'schedule' || github.event.inputs.upload == 'true' || github.event.inputs.upload == true) && secrets.YT_REFRESH_TOKEN != '' }}
+          DO_UPLOAD: ${{ (github.event_name == 'schedule' || github.event.inputs.upload == 'true' || github.event.inputs.upload == true) }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -115,7 +115,11 @@ jobs:
           ARGS="--series $TARGET_SERIES --notify --voice $VOICE"
           [ -n "$LANGS" ] && ARGS="$ARGS --lang $LANGS"
           [ -n "$DAY" ] && ARGS="$ARGS --day $DAY"
-          [ "$DO_UPLOAD" = "true" ] && ARGS="$ARGS --upload"
+          if [ "$DO_UPLOAD" = "true" ] && [ -n "$YT_REFRESH_TOKEN" ] && [ -n "$YT_CLIENT_ID" ]; then
+            ARGS="$ARGS --upload"
+          else
+            echo "ℹ️ YouTube upload flag omitted: credentials not set or upload disabled"
+          fi
           python3 pipeline/autopilot.py $ARGS
 
       - name: Upload Video Artifact
