@@ -1,0 +1,171 @@
+{
+  "title": "Python Input and Output",
+  "dayLabel": "Day 2 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "How do you make your computer talk back to you? This is the first step to building any real application.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Making Python Talk",
+          "subtitle": "Mastering Input and Output",
+          "badge": "DAY 2 • PYTHON BASICS",
+          "tags": [
+            "Python",
+            "Input",
+            "Output"
+          ]
+        },
+        "chapter": "M1 Basics"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Think of print as a megaphone. It sends text to the screen. Input is like an empty mailbox. It waits for the user to type something in.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "How Data Moves",
+          "nodes": [
+            {
+              "id": "user",
+              "label": "User"
+            },
+            {
+              "id": "input",
+              "label": "input()",
+              "sub": "Receives"
+            },
+            {
+              "id": "print",
+              "label": "print()",
+              "sub": "Sends"
+            },
+            {
+              "id": "screen",
+              "label": "Screen"
+            }
+          ],
+          "edges": [
+            {
+              "from": "user",
+              "to": "input",
+              "label": "Types"
+            },
+            {
+              "from": "print",
+              "to": "screen",
+              "label": "Shows"
+            }
+          ],
+          "steps": [
+            {
+              "at": "mailbox",
+              "label": "Input waits for data",
+              "focus": [
+                "input"
+              ],
+              "arrow": 0
+            },
+            {
+              "at": "megaphone",
+              "label": "Print displays data",
+              "focus": [
+                "print"
+              ],
+              "arrow": 1
+            }
+          ]
+        },
+        "keyIdea": "Input receives, Print sends",
+        "camera": [
+          {
+            "at": "megaphone",
+            "zoom": 1.2,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Look at this code. We use input to ask for a name. Then, print says hello. That plus sign joins the two pieces of text together.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Look",
+        "props": {
+          "filename": "hello.py",
+          "language": "python",
+          "code": "name = input(\"Enter name: \")\nprint(\"Hello \" + name)",
+          "highlightLines": [
+            1,
+            2
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "input",
+            "text": "Stops and waits",
+            "kind": "tip"
+          },
+          {
+            "anchor": "plus",
+            "text": "Joins text",
+            "kind": "note"
+          }
+        ],
+        "camera": [
+          {
+            "at": "input",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 35
+          },
+          {
+            "at": "print",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 55
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "When we run this, the computer stops and waits. I type my name, hit enter, and the computer responds instantly. Simple, right?",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "python hello.py",
+          "output": [
+            "Enter name: Alex",
+            "Hello Alex"
+          ]
+        },
+        "camera": [
+          {
+            "at": "type",
+            "zoom": 1.5,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Recap: print shows data, input gets it. Practice task: ask for a favorite color and print it. Check the channel for more!",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Ready to Practice?",
+          "subtitle": "Try asking for a favorite color!",
+          "youtubePrompt": "Subscribe for Day 3"
+        }
+      }
+    }
+  ],
+  "aspectRatio": "9:16"
+}

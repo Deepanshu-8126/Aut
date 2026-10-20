@@ -1,6 +1,6 @@
 {
   "next_index": {
-    "python-shorts": 1,
+    "python-shorts": 2,
     "java-100-days": 1
   },
   "done": [
@@ -66,6 +66,13 @@
       "lang": "en",
       "video": "java_100_days_d001_en.mp4",
       "at": "2026-10-19T22:20:52"
+    },
+    {
+      "series": "python-shorts",
+      "day": 2,
+      "lang": "en",
+      "video": "python_shorts_d002_en.mp4",
+      "at": "2026-10-20T13:27:32"
     }
   ]
 }
