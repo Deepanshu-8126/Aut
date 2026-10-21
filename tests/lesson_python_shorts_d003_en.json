@@ -1,0 +1,162 @@
+{
+  "title": "Python Numbers and Math",
+  "dayLabel": "Day 3 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Can you turn Python into a powerful calculator in seconds? Let's look at how Python handles numbers and basic math.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Python Math Basics",
+          "subtitle": "Numbers and Operators",
+          "badge": "DAY 3 • PYTHON SHORTS",
+          "tags": [
+            "Python",
+            "Coding",
+            "Math"
+          ]
+        },
+        "chapter": "M1 Setup and Basics"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Think of operators as simple machines. You feed in two numbers, pick a tool like the asterisk for multiplication, and get a result.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "The Math Process",
+          "nodes": [
+            {
+              "id": "n1",
+              "label": "Input Numbers",
+              "sub": "5 and 10"
+            },
+            {
+              "id": "n2",
+              "label": "Operator",
+              "sub": "The * symbol"
+            },
+            {
+              "id": "n3",
+              "label": "Result",
+              "sub": "50"
+            }
+          ],
+          "edges": [
+            {
+              "from": "n1",
+              "to": "n2",
+              "label": "Process"
+            },
+            {
+              "from": "n2",
+              "to": "n3",
+              "label": "Output"
+            }
+          ],
+          "steps": [
+            {
+              "at": "numbers",
+              "label": "Starting with values",
+              "focus": [
+                "n1"
+              ]
+            },
+            {
+              "at": "asterisk",
+              "label": "Applying the tool",
+              "focus": [
+                "n2"
+              ],
+              "arrow": 0
+            }
+          ]
+        },
+        "camera": [
+          {
+            "at": "tool",
+            "zoom": 1.2,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "keyIdea": "Operators are tools for math"
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Look at this code. The plus sign adds, the asterisk multiplies, and the double slash is special. It gives you a whole number, ignoring decimals.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Look",
+        "props": {
+          "filename": "math_test.py",
+          "language": "python",
+          "code": "print(10 + 5)\nprint(10 * 3)\nprint(10 // 3)",
+          "highlightLines": [
+            3
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "asterisk",
+            "text": "Use * for multiply",
+            "kind": "tip"
+          },
+          {
+            "anchor": "slash",
+            "text": "Floor division",
+            "kind": "note"
+          }
+        ],
+        "camera": [
+          {
+            "at": "double",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 70
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "When we run this, we get fifteen, thirty, and three. The double slash chops off the remainder. This is called floor division.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "python math_test.py",
+          "output": [
+            "15",
+            "30",
+            "3"
+          ]
+        },
+        "camera": [
+          {
+            "at": "three",
+            "zoom": 1.5,
+            "x": 50,
+            "y": 80
+          }
+        ],
+        "keyIdea": "Floor division removes decimals"
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Now you can do math! Your task: calculate how many minutes are in a day. Check the channel for more Python tips!",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Great Job!",
+          "subtitle": "Try calculating 24 * 60",
+          "youtubePrompt": "Subscribe for Day 4!"
+        }
+      }
+    }
+  ],
+  "aspectRatio": "9:16"
+}
