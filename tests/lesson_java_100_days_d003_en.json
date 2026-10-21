@@ -1,0 +1,361 @@
+{
+  "title": "Java Variables and Naming Rules",
+  "dayLabel": "Day 3 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Think about your phone contacts. You don't memorize every phone number. You save them under names like Mom or Pizza. In Java, we do the exact same thing using variables.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Names for Data",
+          "subtitle": "Variables and Naming Rules",
+          "badge": "DAY 3 • JAVA",
+          "tags": [
+            "Java",
+            "Variables",
+            "Basics"
+          ]
+        },
+        "chapter": "M1 Setup and Basics"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "A variable is like a storage box. The label on the box is the variable name. The item inside the box is the data. This label helps us find our data later.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "The Box Analogy",
+          "nodes": [
+            {
+              "id": "box",
+              "label": "Variable",
+              "sub": "A container"
+            },
+            {
+              "id": "label",
+              "label": "Name",
+              "sub": "The label"
+            },
+            {
+              "id": "item",
+              "label": "Value",
+              "sub": "The content"
+            }
+          ],
+          "edges": [
+            {
+              "from": "label",
+              "to": "box"
+            },
+            {
+              "from": "item",
+              "to": "box"
+            }
+          ],
+          "steps": [
+            {
+              "at": "label",
+              "label": "Labeling the box",
+              "focus": [
+                "label"
+              ]
+            },
+            {
+              "at": "inside",
+              "label": "Storing the data",
+              "focus": [
+                "item"
+              ]
+            }
+          ]
+        },
+        "keyIdea": "Variables are labeled containers"
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Computers store data in memory locations with very long numbers. Instead of memorizing these numbers, we give them friendly names. This makes our code readable and much easier to manage.",
+      "remotion": {
+        "type": "ArchitectureFlow",
+        "props": {
+          "title": "Why Use Names?",
+          "steps": [
+            {
+              "title": "Memory Address",
+              "desc": "0x7FFE1234 (Hard to remember)"
+            },
+            {
+              "title": "Variable Name",
+              "desc": "userAge (Easy to remember)"
+            }
+          ],
+          "activeStepIndex": 1
+        },
+        "camera": [
+          {
+            "at": "readable",
+            "zoom": 1.0,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "To create a variable, we need three things. The data type defines what kind of data fits. The name is our unique label. Finally, the value is the actual information we store.",
+      "remotion": {
+        "type": "ArchitectureFlow",
+        "props": {
+          "title": "The Three Parts",
+          "steps": [
+            {
+              "title": "Data Type",
+              "desc": "What kind of data?"
+            },
+            {
+              "title": "Name",
+              "desc": "What is the label?"
+            },
+            {
+              "title": "Value",
+              "desc": "What is the data?"
+            }
+          ],
+          "activeStepIndex": 0
+        }
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Look at this line of code. We start with int, which means a whole number. Then we name it score and give it the value of fifty. This creates our first variable.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Look",
+        "props": {
+          "filename": "Main.java",
+          "language": "java",
+          "code": "public class Main {\n  public static void main(String[] args) {\n    int score = 50;\n  }\n}",
+          "highlightLines": [
+            3
+          ]
+        },
+        "camera": [
+          {
+            "at": "int",
+            "zoom": 1.8,
+            "x": 40,
+            "y": 45
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "int",
+            "text": "int = Integer (Whole Number)",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "narration": "The equals sign here is called the assignment operator. It does not mean both sides are equal. It means take the value on the right and put it into the box on the left.",
+      "remotion": {
+        "type": "TypingCode",
+        "props": {
+          "filename": "Main.java",
+          "language": "java",
+          "code": "public class Main {\n  public static void main(String[] args) {\n    int score = 50;\n  }\n}",
+          "highlightLines": [
+            3
+          ]
+        },
+        "camera": [
+          {
+            "at": "assignment",
+            "zoom": 1.8,
+            "x": 55,
+            "y": 45
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "equals",
+            "text": "Assignment, not equality",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "narration": "Now we print the variable. We don't put quotes around score. If we used quotes, Java would print the word score. Without quotes, it prints the value fifty inside the box.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "print",
+        "props": {
+          "filename": "Main.java",
+          "language": "java",
+          "code": "public class Main {\n  public static void main(String[] args) {\n    int score = 50;\n    System.out.println(score);\n  }\n}",
+          "highlightLines": [
+            4
+          ]
+        },
+        "camera": [
+          {
+            "at": "quotes",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 55
+          }
+        ],
+        "previous_code": "public class Main {\n  public static void main(String[] args) {\n    int score = 50;\n  }\n}"
+      }
+    },
+    {
+      "id": 8,
+      "narration": "Let's run the program. The terminal shows fifty. Java looked for the box named score, opened it, and found the value we stored earlier. It works exactly like a contact list.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "java Main.java",
+          "output": [
+            "50"
+          ]
+        },
+        "camera": [
+          {
+            "at": "terminal",
+            "zoom": 1.4,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "narration": "We can also change the value later. We write score equals seventy. Now, Java throws away the old value fifty and replaces it with seventy. One box can only hold one value.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "change",
+        "props": {
+          "filename": "Main.java",
+          "language": "java",
+          "code": "public class Main {\n  public static void main(String[] args) {\n    int score = 50;\n    score = 70;\n    System.out.println(score);\n  }\n}",
+          "highlightLines": [
+            4
+          ]
+        },
+        "camera": [
+          {
+            "at": "seventy",
+            "zoom": 1.8,
+            "x": 45,
+            "y": 50
+          }
+        ],
+        "previous_code": "public class Main {\n  public static void main(String[] args) {\n    int score = 50;\n    System.out.println(score);\n  }\n}",
+        "keyIdea": "Variables can change values"
+      }
+    },
+    {
+      "id": 10,
+      "narration": "Naming rules are very important. You can use letters and numbers, but you cannot start with a number. Also, you cannot use spaces or special Java keywords like class or public.",
+      "remotion": {
+        "type": "ComparisonCard",
+        "props": {
+          "title": "Naming Rules",
+          "leftTitle": "Valid Names",
+          "leftPoints": [
+            "myAge",
+            "_value",
+            "score2"
+          ],
+          "rightTitle": "Invalid Names",
+          "rightPoints": [
+            "2ndPlace (starts with number)",
+            "my age (contains space)",
+            "class (reserved keyword)"
+          ]
+        }
+      }
+    },
+    {
+      "id": 11,
+      "narration": "Watch what happens if we break the rules. I named this variable two-times. Because it starts with a number, Java will get confused and stop the program before it even runs.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Watch",
+        "props": {
+          "filename": "Error.java",
+          "language": "java",
+          "code": "public class Error {\n  public static void main(String[] args) {\n    int 2times = 10;\n  }\n}",
+          "highlightLines": [
+            3
+          ]
+        },
+        "camera": [
+          {
+            "at": "number",
+            "zoom": 1.9,
+            "x": 40,
+            "y": 45
+          }
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "narration": "The compiler gives us an error. It says it expected an identifier. This is a fancy way of saying your variable name is invalid. Always start your names with a letter.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "javac Error.java",
+          "output": [
+            "Error.java:3: error: not a statement",
+            "    int 2times = 10;",
+            "        ^"
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "identifier",
+            "text": "Identifier = Name",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 13,
+      "narration": "To recap, variables are labeled containers. Use descriptive names and follow the starting letter rule. Your code will be much cleaner and easier for other people to understand.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "Day 3 Recap",
+          "items": [
+            "Variables store data in labeled boxes",
+            "int stores whole numbers (integers)",
+            "Assignment (=) moves data into the box",
+            "Names cannot start with numbers"
+          ]
+        }
+      }
+    },
+    {
+      "id": 14,
+      "narration": "Here is your practice task. Create a variable for your age and print it. Then, try to name a variable using a space and see the error message you get.",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Practice Time!",
+          "subtitle": "Create an 'age' variable and print it.",
+          "youtubePrompt": "Subscribe for Day 4!"
+        }
+      }
+    }
+  ]
+}
