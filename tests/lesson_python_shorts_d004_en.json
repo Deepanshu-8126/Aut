@@ -1,0 +1,150 @@
+{
+  "title": "Python Strings: Text Basics",
+  "dayLabel": "Day 4 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "How do computers store text? They use something called a string. It is just a sequence of characters wrapped in quotes.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Strings in Python",
+          "subtitle": "Storing text made simple",
+          "badge": "DAY 4 • PYTHON STRINGS",
+          "tags": [
+            "Python",
+            "Strings",
+            "Text"
+          ]
+        }
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Think of a string like a train. Each carriage holds one letter. The entire train is the variable. You define it with quotes.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "String as a Sequence",
+          "nodes": [
+            {
+              "id": "1",
+              "label": "H"
+            },
+            {
+              "id": "2",
+              "label": "e"
+            },
+            {
+              "id": "3",
+              "label": "l"
+            },
+            {
+              "id": "4",
+              "label": "l"
+            },
+            {
+              "id": "5",
+              "label": "o"
+            }
+          ],
+          "edges": [
+            {
+              "from": "1",
+              "to": "2"
+            },
+            {
+              "from": "2",
+              "to": "3"
+            },
+            {
+              "from": "3",
+              "to": "4"
+            },
+            {
+              "from": "4",
+              "to": "5"
+            }
+          ],
+          "steps": [
+            {
+              "at": "train",
+              "label": "Each letter is a car",
+              "focus": [
+                "1",
+                "2"
+              ]
+            },
+            {
+              "at": "quotes",
+              "label": "Quotes define the start and end",
+              "focus": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Look at this code. We assign the text Hello to a variable named greeting. Then we simply print that variable to the screen.",
+      "remotion": {
+        "type": "TypingCode",
+        "props": {
+          "filename": "hello.py",
+          "language": "python",
+          "code": "greeting = \"Hello\"\nprint(greeting)",
+          "highlightLines": [
+            1
+          ]
+        },
+        "camera": [
+          {
+            "at": "code",
+            "zoom": 1.6,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "variable",
+            "text": "Stores the text data",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "Run the program, and you see the text output. It is that easy. Strings are just text inside quotes.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "python hello.py",
+          "output": [
+            "Hello"
+          ]
+        }
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Recap: strings store text, use quotes, and act like a sequence. Try this: create a string with your name and print it. Check the channel for the full lesson!",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Practice Today",
+          "subtitle": "Try printing your own name!",
+          "youtubePrompt": "Subscribe for more Python!"
+        }
+      }
+    }
+  ],
+  "aspectRatio": "9:16"
+}
