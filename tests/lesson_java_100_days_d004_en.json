@@ -1,0 +1,327 @@
+{
+  "title": "Java Primitive Data Types",
+  "dayLabel": "Day 4 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Imagine you are moving into a new house. You have different boxes for different items. You use small boxes for jewelry and huge boxes for books. In Java, these boxes are called data types.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Java Primitive Data Types",
+          "subtitle": "Choosing the right box for your data",
+          "badge": "DAY 4 • JAVA BASICS",
+          "tags": [
+            "Java",
+            "Variables",
+            "Beginner"
+          ]
+        },
+        "chapter": "M1: Java Fundamentals"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "The word primitive means basic or fundamental. These are the simplest building blocks built directly into Java. They are like pre-made containers that are ready to use the moment you start coding.",
+      "remotion": {
+        "type": "ArchitectureFlow",
+        "props": {
+          "title": "What is a Primitive?",
+          "activeStepIndex": 0,
+          "steps": [
+            {
+              "title": "Primitive",
+              "desc": "Built-in, basic building blocks"
+            },
+            {
+              "title": "Non-Primitive",
+              "desc": "Complex objects like Strings"
+            }
+          ]
+        },
+        "keyIdea": "Primitives are basic building blocks",
+        "popups": [
+          {
+            "anchor": "containers",
+            "text": "Pre-defined by Java",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Why do we need different types? Because computers have limited memory. You would not use a massive truck to deliver a single pencil. Using the right type saves space and makes your program run faster.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "Memory Management",
+          "nodes": [
+            {
+              "id": "small",
+              "label": "Small Data",
+              "sub": "e.g. 10"
+            },
+            {
+              "id": "large",
+              "label": "Large Data",
+              "sub": "e.g. 10.9999"
+            },
+            {
+              "id": "mem",
+              "label": "Computer RAM"
+            }
+          ],
+          "edges": [
+            {
+              "from": "small",
+              "to": "mem",
+              "label": "Uses 4 bytes"
+            },
+            {
+              "from": "large",
+              "to": "mem",
+              "label": "Uses 8 bytes"
+            }
+          ],
+          "steps": [
+            {
+              "at": "small",
+              "label": "Small box for small data",
+              "focus": [
+                "small"
+              ]
+            },
+            {
+              "at": "truck",
+              "label": "Don't waste memory!",
+              "arrow": 1
+            }
+          ]
+        },
+        "camera": [
+          {
+            "at": "memory",
+            "zoom": 1.0,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "Let's look at the four most common types. First, we have int for whole numbers. Then char for a single letter. Notice how we use single quotes for the letter A. This is important.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "First,",
+        "props": {
+          "filename": "Main.java",
+          "language": "java",
+          "code": "public class Main {\n  public static void main(String[] args) {\n    int age = 25;\n    char grade = 'A';\n    System.out.println(age);\n    System.out.println(grade);\n  }\n}",
+          "highlightLines": [
+            3,
+            4
+          ]
+        },
+        "camera": [
+          {
+            "at": "int",
+            "zoom": 1.6,
+            "x": 50,
+            "y": 35
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "quotes",
+            "text": "Single quotes for char",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "narration": "When we run this code, the compiler looks for the variable named age and finds the number twenty-five. Then it finds the grade and prints the character A to the console.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "java Main.java",
+          "output": [
+            "25",
+            "A"
+          ]
+        },
+        "camera": [
+          {
+            "at": "run",
+            "zoom": 1.4,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "narration": "Now, what if we need decimals? We use the double type. And for yes or no questions, we use boolean. A boolean can only be true or false. It is like a light switch.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Now,",
+        "props": {
+          "filename": "Main.java",
+          "language": "java",
+          "code": "double price = 19.99;\nboolean isJavaFun = true;\nSystem.out.println(price);\nSystem.out.println(isJavaFun);",
+          "highlightLines": [
+            1,
+            2
+          ]
+        },
+        "previous_code": "public class Main {\n  public static void main(String[] args) {\n    int age = 25;\n    char grade = 'A';\n    System.out.println(age);\n    System.out.println(grade);\n  }\n}",
+        "camera": [
+          {
+            "at": "double",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 30
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "switch",
+            "text": "True or False only",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "narration": "Let's run it again. The price prints with the decimal point, and the boolean prints as the word true. These four types cover almost everything a beginner needs to start building apps.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "java Main.java",
+          "output": [
+            "19.99",
+            "true"
+          ]
+        }
+      }
+    },
+    {
+      "id": 8,
+      "narration": "You might wonder why we have both int and double. Use int for things you count, like people or apples. Use double for measurements, like weight or money, where precision matters.",
+      "remotion": {
+        "type": "ComparisonCard",
+        "props": {
+          "title": "int vs double",
+          "leftTitle": "int (Integer)",
+          "leftPoints": [
+            "Whole numbers only",
+            "No decimal points",
+            "Example: 10, -5, 0"
+          ],
+          "rightTitle": "double",
+          "rightPoints": [
+            "Decimal numbers",
+            "High precision",
+            "Example: 10.5, 3.14"
+          ]
+        },
+        "keyIdea": "Whole numbers vs Decimals"
+      }
+    },
+    {
+      "id": 9,
+      "narration": "Watch out for this common mistake. If you try to put a decimal number into an int box, Java will get angry. It refuses to throw away the decimal part without your permission.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Watch",
+        "props": {
+          "filename": "Error.java",
+          "language": "java",
+          "code": "int score = 95.5;",
+          "highlightLines": [
+            1
+          ]
+        },
+        "camera": [
+          {
+            "at": "angry",
+            "zoom": 1.8,
+            "x": 50,
+            "y": 20
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "mistake",
+            "text": "Cannot fit 0.5 in int",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "narration": "When you try to compile this, you will see an error saying 'possible lossy conversion'. This is Java's way of saying, 'Hey, you are going to lose that point five!'",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "javac Error.java",
+          "output": [
+            "Error.java:1: error: incompatible types:",
+            "possible lossy conversion from double to int",
+            "int score = 95.5;",
+            "            ^"
+          ]
+        }
+      }
+    },
+    {
+      "id": 11,
+      "narration": "To recap, use int for whole numbers, double for decimals, char for single characters, and boolean for logic. Practice task: create a variable for your height in feet. Which type should you use?",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "Quick Checklist",
+          "items": [
+            "int: Whole numbers (age, count)",
+            "double: Decimals (price, weight)",
+            "char: Single letters ('A', 'B')",
+            "boolean: Logic (true, false)"
+          ]
+        },
+        "camera": [
+          {
+            "at": "recap",
+            "zoom": 1.0,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "height",
+            "text": "Hint: 5.8 is a decimal!",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "narration": "You just learned the foundation of Java data. Keep practicing, and I will see you in the next lesson to talk about how we can name these variables properly.",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Great Job!",
+          "subtitle": "You've mastered Primitives.",
+          "youtubePrompt": "Subscribe for Day 5!"
+        }
+      }
+    }
+  ]
+}
