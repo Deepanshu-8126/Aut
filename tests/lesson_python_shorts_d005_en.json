@@ -1,0 +1,162 @@
+{
+  "title": "Python String Methods",
+  "dayLabel": "Day 5 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Ever wonder how apps clean up your messy typing? They use string methods. Think of these as tiny, built-in tools that fix or change your text automatically.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Fix Text with Methods",
+          "subtitle": "Python String Basics",
+          "badge": "DAY 5 • PYTHON SHORTS",
+          "tags": [
+            "Python",
+            "Strings",
+            "Coding"
+          ]
+        },
+        "chapter": "M1 Basics",
+        "keyIdea": "Methods are built-in tools"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Imagine a factory belt. Your raw text goes in, a specific tool touches it, and clean text comes out. This keeps your data neat without manual retyping.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "How Methods Work",
+          "nodes": [
+            {
+              "id": "input",
+              "label": "Raw Text",
+              "sub": "\"hello\""
+            },
+            {
+              "id": "tool",
+              "label": "Method",
+              "sub": ".upper()"
+            },
+            {
+              "id": "output",
+              "label": "Result",
+              "sub": "\"HELLO\""
+            }
+          ],
+          "edges": [
+            {
+              "from": "input",
+              "to": "tool"
+            },
+            {
+              "from": "tool",
+              "to": "output"
+            }
+          ],
+          "steps": [
+            {
+              "at": "goes",
+              "label": "Input text",
+              "focus": [
+                "input"
+              ]
+            },
+            {
+              "at": "touches",
+              "label": "Apply tool",
+              "focus": [
+                "tool"
+              ],
+              "arrow": 0
+            },
+            {
+              "at": "comes",
+              "label": "New version",
+              "focus": [
+                "output"
+              ],
+              "arrow": 1
+            }
+          ]
+        },
+        "camera": [
+          {
+            "at": "factory",
+            "zoom": 1.0,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Look at this code. We have a word in lowercase. By adding dot upper, Python transforms it. The dot is like a bridge to the tool.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Look",
+        "props": {
+          "filename": "hello.py",
+          "language": "python",
+          "code": "msg = \"hello world\"\nprint(msg.upper())\nprint(msg.title())",
+          "highlightLines": [
+            2
+          ]
+        },
+        "camera": [
+          {
+            "at": "upper",
+            "zoom": 1.6,
+            "x": 50,
+            "y": 40
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "dot",
+            "text": "The bridge to the tool",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "When we run this, hello world becomes uppercase. The title method capitalizes just the first letter of every word. Notice the original message never actually changed.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "python hello.py",
+          "output": [
+            "HELLO WORLD",
+            "Hello World"
+          ]
+        },
+        "camera": [
+          {
+            "at": "uppercase",
+            "zoom": 1.5,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "keyIdea": "Methods create NEW strings"
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Recap: methods are tools for text. Dot upper makes it loud, dot title makes it neat. Try this: use dot lower on a capitalized name!",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Mastered String Methods!",
+          "subtitle": "Next: Numbers in Python",
+          "youtubePrompt": "Subscribe for Day 6!"
+        }
+      }
+    }
+  ],
+  "aspectRatio": "9:16"
+}
