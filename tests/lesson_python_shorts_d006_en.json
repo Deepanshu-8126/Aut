@@ -1,0 +1,164 @@
+{
+  "title": "Python Lists: Your First Collection",
+  "dayLabel": "Day 6 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Need to store ten items? Don't make ten separate variables. Use a list. It is like a shopping bag that holds everything in one single place.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Python Lists",
+          "subtitle": "One variable, many values",
+          "badge": "DAY 6 • PYTHON",
+          "tags": [
+            "Python",
+            "Lists",
+            "Beginner"
+          ]
+        },
+        "chapter": "M1 Basics",
+        "keyIdea": "Lists store collections"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "A list is a row of boxes. Each box has a number called an index. But remember, Python starts counting at zero, not one.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "How Lists Work",
+          "nodes": [
+            {
+              "id": "0",
+              "label": "Index 0",
+              "sub": "Apple"
+            },
+            {
+              "id": "1",
+              "label": "Index 1",
+              "sub": "Banana"
+            },
+            {
+              "id": "2",
+              "label": "Index 2",
+              "sub": "Cherry"
+            }
+          ],
+          "edges": [
+            {
+              "from": "0",
+              "to": "1"
+            },
+            {
+              "from": "1",
+              "to": "2"
+            }
+          ],
+          "steps": [
+            {
+              "at": "zero",
+              "label": "Counting starts at 0",
+              "focus": [
+                "0"
+              ]
+            },
+            {
+              "at": "index",
+              "label": "Each item has a position",
+              "arrow": 0
+            }
+          ]
+        },
+        "camera": [
+          {
+            "at": "zero",
+            "zoom": 1.2,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "zero",
+            "text": "Zero-based indexing",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "We use square brackets for lists. The append method adds an item to the end. Look how easy it is to grow your collection.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "brackets",
+        "props": {
+          "filename": "fruits.py",
+          "language": "python",
+          "code": "fruits = [\"apple\", \"banana\"]\nfruits.append(\"cherry\")\nprint(fruits)",
+          "highlightLines": [
+            2
+          ]
+        },
+        "camera": [
+          {
+            "at": "append",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 45
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "append",
+            "text": "Adds to the very end",
+            "kind": "note"
+          }
+        ],
+        "keyIdea": "Use append() to add items"
+      }
+    },
+    {
+      "id": 4,
+      "narration": "Running this prints our full list. If you want the first item, ask for index zero. It is the most common mistake for beginners!",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "python fruits.py",
+          "output": [
+            "['apple', 'banana', 'cherry']"
+          ]
+        },
+        "camera": [
+          {
+            "at": "prints",
+            "zoom": 1.4,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "mistake",
+            "text": "Don't start at 1!",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Recap: Lists use brackets, start at zero, and can grow. Practice by listing three colors and appending a fourth. See you next time!",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Ready to Practice?",
+          "subtitle": "Create a list of 3 colors and append one more!",
+          "youtubePrompt": "Subscribe for Day 7!"
+        }
+      }
+    }
+  ],
+  "aspectRatio": "9:16"
+}
