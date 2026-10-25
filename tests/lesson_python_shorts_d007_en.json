@@ -1,0 +1,152 @@
+{
+  "title": "Python List Methods: Append and Pop",
+  "dayLabel": "Day 7 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Think of a grocery list. You add items to the bottom and remove them as you shop. In Python, we use append and pop for this.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Grow and Shrink Lists",
+          "subtitle": "Mastering append() and pop()",
+          "badge": "DAY 7 • PYTHON SHORTS",
+          "tags": [
+            "Python",
+            "Lists",
+            "Coding"
+          ]
+        },
+        "chapter": "M2 List Operations"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Append adds an item to the very end. Pop removes that last item. Think of it like a stack of plates where you work from the top.",
+      "remotion": {
+        "type": "StackQueueViz",
+        "props": {
+          "title": "How List Methods Work",
+          "kind": "stack",
+          "steps": [
+            {
+              "at": "Append",
+              "op": "push",
+              "value": "Milk",
+              "label": "Adding to the end"
+            },
+            {
+              "at": "Pop",
+              "op": "pop",
+              "label": "Removing the last item"
+            }
+          ]
+        },
+        "camera": [
+          {
+            "at": "Append",
+            "zoom": 1.3,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "keyIdea": "Append adds, Pop removes",
+        "popups": [
+          {
+            "anchor": "Append",
+            "text": "Goes to the end",
+            "kind": "tip"
+          },
+          {
+            "anchor": "Pop",
+            "text": "Removes the last",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "We start with milk and bread. Append adds eggs. Then, pop removes the eggs. It's the easiest way to grow or shrink a list dynamically.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "start",
+        "props": {
+          "filename": "cart.py",
+          "language": "python",
+          "code": "cart = ['milk', 'bread']\ncart.append('eggs')\nprint(cart)\ncart.pop()\nprint(cart)",
+          "highlightLines": [
+            2,
+            4
+          ]
+        },
+        "camera": [
+          {
+            "at": "append",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 35
+          },
+          {
+            "at": "pop",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 60
+          }
+        ],
+        "lineNotes": [
+          {
+            "line": 2,
+            "text": "Adds 'eggs' at index 2"
+          },
+          {
+            "line": 4,
+            "text": "Removes index 2"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "Running the code shows the list growing, then shrinking back. Pop even gives you the item it removed! It's perfect for undo buttons or task lists.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "python cart.py",
+          "output": [
+            "['milk', 'bread', 'eggs']",
+            "['milk', 'bread']"
+          ]
+        },
+        "camera": [
+          {
+            "at": "shrinking",
+            "zoom": 1.5,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "undo",
+            "text": "Pop is great for 'Undo'",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Now, try to append your favorite fruit to a list and then pop it. Subscribe for more bite-sized Python lessons!",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Your Turn!",
+          "subtitle": "Try appending 3 items and popping 1.",
+          "youtubePrompt": "Subscribe for Day 8!"
+        }
+      }
+    }
+  ],
+  "aspectRatio": "9:16"
+}
