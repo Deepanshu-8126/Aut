@@ -1,0 +1,122 @@
+{
+  "title": "Lists vs Tuples: The Sealed Box Rule",
+  "dayLabel": "Day 8 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Why does Python have both lists and tuples? Think of a list like an open shopping bag where you can add or remove items anytime.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Lists vs Tuples",
+          "subtitle": "When to use which?",
+          "badge": "DAY 8 • PYTHON SHORTS",
+          "tags": [
+            "Python",
+            "Basics",
+            "Data Structures"
+          ]
+        },
+        "chapter": "Python Data Types",
+        "keyIdea": "Lists are like open bags"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "A tuple is like a sealed box. Once you put data inside, it stays exactly like that. You cannot add, remove, or change anything inside it.",
+      "remotion": {
+        "type": "ComparisonCard",
+        "props": {
+          "title": "The Big Difference",
+          "leftTitle": "List [ ]",
+          "leftPoints": [
+            "Can be changed",
+            "Add/Remove items",
+            "Flexible"
+          ],
+          "rightTitle": "Tuple ( )",
+          "rightPoints": [
+            "Cannot be changed",
+            "Fixed size",
+            "Safe and fast"
+          ]
+        },
+        "keyIdea": "Tuples are immutable",
+        "popups": [
+          {
+            "anchor": "sealed",
+            "text": "Immutable means unchangeable",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Lists use square brackets, but tuples use parentheses. Watch what happens when I try to change the first item in this tuple. Python will block it.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Lists",
+        "props": {
+          "filename": "demo.py",
+          "language": "python",
+          "code": "my_list = [10, 20]\nmy_tuple = (10, 20)\n\nmy_list[0] = 99\nmy_tuple[0] = 99",
+          "highlightLines": [
+            5
+          ]
+        },
+        "camera": [
+          {
+            "at": "change",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 70
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "parentheses",
+            "text": "Tuple syntax: ( )",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "The error message confirms it. Tuples are immutable, meaning they cannot be edited. This keeps your important data safe from accidental changes in your code.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "python demo.py",
+          "output": [
+            "TypeError: 'tuple' object does not",
+            "support item assignment"
+          ]
+        },
+        "camera": [
+          {
+            "at": "error",
+            "zoom": 1.5,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "keyIdea": "Safety first with Tuples"
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Lists for flexibility, tuples for safety. Try making a tuple of your favorite fruits today! Check the channel for more Python lessons.",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Practice Time!",
+          "subtitle": "Create a tuple with 3 items.",
+          "youtubePrompt": "Subscribe for Day 9!"
+        }
+      }
+    }
+  ],
+  "aspectRatio": "9:16"
+}
