@@ -1,0 +1,161 @@
+{
+  "title": "Python Dictionaries Explained",
+  "dayLabel": "Day 9 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Ever wondered how your phone finds a contact name and instantly gets the number? That is exactly how a Python dictionary works.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Python Dictionaries",
+          "subtitle": "The Digital Phonebook",
+          "badge": "DAY 9 • DICTIONARIES",
+          "tags": [
+            "Python",
+            "Basics",
+            "Coding"
+          ]
+        },
+        "chapter": "M2 Data Structures",
+        "keyIdea": "Dictionaries map Keys to Values"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Think of a real dictionary. You look up a word to find its meaning. In Python, we call the word a Key and the meaning a Value.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "How Dictionaries Work",
+          "nodes": [
+            {
+              "id": "key",
+              "label": "Key",
+              "sub": "The Label"
+            },
+            {
+              "id": "val",
+              "label": "Value",
+              "sub": "The Data"
+            }
+          ],
+          "edges": [
+            {
+              "from": "key",
+              "to": "val",
+              "label": "points to"
+            }
+          ],
+          "steps": [
+            {
+              "at": "word",
+              "label": "Looking up the Key",
+              "focus": [
+                "key"
+              ]
+            },
+            {
+              "at": "meaning",
+              "label": "Finding the Value",
+              "focus": [
+                "val"
+              ],
+              "arrow": 0
+            }
+          ]
+        },
+        "camera": [
+          {
+            "at": "word",
+            "zoom": 1.2,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "Key",
+            "text": "Unique identifier",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Look at this code. We use curly braces to create a dictionary. The name Alice is our key, and her phone number is the value.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Look",
+        "props": {
+          "filename": "contacts.py",
+          "language": "python",
+          "code": "phonebook = {\n  'Alice': '555-0101',\n  'Bob': '555-0202'\n}\nprint(phonebook['Alice'])",
+          "highlightLines": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "camera": [
+          {
+            "at": "braces",
+            "zoom": 1.6,
+            "x": 50,
+            "y": 30
+          },
+          {
+            "at": "Alice",
+            "zoom": 1.8,
+            "x": 40,
+            "y": 30
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "braces",
+            "text": "Curly braces define dicts",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "When we run this, Python looks up Alice and prints her number. It is much faster than searching through a long list.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "python contacts.py",
+          "output": [
+            "555-0101"
+          ]
+        },
+        "camera": [
+          {
+            "at": "prints",
+            "zoom": 1.5,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "keyIdea": "Fast lookup by key"
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Dictionaries store data in pairs. Remember, every key must be unique. Try making your own contact list and check the channel for more!",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Dictionary Mastered!",
+          "subtitle": "Try creating a 'car' dictionary with brand and model.",
+          "youtubePrompt": "Subscribe for Day 10!"
+        }
+      }
+    }
+  ],
+  "aspectRatio": "9:16"
+}
