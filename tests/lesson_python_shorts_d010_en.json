@@ -1,0 +1,168 @@
+{
+  "title": "Python Dictionary Methods",
+  "dayLabel": "Day 10 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Storing data is great, but how do you find it fast? Think of a real dictionary. You don't read every page; you look for a specific word.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Python Dictionary Secrets",
+          "subtitle": "Quick Lookups and Methods",
+          "badge": "DAY 10 • PYTHON SHORTS",
+          "tags": [
+            "Python",
+            "Dictionary",
+            "Coding"
+          ]
+        },
+        "chapter": "Data Structures",
+        "keyIdea": "Dictionaries use keys for fast lookups"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "In Python, we use keys to get values. The get method is safer than square brackets because it won't crash your program if a key is missing.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "How Lookups Work",
+          "nodes": [
+            {
+              "id": "key",
+              "label": "Key: 'name'",
+              "sub": "The Word"
+            },
+            {
+              "id": "dict",
+              "label": "Dictionary",
+              "sub": "The Book"
+            },
+            {
+              "id": "val",
+              "label": "Value: 'Alice'",
+              "sub": "The Meaning"
+            }
+          ],
+          "edges": [
+            {
+              "from": "key",
+              "to": "dict"
+            },
+            {
+              "from": "dict",
+              "to": "val"
+            }
+          ],
+          "steps": [
+            {
+              "at": "keys",
+              "label": "Searching for a key",
+              "focus": [
+                "key"
+              ]
+            },
+            {
+              "at": "get",
+              "label": "Finding the value",
+              "focus": [
+                "val"
+              ],
+              "arrow": 1
+            }
+          ]
+        },
+        "camera": [
+          {
+            "at": "get",
+            "zoom": 1.2,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "safer",
+            "text": "Prevents KeyErrors",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Look at this code. We have a user dictionary. We use get to find the age. Then, keys gives us a list of every label inside.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Look",
+        "props": {
+          "filename": "main.py",
+          "language": "python",
+          "code": "user = {'name': 'Alice', 'age': 25}\nage = user.get('age')\nlabels = user.keys()\nprint(age)\nprint(labels)",
+          "highlightLines": [
+            2,
+            3
+          ]
+        },
+        "camera": [
+          {
+            "at": "get",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 35
+          },
+          {
+            "at": "keys",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 45
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "labels",
+            "text": "Keys are the 'labels'",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "When we run this, we get twenty-five. Keys shows us name and age. Remember, dictionaries are for fast, labeled data storage.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "python main.py",
+          "output": [
+            "25",
+            "dict_keys(['name', 'age'])"
+          ]
+        },
+        "camera": [
+          {
+            "at": "twenty-five",
+            "zoom": 1.5,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "keyIdea": "Dictionaries store data with labels"
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Try adding a new key-value pair to your dictionary today. Subscribe for more Python tips and check the channel for the full lesson!",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Practice Task",
+          "subtitle": "Add a 'city' key to your user dictionary",
+          "youtubePrompt": "Subscribe for Day 11!"
+        }
+      }
+    }
+  ],
+  "aspectRatio": "9:16"
+}
