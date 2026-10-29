@@ -1,0 +1,156 @@
+{
+  "title": "Python Sets: The No-Duplicate Rule",
+  "dayLabel": "Day 11 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Ever had a bag of marbles where every color must be unique? That is a Python Set. It is a special collection that refuses to store duplicates.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Python Sets",
+          "subtitle": "No duplicates allowed",
+          "badge": "DAY 11 • PYTHON SHORTS",
+          "tags": [
+            "Python",
+            "Sets",
+            "Beginner"
+          ]
+        },
+        "chapter": "Data Structures",
+        "keyIdea": "Sets store unique items"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Imagine a guest list. If someone signs in twice, you only want their name once. A set automatically cleans up the mess by keeping only unique values.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "How Sets Work",
+          "nodes": [
+            {
+              "id": "input",
+              "label": "Input: [1, 2, 2, 3]",
+              "sub": "List with duplicates"
+            },
+            {
+              "id": "set",
+              "label": "Set: {1, 2, 3}",
+              "sub": "Duplicates removed"
+            }
+          ],
+          "edges": [
+            {
+              "from": "input",
+              "to": "set",
+              "label": "Filtering"
+            }
+          ],
+          "steps": [
+            {
+              "at": "Input",
+              "label": "Start with duplicates",
+              "focus": [
+                "input"
+              ]
+            },
+            {
+              "at": "cleans",
+              "label": "Keep unique only",
+              "focus": [
+                "set"
+              ],
+              "arrow": 0
+            }
+          ]
+        },
+        "camera": [
+          {
+            "at": "guest",
+            "zoom": 1.0,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "We use curly braces to create a set. Look at this code. I am adding the number ten twice, but Python will ignore the second one.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "We",
+        "props": {
+          "filename": "main.py",
+          "language": "python",
+          "code": "numbers = {10, 20, 10, 30}\nprint(numbers)",
+          "highlightLines": [
+            1
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "braces",
+            "text": "Sets use { }",
+            "kind": "tip"
+          },
+          {
+            "anchor": "ignore",
+            "text": "10 is only stored once",
+            "kind": "note"
+          }
+        ],
+        "camera": [
+          {
+            "at": "code",
+            "zoom": 1.6,
+            "x": 50,
+            "y": 30
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "Run the file. The output shows ten, twenty, and thirty. The duplicate is gone. Notice the order might change because sets do not have a fixed sequence.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "python main.py",
+          "output": [
+            "{10, 20, 30}"
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "order",
+            "text": "Sets are unordered",
+            "kind": "tip"
+          }
+        ],
+        "camera": [
+          {
+            "at": "output",
+            "zoom": 1.4,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Quick recap. Sets store unique items and use curly braces. Your practice task: create a set of five fruits and add one fruit twice. See you tomorrow!",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Day 11 Complete!",
+          "subtitle": "Try the fruit set challenge",
+          "youtubePrompt": "Subscribe for Day 12!"
+        }
+      }
+    }
+  ],
+  "aspectRatio": "9:16"
+}
