@@ -1,0 +1,168 @@
+{
+  "title": "Python If-Else: Making Decisions",
+  "dayLabel": "Day 12 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Ever wonder how apps decide what to show you? It is all about making choices. Today, we are mastering the if-else statement in Python.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Python If-Else",
+          "subtitle": "Teach your code to think",
+          "badge": "DAY 12 • PYTHON SHORTS",
+          "tags": [
+            "Python",
+            "Logic",
+            "Beginner"
+          ]
+        },
+        "chapter": "Control Flow"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Think of a fork in the road. If it is raining, you take an umbrella. Else, you grab sunglasses. This is how code makes decisions.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "The Decision Fork",
+          "nodes": [
+            {
+              "id": "start",
+              "label": "Is it Raining?"
+            },
+            {
+              "id": "if",
+              "label": "Umbrella",
+              "sub": "True"
+            },
+            {
+              "id": "else",
+              "label": "Sunglasses",
+              "sub": "False"
+            }
+          ],
+          "edges": [
+            {
+              "from": "start",
+              "to": "if",
+              "label": "Yes"
+            },
+            {
+              "from": "start",
+              "to": "else",
+              "label": "No"
+            }
+          ],
+          "steps": [
+            {
+              "at": "raining",
+              "label": "Check condition",
+              "focus": [
+                "start"
+              ]
+            },
+            {
+              "at": "umbrella",
+              "label": "True path",
+              "arrow": 0
+            },
+            {
+              "at": "sunglasses",
+              "label": "False path",
+              "arrow": 1
+            }
+          ]
+        },
+        "keyIdea": "If-Else handles logic branching",
+        "camera": [
+          {
+            "at": "Think",
+            "zoom": 1.0,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Here is the code. If age is eighteen or more, we print 'You can vote.' Otherwise, the else block runs. Simple and powerful.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Here",
+        "props": {
+          "filename": "vote.py",
+          "language": "python",
+          "code": "age = 20\n\nif age >= 18:\n    print('You can vote')\nelse:\n    print('Too young')",
+          "highlightLines": [
+            3,
+            5
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "eighteen",
+            "text": "Condition: age >= 18",
+            "kind": "tip"
+          },
+          {
+            "anchor": "Otherwise",
+            "text": "Else covers everything else",
+            "kind": "note"
+          }
+        ],
+        "camera": [
+          {
+            "at": "code",
+            "zoom": 1.5,
+            "x": 50,
+            "y": 40
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "When we run this, Python checks the condition. Since twenty is greater than eighteen, it prints 'You can vote' and ignores the rest.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "python vote.py",
+          "output": [
+            "You can vote"
+          ]
+        },
+        "camera": [
+          {
+            "at": "run",
+            "zoom": 1.4,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "ignores",
+            "text": "Else block is skipped",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Recap: if for true, else for false. Your task: write a script to check if a number is even or odd. Happy coding!",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Practice Time!",
+          "subtitle": "Check for Even or Odd numbers",
+          "youtubePrompt": "Subscribe for Day 13!"
+        }
+      }
+    }
+  ],
+  "aspectRatio": "9:16"
+}
