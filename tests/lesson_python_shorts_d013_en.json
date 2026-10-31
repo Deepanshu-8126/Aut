@@ -1,0 +1,191 @@
+{
+  "title": "Elif and Nested Conditions",
+  "dayLabel": "Day 13 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "What if you have more than two choices? In Python, we use elif and nesting to handle complex decisions easily. Let's look at how.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Multiple Choices in Python",
+          "subtitle": "Mastering elif and nesting",
+          "badge": "DAY 13 • PYTHON SHORTS",
+          "tags": [
+            "Python",
+            "Logic",
+            "Beginner"
+          ]
+        },
+        "chapter": "Control Flow",
+        "keyIdea": "Life has more than two options"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Think of a traffic light. It is not just red or green. The yellow light is like an elif—a specific third option between the two.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "The Traffic Light Logic",
+          "nodes": [
+            {
+              "id": "red",
+              "label": "Red (Stop)"
+            },
+            {
+              "id": "yellow",
+              "label": "Yellow (Slow)"
+            },
+            {
+              "id": "green",
+              "label": "Green (Go)"
+            }
+          ],
+          "edges": [
+            {
+              "from": "red",
+              "to": "yellow",
+              "label": "elif"
+            },
+            {
+              "from": "yellow",
+              "to": "green",
+              "label": "else"
+            }
+          ],
+          "steps": [
+            {
+              "at": "red",
+              "label": "Start with IF",
+              "focus": [
+                "red"
+              ]
+            },
+            {
+              "at": "elif",
+              "label": "Check ELIF",
+              "focus": [
+                "yellow"
+              ],
+              "arrow": 0
+            },
+            {
+              "at": "else",
+              "label": "Final ELSE",
+              "focus": [
+                "green"
+              ],
+              "arrow": 1
+            }
+          ]
+        },
+        "camera": [
+          {
+            "at": "Think",
+            "zoom": 1.0,
+            "x": 50,
+            "y": 50
+          },
+          {
+            "at": "yellow",
+            "zoom": 1.4,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "elif",
+            "text": "Short for 'else if'",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "If the score is ninety, it is an A. Elif it is eighty, it is a B. Elif lets us check many conditions in a specific order.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "If",
+        "props": {
+          "filename": "grades.py",
+          "language": "python",
+          "code": "score = 85\nif score >= 90:\n    print('Grade: A')\nelif score >= 80:\n    print('Grade: B')\nelse:\n    print('Grade: C')",
+          "highlightLines": [
+            4
+          ]
+        },
+        "camera": [
+          {
+            "at": "score",
+            "zoom": 1.5,
+            "x": 50,
+            "y": 30
+          },
+          {
+            "at": "elif",
+            "zoom": 1.8,
+            "x": 50,
+            "y": 55
+          }
+        ],
+        "keyIdea": "Elif checks the next condition",
+        "popups": [
+          {
+            "anchor": "elif",
+            "text": "Only runs if IF fails",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "Nesting means putting an if inside another if. Use it when one choice depends on a previous one, like layers in an onion.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Nesting",
+        "props": {
+          "filename": "nested.py",
+          "language": "python",
+          "code": "has_ticket = True\nhas_seat = False\nif has_ticket:\n    if has_seat:\n        print('Watch Movie')\n    else:\n        print('Wait in Hall')",
+          "highlightLines": [
+            4,
+            5
+          ]
+        },
+        "camera": [
+          {
+            "at": "inside",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 60
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "inside",
+            "text": "Indentation is key!",
+            "kind": "tip"
+          }
+        ],
+        "keyIdea": "Nesting = Logic Layers"
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Recap: Elif handles multiple paths. Nesting handles layers. Try writing a program that checks if a number is both positive and even today!",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Ready to Practice?",
+          "subtitle": "Check the comments for a hint!",
+          "youtubePrompt": "Subscribe for Day 14!"
+        }
+      }
+    }
+  ],
+  "aspectRatio": "9:16"
+}
