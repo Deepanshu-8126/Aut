@@ -1,0 +1,387 @@
+{
+  "title": "Java Operators and Expressions",
+  "dayLabel": "Day 5 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Welcome back! Today, we are learning about operators. These are the symbols that allow us to perform math and logic in our Java programs. Let's get started.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Operators and Expressions",
+          "subtitle": "Doing Math in Java",
+          "badge": "DAY 5 • JAVA",
+          "tags": [
+            "Java",
+            "Operators",
+            "Beginner"
+          ]
+        },
+        "chapter": "M1 Setup and Basics"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Imagine you are building a simple shopping app. You have the price of an apple and a banana. How do you find the total? You need a way to tell Java to add them.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "The Shopping Problem",
+          "items": [
+            "Apple Price: 50",
+            "Banana Price: 30",
+            "How to get the total?",
+            "We need an addition operator"
+          ]
+        },
+        "keyIdea": "Operators perform actions"
+      }
+    },
+    {
+      "id": 3,
+      "narration": "An operator is like a button on a calculator. The plus sign, minus sign, and multiply sign are all operators. They take values and produce a new result.",
+      "remotion": {
+        "type": "ArchitectureFlow",
+        "props": {
+          "title": "What is an Operator?",
+          "steps": [
+            {
+              "title": "Operands",
+              "desc": "The values like 10 and 20"
+            },
+            {
+              "title": "Operator",
+              "desc": "The symbol like +"
+            },
+            {
+              "title": "Expression",
+              "desc": "The whole combination: 10 + 20"
+            }
+          ],
+          "activeStepIndex": 1
+        },
+        "popups": [
+          {
+            "anchor": "calculator",
+            "text": "Think of simple math",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "Without operators, our variables would just sit there. We need them to calculate discounts, compare ages, or check if a user has enough balance to buy something.",
+      "remotion": {
+        "type": "ComparisonCard",
+        "props": {
+          "title": "Why we need them",
+          "leftTitle": "Variables Alone",
+          "leftPoints": [
+            "Just store data",
+            "Static values",
+            "No movement"
+          ],
+          "rightTitle": "With Operators",
+          "rightPoints": [
+            "Calculate totals",
+            "Compare values",
+            "Make decisions"
+          ]
+        }
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Let's look at the map of Java operators. We have Arithmetic for math, Relational for comparing, and Logical for combining multiple conditions together.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "Operator Categories",
+          "nodes": [
+            {
+              "id": "A",
+              "label": "Arithmetic",
+              "sub": "+, -, *, /, %"
+            },
+            {
+              "id": "B",
+              "label": "Relational",
+              "sub": "==, !=, >, <"
+            },
+            {
+              "id": "C",
+              "label": "Logical",
+              "sub": "&&, ||, !"
+            }
+          ],
+          "edges": [
+            {
+              "from": "A",
+              "to": "B",
+              "label": "Flows to"
+            },
+            {
+              "from": "B",
+              "to": "C",
+              "label": "Flows to"
+            }
+          ],
+          "steps": [
+            {
+              "at": "Arithmetic",
+              "label": "Basic Math",
+              "focus": [
+                "A"
+              ]
+            },
+            {
+              "at": "Relational",
+              "label": "Comparisons",
+              "focus": [
+                "B"
+              ]
+            }
+          ]
+        },
+        "camera": [
+          {
+            "at": "map",
+            "zoom": 1.0,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "narration": "Here is the smallest code to add two numbers. We create two variables, add them using the plus operator, and store the result in a third variable.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Here",
+        "props": {
+          "filename": "Main.java",
+          "language": "java",
+          "code": "int apples = 10;\nint bananas = 5;\nint total = apples + bananas;\nSystem.out.println(total);",
+          "highlightLines": [
+            3
+          ]
+        },
+        "camera": [
+          {
+            "at": "plus",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 35
+          }
+        ],
+        "lineNotes": [
+          {
+            "line": 3,
+            "text": "The addition happens here"
+          }
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "narration": "When we run this code, the compiler calculates ten plus five and gives us fifteen. Look at the output in the terminal below.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "java Main.java",
+          "output": [
+            "15"
+          ]
+        },
+        "camera": [
+          {
+            "at": "output",
+            "zoom": 1.5,
+            "x": 50,
+            "y": 70
+          }
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "narration": "Now, let's look at a special operator called modulo. It uses the percent symbol. Instead of giving you the quotient, it gives you the remainder left over.",
+      "remotion": {
+        "type": "StackQueueViz",
+        "props": {
+          "title": "How Modulo Works",
+          "kind": "queue",
+          "steps": [
+            {
+              "at": "special",
+              "op": "enqueue",
+              "value": "10 / 3",
+              "label": "Divide 10 by 3"
+            },
+            {
+              "at": "remainder",
+              "op": "enqueue",
+              "value": "Rem: 1",
+              "label": "Remainder is 1"
+            }
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "percent",
+            "text": "% is the Modulo symbol",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "narration": "In this code, ten modulo three results in one. This is because three goes into ten three times, leaving a remainder of exactly one.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "In",
+        "props": {
+          "filename": "Modulo.java",
+          "language": "java",
+          "code": "int a = 10;\nint b = 3;\nint remainder = a % b;\nSystem.out.println(remainder);",
+          "highlightLines": [
+            3
+          ]
+        },
+        "camera": [
+          {
+            "at": "remainder",
+            "zoom": 1.8,
+            "x": 50,
+            "y": 35
+          }
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "narration": "A common mistake is confusing the single equals sign with the double equals sign. Single equals assigns a value. Double equals checks if two values are the same.",
+      "remotion": {
+        "type": "ComparisonCard",
+        "props": {
+          "title": "Assignment vs Equality",
+          "leftTitle": "=",
+          "leftPoints": [
+            "Assignment operator",
+            "Stores value in variable",
+            "Example: x = 5"
+          ],
+          "rightTitle": "==",
+          "rightPoints": [
+            "Relational operator",
+            "Compares two values",
+            "Example: x == 5"
+          ]
+        },
+        "keyIdea": "One sets, two checks"
+      }
+    },
+    {
+      "id": 11,
+      "narration": "Watch out for integer division! If you divide five by two using integers, Java throws away the decimal and gives you two, not two point five.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Watch",
+        "props": {
+          "filename": "Mistake.java",
+          "language": "java",
+          "code": "int x = 5;\nint y = 2;\nint result = x / y;\nSystem.out.println(result);",
+          "highlightLines": [
+            3
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "decimal",
+            "text": "Integers lose decimals!",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "narration": "To fix this, we use the double data type. By using five point zero and two point zero, Java knows to keep the decimal result.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "To",
+        "props": {
+          "filename": "Fix.java",
+          "language": "java",
+          "code": "double x = 5.0;\ndouble y = 2.0;\ndouble result = x / y;\nSystem.out.println(result);",
+          "highlightLines": [
+            3
+          ]
+        },
+        "previous_code": "int x = 5;\nint y = 2;\nint result = x / y;\nSystem.out.println(result);"
+      }
+    },
+    {
+      "id": 13,
+      "narration": "Quick recap. Operators perform actions. Arithmetic is for math. Modulo gives the remainder. And always remember the difference between single and double equals.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "Key Takeaways",
+          "items": [
+            "Operators are symbols for actions",
+            "Modulo (%) returns the remainder",
+            "Integer division drops decimals",
+            "= is for setting, == is for comparing"
+          ]
+        },
+        "camera": [
+          {
+            "at": "recap",
+            "zoom": 1.0,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 14,
+      "narration": "Here is your practice task. Create a program that finds the remainder when twenty-seven is divided by four. Print that remainder to the console.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "Practice Task",
+          "items": [
+            "Create two int variables",
+            "Assign 27 and 4",
+            "Use the % operator",
+            "Print the result"
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "practice",
+            "text": "Try it now!",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 15,
+      "narration": "Great job today! You now know how to make Java do math. Keep practicing, and I will see you in the next lesson.",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Day 5 Complete",
+          "subtitle": "You mastered Java Operators!",
+          "youtubePrompt": "Subscribe for Day 6"
+        }
+      }
+    }
+  ]
+}
