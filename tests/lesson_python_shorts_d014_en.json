@@ -1,0 +1,177 @@
+{
+  "title": "Python For Loops: Automate Repetitive Tasks",
+  "dayLabel": "Day 14 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Ever had to do the same task over and over? Typing the same line ten times is exhausting. In Python, we use a for loop to automate repetitive work.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Stop Repeating Yourself",
+          "subtitle": "Python For Loops for Beginners",
+          "badge": "DAY 14 • FOR LOOPS",
+          "tags": [
+            "Python",
+            "Coding",
+            "Automation"
+          ]
+        },
+        "chapter": "M2 Loops and Control",
+        "keyIdea": "Loops automate repetition"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Think of a loop like a train track with stations. The train stops at every station on the track, one by one, until it reaches the very end.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "How a Loop Works",
+          "nodes": [
+            {
+              "id": "start",
+              "label": "Start"
+            },
+            {
+              "id": "item",
+              "label": "Next Item"
+            },
+            {
+              "id": "action",
+              "label": "Run Code"
+            },
+            {
+              "id": "end",
+              "label": "Stop"
+            }
+          ],
+          "edges": [
+            {
+              "from": "start",
+              "to": "item"
+            },
+            {
+              "from": "item",
+              "to": "action"
+            },
+            {
+              "from": "action",
+              "to": "item",
+              "label": "Repeat"
+            },
+            {
+              "from": "item",
+              "to": "end",
+              "label": "Finished"
+            }
+          ],
+          "steps": [
+            {
+              "at": "track",
+              "label": "Moving through the list",
+              "focus": [
+                "item"
+              ]
+            },
+            {
+              "at": "end",
+              "label": "Exit when done",
+              "focus": [
+                "end"
+              ]
+            }
+          ]
+        },
+        "camera": [
+          {
+            "at": "track",
+            "zoom": 1.2,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "keyIdea": "Loops process items one by one"
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Here is the simplest code. We use the word for, then a variable name, and finally range five to repeat the block five times.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "word",
+        "props": {
+          "filename": "loop.py",
+          "language": "python",
+          "code": "for i in range(5):\n    print(\"Hello\")",
+          "highlightLines": [
+            1
+          ]
+        },
+        "camera": [
+          {
+            "at": "range",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 30
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "range",
+            "text": "range(5) means 5 times",
+            "kind": "tip"
+          }
+        ],
+        "lineNotes": {
+          "1": "Starts the loop"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "narration": "When we run this, Python prints Hello five times. Notice the indentation on the second line. It tells Python that the print command belongs inside the loop.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "python loop.py",
+          "output": [
+            "Hello",
+            "Hello",
+            "Hello",
+            "Hello",
+            "Hello"
+          ]
+        },
+        "camera": [
+          {
+            "at": "prints",
+            "zoom": 1.4,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "indentation",
+            "text": "Spacing is mandatory!",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Recap. Loops repeat code. Range defines the count. Now, try printing your name three times. Check the channel for more Python tips!",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Practice Task",
+          "subtitle": "Print your name 3 times using a loop",
+          "youtubePrompt": "Subscribe for Day 15!"
+        }
+      }
+    }
+  ],
+  "aspectRatio": "9:16"
+}
