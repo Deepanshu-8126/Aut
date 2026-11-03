@@ -1,0 +1,356 @@
+{
+  "title": "Taking Input with Scanner",
+  "dayLabel": "Day 6 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Up until now, our programs were like a one-way street. We gave the computer data, and it printed it. But how do we let the user talk back? Today, we learn about the Scanner.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Talking to Your Program",
+          "subtitle": "Mastering the Scanner Class",
+          "badge": "DAY 6 • JAVA INPUT",
+          "tags": [
+            "Java",
+            "Scanner",
+            "Input"
+          ]
+        },
+        "chapter": "M1 Basics"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Imagine a juice machine. If the fruit is already inside, it always makes the same juice. But if you add a slot for the user to drop in any fruit, the machine becomes useful for everyone.",
+      "remotion": {
+        "type": "ArchitectureFlow",
+        "props": {
+          "title": "Why We Need Input",
+          "steps": [
+            {
+              "title": "Hardcoded Data",
+              "desc": "Data is fixed inside the code. It never changes."
+            },
+            {
+              "title": "Dynamic Input",
+              "desc": "The program waits for the user to type something."
+            }
+          ],
+          "activeStepIndex": 1
+        },
+        "keyIdea": "Input makes programs interactive"
+      }
+    },
+    {
+      "id": 3,
+      "narration": "To get this input, we use a tool called a Scanner. Think of it as a bridge. It connects your keyboard to your Java program, allowing data to flow across.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "The Input Pipeline",
+          "nodes": [
+            {
+              "id": "kb",
+              "label": "Keyboard"
+            },
+            {
+              "id": "sys",
+              "label": "System.in",
+              "sub": "The Input Stream"
+            },
+            {
+              "id": "sc",
+              "label": "Scanner",
+              "sub": "The Reader"
+            },
+            {
+              "id": "code",
+              "label": "Your Code"
+            }
+          ],
+          "edges": [
+            {
+              "from": "kb",
+              "to": "sys"
+            },
+            {
+              "from": "sys",
+              "to": "sc"
+            },
+            {
+              "from": "sc",
+              "to": "code"
+            }
+          ],
+          "steps": [
+            {
+              "at": "bridge",
+              "label": "Connecting Keyboard to Code",
+              "focus": [
+                "sc"
+              ]
+            },
+            {
+              "at": "flow",
+              "label": "Data moving through Scanner",
+              "arrow": 2
+            }
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "bridge",
+            "text": "Scanner is a built-in tool",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "Before we use the Scanner, we must tell Java where to find it. We do this with an import statement at the very top of our file. It is like telling the compiler which toolbox to open.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "import",
+        "props": {
+          "filename": "Main.java",
+          "language": "java",
+          "code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        // Code goes here\n    }\n}",
+          "highlightLines": [
+            1
+          ]
+        },
+        "camera": [
+          {
+            "at": "import",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 20
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "import",
+            "text": "Always at the TOP",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Now, we create the Scanner object. We name it 'sc' and tell it to look at System dot in. System dot in represents your keyboard. This line prepares the bridge for use.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Now,",
+        "props": {
+          "filename": "Main.java",
+          "language": "java",
+          "code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n    }\n}",
+          "highlightLines": [
+            5
+          ]
+        },
+        "camera": [
+          {
+            "at": "Scanner",
+            "zoom": 1.6,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "keyIdea": "System.in is the keyboard"
+      }
+    },
+    {
+      "id": 6,
+      "narration": "Let's read an integer. We use sc dot nextInt. This command makes the program wait. It pauses until you type a number and press Enter. Then, it saves that number into our variable.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "read",
+        "props": {
+          "filename": "Main.java",
+          "language": "java",
+          "code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        System.out.print(\"Enter age: \");\n        int age = sc.nextInt();\n        System.out.println(\"Age is: \" + age);\n    }\n}",
+          "highlightLines": [
+            7
+          ]
+        },
+        "camera": [
+          {
+            "at": "nextInt",
+            "zoom": 1.8,
+            "x": 50,
+            "y": 65
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "wait",
+            "text": "Program pauses here",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "narration": "Look at the terminal. The program prints the prompt, then waits. I type twenty-five and hit enter. The Scanner picks it up and the program prints it back to me.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "java Main",
+          "output": [
+            "Enter age: 25",
+            "Age is: 25"
+          ]
+        },
+        "camera": [
+          {
+            "at": "terminal",
+            "zoom": 1.4,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "narration": "What if we want a name? We use sc dot next for a single word, or sc dot nextLine for a full sentence. Let's add a line to read the user's full name.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "name",
+        "props": {
+          "filename": "Main.java",
+          "language": "java",
+          "code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        System.out.print(\"Full Name: \");\n        String name = sc.nextLine();\n        System.out.println(\"Hello, \" + name);\n    }\n}",
+          "highlightLines": [
+            7
+          ]
+        },
+        "camera": [
+          {
+            "at": "nextLine",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 65
+          }
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "narration": "Choosing between next and nextLine is important. Next stops at the first space. NextLine reads everything until you hit enter. Use nextLine when you expect spaces in the input.",
+      "remotion": {
+        "type": "ComparisonCard",
+        "props": {
+          "title": "Reading Strings",
+          "leftTitle": "sc.next()",
+          "leftPoints": [
+            "Reads one word",
+            "Stops at space",
+            "Example: 'John'"
+          ],
+          "rightTitle": "sc.nextLine()",
+          "rightPoints": [
+            "Reads whole line",
+            "Stops at Enter key",
+            "Example: 'John Doe'"
+          ]
+        },
+        "keyIdea": "nextLine reads spaces"
+      }
+    },
+    {
+      "id": 10,
+      "narration": "Here is a common mistake. If you use nextInt and then try to type a word like 'hello', Java will get confused. It expects a number but gets text. This causes an error.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "mistake",
+        "props": {
+          "filename": "Main.java",
+          "language": "java",
+          "code": "Scanner sc = new Scanner(System.in);\nSystem.out.print(\"Enter a number: \");\nint num = sc.nextInt(); // User types 'abc'",
+          "highlightLines": [
+            3
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "confused",
+            "text": "Data types must match",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "narration": "Watch the output. We get an Input Mismatch Exception. This just means the data type you typed does not match what the code was looking for. Always match your methods to your data.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "java Main",
+          "output": [
+            "Enter a number: abc",
+            "Exception in thread \"main\" java.util.InputMismatchException"
+          ]
+        },
+        "camera": [
+          {
+            "at": "Mismatch",
+            "zoom": 1.5,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "narration": "Let's recap. First, import the Scanner. Second, create the object with System dot in. Third, use methods like nextInt or nextLine to grab the data.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "Scanner Checklist",
+          "items": [
+            "Import java.util.Scanner",
+            "Create Scanner sc = new Scanner(System.in)",
+            "Use nextInt() for numbers",
+            "Use nextLine() for full sentences"
+          ]
+        }
+      }
+    },
+    {
+      "id": 13,
+      "narration": "Here is your practice task. Write a program that asks for a user's favorite color and their lucky number, then prints them together in one sentence. Give it a try.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "Practice Task",
+          "items": [
+            "Ask for a String (color)",
+            "Ask for an int (number)",
+            "Print: 'Your lucky color is X and number is Y'",
+            "Hint: Use next() and nextInt()"
+          ]
+        }
+      }
+    },
+    {
+      "id": 14,
+      "narration": "You have just made your programs interactive. Keep practicing with different types of data. I will see you in the next lesson to learn about operators.",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Great Job!",
+          "subtitle": "You can now handle user input.",
+          "youtubePrompt": "Subscribe for Day 7!"
+        }
+      }
+    }
+  ]
+}
