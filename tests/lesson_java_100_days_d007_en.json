@@ -1,0 +1,373 @@
+{
+  "title": "Java String Basics",
+  "dayLabel": "Day 7 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Welcome to Day 7. Today we are learning about Strings. In Java, a String is how we store and work with text like names, messages, or even long sentences.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Java Strings",
+          "subtitle": "Handling Text in Java",
+          "badge": "DAY 7 • JAVA BASICS",
+          "tags": [
+            "Java",
+            "Strings",
+            "Programming"
+          ]
+        },
+        "chapter": "M1 Setup and Basics"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Imagine you are building a login screen. You need to save the user's name. A single letter is a character, but a full name is a sequence called a String.",
+      "remotion": {
+        "type": "ArchitectureFlow",
+        "props": {
+          "title": "What is a String?",
+          "steps": [
+            {
+              "title": "Character",
+              "desc": "A single letter like 'A' or 'B'."
+            },
+            {
+              "title": "String",
+              "desc": "A sequence of characters like 'Alice'."
+            }
+          ],
+          "activeStepIndex": 1
+        },
+        "keyIdea": "A String is a sequence of characters"
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Think of a String like a beaded necklace. Each bead is one character. When you put them on a thread, they form a single piece of text that we can use.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "The Necklace Analogy",
+          "nodes": [
+            {
+              "id": "b1",
+              "label": "J"
+            },
+            {
+              "id": "b2",
+              "label": "A"
+            },
+            {
+              "id": "b3",
+              "label": "V"
+            },
+            {
+              "id": "b4",
+              "label": "A"
+            }
+          ],
+          "edges": [
+            {
+              "from": "b1",
+              "to": "b2"
+            },
+            {
+              "from": "b2",
+              "to": "b3"
+            },
+            {
+              "from": "b3",
+              "to": "b4"
+            }
+          ],
+          "steps": [
+            {
+              "at": "bead",
+              "label": "Individual characters",
+              "focus": [
+                "b1"
+              ]
+            },
+            {
+              "at": "necklace",
+              "label": "The complete String",
+              "arrow": 2
+            }
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "bead",
+            "text": "Bead = Character",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "Why do we need this? Imagine storing a long sentence letter by letter. It would be impossible to manage. Strings let us handle the whole sentence as one single unit.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "Why use Strings?",
+          "items": [
+            "Store names and addresses",
+            "Handle user input easily",
+            "Manage long paragraphs of text",
+            "Perform actions like searching or joining"
+          ]
+        }
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Here is the map of a String variable. We have the type, the variable name, and the literal text. A literal is just the actual text inside the double quotes.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "String Structure",
+          "nodes": [
+            {
+              "id": "type",
+              "label": "String",
+              "sub": "The Type"
+            },
+            {
+              "id": "name",
+              "label": "myName",
+              "sub": "The Variable"
+            },
+            {
+              "id": "val",
+              "label": "\"Java\"",
+              "sub": "The Literal"
+            }
+          ],
+          "edges": [
+            {
+              "from": "type",
+              "to": "name"
+            },
+            {
+              "from": "name",
+              "to": "val"
+            }
+          ],
+          "steps": [
+            {
+              "at": "type",
+              "label": "Define the type",
+              "focus": [
+                "type"
+              ]
+            },
+            {
+              "at": "literal",
+              "label": "Assign the value",
+              "focus": [
+                "val"
+              ]
+            }
+          ]
+        },
+        "camera": [
+          {
+            "at": "literal",
+            "zoom": 1.2,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "narration": "Look at this line. We type String with a capital S. This tells Java we are using a class, which is a special blueprint for complex data like text.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Look",
+        "props": {
+          "filename": "Main.java",
+          "language": "java",
+          "code": "public class Main {\n  public static void main(String[] args) {\n    String greeting = \"Hello Java\";\n    System.out.println(greeting);\n  }\n}",
+          "highlightLines": [
+            3
+          ]
+        },
+        "camera": [
+          {
+            "at": "String",
+            "zoom": 1.7,
+            "x": 40,
+            "y": 45
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "capital",
+            "text": "Capital S because it's a Class",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "narration": "When we run this, the system prints the content of our variable. Notice how the double quotes do not show up in the final output window. They are only for the compiler.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "java Main.java",
+          "output": [
+            "Hello Java"
+          ]
+        },
+        "camera": [
+          {
+            "at": "output",
+            "zoom": 1.5,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "narration": "Now let's join two words. We use the plus sign to link them. This is called concatenation. It is like gluing two separate pieces of paper together into one.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Now",
+        "props": {
+          "filename": "Main.java",
+          "language": "java",
+          "code": "String firstName = \"John\";\nString lastName = \"Doe\";\nString fullName = firstName + \" \" + lastName;\nSystem.out.println(fullName);",
+          "highlightLines": [
+            3
+          ]
+        },
+        "keyIdea": "Concatenation joins strings"
+      }
+    },
+    {
+      "id": 9,
+      "narration": "Watch the output. Java puts the first word and the second word together. Since we added a space string in the middle, the name looks perfectly natural.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "java Main.java",
+          "output": [
+            "John Doe"
+          ]
+        }
+      }
+    },
+    {
+      "id": 10,
+      "narration": "What if you need to count the letters? We use the dot length method. A method is a built-in tool that performs a specific action for us, like measuring text.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "What",
+        "props": {
+          "filename": "Main.java",
+          "language": "java",
+          "code": "String word = \"Java\";\nint size = word.length();\nSystem.out.println(size);",
+          "highlightLines": [
+            2
+          ]
+        },
+        "camera": [
+          {
+            "at": "length",
+            "zoom": 1.8,
+            "x": 50,
+            "y": 40
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "method",
+            "text": "Method = Built-in action",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "narration": "Here is a mistake beginners make. They use double equals to compare two strings. In Java, this often fails because it checks memory locations, not the actual letters.",
+      "remotion": {
+        "type": "ComparisonCard",
+        "props": {
+          "title": "Comparing Strings",
+          "leftTitle": "Wrong Way (==)",
+          "leftPoints": [
+            "Checks memory address",
+            "Unreliable for text",
+            "Fails with new objects"
+          ],
+          "rightTitle": "Right Way (.equals)",
+          "rightPoints": [
+            "Checks actual characters",
+            "Reliable for content",
+            "Standard for Java text"
+          ]
+        }
+      }
+    },
+    {
+      "id": 12,
+      "narration": "The right way is to use the equals method. This tells Java to look inside both strings and compare them character by character for a perfect match.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "The",
+        "props": {
+          "filename": "Compare.java",
+          "language": "java",
+          "code": "String a = \"Hello\";\nString b = \"Hello\";\nif (a.equals(b)) {\n    System.out.println(\"They match!\");\n}",
+          "highlightLines": [
+            3
+          ]
+        },
+        "camera": [
+          {
+            "at": "equals",
+            "zoom": 1.7,
+            "x": 45,
+            "y": 45
+          }
+        ]
+      }
+    },
+    {
+      "id": 13,
+      "narration": "Let's review. Strings hold text in double quotes. We join them with a plus sign. Always use the equals method to check if two strings are identical.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "Recap Checklist",
+          "items": [
+            "Strings store sequences of characters",
+            "Use double quotes for literals",
+            "Use + for concatenation",
+            "Use .equals() for comparison"
+          ]
+        }
+      }
+    },
+    {
+      "id": 14,
+      "narration": "Time to practice. Create a variable for your favorite food. Then use the length method to print out how many characters are in that food's name.",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Practice Task",
+          "subtitle": "Print the length of your favorite food",
+          "youtubePrompt": "Subscribe for Day 8!"
+        }
+      }
+    }
+  ]
+}
