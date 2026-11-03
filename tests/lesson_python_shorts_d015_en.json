@@ -1,0 +1,198 @@
+{
+  "title": "Python While Loops Explained",
+  "dayLabel": "Day 15 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Ever wonder how code repeats a task until it's finished? That's a while loop. It runs as long as a condition stays true.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "The While Loop",
+          "subtitle": "Repeat code automatically",
+          "badge": "DAY 15 • PYTHON",
+          "tags": [
+            "Python",
+            "Loops",
+            "Logic"
+          ]
+        },
+        "chapter": "M3 Control Flow",
+        "keyIdea": "Loops repeat while true"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Think of a security guard. While there's a person in line, he checks their ID. When the line is empty, he stops. The line is our condition.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "The Loop Logic",
+          "nodes": [
+            {
+              "id": "start",
+              "label": "Start"
+            },
+            {
+              "id": "cond",
+              "label": "Line empty?",
+              "sub": "Condition"
+            },
+            {
+              "id": "action",
+              "label": "Check ID",
+              "sub": "Code Block"
+            },
+            {
+              "id": "end",
+              "label": "Go Home"
+            }
+          ],
+          "edges": [
+            {
+              "from": "start",
+              "to": "cond"
+            },
+            {
+              "from": "cond",
+              "to": "action",
+              "label": "No"
+            },
+            {
+              "from": "action",
+              "to": "cond",
+              "label": "Next Person"
+            },
+            {
+              "from": "cond",
+              "to": "end",
+              "label": "Yes"
+            }
+          ],
+          "steps": [
+            {
+              "at": "guard",
+              "label": "Checking the condition",
+              "focus": [
+                "cond"
+              ]
+            },
+            {
+              "at": "stops",
+              "label": "Exiting the loop",
+              "focus": [
+                "end"
+              ],
+              "arrow": 3
+            }
+          ]
+        },
+        "camera": [
+          {
+            "at": "guard",
+            "zoom": 1.2,
+            "x": 50,
+            "y": 40
+          },
+          {
+            "at": "stops",
+            "zoom": 1.0,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "condition",
+            "text": "True means keep going",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "In code, we start a count at one. While count is less than four, we print it and add one. This 'add one' part is crucial.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "In",
+        "props": {
+          "filename": "loop.py",
+          "language": "python",
+          "code": "count = 1\nwhile count < 4:\n    print(count)\n    count = count + 1",
+          "highlightLines": [
+            2,
+            4
+          ]
+        },
+        "camera": [
+          {
+            "at": "While",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 35
+          },
+          {
+            "at": "crucial",
+            "zoom": 1.8,
+            "x": 50,
+            "y": 65
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "crucial",
+            "text": "Prevents infinite loops",
+            "kind": "note"
+          }
+        ],
+        "lineNotes": {
+          "4": "Updates the condition"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "narration": "Running this prints one, two, and three. When count hits four, the condition becomes false, and the loop ends. Simple and efficient.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "python loop.py",
+          "output": [
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        "camera": [
+          {
+            "at": "three",
+            "zoom": 1.5,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "false",
+            "text": "4 < 4 is False",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Loops automate the boring stuff. Try printing numbers one to ten today. Check the channel for the full Python series!",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Practice Task",
+          "subtitle": "Print numbers 1 to 10 using a while loop",
+          "youtubePrompt": "Subscribe for Day 16!"
+        }
+      }
+    }
+  ],
+  "aspectRatio": "9:16"
+}
