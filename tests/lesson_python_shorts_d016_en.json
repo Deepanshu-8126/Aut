@@ -1,0 +1,135 @@
+{
+  "title": "Python Break and Continue",
+  "dayLabel": "Day 16 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Ever wanted to stop a loop early or skip one specific step? In Python, we use break and continue to control our loops like a pro.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Break vs Continue",
+          "subtitle": "Master Loop Control",
+          "badge": "DAY 16 • PYTHON",
+          "tags": [
+            "Python",
+            "Loops",
+            "Beginner"
+          ]
+        },
+        "chapter": "M2 Control Flow",
+        "keyIdea": "Control how loops behave"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Think of a security line. Break is like closing the gate and stopping everyone. Continue is like telling one person to skip ahead while the rest wait.",
+      "remotion": {
+        "type": "ComparisonCard",
+        "props": {
+          "title": "The Big Difference",
+          "leftTitle": "Break",
+          "leftPoints": [
+            "Stops the loop entirely",
+            "Exits immediately",
+            "No more turns"
+          ],
+          "rightTitle": "Continue",
+          "rightPoints": [
+            "Skips the current turn",
+            "Moves to next item",
+            "Loop keeps going"
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "gate",
+            "text": "Break = Exit",
+            "kind": "tip"
+          },
+          {
+            "anchor": "skip",
+            "text": "Continue = Skip",
+            "kind": "note"
+          }
+        ],
+        "keyIdea": "Break exits, Continue skips"
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Look at this loop. We check for the number three. When we hit it, break stops everything. The loop ends right there, printing only one and two.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Look",
+        "props": {
+          "filename": "break_demo.py",
+          "language": "python",
+          "code": "for i in range(1, 6):\n    if i == 3:\n        break\n    print(i)",
+          "highlightLines": [
+            3
+          ]
+        },
+        "camera": [
+          {
+            "at": "break",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 30
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "stops",
+            "text": "Stops the entire loop",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "Now watch continue. If the number is three, we skip the print command and jump straight to the next number, four. Only three is missing from the output.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Now",
+        "props": {
+          "filename": "continue_demo.py",
+          "language": "python",
+          "code": "for i in range(1, 6):\n    if i == 3:\n        continue\n    print(i)",
+          "highlightLines": [
+            3
+          ]
+        },
+        "camera": [
+          {
+            "at": "continue",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 30
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "skip",
+            "text": "Skips just this turn",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Break kills the loop. Continue skips a turn. Try using break to find a specific name in a list! Check the channel for the full lesson.",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Mastered Loop Control!",
+          "subtitle": "Next: While Loops",
+          "youtubePrompt": "Subscribe for Day 17!"
+        }
+      }
+    }
+  ],
+  "aspectRatio": "9:16"
+}
