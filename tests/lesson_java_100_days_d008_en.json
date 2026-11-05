@@ -1,0 +1,360 @@
+{
+  "title": "Java String Methods",
+  "dayLabel": "Day 8 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Have you ever wondered how websites check if your password is long enough? They use string methods. These are built-in tools that help us process and change text easily.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "String Methods in Java",
+          "subtitle": "Mastering text manipulation",
+          "badge": "DAY 8 • JAVA STRINGS",
+          "tags": [
+            "Java",
+            "Strings",
+            "Methods"
+          ]
+        },
+        "chapter": "M1 Basics"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Think of a string as a strip of paper with letters on it. A method is like a specialized tool. One tool counts the letters, while another tool changes them to uppercase.",
+      "remotion": {
+        "type": "ArchitectureFlow",
+        "props": {
+          "title": "What is a Method?",
+          "steps": [
+            {
+              "title": "The String",
+              "desc": "Your raw text data, like 'Hello'."
+            },
+            {
+              "title": "The Method",
+              "desc": "A tool that performs a specific action."
+            },
+            {
+              "title": "The Result",
+              "desc": "The outcome, like the length or new text."
+            }
+          ],
+          "activeStepIndex": 0
+        },
+        "keyIdea": "Methods are tools for text",
+        "camera": [
+          {
+            "at": "tool",
+            "zoom": 1.2,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Why do we need these? Imagine checking if a user's email contains an at-symbol manually. It would take many lines of code. Methods do this work in just one simple step.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "Why Use Methods?",
+          "items": [
+            "Saves time and effort",
+            "Makes code cleaner and readable",
+            "Handles complex logic automatically",
+            "Prevents manual counting errors"
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "manually",
+            "text": "Don't reinvent the wheel!",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "Let us look at the process. We take a string, call a method using a dot, and get an answer. This flow is the same for almost every method we will use today.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "The Method Call Flow",
+          "nodes": [
+            {
+              "id": "str",
+              "label": "String Variable"
+            },
+            {
+              "id": "dot",
+              "label": "."
+            },
+            {
+              "id": "meth",
+              "label": "Method Name()"
+            },
+            {
+              "id": "res",
+              "label": "Result"
+            }
+          ],
+          "edges": [
+            {
+              "from": "str",
+              "to": "dot"
+            },
+            {
+              "from": "dot",
+              "to": "meth"
+            },
+            {
+              "from": "meth",
+              "to": "res"
+            }
+          ],
+          "steps": [
+            {
+              "at": "string",
+              "label": "Start with text",
+              "focus": [
+                "str"
+              ]
+            },
+            {
+              "at": "dot",
+              "label": "Use the dot operator",
+              "arrow": 1
+            },
+            {
+              "at": "answer",
+              "label": "Get the output",
+              "focus": [
+                "res"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Our first tool is length. It counts every character in the string, including spaces. Look at this code. We create a string and then ask for its length using the length method.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Look",
+        "props": {
+          "filename": "Main.java",
+          "language": "java",
+          "code": "String text = \"Java Code\";\nint size = text.length();\nSystem.out.println(size);",
+          "highlightLines": [
+            2
+          ]
+        },
+        "camera": [
+          {
+            "at": "length",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 35
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "spaces",
+            "text": "Spaces are counted too!",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "narration": "When we run this, the output is nine. Why? Because J-a-v-a is four, the space is five, and C-o-d-e makes it nine. The computer counts everything inside the quotes.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "java Main.java",
+          "output": [
+            "9"
+          ]
+        },
+        "camera": [
+          {
+            "at": "nine",
+            "zoom": 1.5,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "narration": "Next, we have case conversion. The to-upper-case method turns everything into capital letters. The to-lower-case method does the opposite. This is very useful for comparing user input.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Next",
+        "props": {
+          "filename": "CaseChange.java",
+          "language": "java",
+          "code": "String msg = \"Hello\";\nSystem.out.println(msg.toUpperCase());\nSystem.out.println(msg.toLowerCase());",
+          "highlightLines": [
+            2,
+            3
+          ]
+        },
+        "keyIdea": "toUpperCase and toLowerCase"
+      }
+    },
+    {
+      "id": 8,
+      "narration": "Watch the output. The first line prints HELLO in all caps. The second line prints hello in small letters. Note that the original message variable remains unchanged.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "java CaseChange.java",
+          "output": [
+            "HELLO",
+            "hello"
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "unchanged",
+            "text": "Strings are immutable!",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "narration": "Now let us check for specific words. The contains method returns true if the text is found. It is like a search tool. Here, we check if the word Java is present.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Now",
+        "props": {
+          "filename": "Search.java",
+          "language": "java",
+          "code": "String goal = \"Learn Java\";\nboolean hasJava = goal.contains(\"Java\");\nSystem.out.println(hasJava);",
+          "highlightLines": [
+            2
+          ]
+        },
+        "camera": [
+          {
+            "at": "contains",
+            "zoom": 1.8,
+            "x": 50,
+            "y": 35
+          }
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "narration": "The output is true. If we searched for Python, it would return false. Remember, this method is case-sensitive. Searching for lowercase java would also return false.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "java Search.java",
+          "output": [
+            "true"
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "case-sensitive",
+            "text": "J is not the same as j",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "narration": "What if we want to swap words? The replace method finds a target and swaps it with something else. It creates a brand new string with the changes applied.",
+      "remotion": {
+        "type": "ComparisonCard",
+        "props": {
+          "title": "The Replace Method",
+          "leftTitle": "Original",
+          "leftPoints": [
+            "String: 'I like Tea'",
+            "Target: 'Tea'",
+            "Replacement: 'Coffee'"
+          ],
+          "rightTitle": "New String",
+          "rightPoints": [
+            "Result: 'I like Coffee'",
+            "Original stays same",
+            "Very useful for fixing typos"
+          ]
+        }
+      }
+    },
+    {
+      "id": 12,
+      "narration": "A common mistake beginners make is forgetting the parentheses after the method name. In Java, length for a string is a method, so it must have brackets. Without them, the code will not run.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "forgetting",
+        "props": {
+          "filename": "Error.java",
+          "language": "java",
+          "code": "String s = \"Hi\";\n// Error: missing ()\nint len = s.length;\n// Correct way:\nint correctLen = s.length();",
+          "highlightLines": [
+            3
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "brackets",
+            "text": "Methods always need ()",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 13,
+      "narration": "To recap, use length to count, to-upper-case to capitalize, and contains to search. These tools make text handling easy. Practice these today to get comfortable.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "Key Takeaways",
+          "items": [
+            "length() counts characters and spaces",
+            "toUpperCase() and toLowerCase() change case",
+            "contains() checks if text exists",
+            "Methods always end with parentheses ()"
+          ]
+        },
+        "camera": [
+          {
+            "at": "recap",
+            "zoom": 1.0,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 14,
+      "narration": "Here is your practice task. Create a string with your full name. Print its length and then print it in all uppercase. Try it out and see the results.",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Practice Time!",
+          "subtitle": "Try using 3 methods on your name",
+          "youtubePrompt": "Subscribe for Day 9!"
+        }
+      }
+    }
+  ]
+}
