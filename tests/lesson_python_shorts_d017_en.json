@@ -1,0 +1,163 @@
+{
+  "title": "Python Range Function",
+  "dayLabel": "Day 17 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Need to count from zero to a hundred without typing every number? Python has a built-in tool called range that generates sequences for you instantly.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "The Range Function",
+          "subtitle": "Generate numbers instantly",
+          "badge": "DAY 17 • PYTHON SHORTS",
+          "tags": [
+            "Python",
+            "Loops",
+            "Beginner"
+          ]
+        },
+        "chapter": "M2 Control Flow",
+        "keyIdea": "Range generates number sequences"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Think of range as a treadmill. You set the start, the stop, and the step. It creates numbers one by one as the loop runs.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "How Range Works",
+          "nodes": [
+            {
+              "id": "start",
+              "label": "Start",
+              "sub": "Default 0"
+            },
+            {
+              "id": "stop",
+              "label": "Stop",
+              "sub": "Exclusive"
+            },
+            {
+              "id": "step",
+              "label": "Step",
+              "sub": "Default 1"
+            }
+          ],
+          "edges": [
+            {
+              "from": "start",
+              "to": "stop"
+            },
+            {
+              "from": "stop",
+              "to": "step"
+            }
+          ],
+          "steps": [
+            {
+              "at": "start",
+              "label": "Setting the start",
+              "focus": [
+                "start"
+              ]
+            },
+            {
+              "at": "stop",
+              "label": "Setting the limit",
+              "focus": [
+                "stop"
+              ]
+            }
+          ]
+        },
+        "camera": [
+          {
+            "at": "treadmill",
+            "zoom": 1.0,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "step",
+            "text": "Step is the increment",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Look at this code. We set a range of five. Python starts at zero and stops exactly one number before it reaches our limit.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Look",
+        "props": {
+          "filename": "range_demo.py",
+          "language": "python",
+          "code": "for i in range(5):\n    print(i)",
+          "highlightLines": [
+            1
+          ]
+        },
+        "camera": [
+          {
+            "at": "range",
+            "zoom": 1.6,
+            "x": 50,
+            "y": 30
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "five",
+            "text": "Stop value is 5",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "The output shows zero through four. Five is the boundary, so Python stops just before hitting it. It is simple and very fast.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "python range_demo.py",
+          "output": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        "camera": [
+          {
+            "at": "four",
+            "zoom": 1.5,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "keyIdea": "Stop value is exclusive"
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Range makes loops easy. Try adding a third number to change the step size. Check the channel for more and keep coding!",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Practice Task",
+          "subtitle": "Try range(1, 10, 2) for odd numbers!",
+          "youtubePrompt": "Subscribe for Day 18!"
+        }
+      }
+    }
+  ],
+  "aspectRatio": "9:16"
+}
