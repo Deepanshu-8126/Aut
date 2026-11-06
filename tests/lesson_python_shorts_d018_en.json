@@ -1,0 +1,182 @@
+{
+  "title": "Python Enumerate and Zip",
+  "dayLabel": "Day 18 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Ever struggled to track both the item and its position in a loop? Stop using manual counters. Python has two elegant tools: enumerate and zip.",
+      "remotion": {
+        "type": "TitleCard",
+        "chapter": "M2 Loops and Iteration",
+        "props": {
+          "title": "Enumerate and Zip",
+          "subtitle": "Master Pythonic Loops",
+          "badge": "DAY 18",
+          "tags": [
+            "Python",
+            "Loops",
+            "Beginner"
+          ]
+        }
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Enumerate acts like a label maker, numbering your items automatically. Zip works like a real zipper, pairing items from two different lists into one clean loop.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "keyIdea": "Zip pairs, Enumerate numbers",
+        "props": {
+          "title": "How They Work",
+          "nodes": [
+            {
+              "id": "list1",
+              "label": "Names List"
+            },
+            {
+              "id": "list2",
+              "label": "Scores List"
+            },
+            {
+              "id": "zip",
+              "label": "Zip (Pairs)",
+              "sub": "John: 90"
+            },
+            {
+              "id": "enum",
+              "label": "Enumerate",
+              "sub": "0: John"
+            }
+          ],
+          "edges": [
+            {
+              "from": "list1",
+              "to": "zip"
+            },
+            {
+              "from": "list2",
+              "to": "zip"
+            },
+            {
+              "from": "list1",
+              "to": "enum"
+            }
+          ],
+          "steps": [
+            {
+              "at": "zipper",
+              "label": "Pairing items",
+              "focus": [
+                "zip"
+              ],
+              "arrow": 0
+            },
+            {
+              "at": "numbering",
+              "label": "Adding index",
+              "focus": [
+                "enum"
+              ],
+              "arrow": 2
+            }
+          ]
+        },
+        "camera": [
+          {
+            "at": "label",
+            "zoom": 1.2,
+            "x": 50,
+            "y": 50
+          },
+          {
+            "at": "zipper",
+            "zoom": 1.5,
+            "x": 70,
+            "y": 30
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Here, enumerate gives us the index. Then, zip combines names and scores. This keeps your code clean and avoids those annoying index out of range errors.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Here",
+        "keyIdea": "Clean code, no manual counters",
+        "props": {
+          "filename": "loops.py",
+          "language": "python",
+          "code": "names = ['Alice', 'Bob']\nscores = [85, 92]\n\n# Using Enumerate\nfor i, name in enumerate(names):\n    print(f'{i}: {name}')\n\n# Using Zip\nfor name, score in zip(names, scores):\n    print(f'{name} got {score}')",
+          "highlightLines": [
+            4,
+            8
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "enumerate",
+            "text": "Returns (index, item)",
+            "kind": "tip"
+          },
+          {
+            "anchor": "zip",
+            "text": "Combines iterables",
+            "kind": "note"
+          }
+        ],
+        "camera": [
+          {
+            "at": "index",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 35
+          },
+          {
+            "at": "combines",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 70
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "When we run this, every name matches its score and position perfectly. It is the professional way to handle multiple lists. Try it yourself today!",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "python loops.py",
+          "output": [
+            "0: Alice",
+            "1: Bob",
+            "Alice got 85",
+            "Bob got 92"
+          ]
+        },
+        "camera": [
+          {
+            "at": "matches",
+            "zoom": 1.4,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Enumerate for positions, zip for pairing. You are now writing better Python. Check the channel for the full series and keep coding!",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Practice Task",
+          "subtitle": "Zip a list of colors with a list of objects!",
+          "youtubePrompt": "Subscribe for Day 19"
+        }
+      }
+    }
+  ],
+  "aspectRatio": "9:16"
+}
