@@ -1,0 +1,114 @@
+[
+  {
+    "file": "mk788",
+    "trim": 0.566,
+    "duration": 0.7,
+    "time": 0.03,
+    "gain": 0.18,
+    "event": "case cover punch"
+  },
+  {
+    "file": "mk1530",
+    "trim": 0,
+    "duration": 0.42,
+    "time": 1.1,
+    "gain": 0.13,
+    "event": "evidence photo"
+  },
+  {
+    "file": "mk1489",
+    "trim": 0.122,
+    "duration": 0.42,
+    "time": 3.2,
+    "gain": 0.1,
+    "event": "detail reframe"
+  },
+  {
+    "file": "mk1143",
+    "trim": 0.194,
+    "duration": 0.72,
+    "time": 5.98,
+    "gain": 0.14,
+    "event": "unanswered question"
+  },
+  {
+    "file": "mk1104",
+    "trim": 0.06,
+    "duration": 0.38,
+    "time": 8.18,
+    "gain": 0.16,
+    "event": "Europe map"
+  },
+  {
+    "file": "mk677",
+    "trim": 0,
+    "duration": 0.24,
+    "time": 8.65,
+    "gain": 0.09,
+    "event": "count"
+  },
+  {
+    "file": "mk1489",
+    "trim": 0.122,
+    "duration": 0.42,
+    "time": 13.22,
+    "gain": 0.1,
+    "event": "first theory"
+  },
+  {
+    "file": "mk1489",
+    "trim": 0.122,
+    "duration": 0.42,
+    "time": 15.42,
+    "gain": 0.1,
+    "event": "second theory"
+  },
+  {
+    "file": "mk1489",
+    "trim": 0.122,
+    "duration": 0.42,
+    "time": 17.06,
+    "gain": 0.1,
+    "event": "third theory"
+  },
+  {
+    "file": "mk1143",
+    "trim": 0.194,
+    "duration": 0.6,
+    "time": 18.72,
+    "gain": 0.13,
+    "event": "not proven"
+  },
+  {
+    "file": "mk1104",
+    "trim": 0.06,
+    "duration": 0.38,
+    "time": 20.72,
+    "gain": 0.15,
+    "event": "England map"
+  },
+  {
+    "file": "mk1530",
+    "trim": 0,
+    "duration": 0.42,
+    "time": 23.5,
+    "gain": 0.13,
+    "event": "contextual artifact photo"
+  },
+  {
+    "file": "mk1489",
+    "trim": 0.122,
+    "duration": 0.42,
+    "time": 25.15,
+    "gain": 0.09,
+    "event": "context illustration"
+  },
+  {
+    "file": "mk494",
+    "trim": 0.443,
+    "duration": 2.3,
+    "time": 28.18,
+    "gain": 0.085,
+    "event": "final question"
+  }
+]

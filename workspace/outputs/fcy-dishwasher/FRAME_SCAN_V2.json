@@ -1,0 +1,7 @@
+{
+  "frames_read": 960,
+  "blank_frames_mean_below_2": [],
+  "min_frame_diff": 0.0,
+  "exact_near_identical_adjacent_frames": 237,
+  "note": "Low-resolution brightness and frame-difference scan; not semantic human review."
+}

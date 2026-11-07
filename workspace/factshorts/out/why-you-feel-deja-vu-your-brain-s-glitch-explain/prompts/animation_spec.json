@@ -1,0 +1,21 @@
+{
+  "entrance": "pill scale 0.8->1.0 out-back 0.30s; title slide-up 40px + fade 0.35s easeOutCubic",
+  "subtitle": "fade + 24px rise, 0.15s delay",
+  "hero_pop": "scale 0.7->1.0 elastic 0.75s at 0.42s; glow breathe blur 36->56->36",
+  "trail": "stroke-dasharray draw 1.2s + glowing head 0.8s",
+  "box_pop": "scale 0.6->1.0 elastic 0.45s + typewriter 25ms/char",
+  "metrics": "count-up 0.8s easeOut + underline draw left->right 0.4s",
+  "bottom_bar": "slide up 0.4s at 0.5s; dots fill; part counter tick",
+  "hold": "1.02 breathing pulse every 1.6s",
+  "per_part_seconds": 4.5,
+  "series_seconds": "28-32",
+  "fps": 24,
+  "resolution": "1080x1920",
+  "sfx": [
+    "whoosh@0.02",
+    "expop@0.55",
+    "glitch@1.25",
+    "typewriter ticks",
+    "ding@CTA"
+  ]
+}

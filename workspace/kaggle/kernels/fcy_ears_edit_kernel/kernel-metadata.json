@@ -1,0 +1,17 @@
+{
+  "id": "ukboy7u787/funcyous-ear-pressure-full-story-review",
+  "title": "Funcyous Ear Pressure Full Story Review",
+  "code_file": "render_ears.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "dataset_sources": [
+    "ukboy7u787/funcyous-ear-pressure-edit-inputs"
+  ],
+  "model_sources": [],
+  "kernel_sources": [],
+  "competition_sources": []
+}

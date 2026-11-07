@@ -1,0 +1,455 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:'OswaldB';src:url('../../explainer-pipeline/assets/fonts/Oswald-Bold.ttf');}
+@font-face{font-family:'Mono';src:url('../../explainer-pipeline/assets/fonts/JetBrainsMono-Bold.ttf');}
+@font-face{font-family:'Elite';src:url('../../explainer-pipeline/assets/fonts/SpecialElite.ttf');}
+@font-face{font-family:'Marker';src:url('../../explainer-pipeline/assets/fonts/PermanentMarker.ttf');}
+html,body{margin:0;padding:0;background:#000;}
+canvas{display:block;width:540px;height:960px;margin:auto;}
+</style></head><body><canvas id="cv" width="1080" height="1920"></canvas><script>
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+const W=540,H=960,AMB='#E8B44A',RED='#FF3B3B';
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const eo=t=>1-Math.pow(1-clamp(t,0,1),3);
+
+const SRC={
+  hero:'THUMB_C10.jpg',
+  map:'shots/MAP_POINT_NEMO.jpg',
+  space:'shots/SPACE_ORBIT.jpg',
+  spectro:'shots/BLOOP_SPECTROGRAM.jpg',
+  ice:'shots/ICEQUAKE.jpg'
+};
+
+const IMG={};let loaded=0;
+const total=Object.keys(SRC).length;
+window.READY=0;window.FONTSOK=0;
+
+function maybeReady(){if(loaded>=total&&window.FONTSOK)window.READY=1;}
+
+for(const k in SRC){
+  IMG[k]=new Image();
+  IMG[k].onload=()=>{loaded++;maybeReady();};
+  IMG[k].onerror=()=>{loaded++;maybeReady();};
+  IMG[k].src=SRC[k];
+}
+
+Promise.all([
+  document.fonts.load('80px OswaldB'),
+  document.fonts.load('30px Mono'),
+  document.fonts.load('20px Elite'),
+  document.fonts.load('20px Marker')
+]).then(()=>{window.FONTSOK=1;maybeReady();});
+
+// Distressed ink speckle mask (iz) for authentic rubber stamp erosion
+const iz=document.createElement('canvas');iz.width=270;iz.height=480;
+{
+  const c2=iz.getContext('2d'),d=c2.createImageData(270,480);
+  for(let i=0;i<d.data.length;i+=4){
+    d.data[i]=255;d.data[i+1]=255;d.data[i+2]=255;
+    d.data[i+3]=(Math.random()<0.26)?(80+Math.random()*175):0;
+  }
+  c2.putImageData(d,0,0);
+}
+
+// 35mm Film grain texture tile (nz)
+const nz=document.createElement('canvas');nz.width=270;nz.height=480;
+{
+  const c2=nz.getContext('2d'),d=c2.createImageData(270,480);
+  for(let i=0;i<d.data.length;i+=4){
+    const v=120+Math.random()*120;
+    d.data[i]=v;d.data[i+1]=v;d.data[i+2]=v;d.data[i+3]=22;
+  }
+  c2.putImageData(d,0,0);
+}
+
+function cover(img,z,px=0,py=0){
+  const iw=img.width,ih=img.height,s=Math.max(W/iw,H/ih)*z;
+  const w=iw*s,h=ih*s;
+  ctx.drawImage(img,(W-w)/2+px*(w-W)/2,(H-h)/2+py*(h-H)/2,w,h);
+}
+
+// Acoustic melt / underwater soundwave distortion
+function meltC(img,z,amp,ph){
+  const iw=img.width,ih=img.height,s=Math.max(W/iw,H/ih)*z;
+  const w=iw*s,h=ih*s,x0=(W-w)/2,y0=(H-h)/2,st=26,sh=h/st,ssh=ih/st;
+  for(let i=0;i<st;i++){
+    const f=i/st,dx=amp*Math.sin(i*0.8+ph)*f,dy=amp*0.5*f*f;
+    ctx.drawImage(img,0,ssh*i,iw,ssh,x0+dx,y0+sh*i+dy,w,sh+1.5);
+  }
+}
+
+function big(txt,y,size,tl,col='#fff'){
+  if(tl<0)return;
+  const p=clamp(tl/0.13,0,1);
+  ctx.save();
+  ctx.translate(W/2,y);
+  ctx.scale(0.86+0.14*eo(p),0.86+0.14*eo(p));
+  ctx.globalAlpha=Math.min(1,p*1.8)*((window.TXF===undefined)?1:window.TXF);
+  ctx.font=size+'px OswaldB';
+  ctx.textAlign='center';
+  ctx.textBaseline='middle';
+  const mw=ctx.measureText(txt).width,fit=Math.min(1,500/mw);
+  ctx.scale(fit,fit);
+  ctx.shadowColor='rgba(0,0,0,0.95)';
+  ctx.shadowBlur=size*0.22;
+  ctx.shadowOffsetY=3;
+  ctx.fillStyle=col;
+  ctx.fillText(txt,0,0);
+  ctx.fillText(txt,0,0);
+  ctx.restore();
+}
+
+function sub(txt,y,tl,col=AMB){
+  if(tl<0)return;
+  const p=clamp(tl/0.15,0,1);
+  ctx.save();
+  ctx.globalAlpha=p*0.92*((window.TXF===undefined)?1:window.TXF);
+  ctx.font='16px Elite';
+  ctx.textAlign='center';
+  ctx.textBaseline='middle';
+  ctx.shadowColor='rgba(0,0,0,0.9)';
+  ctx.shadowBlur=6;
+  ctx.fillStyle=col;
+  ctx.fillText(txt,W/2,y);
+  ctx.restore();
+}
+
+// Double-strike eroded rubber stamp with noise mask
+function stamp(txt,x,y,rot,tl,size=26,col=RED){
+  if(tl<0)return;
+  const d=0.12,p=clamp(tl/d,0,1);
+  const sc=2.2-1.2*eo(p);
+  const oc=document.createElement('canvas');oc.width=760;oc.height=220;
+  const c=oc.getContext('2d');
+  c.font=(size+6)+'px Elite';
+  c.textAlign='center';
+  c.textBaseline='middle';
+  const w=c.measureText(txt).width+38;
+  c.save();c.translate(380,110);c.strokeStyle=col;c.lineWidth=5.5;
+  for(const off of [0,6]){
+    const hw=Math.min(370,w/2+off),hh=size*0.95+off,n=10;
+    c.beginPath();
+    for(let s=0;s<=n;s++){
+      const px=-hw+2*hw*s/n,py=-hh+Math.sin(s*2.3+off)*2.2;
+      s?c.lineTo(px,py):c.moveTo(px,py);
+    }
+    for(let s=0;s<=n;s++)c.lineTo(hw+Math.sin(s*2.7+off)*2.2,-hh+2*hh*s/n);
+    for(let s=n;s>=0;s--)c.lineTo(-hw+2*hw*s/n,hh+Math.sin(s*2.1+off)*2.2);
+    for(let s=n;s>=0;s--)c.lineTo(-hw+Math.sin(s*1.7+off)*2.2,-hh+2*hh*s/n);
+    c.closePath();c.globalAlpha=off?0.3:0.9;c.stroke();
+  }
+  c.globalAlpha=1;c.fillStyle=col;c.fillText(txt,0,2);
+  c.globalAlpha=0.4;c.fillText(txt,1.8,3.6);c.restore();
+  
+  c.globalCompositeOperation='destination-out';
+  c.globalAlpha=0.5;c.drawImage(iz,0,0,270,480,0,0,760,220);
+  c.globalAlpha=0.3;c.drawImage(iz,0,0,270,480,-80,-140,860,500);
+  
+  ctx.save();ctx.translate(x,y);ctx.rotate(rot);ctx.scale(sc,sc);
+  ctx.globalAlpha=Math.min(0.93,p*1.6)*((window.TXF===undefined)?1:window.TXF);
+  ctx.drawImage(oc,-380,-110);
+  ctx.restore();
+}
+
+// Torn manila paper chip
+function chip(x,y,w2,lab,val,col,tl){
+  if(tl<0)return;
+  const p=clamp(tl/0.14,0,1);
+  ctx.save();ctx.globalAlpha=p*((window.TXF===undefined)?1:window.TXF);
+  ctx.translate(x+w2/2,y+26);ctx.rotate(-0.018+0.014*Math.sin(x*3.7+y));
+  ctx.shadowColor='rgba(0,0,0,0.55)';ctx.shadowBlur=8;ctx.shadowOffsetY=3;
+  ctx.fillStyle='rgba(228,220,200,0.94)';
+  const hw=w2/2,hh=28;
+  ctx.beginPath();ctx.moveTo(-hw+4,-hh);ctx.lineTo(hw-3,-hh+1.5);
+  ctx.lineTo(hw+3,-hh*0.4);ctx.lineTo(hw-4,1);ctx.lineTo(hw+2,hh*0.5);ctx.lineTo(hw-3,hh);
+  ctx.lineTo(-hw+3,hh-1.5);ctx.lineTo(-hw-3,hh*0.45);ctx.lineTo(-hw+4,-hh*0.1);ctx.lineTo(-hw-2,-hh*0.55);
+  ctx.closePath();ctx.fill();
+  ctx.shadowColor='transparent';
+  ctx.font='13px Elite';ctx.textAlign='left';ctx.fillStyle='#6a6256';ctx.fillText(lab,-hw+12,-7);
+  ctx.font='23px Elite';ctx.fillStyle=(col===RED)?'#8f1d1d':'#1d1a16';ctx.fillText(val,-hw+12,19);
+  ctx.restore();
+}
+
+// Hand-drawn telemetry / acoustic frequency gauge
+function gauge(pct,label,tl,warn){
+  if(tl<0)return;
+  const p=clamp(tl/0.2,0,1);
+  const gx=W-62,gy=240,gw=30,gh=310;
+  ctx.save();ctx.globalAlpha=p*((window.TXF===undefined)?1:window.TXF);
+  ctx.translate(gx+gw/2,gy+gh/2);ctx.rotate(0.012);
+  ctx.shadowColor='rgba(0,0,0,0.5)';ctx.shadowBlur=8;ctx.shadowOffsetY=3;
+  ctx.fillStyle='rgba(228,220,200,0.92)';
+  ctx.beginPath();ctx.moveTo(-gw/2-9,-gh/2-34);ctx.lineTo(gw/2+6,-gh/2-36);ctx.lineTo(gw/2+10,-gh/2+40);
+  ctx.lineTo(gw/2+7,gh/2+20);ctx.lineTo(gw/2+11,gh/2+34);ctx.lineTo(-gw/2-7,gh/2+36);
+  ctx.lineTo(-gw/2-11,0);ctx.closePath();ctx.fill();
+  ctx.shadowColor='transparent';
+  const ink=warn?'#8f1d1d':'#4a4132';
+  ctx.strokeStyle=ink;ctx.lineWidth=2.5;
+  ctx.beginPath();const n=8;
+  for(let s=0;s<=n;s++){const px=-gw/2+gw*s/n,py=-gh/2+Math.sin(s*2.3)*1.5;s?ctx.lineTo(px,py):ctx.moveTo(px,py);}
+  for(let s=0;s<=n;s++)ctx.lineTo(gw/2+Math.sin(s*2.7)*1.5,-gh/2+gh*s/n);
+  for(let s=n;s>=0;s--)ctx.lineTo(-gw/2+gw*s/n,gh/2+Math.sin(s*2.1)*1.5);
+  for(let s=n;s>=0;s--)ctx.lineTo(-gw/2+Math.sin(s*1.9)*1.5,-gh/2+gh*s/n);
+  ctx.closePath();ctx.stroke();
+  const fh=gh*clamp(pct,0,1);
+  ctx.fillStyle=warn?'rgba(178,34,34,0.85)':'rgba(176,132,48,0.8)';
+  ctx.fillRect(-gw/2+4,gh/2-fh+4,gw-8,Math.max(0,fh-8));
+  ctx.font='13px Elite';ctx.textAlign='center';ctx.fillStyle=ink;
+  ctx.fillText(label||'FREQ',0,-gh/2-16);
+  ctx.font='15px Elite';ctx.fillText(Math.round(pct*100)+'%',0,gh/2+24);
+  if(warn&&Math.floor(tl*6)%2===0){ctx.font='24px Elite';ctx.fillStyle='#8f1d1d';ctx.fillText('!!',0,-gh/2-44);}
+  ctx.restore();
+}
+
+// Pinned polaroid exhibit
+function pola(img,cx,cy,pw2,rot,tl,cap){
+  if(tl<0)return;
+  const p=eo(clamp(tl/0.3,0,1));
+  const ph2=pw2*img.height/img.width;
+  ctx.save();ctx.globalAlpha=Math.min(1,p*1.5)*((window.TXF===undefined)?1:window.TXF);
+  ctx.translate(cx,cy+(1-p)*120);ctx.rotate(rot);
+  ctx.shadowColor='rgba(0,0,0,0.75)';ctx.shadowBlur=18;ctx.shadowOffsetY=6;
+  ctx.fillStyle='#e9e4d8';ctx.fillRect(-pw2/2-9,-ph2/2-9,pw2+18,ph2+42);
+  ctx.shadowColor='transparent';
+  ctx.drawImage(img,-pw2/2,-ph2/2,pw2,ph2);
+  ctx.font='13px Elite';ctx.textAlign='center';ctx.fillStyle='#333';
+  ctx.fillText(cap,0,ph2/2+22);ctx.restore();
+}
+
+// Bottom file tab and Chronic stamp
+function tab(t){
+  ctx.save();
+  ctx.translate(14,H-30);ctx.rotate(-0.012);ctx.globalAlpha=0.9;
+  ctx.shadowColor='rgba(0,0,0,0.5)';ctx.shadowBlur=6;ctx.shadowOffsetY=2;
+  ctx.fillStyle='rgba(226,218,198,0.92)';
+  ctx.beginPath();ctx.moveTo(3,-14);ctx.lineTo(312,-12.5);ctx.lineTo(317,-5);ctx.lineTo(311,1);ctx.lineTo(316,8);ctx.lineTo(312,14);
+  ctx.lineTo(4,12.5);ctx.lineTo(-2,6);ctx.lineTo(3,0);ctx.lineTo(-1,-7);ctx.closePath();ctx.fill();
+  ctx.shadowColor='transparent';
+  ctx.font='14px Elite';ctx.textAlign='left';ctx.fillStyle='#2e2a24';
+  ctx.fillText('CASE FILE No. 10 \u2014 POINT NEMO & THE BLOOP',10,5);ctx.restore();
+  
+  ctx.save();ctx.translate(W-62,28);ctx.rotate(0.03);ctx.globalAlpha=0.68;
+  ctx.font='16px Elite';ctx.textAlign='center';ctx.fillStyle='rgba(220,80,60,0.9)';
+  ctx.fillText('CHRONIC',0,0);ctx.restore();
+}
+
+function dk(a){ctx.fillStyle='rgba(0,0,0,'+a+')';ctx.fillRect(0,0,W,H);}
+
+// Manila dossier folder cover
+function covpage(p){
+  ctx.fillStyle='#d9d0ba';ctx.fillRect(0,0,W,H);
+  ctx.save();const sc=1+0.10*p;ctx.translate(W/2,H/2);ctx.scale(sc,sc);ctx.translate(-W/2,-H/2);
+  ctx.save();ctx.globalAlpha=0.68;for(let x=0;x<2;x++)for(let y=0;y<2;y++)ctx.drawImage(nz,x*270,y*480);ctx.restore();
+  ctx.save();ctx.strokeStyle='#2e2820';ctx.setLineDash([9,6]);ctx.lineWidth=2;ctx.strokeRect(20,20,W-40,H-40);ctx.strokeStyle='#5a4e3e';ctx.lineWidth=1;ctx.strokeRect(32,32,W-64,H-64);ctx.setLineDash([]);
+  ctx.strokeStyle='#8a2e2b';ctx.lineWidth=3;
+  [[14,14,1,1],[W-14,14,-1,1],[14,H-14,1,-1],[W-14,H-14,-1,-1]].forEach(c=>{ctx.beginPath();ctx.moveTo(c[0]+c[2]*26,c[1]);ctx.lineTo(c[0],c[1]);ctx.lineTo(c[0],c[1]+c[3]*26);ctx.stroke();});
+  ctx.restore();
+  ctx.fillStyle='#17140f';ctx.fillRect(0,118,W,56);
+  ctx.font='22px Elite';ctx.fillStyle='#d9d0ba';ctx.textAlign='center';ctx.fillText('CLASSIFIED \u2014 FIELD DOSSIER',W/2,154);
+  ctx.fillStyle='#17140f';ctx.font='46px Elite';ctx.fillText('CASE FILE No. 10',W/2,272);
+  ctx.font='24px Elite';ctx.fillStyle='#3a332a';ctx.fillText('SUBJECT: POINT NEMO & THE BLOOP',W/2,316);
+  ctx.textAlign='left';ctx.font='15px Elite';
+  const rows=[
+    'site: SOUTH PACIFIC OCEAN',
+    'coordinates: 48\u00B0 52.6\u2032 S, 123\u00B0 23.6\u2032 W',
+    'anomaly: ULTRA-LOW FREQUENCY SIGNAL',
+    'recorded: SUMMER 1997 (NOAA PMEL)',
+    'detection range: > 5,000 KM (3,000 MILES)',
+    'verdict: ANOMALY UNRESOLVED'
+  ];
+  let ry=542;
+  for(let i=0;i<rows.length;i++){
+    ctx.fillStyle='#3a332a';ctx.fillText('\u2022  '+rows[i],70,ry);
+    if(i%2===1){ctx.fillStyle='#17140f';ctx.fillRect(70,ry+12,130+(i*47)%130,7);}
+    ry+=56;
+  }
+  ctx.restore();
+  pola(IMG.hero,W*0.72,H*0.74,170,0.09,1,'EXHIBIT A');
+  stamp('ANOMALY UNRESOLVED',W/2,H*0.46,-0.08,1,22);
+}
+
+// Pulsating numbered target ring
+function ring(x,y,r,tl,col,num){
+  if(tl<0)return;
+  const p=clamp(tl/0.18,0,1);
+  ctx.save();ctx.globalAlpha=Math.min(0.95,p*1.5)*((window.TXF===undefined)?1:window.TXF);
+  ctx.strokeStyle=col||RED;ctx.lineWidth=3;ctx.translate(x,y);ctx.scale(1.6-0.6*eo(p),1.6-0.6*eo(p));
+  ctx.beginPath();
+  for(let s=0;s<=22;s++){
+    const a=s/22*6.283,rr2=r+Math.sin(s*2.7)*1.1;
+    s?ctx.lineTo(Math.cos(a)*rr2,Math.sin(a)*rr2):ctx.moveTo(Math.cos(a)*rr2,Math.sin(a)*rr2);
+  }
+  ctx.closePath();ctx.stroke();
+  if(num){
+    ctx.font='19px Elite';ctx.fillStyle=col||RED;ctx.textAlign='center';
+    ctx.fillText(num,r+14,-r-6);
+  }
+  ctx.restore();
+}
+
+function post(t){
+  const g=ctx.createRadialGradient(W/2,H/2,H*0.28,W/2,H/2,H*0.75);
+  g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,0.55)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+  ctx.save();ctx.globalAlpha=0.5;
+  const ox=(Math.floor(t*30)%3)*17,oy=(Math.floor(t*17)%4)*23;
+  for(let x=-1;x<3;x++)for(let y=-1;y<3;y++)ctx.drawImage(nz,x*270-ox,y*480-oy);
+  ctx.restore();
+  ctx.fillStyle='rgba(232,180,74,0.05)';ctx.fillRect(0,0,W,H);
+}
+
+window.renderAt=function(t){
+  ctx.clearRect(0,0,cv.width,cv.height);
+  ctx.save();ctx.scale(2,2);
+  ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);
+  
+  // Organic handheld camera sway
+  const swx=2.3*Math.sin(t*2.1)+0.8*Math.sin(t*7.3);
+  const swy=1.9*Math.cos(t*1.7)+0.7*Math.cos(t*6.1);
+  ctx.translate(W/2+swx,H/2+swy);ctx.scale(1.016,1.016);ctx.rotate(0.0022*Math.sin(t*0.9));ctx.translate(-W/2,-H/2);
+  
+  const S=(a,b)=>t>=a&&t<b;
+  const L=a=>t-a;
+  window.TXF=1;
+  
+  // -------------------------------------------------------------------------
+  // 0.0s – 1.1s: THE LIVING DOSSIER COVER (Hook Punch)
+  // -------------------------------------------------------------------------
+  if(t<1.1){
+    if(t<0.66){
+      const zp=(t<0.22?eo(t/0.22)*0.9:(t<0.44?0.9+eo((t-0.22)/0.22)*0.65:1.55+eo((t-0.44)/0.22)*0.65));
+      ctx.save();
+      if(t>0.1){ctx.translate(Math.sin(t*57)*4*Math.min(1,(t-0.1)*8),Math.cos(t*49)*3*Math.min(1,(t-0.1)*8));}
+      covpage(zp);ctx.restore();
+      if(t>0.08&&t<0.18){ctx.fillStyle='rgba(255,60,60,'+(0.25*(1-(t-0.08)/0.1))+')';ctx.fillRect(0,0,W,H);}
+      if(t>0.22&&t<0.29){ctx.fillStyle='rgba(255,255,255,'+(0.12*(1-(t-0.22)/0.07))+')';ctx.fillRect(0,0,W,H);}
+      if(t>0.42&&t<0.54){ctx.fillStyle='rgba(255,60,60,'+(0.22*(1-(t-0.42)/0.12))+')';ctx.fillRect(0,0,W,H);}
+    } else {
+      const c2=(t-0.66)/0.44;
+      ctx.save();ctx.translate(W/2,H/2);ctx.scale(1.72+0.12*c2,1.72+0.12*c2);ctx.translate(-W*0.52,-H*0.60);
+      covpage(0);ctx.restore();
+      ctx.save();ctx.strokeStyle='rgba(170,46,40,0.9)';ctx.setLineDash([8,5]);ctx.lineWidth=2;
+      ctx.strokeRect(54,210,W-108,H-500);ctx.setLineDash([]);ctx.lineWidth=3;
+      [[44,200,1,1],[W-44,200,-1,1],[44,H-280,1,-1],[W-44,H-280,-1,-1]].forEach(c=>{ctx.beginPath();ctx.moveTo(c[0]+c[2]*22,c[1]);ctx.lineTo(c[0],c[1]);ctx.lineTo(c[0],c[1]+c[3]*22);ctx.stroke();});
+      ctx.globalAlpha=0.05;ctx.fillStyle='#000';for(let sy=0;sy<H;sy+=4)ctx.fillRect(0,sy,W,1);
+      ctx.restore();
+      if(t<0.78){ctx.fillStyle='rgba(255,255,255,'+(0.26*(1-(t-0.66)/0.12))+')';ctx.fillRect(0,0,W,H);}
+    }
+  }
+  
+  // -------------------------------------------------------------------------
+  // 1.1s – 4.5s: POINT NEMO MAP & COORDINATES
+  // -------------------------------------------------------------------------
+  else if(S(1.1,4.5)){
+    const q=clamp(L(1.1)/2.0,0,1);
+    cover(IMG.map,1.18-0.12*eo(q),0,-0.2-0.5*eo(q));dk(0.25);
+    if(t<1.24){ctx.fillStyle='rgba(255,255,255,'+(0.3*(1-(t-1.1)/0.14))+')';ctx.fillRect(0,0,W,H);}
+    big('IN THE SOUTH PACIFIC',H*0.24,42,L(1.2));
+    big('POINT NEMO',H*0.33,66,L(1.4),RED);
+    ring(W/2-24,H/2-30,48,L(1.8),RED,'48\u00B0S');
+    ring(W/2+45,H/2+40,24,L(2.3),AMB,'123\u00B0W');
+    chip(16,H*0.58,220,'SITE','SOUTH PACIFIC','#fff',L(1.5));
+    chip(16,H*0.66,220,'STATUS','POLE OF INACCESSIBILITY',RED,L(2.2));
+    sub('in the middle of the south pacific lies point nemo',H*0.86,L(1.2));
+  }
+  
+  // -------------------------------------------------------------------------
+  // 4.5s – 8.2s: SPACE STATION ORBIT & ISOLATION
+  // -------------------------------------------------------------------------
+  else if(S(4.5,8.2)){
+    cover(IMG.space,1.14+0.08*(L(4.5)/3.7),0,-0.15);dk(0.35);
+    pola(IMG.map,W*0.78,H*0.48,150,-0.08,L(5.2),'NAUTICAL CHART');
+    big('THE MOST ISOLATED',H*0.24,38,L(4.6));
+    big('PLACE ON EARTH.',H*0.31,44,L(4.9),AMB);
+    stamp('2,688 KM TO LAND',W/2,H*0.44,-0.06,L(5.5),26);
+    chip(16,H*0.58,220,'CLOSEST HUMANS','ISS ORBIT',RED,L(6.0));
+    chip(16,H*0.66,220,'ALTITUDE','415 KM ABOVE','#fff',L(6.8));
+    sub('the closest humans are aboard the space station orbiting above',H*0.86,L(4.6));
+  }
+  
+  // -------------------------------------------------------------------------
+  // 8.2s – 13.0s: NOAA HYDROPHONE ARRAY & SENSOR READOUT
+  // -------------------------------------------------------------------------
+  else if(S(8.2,13.0)){
+    cover(IMG.spectro,1.22-0.10*eo(L(8.2)/4.8),0,-0.1);dk(0.28);
+    // 4 deep-sea hydrophone sensor nodes
+    ring(120,H*0.44,18,L(8.7),AMB,'#1');
+    ring(240,H*0.42,22,L(9.1),AMB,'#2');
+    ring(380,H*0.45,19,L(9.5),AMB,'#3');
+    ring(460,H*0.48,25,L(9.9),RED,'#4');
+    gauge(0.35+0.55*eo(L(8.5)/4.5),'SIGNAL',L(8.6),false);
+    big('SUMMER 1997.',H*0.24,50,L(8.4));
+    stamp('NOAA HYDROPHONE ARRAY',W/2,H*0.36,0.04,L(9.6),24,RED);
+    chip(16,H*0.58,220,'SENSORS','EQUATORIAL PACIFIC','#fff',L(8.8));
+    chip(16,H*0.66,220,'RECORDED','ANOMALOUS SOUND',RED,L(10.2));
+    sub('noaa deep-sea microphones detected something impossible',H*0.86,L(8.4));
+  }
+  
+  // -------------------------------------------------------------------------
+  // 13.0s – 18.0s: THE BLOOP (Frequency Spike + Acoustic Melt)
+  // -------------------------------------------------------------------------
+  else if(S(13.0,18.0)){
+    meltC(IMG.spectro,1.35+0.06*(L(13.0)/5.0),6.0,t*6.0);dk(0.35);
+    gauge(0.85+0.15*Math.sin(t*8),'FREQ',L(13.2),true);
+    big('AN ULTRA-LOW FREQUENCY',H*0.23,34,L(13.1));
+    big('THE BLOOP.',H*0.32,68,L(13.6),RED);
+    stamp('FREQUENCY 0-40 HZ',W/2,H*0.44,-0.07,L(14.8),28,AMB);
+    chip(16,H*0.60,220,'DURATION','OVER 1 MINUTE','#fff',L(14.0));
+    chip(16,H*0.68,220,'PROFILE','ORGANIC SPIKE',RED,L(15.2));
+    sub('an ultra-low frequency sound rising from the depths',H*0.86,L(13.1));
+  }
+  
+  // -------------------------------------------------------------------------
+  // 18.0s – 22.5s: 3,000 MILES & LOUDER THAN A BLUE WHALE
+  // -------------------------------------------------------------------------
+  else if(S(18.0,22.5)){
+    cover(IMG.hero,1.15+0.08*(L(18.0)/4.5),-0.1,-0.2);dk(0.40);
+    pola(IMG.spectro,W*0.78,H*0.52,145,0.07,L(18.8),'NOAA 1997 CRT');
+    big('DETECTED ACROSS',H*0.24,42,L(18.2));
+    big('3,000 MILES.',H*0.32,58,L(18.7),RED);
+    stamp('LOUDER THAN A BLUE WHALE',W/2,H*0.44,0.03,L(19.8),22);
+    chip(16,H*0.58,220,'RANGE','> 5,000 KM',RED,L(18.4));
+    chip(16,H*0.66,220,'DECIBEL LEVEL','> 220 dB','#fff',L(20.0));
+    sub('it was detected across three thousand miles... louder than a whale',H*0.86,L(18.2));
+  }
+  
+  // -------------------------------------------------------------------------
+  // 22.5s – 26.8s: ANTARCTIC ICEQUAKE VS UNRESOLVED
+  // -------------------------------------------------------------------------
+  else if(S(22.5,26.8)){
+    cover(IMG.ice,1.18+0.1*(L(22.5)/4.3),0,-0.2);dk(0.45);
+    pola(IMG.hero,W*0.78,H*0.50,150,-0.06,L(23.2),'PACIFIC ABYSS');
+    big('OFFICIAL BLAME:',H*0.24,36,L(22.7));
+    big('ANTARCTIC ICEQUAKE.',H*0.32,44,L(23.2),AMB);
+    stamp('CRYOSEISM?',W/2,H*0.43,-0.06,L(24.2),28,RED);
+    chip(16,H*0.60,220,'HYPOTHESIS','ICEBERG CALVING','#fff',L(23.3));
+    chip(16,H*0.68,220,'EPICENTER','LONELIEST OCEAN',RED,L(24.6));
+    sub('years later, they blamed cracking icebergs off antarctica',H*0.86,L(22.7));
+  }
+  
+  // -------------------------------------------------------------------------
+  // 26.8s – 30.0s: SEAMLESS LOOP CLOSER & VERDICT
+  // -------------------------------------------------------------------------
+  else {
+    const lt=L(26.8);
+    covpage(0.165+0.022*lt);
+    if(lt<0.12){ctx.fillStyle='rgba(255,255,255,'+(0.22*(1-lt/0.12))+')';ctx.fillRect(0,0,W,H);}
+    big('WHAT MADE THAT SOUND?',H*0.36,44,L(27.0));
+    stamp('STILL UNSOLVED',W/2,H*0.46,-0.07,L(27.8),30,RED);
+    sub('what do you think made that sound?',H*0.86,L(27.0));
+  }
+  
+  // Film dust specks
+  {
+    const fs=Math.floor(t*30);let gs=(fs*9301+49297)%233280;ctx.save();
+    ctx.globalAlpha=0.07;ctx.fillStyle='#fff';
+    for(let i=0;i<80;i++){gs=(gs*9301+49297)%233280;const gx=(gs/233280)*W;gs=(gs*9301+49297)%233280;ctx.fillRect(gx,(gs/233280)*H,2,2);}
+    ctx.globalAlpha=0.055;ctx.fillStyle='#000';
+    for(let i=0;i<60;i++){gs=(gs*9301+49297)%233280;const gx=(gs/233280)*W;gs=(gs*9301+49297)%233280;ctx.fillRect(gx,(gs/233280)*H,2,2);}
+    ctx.restore();
+  }
+  
+  if(t>=1.1&&t<26.8){tab(t);}
+  post(t);
+  ctx.restore();
+};
+</script></body></html>

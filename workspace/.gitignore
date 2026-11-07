@@ -1,0 +1,27 @@
+# Workspace Git Ignore Rules
+# Exclude video files
+*.mp4
+*.mkv
+*.avi
+*.mov
+
+# Exclude temp, lock, cache & secret files
+*.tmp
+*.pyc
+__pycache__/
+.wget-hsts
+.sudo_as_admin_successful
+.~lock*
+.DS_Store
+Thumbs.db
+settings.dat
+access_token
+.kaggle/
+.config/
+
+# Explicitly track audio & media assets
+!*.mp3
+!*.wav
+!*.flac
+!*.m4a
+!*.ogg

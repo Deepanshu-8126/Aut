@@ -1,0 +1,128 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:'MontserratB';src:url('../../explainer-pipeline/assets/fonts/Montserrat-Black.ttf');}
+@font-face{font-family:'InterSB';src:url('../../explainer-pipeline/assets/fonts/Inter-SemiBold.ttf');}
+@font-face{font-family:'Mono';src:url('../../explainer-pipeline/assets/fonts/JetBrainsMono-Bold.ttf');}
+html,body{margin:0;padding:0;background:#04060b;}
+canvas{display:block;width:540px;height:960px;margin:auto;}
+</style></head><body><canvas id="cv" width="1080" height="1920"></canvas><script>
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+const W=540,H=960;
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const eo=t=>1-Math.pow(1-clamp(t,0,1),3);
+const lerp=(a,b,t)=>a+(b-a)*t;
+
+window.READY=1;window.FONTSOK=1;
+
+// Pseudo-random deterministic particles
+function hash(n){return Math.abs(Math.sin(n*127.1)*43758.5453)%1;}
+
+window.renderAt=function(t){
+  ctx.clearRect(0,0,cv.width,cv.height);
+  ctx.save();ctx.scale(2,2);
+
+  // ── 1. BACKGROUND & VOLUMETRIC LIGHT ────────────────────────────────────
+  const bg=ctx.createRadialGradient(W/2,H*0.3,50,W/2,H*0.5,W*0.9);
+  bg.addColorStop(0,'#1b2434');bg.addColorStop(1,'#04060b');
+  ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+
+  // Volumetric shaft top
+  const shaft=ctx.createLinearGradient(0,0,0,H*0.6);
+  shaft.addColorStop(0,'rgba(80,180,120,0.14)');shaft.addColorStop(1,'rgba(4,6,11,0)');
+  ctx.fillStyle=shaft;ctx.fillRect(0,0,W,H*0.6);
+
+  // ── 2. CAMERA PIECEWISE CUTS & ZOOM ──────────────────────────────────────
+  let cx=W/2,cy=H*0.48,zoom=1.0;
+  if(t<8.0){zoom=1.0+0.12*eo(t/8.0);cy=H*0.45;}
+  else if(t<18.0){const dt=t-8.0;zoom=1.4+0.3*eo(dt/10.0);cx=W/2+30*Math.sin(dt*0.5);cy=H*0.52;}
+  else{zoom=1.8+0.1*Math.sin(t*1.2);cx=W/2;cy=H*0.5;}
+
+  ctx.save();
+  ctx.translate(W/2,H/2);ctx.scale(zoom,zoom);ctx.translate(-cx,-cy);
+
+  // ── 3. CODE-DRAWN X-RAY NERVE & SODIUM CHANNEL CUTAWAY ──────────────────
+  // Cell membrane barrier
+  ctx.strokeStyle='#306048';ctx.lineWidth=14;ctx.lineCap='round';
+  ctx.beginPath();
+  for(let x=40;x<=W-40;x+=20){
+    const y=H*0.5+18*Math.sin(x*0.04+t*0.5);
+    x===40?ctx.moveTo(x,y):ctx.lineTo(x,y);
+  }
+  ctx.stroke();
+
+  // Sodium Channel Protein Gate in center
+  const gx=W/2,gy=H*0.5+6*Math.sin(gx*0.04+t*0.5);
+  ctx.save();
+  ctx.translate(gx,gy);
+
+  // Channel pore walls (metallic brushed gradient)
+  const pg=ctx.createLinearGradient(-35,-50,35,50);
+  pg.addColorStop(0,'#487a5e');pg.addColorStop(0.5,'#76c89a');pg.addColorStop(1,'#2d4a39');
+  ctx.fillStyle=pg;ctx.strokeStyle='#98fbc9';ctx.lineWidth=3;
+  ctx.fillRect(-42,-55,26,110);ctx.strokeRect(-42,-55,26,110);
+  ctx.fillRect(16,-55,26,110);ctx.strokeRect(16,-55,26,110);
+
+  // Batrachotoxin molecule locking the gate open if t > 10s
+  if(t>10.0){
+    ctx.save();
+    ctx.shadowColor='#ff3b3b';ctx.shadowBlur=18;
+    ctx.fillStyle='#ff4a2e';
+    ctx.beginPath();ctx.arc(0,0,14,0,Math.PI*2);ctx.fill();
+    ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke();
+    ctx.restore();
+  }
+
+  ctx.restore();
+
+  // ── 4. SODIUM IONS (Na+) DASH STREAM & UNCONTROLLED FLOOD ───────────────
+  const ionCount=32;
+  for(let i=0;i<ionCount;i++){
+    const seed=i*73.3;
+    const speed=(t>10.0)?180:70; // jam = hyper speed flood
+    const iy=((t*speed+hash(seed)*H*0.8)%(H*0.8))+H*0.1;
+    const ix=gx+((hash(seed+1)-0.5)*(t>10.0?70:30));
+
+    ctx.save();
+    ctx.shadowColor=(t>10.0)?'#ff4a2e':'#52b788';ctx.shadowBlur=10;
+    ctx.fillStyle=(t>10.0)?'#ff4a2e':'#76c89a';
+    ctx.beginPath();ctx.arc(ix,iy,4.5,0,Math.PI*2);ctx.fill();
+    // ion charge symbol (+)
+    ctx.strokeStyle='#fff';ctx.lineWidth=1.2;
+    ctx.beginPath();ctx.moveTo(ix-2.5,iy);ctx.lineTo(ix+2.5,iy);ctx.moveTo(ix,iy-2.5);ctx.lineTo(ix,iy+2.5);ctx.stroke();
+    ctx.restore();
+  }
+
+  // ── 5. METRIC BADGE (Funcyous house style: top-right #FFD60A) ─────────────
+  ctx.restore(); // reset camera transform for UI overlay
+  if(t>=2.0){
+    ctx.save();
+    ctx.fillStyle='rgba(14,18,24,0.92)';ctx.fillRect(W-132,22,114,38);
+    ctx.strokeStyle='#FFD60A';ctx.lineWidth=1.5;ctx.strokeRect(W-132,22,114,38);
+    ctx.font='16px Mono';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillStyle='#FFD60A';ctx.fillText('1 mg TOXIN',W-75,41);
+    ctx.restore();
+  }
+
+  // ── 6. ACTIVE-WORD KINETIC CAPTIONS (lower third) ─────────────────────────
+  {
+    ctx.save();
+    // bottom gradient backdrop
+    const grad=ctx.createLinearGradient(0,H-220,0,H);
+    grad.addColorStop(0,'rgba(4,6,11,0)');grad.addColorStop(1,'rgba(4,6,11,0.92)');
+    ctx.fillStyle=grad;ctx.fillRect(0,H-220,W,220);
+
+    ctx.font='22px MontserratB';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillStyle='#FFD60A';
+    ctx.shadowColor='rgba(0,0,0,0.9)';ctx.shadowBlur=8;
+    let capTxt="BATRACHOTOXIN LOCKS SODIUM GATES OPEN";
+    if(t<4.0)capTxt="THIS TINY FROG IS ONLY 2 INCHES";
+    else if(t<9.0)capTxt="NORMAL NERVES SEND ELECTRICAL SIGNALS";
+    else if(t<15.0)capTxt="BATRACHOTOXIN JAMS GATES WIDE OPEN";
+    else capTxt="UNCONTROLLED SODIUM IONS FLOOD INSIDE";
+
+    ctx.fillText(capTxt,W/2,H-85);
+    ctx.restore();
+  }
+
+  ctx.restore();
+};
+</script></body></html>

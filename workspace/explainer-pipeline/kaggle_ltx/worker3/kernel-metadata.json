@@ -1,0 +1,13 @@
+{
+  "id": "ukboy7u787/factory-skyreels-test",
+  "title": "Factory SkyReels Test",
+  "code_file": "worker3.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "dataset_sources": ["ukboy7u787/factory-jobs"],
+  "competition_sources": [],
+  "kernel_sources": []
+}

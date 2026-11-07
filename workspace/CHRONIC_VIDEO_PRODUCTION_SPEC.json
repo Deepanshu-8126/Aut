@@ -1,0 +1,12 @@
+{
+    "project": "Chronic Documentary Series",
+    "episode": "C01 - UVB-76 The Buzzer Mystery",
+    "status": "Ready for Rendering",
+    "script_file": "c01-uvb76-buzzer-chronic.srt",
+    "visual_assets": [
+        "chronic-logo-800.png",
+        "chronic-banner-2560x1440.jpg"
+    ],
+    "pipeline_mode": "Mode 3D / Fast Pipeline",
+    "instructions": "Execute blender / ffmpeg render pipeline using workspace tools."
+}

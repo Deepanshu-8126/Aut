@@ -1,0 +1,10 @@
+{
+  "entrance": {"pill": "scale 0.8->1.0 outBack 0.30s", "title": "slide-up 40px + fade 0.35s easeOutCubic", "subtitle": "fade + 24px rise, 0.15s delay"},
+  "hero_pop": {"at": 0.42, "duration": 0.75, "easing": "elastic", "from": 0.7, "glow_breathe": "blur 36->56->36"},
+  "trail": {"stroke_dasharray_draw": 1.2, "glow_head": 0.8},
+  "box_pop": {"start": 1.2, "stagger": 0.16, "duration": 0.45, "easing": "elastic", "typewriter_ms_per_char": 25},
+  "metrics": {"start": 2.0, "count_up": 0.8, "underline_draw": 0.4},
+  "bottom_bar": {"at": 0.5, "slide_up": 0.4, "dots_fill": 0.7},
+  "hold": {"pulse_scale": 1.02, "period": 1.6},
+  "part_seconds": 4.5, "total_seconds": "28-32", "fps": 24
+}

@@ -1,0 +1,23 @@
+Next Page Token = CfDJ8FwkkMkekkBCtzoFDl4Vj7jiRZD_N7hID6Wu9S9c1trTnJg5AO8cI_-Z15nFD7CO-fwRv90ts5gtIrZArsBlQ7Un52LoBkfnJIICfn55QAYY1azvXMzxXkzFEn3DLHZ_SPwUbs5S14FYlhtfte_u1sfdwUmBGy8z6k2Nh-LnifNEtDRqDUdYnrn7dhfsJFedQgTrSqe05JDl3dVHFQuRnPvwAHcGo4I_F0BO9KOseCf2c8OFvA
+name                                                                                                     size  creationDate                
+---------------------------------------------------------------------------------------------------  --------  --------------------------  
+RAAZVIK_NANDA_COMPLETE_HOLD_BACKUP/nanda-voice.mp3                                                   13556012  2026-10-30 16:39:11.762000  
+RAAZVIK_NANDA_COMPLETE_HOLD_BACKUP/outputs/chronic-nanda-devi/DBC_LOCKED_15S_SOUND_MAP.md                 826  2026-10-30 16:39:11.041000  
+RAAZVIK_NANDA_COMPLETE_HOLD_BACKUP/outputs/chronic-nanda-devi/HOOK_DOSSIER_V2.html                       4282  2026-10-30 16:39:11.074000  
+RAAZVIK_NANDA_COMPLETE_HOLD_BACKUP/outputs/chronic-nanda-devi/HOOK_TEST.html                             2999  2026-10-30 16:39:11.048000  
+RAAZVIK_NANDA_COMPLETE_HOLD_BACKUP/outputs/chronic-nanda-devi/NANDA_DEVI_HOOK_TEST.mp4                1700344  2026-10-30 16:39:11.086000  
+RAAZVIK_NANDA_COMPLETE_HOLD_BACKUP/outputs/chronic-nanda-devi/NANDA_HOOK_DOSSIER_V2.mp4               1840938  2026-10-30 16:39:11.257000  
+RAAZVIK_NANDA_COMPLETE_HOLD_BACKUP/outputs/chronic-nanda-devi/NARRATION.txt                              6031  2026-10-30 16:39:11.111000  
+RAAZVIK_NANDA_COMPLETE_HOLD_BACKUP/outputs/chronic-nanda-devi/RAAZVIK_DBC_LOCKED_HINDI_15SEC.mp4      2898170  2026-10-30 16:39:11.147000  
+RAAZVIK_NANDA_COMPLETE_HOLD_BACKUP/outputs/chronic-nanda-devi/RAAZVIK_DOSSIER_HINDI_15SEC_TEST.mp4    1596268  2026-10-30 16:39:11.147000  
+RAAZVIK_NANDA_COMPLETE_HOLD_BACKUP/outputs/chronic-nanda-devi/RAAZVIK_EDIT_TIMELINE.md                   3029  2026-10-30 16:39:11.101000  
+RAAZVIK_NANDA_COMPLETE_HOLD_BACKUP/outputs/chronic-nanda-devi/RAAZVIK_EXPEDITION_NEW_SCENE_TEST.mp4   6483023  2026-10-30 16:39:11.225000  
+RAAZVIK_NANDA_COMPLETE_HOLD_BACKUP/outputs/chronic-nanda-devi/RAAZVIK_NANDA_1978_DBC_TEST.mp4         4064100  2026-10-30 16:39:11.236000  
+RAAZVIK_NANDA_COMPLETE_HOLD_BACKUP/outputs/chronic-nanda-devi/RAAZVIK_NANDA_LEMO_REAL_15S.mp4         4391970  2026-10-30 16:39:11.297000  
+RAAZVIK_NANDA_COMPLETE_HOLD_BACKUP/outputs/chronic-nanda-devi/RAAZVIK_PRODUCTION_NOTES.md               10577  2026-10-30 16:39:11.166000  
+RAAZVIK_NANDA_COMPLETE_HOLD_BACKUP/outputs/chronic-nanda-devi/RAAZVIK_RTG_SYNC_15S_TEST.mp4           2745159  2026-10-30 16:39:11.352000  
+RAAZVIK_NANDA_COMPLETE_HOLD_BACKUP/outputs/chronic-nanda-devi/RENDER_15S_HINDI_DOSSIER.py                7689  2026-10-30 16:39:11.184000  
+RAAZVIK_NANDA_COMPLETE_HOLD_BACKUP/outputs/chronic-nanda-devi/RESEARCH.md                                3268  2026-10-30 16:39:11.187000  
+RAAZVIK_NANDA_COMPLETE_HOLD_BACKUP/outputs/chronic-nanda-devi/SCRIPT_RESEARCH_DRAFT.md                   7644  2026-10-30 16:39:11.176000  
+RAAZVIK_NANDA_COMPLETE_HOLD_BACKUP/outputs/chronic-nanda-devi/SOUND_MAP.md                               1400  2026-10-30 16:39:11.222000  
+RAAZVIK_NANDA_COMPLETE_HOLD_BACKUP/outputs/chronic-nanda-devi/SOUND_MAP_15S_HINDI_TEST.md                1220  2026-10-30 16:39:11.182000  

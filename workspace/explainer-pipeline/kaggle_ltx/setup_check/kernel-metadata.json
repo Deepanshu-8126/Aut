@@ -1,0 +1,13 @@
+{
+  "id": "ukboy7u787/factory-setup-check",
+  "title": "Factory Setup Check",
+  "code_file": "check.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": []
+}

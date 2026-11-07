@@ -1,0 +1,4 @@
+pillow>=10.0
+numpy>=1.24
+imageio-ffmpeg>=0.4.9      # ships a static ffmpeg; the pipeline can also auto-install it
+fonttools>=4.40            # only for tools/make_fonts.py (slicing the Inter variable font)

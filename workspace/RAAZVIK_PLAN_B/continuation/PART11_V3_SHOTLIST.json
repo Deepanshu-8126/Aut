@@ -1,0 +1,338 @@
+[
+  {
+    "start": 650.625,
+    "end": 654.35,
+    "kind": "ai",
+    "asset": "p11_report_reader",
+    "disclosure": "एआई दृश्य  काल्पनिक अध्ययन",
+    "text": "सालों बाद एक सुराग"
+  },
+  {
+    "start": 654.35,
+    "end": 660.62,
+    "kind": "graphic",
+    "asset": "week",
+    "disclosure": "स्रोत सारांश  यह असली अखबार की तस्वीर नहीं",
+    "text": "द वीक की रिपोर्ट"
+  },
+  {
+    "start": 660.62,
+    "end": 666.73,
+    "kind": "ai",
+    "asset": "emptybox",
+    "disclosure": "एआई दृश्य  वास्तविक खोज की वस्तु नहीं",
+    "text": "१९९३ का अभियान"
+  },
+  {
+    "start": 666.73,
+    "end": 671.61,
+    "kind": "graphic",
+    "asset": "case_possible",
+    "disclosure": "सांकेतिक चित्र  असली हिस्सा नहीं",
+    "text": "संभावित बाहरी हिस्सा"
+  },
+  {
+    "start": 671.61,
+    "end": 675.61,
+    "kind": "graphic",
+    "asset": "week_account",
+    "disclosure": "स्रोत सारांश  काल्पनिक प्रस्तुति",
+    "text": "बयान में खाली बक्सों का जिक्र"
+  },
+  {
+    "start": 675.61,
+    "end": 680.0,
+    "kind": "graphic",
+    "asset": "outside_box",
+    "disclosure": "सांकेतिक चित्र  असली बॉक्स नहीं",
+    "text": "बाहरी डिब्बा"
+  },
+  {
+    "start": 680.0,
+    "end": 684.62,
+    "kind": "graphic",
+    "asset": "capsule_diff",
+    "disclosure": "सांकेतिक चित्र  असली कैप्सूल नहीं",
+    "text": "कैप्सूल अलग चीज है"
+  },
+  {
+    "start": 684.62,
+    "end": 688.45,
+    "kind": "graphic",
+    "asset": "capsule_no",
+    "disclosure": "सांकेतिक चित्र  बरामदगी का सबूत नहीं",
+    "text": "कैप्सूल मिलने की पुष्टि नहीं"
+  },
+  {
+    "start": 688.45,
+    "end": 694.14,
+    "kind": "ai",
+    "asset": "research_archive_new",
+    "disclosure": "एआई दृश्य  काल्पनिक अध्ययन",
+    "text": "पहचान लोगों के अनुमान पर आधारित"
+  },
+  {
+    "start": 694.14,
+    "end": 699.38,
+    "kind": "graphic",
+    "asset": "report_not_final",
+    "disclosure": "स्रोत सारांश  अंतिम प्रमाण नहीं",
+    "text": "संभावित सुराग"
+  },
+  {
+    "start": 699.38,
+    "end": 704.52,
+    "kind": "ai",
+    "asset": "p11_waterlab",
+    "disclosure": "एआई दृश्य  काल्पनिक जल जांच",
+    "text": ""
+  },
+  {
+    "start": 704.52,
+    "end": 708.88,
+    "kind": "video",
+    "asset": "lab832",
+    "disclosure": "आधुनिक लैब  वास्तविक जांच नहीं",
+    "text": "नमूनों से ठिकाना तय नहीं"
+  },
+  {
+    "start": 708.88,
+    "end": 713.88,
+    "kind": "graphic",
+    "asset": "question_scrutiny",
+    "disclosure": "सांकेतिक चित्र",
+    "text": "अगर हिस्सा उसी मशीन का हो"
+  },
+  {
+    "start": 713.88,
+    "end": 716.42,
+    "kind": "graphic",
+    "asset": "unknown_evidence",
+    "disclosure": "सांकेतिक चित्र",
+    "text": "पूरा जवाब नहीं"
+  },
+  {
+    "start": 716.42,
+    "end": 719.84,
+    "kind": "graphic",
+    "asset": "clue_year",
+    "disclosure": "सांकेतिक चित्र",
+    "text": "१९९३ की रिपोर्ट में एक और बात"
+  },
+  {
+    "start": 719.84,
+    "end": 725.32,
+    "kind": "graphic",
+    "asset": "week_member2",
+    "disclosure": "स्रोत सारांश  वास्तविक दस्तावेज नहीं",
+    "text": "एक सदस्य का बयान"
+  },
+  {
+    "start": 725.32,
+    "end": 731.34,
+    "kind": "ai",
+    "asset": "p11_box_hand",
+    "disclosure": "एआई दृश्य  काल्पनिक खाली बॉक्स",
+    "text": ""
+  },
+  {
+    "start": 731.34,
+    "end": 734.8,
+    "kind": "ai",
+    "asset": "p11_box_carry",
+    "disclosure": "एआई दृश्य  काल्पनिक उदाहरण",
+    "text": "एक बॉक्स नीचे लाने का बयान"
+  },
+  {
+    "start": 734.8,
+    "end": 741.34,
+    "kind": "ai",
+    "asset": "old_box_new",
+    "disclosure": "एआई दृश्य  वास्तविक वस्तु नहीं",
+    "text": "लोगों का अनुमान"
+  },
+  {
+    "start": 741.34,
+    "end": 749.18,
+    "kind": "graphic",
+    "asset": "source_limits",
+    "disclosure": "स्रोत सारांश  स्वतंत्र पहचान बाकी",
+    "text": "अनुमान को अनुमान ही समझें"
+  },
+  {
+    "start": 749.18,
+    "end": 756.04,
+    "kind": "graphic",
+    "asset": "no_capsule",
+    "disclosure": "सांकेतिक चित्र  कोई बरामद कैप्सूल नहीं",
+    "text": "कैप्सूल मिलने का सार्वजनिक सबूत नहीं"
+  },
+  {
+    "start": 756.04,
+    "end": 760.22,
+    "kind": "graphic",
+    "asset": "no_capsule2",
+    "disclosure": "सांकेतिक चित्र  कोई बरामद कैप्सूल नहीं",
+    "text": "रिपोर्ट: कैप्सूल नहीं मिले"
+  },
+  {
+    "start": 760.22,
+    "end": 767.12,
+    "kind": "graphic",
+    "asset": "image_proof",
+    "disclosure": "सांकेतिक चित्र  असली बॉक्स की तस्वीर नहीं",
+    "text": "तस्वीर को बिना जांच अंतिम सबूत नहीं"
+  },
+  {
+    "start": 767.12,
+    "end": 776.5,
+    "kind": "graphic",
+    "asset": "clue_possible2",
+    "disclosure": "सांकेतिक चित्र",
+    "text": "संभावित सुराग  अंतिम जवाब नहीं"
+  },
+  {
+    "start": 776.5,
+    "end": 780.4,
+    "kind": "ai",
+    "asset": "p11_unknown2",
+    "disclosure": "एआई दृश्य  वास्तविक ठिकाना नहीं",
+    "text": "आज कितना खतरा?"
+  },
+  {
+    "start": 780.4,
+    "end": 785.08,
+    "kind": "graphic",
+    "asset": "unknown_three",
+    "disclosure": "सांकेतिक चित्र",
+    "text": "पक्के जवाब के लिए क्या जानना होगा?"
+  },
+  {
+    "start": 785.08,
+    "end": 787.5,
+    "kind": "graphic",
+    "asset": "unknown_where",
+    "disclosure": "सांकेतिक चित्र",
+    "text": "कैप्सूल कहाँ हैं?"
+  },
+  {
+    "start": 787.5,
+    "end": 790.98,
+    "kind": "graphic",
+    "asset": "unknown_shell",
+    "disclosure": "सांकेतिक चित्र",
+    "text": "सुरक्षा परत किस हालत में है?"
+  },
+  {
+    "start": 790.98,
+    "end": 794.58,
+    "kind": "graphic",
+    "asset": "unknown_release",
+    "disclosure": "सांकेतिक चित्र",
+    "text": "पदार्थ बाहर निकला या नहीं?"
+  },
+  {
+    "start": 794.58,
+    "end": 798.16,
+    "kind": "graphic",
+    "asset": "health_breath",
+    "disclosure": "सामान्य स्वास्थ्य जानकारी  वास्तविक संपर्क नहीं",
+    "text": "कण सांस से शरीर में जाएं"
+  },
+  {
+    "start": 798.16,
+    "end": 801.9,
+    "kind": "graphic",
+    "asset": "health_ingest",
+    "disclosure": "सामान्य स्वास्थ्य जानकारी  वास्तविक संपर्क नहीं",
+    "text": "या खाने से शरीर में जाएं"
+  },
+  {
+    "start": 801.9,
+    "end": 806.72,
+    "kind": "video",
+    "asset": "river596",
+    "disclosure": "संदर्भ फुटेज  नदी की पहचान नहीं",
+    "text": "बिना सबूत पानी जहरीला नहीं कह सकते"
+  },
+  {
+    "start": 806.72,
+    "end": 811.7,
+    "kind": "ai",
+    "asset": "water",
+    "disclosure": "एआई दृश्य  काल्पनिक जलधारा",
+    "text": "बाढ़ का कारण साबित नहीं"
+  },
+  {
+    "start": 811.7,
+    "end": 818.85,
+    "kind": "graphic",
+    "asset": "known_unknown",
+    "disclosure": "सांकेतिक चित्र",
+    "text": "जो पता है  और जो नहीं"
+  },
+  {
+    "start": 818.85,
+    "end": 821.74,
+    "kind": "ai",
+    "asset": "route_team",
+    "disclosure": "एआई दृश्य  असली टीम नहीं",
+    "text": "भारत और अमेरिका का मिशन"
+  },
+  {
+    "start": 821.74,
+    "end": 824.6,
+    "kind": "ai",
+    "asset": "storm",
+    "disclosure": "एआई दृश्य  वास्तविक तूफान नहीं",
+    "text": "खराब मौसम में वापसी"
+  },
+  {
+    "start": 824.6,
+    "end": 827.48,
+    "kind": "real",
+    "asset": "nanda2009",
+    "disclosure": "नंदा देवी  २००९  संदर्भ तस्वीर",
+    "text": "अगले साल सामान नहीं मिला"
+  },
+  {
+    "start": 827.48,
+    "end": 830.1,
+    "kind": "real",
+    "asset": "nanda_kot2",
+    "disclosure": "नंदा कोट और चंगुच  २०११  संदर्भ तस्वीर",
+    "text": "दूसरे पहाड़ पर अलग मशीन"
+  },
+  {
+    "start": 830.1,
+    "end": 833.48,
+    "kind": "graphic",
+    "asset": "recap_parts",
+    "disclosure": "सांकेतिक चित्र  असली हिस्सा नहीं",
+    "text": "संभावित हिस्सों की रिपोर्ट"
+  },
+  {
+    "start": 833.48,
+    "end": 839.76,
+    "kind": "graphic",
+    "asset": "end_capsules",
+    "disclosure": "सांकेतिक चित्र  बरामदगी का सबूत नहीं",
+    "text": "मूल कैप्सूलों का अंतिम जवाब नहीं"
+  },
+  {
+    "start": 839.76,
+    "end": 845.76,
+    "kind": "real",
+    "asset": "nanda_west2",
+    "disclosure": "नंदा देवी  बाद की संदर्भ तस्वीर",
+    "text": ""
+  },
+  {
+    "start": 845.76,
+    "end": 847.25,
+    "kind": "graphic",
+    "asset": "end_question",
+    "disclosure": "सांकेतिक चित्र",
+    "text": "वो गई कहाँ?"
+  }
+]

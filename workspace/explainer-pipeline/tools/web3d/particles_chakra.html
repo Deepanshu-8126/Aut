@@ -1,0 +1,58 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>html,body{margin:0;padding:0;background:#000;overflow:hidden}</style></head>
+<body><script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+<script>
+const W=540,H=960;
+const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});
+renderer.setPixelRatio(2); renderer.setSize(W,H); document.body.appendChild(renderer.domElement);
+const scene=new THREE.Scene(); scene.fog=new THREE.FogExp2(0x000208,0.0075);
+const cam=new THREE.PerspectiveCamera(50,W/H,0.1,500);
+function glowTex(inner,outer){const c=document.createElement('canvas');c.width=c.height=128;const g=c.getContext('2d');
+const gr=g.createRadialGradient(64,64,0,64,64,64);gr.addColorStop(0,inner);gr.addColorStop(0.25,outer);gr.addColorStop(1,'rgba(0,0,0,0)');
+g.fillStyle=gr;g.fillRect(0,0,128,128);return new THREE.CanvasTexture(c);}
+const sprite=glowTex('rgba(255,255,255,1)','rgba(255,190,80,0.55)');
+// starfield
+const sg=new THREE.BufferGeometry();const sp=[];
+let sr=mulberry(99);
+for(let i=0;i<900;i++){sp.push((sr()-0.5)*400,(sr()-0.5)*600,(sr()-0.5)*300-80);}
+sg.setAttribute('position',new THREE.Float32BufferAttribute(sp,3));
+scene.add(new THREE.Points(sg,new THREE.PointsMaterial({color:0x8899bb,size:0.7,map:sprite,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,opacity:0.5})));
+// particles
+function mulberry(a){return function(){var t=a+=0x6D2B79F5;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;}}
+const N=4200, rnd=mulberry(7);
+const seeds=[]; for(let i=0;i<N;i++){seeds.push({a:rnd()*Math.PI*2,r:14+rnd()*55,h:(rnd()-0.5)*90,s:0.4+rnd()*1.3,ta:rnd()*Math.PI*2,tr:0.4+rnd()*1.6,ph:rnd()*Math.PI*2,del:rnd()});}
+const pg=new THREE.BufferGeometry(); const pos=new Float32Array(N*3); const col=new Float32Array(N*3);
+pg.setAttribute('position',new THREE.BufferAttribute(pos,3)); pg.setAttribute('color',new THREE.BufferAttribute(col,3));
+const pts=new THREE.Points(pg,new THREE.PointsMaterial({size:1.5,map:sprite,vertexColors:true,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));
+const group=new THREE.Group(); group.add(pts); scene.add(group);
+// core flare
+const flare=new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex('rgba(255,240,200,1)','rgba(255,150,40,0.35)'),transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));
+flare.scale.set(15,15,1); group.add(flare);
+const ringGlow=new THREE.Mesh(new THREE.TorusGeometry(20,0.22,12,200),new THREE.MeshBasicMaterial({color:0xffe9b0,transparent:true,opacity:0,blending:THREE.AdditiveBlending,depthWrite:false}));
+ringGlow.rotation.x=Math.PI/2; group.add(ringGlow);
+const halo=new THREE.Mesh(new THREE.TorusGeometry(20,1.1,12,200),new THREE.MeshBasicMaterial({color:0xff9d3c,transparent:true,opacity:0,blending:THREE.AdditiveBlending,depthWrite:false}));halo.rotation.x=Math.PI/2; group.add(halo);window._halo=halo;
+group.rotation.x=-0.42;
+function smooth(a,b,x){x=Math.min(1,Math.max(0,(x-a)/(b-a)));return x*x*(3-2*x);}
+window.renderAt=function(t){
+ const form=smooth(2.2,6.8,t), spin=0.25*t+1.6*Math.max(0,t-6.5);
+ for(let i=0;i<N;i++){const s=seeds[i];
+  const f=smooth(2.2+2.2*s.del,6.2+1.4*s.del,t);
+  // chaos: slow galaxy swirl
+  const ca=s.a+t*0.22*s.s, cr=s.r*(1-0.25*smooth(0,7,t));
+  const cx=Math.cos(ca)*cr, cz=Math.sin(ca)*cr, cy=s.h*(1-0.5*form);
+  // ring target
+  const ra=s.ta+spin*s.s*0.9, wob=0.35*Math.sin(t*2.1+s.ph);
+  const rx=Math.cos(ra)*(20+s.tr*Math.cos(s.ph+t)), rz=Math.sin(ra)*(20+s.tr*Math.cos(s.ph+t)), ry=(s.tr+wob)*Math.sin(s.ph+t*1.3)*1.6;
+  pos[i*3]=cx*(1-f)+rx*f; pos[i*3+1]=cy*(1-f)+ry*f; pos[i*3+2]=cz*(1-f)+rz*f;
+  const heat=0.6+0.4*f, tw=0.75+0.25*Math.sin(t*6+s.ph*7);
+  col[i*3]=(1.0)*heat*tw; col[i*3+1]=(0.62+0.25*f)*heat*tw; col[i*3+2]=(0.22+0.1*(1-f))*heat*tw;}
+ pg.attributes.position.needsUpdate=true; pg.attributes.color.needsUpdate=true;
+ ringGlow.material.opacity=0.95*smooth(5.2,7.5,t)*(0.85+0.15*Math.sin(t*3));
+ window._halo.material.opacity=0.28*smooth(5.2,7.5,t); 
+ flare.material.opacity=0.85+0.15*Math.sin(t*2.4); const fs=13+2.5*Math.sin(t*2.4)+10*smooth(6.5,9,t); flare.scale.set(fs,fs,1);
+ group.rotation.z=0.06*Math.sin(t*0.5); group.rotation.x=-0.42+0.05*Math.sin(t*0.33);
+ const dolly=smooth(0,9.5,t); cam.position.set(Math.sin(t*0.12)*7,24-9*dolly,76-34*dolly);
+ cam.lookAt(0,0,0);
+ renderer.render(scene,cam);
+ return true;};
+window.READY=true;
+</script></body></html>

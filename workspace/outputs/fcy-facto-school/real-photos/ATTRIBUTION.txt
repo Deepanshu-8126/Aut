@@ -1,0 +1,4 @@
+REAL_CHATEAU2.jpg | File:Chateau du Rosey 01.jpg | License: CC BY-SA 3.0 | Author: Eric Bajart | https://commons.wikimedia.org/wiki/File:Chateau_du_Rosey_01.jpg
+REAL_GSTAAD.jpg | File:GstaadPanoramaVillage.jpg | License: CC BY-SA 3.0 | Author: GstaadTourismus | https://commons.wikimedia.org/wiki/File:GstaadPanoramaVillage.jpg
+REAL_LAKEGENEVA.jpg | File:Lake Geneva aerial.jpg | License: CC BY-SA 4.0 | Author: kallerna | https://commons.wikimedia.org/wiki/File:Lake_Geneva_aerial.jpg
+REAL_SHAH_AT_ROSEY.jpg | File:Mehrpour Teymourtash with Crown Prince Mohammad Reza Pahlavi at Le Rosey in Switzerland.jpg | License: Public domain | Author: Unknown authorUnknown author | https://commons.wikimedia.org/wiki/File:Mehrpour_Teymourtash_with_Crown_Prince_Mohammad_Reza_Pahlavi_at_Le_Rosey_in_Switzerland.jpg

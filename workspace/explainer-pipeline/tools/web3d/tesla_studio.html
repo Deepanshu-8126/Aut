@@ -1,0 +1,59 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#000;overflow:hidden}</style>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
+</head><body><script type="module">
+import * as THREE from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {DRACOLoader} from 'three/addons/loaders/DRACOLoader.js';
+import {RGBELoader} from 'three/addons/loaders/RGBELoader.js';
+const W=540,H=960;
+const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});
+renderer.setPixelRatio(2); renderer.setSize(W,H);
+renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.15;
+renderer.outputColorSpace=THREE.SRGBColorSpace; renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+document.body.appendChild(renderer.domElement);
+const scene=new THREE.Scene(); scene.background=new THREE.Color(0x07070a);
+scene.fog=new THREE.Fog(0x07070a,18,42);
+const cam=new THREE.PerspectiveCamera(42,W/H,0.1,200);
+const pmrem=new THREE.PMREMGenerator(renderer);
+// floor
+const floor=new THREE.Mesh(new THREE.CircleGeometry(30,64),
+  new THREE.MeshStandardMaterial({color:0x0b0b0e,metalness:0.75,roughness:0.16}));
+floor.rotation.x=-Math.PI/2; floor.receiveShadow=true; scene.add(floor);
+// contact shadow blob
+const cv=document.createElement('canvas');cv.width=cv.height=256;const g=cv.getContext('2d');
+const gr=g.createRadialGradient(128,128,10,128,128,128);gr.addColorStop(0,'rgba(0,0,0,0.85)');gr.addColorStop(1,'rgba(0,0,0,0)');
+g.fillStyle=gr;g.fillRect(0,0,256,256);
+const blob=new THREE.Mesh(new THREE.PlaneGeometry(6.4,3.2),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(cv),transparent:true,depthWrite:false}));
+blob.rotation.x=-Math.PI/2; blob.position.y=0.01; scene.add(blob);
+// key + rim lights
+const key=new THREE.SpotLight(0xffffff,180,0,Math.PI/5,0.4); key.position.set(6,9,4); key.castShadow=true; scene.add(key);
+const rim=new THREE.DirectionalLight(0x99bbff,1.2); rim.position.set(-6,4,-6); scene.add(rim);
+let car=null;
+new RGBELoader().load('studio.hdr',(hdr)=>{
+  scene.environment=pmrem.fromEquirectangular(hdr).texture; hdr.dispose();
+  const dl=new DRACOLoader(); dl.setDecoderPath('https://unpkg.com/three@0.160.0/examples/jsm/libs/draco/gltf/');
+  const gl=new GLTFLoader(); gl.setDRACOLoader(dl);
+  gl.load('model3.glb',(g2)=>{
+    car=g2.scene;
+    // normalize size + ground
+    const box=new THREE.Box3().setFromObject(car);
+    const size=box.getSize(new THREE.Vector3());
+    const s=4.7/Math.max(size.x,size.z); car.scale.setScalar(s);
+    const box2=new THREE.Box3().setFromObject(car);
+    car.position.y=-box2.min.y; car.position.x=-(box2.min.x+box2.max.x)/2; car.position.z=-(box2.min.z+box2.max.z)/2;
+    car.traverse((o)=>{ if(o.isMesh){ o.castShadow=true;
+      const m=o.material; if(m){ m.envMapIntensity=1.25;
+        if(/paint|body|carro|exterior/i.test(m.name||'')){ m.clearcoat=1.0; m.clearcoatRoughness=0.04; }
+      }}});
+    scene.add(car); window.READY=true;
+  });
+});
+function smooth(a,b,x){x=Math.min(1,Math.max(0,(x-a)/(b-a)));return x*x*(3-2*x);}
+window.renderAt=function(t){
+  const ang=-0.4+t*0.62; // ~355 deg in 10s
+  const d=7.4-1.2*smooth(6.5,9.8,t);
+  const h=2.0-0.7*smooth(1,9,t);
+  cam.position.set(Math.sin(ang)*d, h, Math.cos(ang)*d);
+  cam.lookAt(0,0.55,0);
+  renderer.render(scene,cam); return true;};
+</script></body></html>

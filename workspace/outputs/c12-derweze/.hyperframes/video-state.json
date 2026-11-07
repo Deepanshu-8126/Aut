@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "historyId": "e32084d0-f01b-42ce-b479-bb35fa0e40bd",
+  "currentRevision": "2bb3d152-7500-4a46-ba66-2baf2d1afe9e",
+  "pendingChanges": false,
+  "files": {
+    "METADATA.md": {
+      "hash": "200f04b913ca80f6ab77bfcf099b3d3845691cf55d2be756284abd89bf3d26e5",
+      "content": "C:\\Users\\Deepanshu\\.cache\\hyperframes\\history\\e32084d0-f01b-42ce-b479-bb35fa0e40bd\\blobs\\20\\200f04b913ca80f6ab77bfcf099b3d3845691cf55d2be756284abd89bf3d26e5"
+    },
+    "SCRIPT.md": {
+      "hash": "719b22654c2c59704b758e2129fcef57f165b260e0bf58fd180f09c39aef6e1f",
+      "content": "C:\\Users\\Deepanshu\\.cache\\hyperframes\\history\\e32084d0-f01b-42ce-b479-bb35fa0e40bd\\blobs\\71\\719b22654c2c59704b758e2129fcef57f165b260e0bf58fd180f09c39aef6e1f"
+    },
+    "index.html": {
+      "hash": "566fa22406e198f899509e74595169437e10f29ffec60d3a9e5ffb3f65c69a0a",
+      "content": "C:\\Users\\Deepanshu\\.cache\\hyperframes\\history\\e32084d0-f01b-42ce-b479-bb35fa0e40bd\\blobs\\56\\566fa22406e198f899509e74595169437e10f29ffec60d3a9e5ffb3f65c69a0a"
+    },
+    "hyperframes.json": {
+      "hash": "4f902727be5fbf8ebaf77da7df04513c37fe7d23915732b8e49e06bd76b2c4a6",
+      "content": "C:\\Users\\Deepanshu\\.cache\\hyperframes\\history\\e32084d0-f01b-42ce-b479-bb35fa0e40bd\\blobs\\4f\\4f902727be5fbf8ebaf77da7df04513c37fe7d23915732b8e49e06bd76b2c4a6"
+    }
+  },
+  "revisions": {
+    "d71c8876-a8a3-4efc-b1d6-294182f412a4": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793545547425,
+      "endedAt": 1793545547427,
+      "files": {
+        "hyperframes.json": {
+          "before": null,
+          "after": "C:\\Users\\Deepanshu\\.cache\\hyperframes\\history\\e32084d0-f01b-42ce-b479-bb35fa0e40bd\\blobs\\4f\\4f902727be5fbf8ebaf77da7df04513c37fe7d23915732b8e49e06bd76b2c4a6"
+        }
+      }
+    },
+    "231a63ed-ac29-4970-815f-5aace5b87c50": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793545629056,
+      "endedAt": 1793545629058,
+      "files": {
+        "index.html": {
+          "before": "C:\\Users\\Deepanshu\\.cache\\hyperframes\\history\\e32084d0-f01b-42ce-b479-bb35fa0e40bd\\blobs\\4a\\4a87e4edbe2b21fc2052a3eaaba166a1dcd11fe50179450439a4c0f0249398f4",
+          "after": "C:\\Users\\Deepanshu\\.cache\\hyperframes\\history\\e32084d0-f01b-42ce-b479-bb35fa0e40bd\\blobs\\9a\\9a5da1d89c32efbcc6bb27a76d7f00fb48779234b94b0600391eb2751319efa1"
+        }
+      }
+    },
+    "c41d156e-f7a5-4921-9009-d5d3ee699a28": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793545697328,
+      "endedAt": 1793545697330,
+      "files": {
+        "index.html": {
+          "before": "C:\\Users\\Deepanshu\\.cache\\hyperframes\\history\\e32084d0-f01b-42ce-b479-bb35fa0e40bd\\blobs\\9a\\9a5da1d89c32efbcc6bb27a76d7f00fb48779234b94b0600391eb2751319efa1",
+          "after": "C:\\Users\\Deepanshu\\.cache\\hyperframes\\history\\e32084d0-f01b-42ce-b479-bb35fa0e40bd\\blobs\\7d\\7d84b43a0572d59366c5aca7e9fa854d8a57bfdbc15a49584819b615f0c4407d"
+        }
+      }
+    },
+    "55a303c1-39cc-43e1-9f4b-bfec980d1cb0": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793545775714,
+      "endedAt": 1793545775717,
+      "files": {
+        "index.html": {
+          "before": "C:\\Users\\Deepanshu\\.cache\\hyperframes\\history\\e32084d0-f01b-42ce-b479-bb35fa0e40bd\\blobs\\7d\\7d84b43a0572d59366c5aca7e9fa854d8a57bfdbc15a49584819b615f0c4407d",
+          "after": "C:\\Users\\Deepanshu\\.cache\\hyperframes\\history\\e32084d0-f01b-42ce-b479-bb35fa0e40bd\\blobs\\68\\682b4d019448e84871cc71d33d15302b16cec562c35791fe31089bb7032b2d1c"
+        }
+      }
+    },
+    "1fd91689-f208-498a-9324-5b979f95355b": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793545920397,
+      "endedAt": 1793545920401,
+      "files": {
+        "index.html": {
+          "before": "C:\\Users\\Deepanshu\\.cache\\hyperframes\\history\\e32084d0-f01b-42ce-b479-bb35fa0e40bd\\blobs\\68\\682b4d019448e84871cc71d33d15302b16cec562c35791fe31089bb7032b2d1c",
+          "after": "C:\\Users\\Deepanshu\\.cache\\hyperframes\\history\\e32084d0-f01b-42ce-b479-bb35fa0e40bd\\blobs\\b9\\b9384dd5a303c7ed8bed970d753de6c7e2a7a044666ccad1a0d0fcb895485d56"
+        }
+      }
+    },
+    "2bb3d152-7500-4a46-ba66-2baf2d1afe9e": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793545938289,
+      "endedAt": 1793545938298,
+      "files": {
+        "index.html": {
+          "before": "C:\\Users\\Deepanshu\\.cache\\hyperframes\\history\\e32084d0-f01b-42ce-b479-bb35fa0e40bd\\blobs\\b9\\b9384dd5a303c7ed8bed970d753de6c7e2a7a044666ccad1a0d0fcb895485d56",
+          "after": "C:\\Users\\Deepanshu\\.cache\\hyperframes\\history\\e32084d0-f01b-42ce-b479-bb35fa0e40bd\\blobs\\56\\566fa22406e198f899509e74595169437e10f29ffec60d3a9e5ffb3f65c69a0a"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": {
+      "revision": "2bb3d152-7500-4a46-ba66-2baf2d1afe9e",
+      "id": "70440cd7-5121-4830-ba3b-4005aa591f02"
+    },
+    "revisions": {
+      "1fd91689-f208-498a-9324-5b979f95355b": [
+        {
+          "id": "3b6df3c1-ffb8-45b1-b6f0-251adddb5998",
+          "scope": "project",
+          "metadata": {
+            "ok": false,
+            "browserSkipped": true,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 10000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1793545920459,
+          "contentHash": "deef0fc792ac0d27c0e349fb09594c0cc53307f305d241d85d1164705bdca689",
+          "revision": "1fd91689-f208-498a-9324-5b979f95355b",
+          "inputFingerprint": "0daff051196cfebd9d36363750a8b8454bb8fab35f1fc79623cb86c29d7f01ca",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "59c59add-3ab6-4ee9-a72c-c4735684149d"
+        }
+      ],
+      "2bb3d152-7500-4a46-ba66-2baf2d1afe9e": [
+        {
+          "id": "70440cd7-5121-4830-ba3b-4005aa591f02",
+          "scope": "project",
+          "report": "C:\\Users\\Deepanshu\\Downloads\\workspace-01a1921f-c13f-737c-bd07-39b2a2cd4571 (1)\\outputs\\c12-derweze\\.hyperframes\\artifacts\\checks\\70440cd7-5121-4830-ba3b-4005aa591f02.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 10000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1793545949204,
+          "contentHash": "2ac8ff617bcc5f395af3c8e2e133783e9be9fb7de2a07b84fed0fc892b73be06",
+          "revision": "2bb3d152-7500-4a46-ba66-2baf2d1afe9e",
+          "inputFingerprint": "4c6a4204a2b5da2ed6ed62f500c5951b0d327e642d4a55f77052e9dbec5d2151",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
+    "unversioned": []
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "ab4fffba-cece-4d77-bd89-896207ad743c",
+      "completedAt": 1793546188955,
+      "output": "C:\\Users\\Deepanshu\\Downloads\\workspace-01a1921f-c13f-737c-bd07-39b2a2cd4571 (1)\\outputs\\c12-derweze\\renders\\c12-derweze_2026-11-01_20-45-38.mp4",
+      "status": "completed",
+      "revision": "2bb3d152-7500-4a46-ba66-2baf2d1afe9e"
+    },
+    "retainedRevisions": [
+      "2bb3d152-7500-4a46-ba66-2baf2d1afe9e"
+    ]
+  },
+  "pendingArtifactCleanup": []
+}

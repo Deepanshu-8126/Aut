@@ -1,0 +1,172 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:'MontBlack';src:url('file:///home/user/explainer-pipeline/assets/fonts/LuckiestGuy.ttf');}
+@font-face{font-family:'LuckyG';src:url('file:///home/user/explainer-pipeline/assets/fonts/LuckiestGuy.ttf');}
+@font-face{font-family:'Bangers';src:url('file:///home/user/explainer-pipeline/assets/fonts/Bangers.ttf');}
+@font-face{font-family:'TitanOne';src:url('file:///home/user/explainer-pipeline/assets/fonts/TitanOne.ttf');}
+@font-face{font-family:'Anton';src:url('file:///home/user/explainer-pipeline/assets/fonts/Anton-Regular.ttf');}
+@font-face{font-family:'InterBlack';src:url('file:///home/user/explainer-pipeline/assets/fonts/Inter-Black.ttf');}
+@font-face{font-family:'InterBold';src:url('file:///home/user/explainer-pipeline/assets/fonts/Inter-Bold.ttf');}
+html,body{margin:0;padding:0;background:#000;}
+canvas{display:block;width:540px;height:960px;}
+</style></head><body><canvas id="c" width="1080" height="1920"></canvas><script>
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+const W=540,H=960,YEL='#FFD400',DIR='file:///home/user/outputs/fcy-facto-humans/';
+const SRC={fire:'shots/AI_FIRE.jpg',cave:'shots/AI_CAVE.jpg',brain:'shots/AI_BRAIN.jpg',dna:'shots/AI_DNA.jpg',peng:'shots/AI_PENGUINS.jpg',eleph:'shots/R_ELEPHANTS.jpg',art:'shots/R_CAVEART.jpg',early:'shots/R_EARLYHUMAN.jpg',
+mm:'../fcy-facto-test/sprites/MASCOT_MAIN.png',ms:'../fcy-facto-test/sprites/M_SHOCK.png',mb:'../fcy-facto-test/sprites/M_BLOWN.png'};
+const VC={"f0": 24, "cv1": 24, "emb": 50, "f4": 60, "cv2": 66, "pg": 46, "el": 46, "tl": 18};const VSEQ={};let vtotal=0;for(const k in VC)vtotal+=VC[k];
+const IMG={};let loaded=0,total=Object.keys(SRC).length+vtotal;
+function maybeReady(){if(loaded==total&&window.FONTSOK)window.READY=1;}
+Promise.all([document.fonts.load('80px Anton'),document.fonts.load('30px InterBlack'),document.fonts.load('30px InterBold'),document.fonts.load('80px Bangers'),document.fonts.load('30px LuckyG'),document.fonts.load('80px MontBlack'),document.fonts.load('30px TitanOne')]).then(()=>{window.FONTSOK=1;maybeReady();});
+for(const k in SRC){IMG[k]=new Image();IMG[k].onload=()=>{loaded++;maybeReady();};IMG[k].src=DIR+SRC[k];}
+for(const k in VC){VSEQ[k]=[];for(let i=1;i<=VC[k];i++){const im=new Image();im.onload=()=>{loaded++;maybeReady();};im.src='file:///var/tmp/vseq/'+k+'/f'+String(i).padStart(3,'0')+'.jpg';VSEQ[k].push(im);}}
+function vframe(k,lt){const a=VSEQ[k];return a[Math.max(0,Math.min(a.length-1,Math.floor(lt*30)))];}
+function vcover(k,lt,z,px=0,py=0){cover(vframe(k,lt),z,px,py);}
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const eo=p=>1-Math.pow(1-clamp(p,0,1),3); // easeOutCubic
+function cover(img,z,px,py){const iw=img.width,ih=img.height;const s=Math.max(W/iw,H/ih)*z;
+ const dw=iw*s,dh=ih*s;ctx.drawImage(img,W/2-dw/2+px*(dw-W)/2,H/2-dh/2+py*(dh-H)/2,dw,dh);}
+function shake(t,amp,f){return[amp*Math.sin(t*f*6.28+1.7)*Math.sin(t*f*4.1),amp*Math.sin(t*f*5.9)*Math.cos(t*f*3.3)];}
+function pop(tl,d=0.16){if(tl<0)return{s:0,a:0};const p=clamp(tl/d,0,1);return{s:1.7-0.7*eo(p),a:eo(p)};}
+function bigText(txt,x,y,size,tl,col=YEL,font='Anton'){
+ if(tl<0)return; const d=0.15,p=clamp(tl/d,0,1);
+ const sc=(0.82+0.18*eo(p))*(1+0.006*Math.sin(tl*2.6));
+ ctx.save();ctx.translate(x,y);ctx.scale(sc,sc);ctx.globalAlpha=Math.min(1,p*1.8);
+ ctx.font=size+'px MontBlack';ctx.textAlign='center';ctx.textBaseline='middle';
+ const mw=ctx.measureText(txt).width,fit=Math.min(1,496/mw);ctx.scale(fit,fit);
+ const C=(col===YEL)?'#FFE600':col;
+ ctx.shadowColor='rgba(0,0,0,0.95)';ctx.shadowBlur=size*0.16;ctx.shadowOffsetY=size*0.03;
+ ctx.fillStyle=C;ctx.fillText(txt,0,0);ctx.fillText(txt,0,0);
+ ctx.shadowBlur=size*0.05;ctx.fillText(txt,0,0);
+ ctx.restore();}
+function nameLabel(t1,t2,x,y,size,tl){ // "Institut Le Rosey" device: white+yellow bold italic
+ if(tl<0)return; const p=clamp(tl/0.15,0,1);
+ ctx.save();ctx.translate(x,y);ctx.globalAlpha=p;ctx.transform(1,0,-0.18,1,0,0);
+ ctx.font=size+'px MontBlack';ctx.textAlign='left';ctx.textBaseline='middle';
+ ctx.shadowColor='rgba(0,0,0,0.9)';ctx.shadowBlur=size*0.3;ctx.shadowOffsetY=2;
+ ctx.fillStyle='#fff';ctx.fillText(t1,0,0);
+ const w=ctx.measureText(t1).width;
+ ctx.fillStyle='#FFE600';ctx.fillText(t2,w+size*0.25,0);ctx.restore();}
+function sprite(img,cx,cy,h,rot=0,sx=1,flip=false){const s=h/img.height,w=img.width*s;
+ ctx.save();ctx.translate(cx,cy);ctx.rotate(rot);ctx.scale(flip?-sx:sx,2-sx>0?1/Math.max(sx,0.01)*sx*sx===0?1:1:1);
+ ctx.scale(1,1);ctx.drawImage(img,-w/2,-h/2,w,h);ctx.restore();}
+function spritePop(img,cx,cy,h,tl,rot=0,flip=false){const P=pop(tl,0.2);if(P.a<=0)return;
+ ctx.save();ctx.globalAlpha=P.a;sprite(img,cx,cy,h*(2-P.s),rot+Math.sin(tl*3)*0.03,1,flip);ctx.restore();}
+function darkBG(g1='#0b0e16',g2='#141a28'){const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,g1);g.addColorStop(1,g2);
+ ctx.fillStyle=g;ctx.fillRect(0,0,W,H);}
+function radial(x,y,r,col){const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,col);g.addColorStop(1,'rgba(0,0,0,0)');
+ ctx.fillStyle=g;ctx.fillRect(0,0,W,H);}
+function flash(a){if(a>0){ctx.fillStyle='rgba(255,255,255,'+clamp(a,0,1)+')';ctx.fillRect(0,0,W,H);}}
+function strike(x1,y1,x2,y2,p,col='#ff2b2b',w=10){if(p<=0)return;ctx.save();ctx.strokeStyle=col;ctx.lineWidth=w;ctx.lineCap='round';
+ ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x1+(x2-x1)*eo(p),y1+(y2-y1)*eo(p));ctx.stroke();ctx.restore();}
+function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+function priceTag(x,y,s,wob){ctx.save();ctx.translate(x,y);ctx.rotate(Math.sin(wob*2.2)*0.08);ctx.scale(s,s);
+ ctx.fillStyle=YEL;ctx.strokeStyle='#000';ctx.lineWidth=8;
+ ctx.beginPath();ctx.moveTo(-110,-70);ctx.lineTo(70,-70);ctx.lineTo(120,0);ctx.lineTo(70,70);ctx.lineTo(-110,70);ctx.closePath();
+ ctx.fill();ctx.stroke();ctx.fillStyle='#000';ctx.beginPath();ctx.arc(85,0,12,0,6.3);ctx.fill();
+ ctx.font='90px Anton';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('?',-25,4);ctx.restore();}
+// jump-cut: image cover with stepped zoom (visual cut every step)
+function jcover(img,lt,step,z0,dz,px,py){const k=Math.floor(lt/step);cover(img,z0+ (k%2?dz:0) + lt*0.02,px,py);}
+function crown(x,y,s,tl){const P=pop(tl,0.2);if(P.a<=0)return;ctx.save();ctx.globalAlpha=P.a;ctx.translate(x,y);ctx.scale(s*P.s,s*P.s);
+ ctx.fillStyle='#FFD400';ctx.strokeStyle='#000';ctx.lineWidth=6;
+ ctx.beginPath();ctx.moveTo(-90,40);ctx.lineTo(-100,-30);ctx.lineTo(-45,10);ctx.lineTo(0,-55);ctx.lineTo(45,10);ctx.lineTo(100,-30);ctx.lineTo(90,40);ctx.closePath();ctx.fill();ctx.stroke();
+ ctx.fillRect(-90,45,180,22);ctx.strokeRect(-90,45,180,22);ctx.restore();}
+function shot0(lt){vcover('f0',lt,1.26-0.08*eo(lt/0.7),0,0);
+ ctx.fillStyle='rgba(0,0,0,0.38)';ctx.fillRect(0,0,W,H);
+ bigText('NOBODY TAUGHT THEM',W/2,420,62,lt-0.03);
+ bigText('THE FIRST HUMANS',W/2,505,36,lt-0.10,'#fff','InterBlack');}
+function chrome(t){
+ ctx.strokeStyle=YEL;ctx.lineWidth=10;ctx.strokeRect(5,5,W-10,H-10);
+ const bob=Math.sin(t*2.1)*1.2;
+ const PS=(window.PILLSTYLE===undefined)?4:window.PILLSTYLE;
+ if(PS===1){ // yellow ribbon full-width, black text
+  ctx.save();ctx.fillStyle=YEL;ctx.fillRect(5,18,W-10,52);
+  ctx.fillStyle='#000';ctx.font='26px LuckyG';ctx.textAlign='center';ctx.textBaseline='middle';
+  let w1=ctx.measureText("NOBODY TAUGHT THE FIRST HUMANS").width;
+  if(w1>W-60)ctx.font=Math.floor(26*(W-60)/w1)+'px LuckyG';
+  ctx.fillText("NOBODY TAUGHT THE FIRST HUMANS",W/2,44+bob*0.5);ctx.restore();
+  ctx.save();ctx.fillStyle='#000';rr(18,80,116,28,14);ctx.fill();
+  ctx.font='17px LuckyG';ctx.textAlign='left';ctx.textBaseline='middle';ctx.fillStyle=YEL;
+  ctx.fillText('FUNCYOUS',30,95);ctx.restore();}
+ else if(PS===2){ // tilted sticker
+  ctx.save();ctx.translate(W/2,46+bob);ctx.rotate(-0.025);
+  ctx.fillStyle=YEL;ctx.shadowColor='rgba(0,0,0,0.6)';ctx.shadowBlur=8;ctx.shadowOffsetY=4;
+  ctx.font='25px LuckyG';ctx.textAlign='center';ctx.textBaseline='middle';
+  let w2=ctx.measureText("NOBODY TAUGHT THE FIRST HUMANS").width;
+  if(w2>W-90){ctx.font=Math.floor(25*(W-90)/w2)+'px LuckyG';w2=W-90;}
+  ctx.fillRect(-w2/2-16,-26,w2+32,52);ctx.shadowColor='transparent';
+  ctx.fillStyle='#000';ctx.fillText("NOBODY TAUGHT THE FIRST HUMANS",0,2);ctx.restore();
+  ctx.save();ctx.fillStyle='#000';rr(18,84,116,28,14);ctx.fill();
+  ctx.strokeStyle=YEL;ctx.lineWidth=2.5;rr(18,84,116,28,14);ctx.stroke();
+  ctx.font='17px LuckyG';ctx.textAlign='left';ctx.textBaseline='middle';ctx.fillStyle=YEL;
+  ctx.fillText('FUNCYOUS',30,99);ctx.restore();}
+ else if(PS===3){ // free 2-line headline, no container
+  ctx.save();ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.shadowColor='rgba(0,0,0,0.95)';ctx.shadowBlur=10;ctx.shadowOffsetY=3;
+  ctx.font='30px LuckyG';ctx.fillStyle='#fff';ctx.fillText("NOBODY TAUGHT",W/2,36+bob);
+  ctx.font='32px LuckyG';ctx.fillStyle=YEL;ctx.fillText("THE FIRST HUMANS",W/2,70+bob);ctx.restore();
+  ctx.save();ctx.fillStyle='#000';rr(18,96,116,28,14);ctx.fill();
+  ctx.strokeStyle=YEL;ctx.lineWidth=2.5;rr(18,96,116,28,14);ctx.stroke();
+  ctx.font='17px LuckyG';ctx.textAlign='left';ctx.textBaseline='middle';ctx.fillStyle=YEL;
+  ctx.fillText('FUNCYOUS',30,111);ctx.restore();}
+ else if(PS===4){ // minimal: badge only, no heading
+  ctx.save();ctx.fillStyle='#000';rr(W/2-64,26+bob,128,32,16);ctx.fill();
+  ctx.strokeStyle=YEL;ctx.lineWidth=2.5;rr(W/2-64,26+bob,128,32,16);ctx.stroke();
+  ctx.font='19px LuckyG';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle=YEL;
+  ctx.fillText('FUNCYOUS',W/2,43+bob);ctx.restore();}
+ else{ // 0 = current pill
+  const bw=430,bx=W/2,by=40+bob;
+  ctx.save();ctx.fillStyle='#000';ctx.strokeStyle=YEL;ctx.lineWidth=3;
+  rr(bx-bw/2,by-22,bw,44,22);ctx.fill();ctx.stroke();
+  ctx.font='23px LuckyG';ctx.textAlign='center';ctx.textBaseline='middle';
+  let pw=ctx.measureText("NOBODY TAUGHT THE FIRST HUMANS").width;
+  if(pw>bw-70){ctx.font=Math.floor(23*(bw-70)/pw)+'px LuckyG';}
+  ctx.fillStyle='#fff';ctx.fillText("NOBODY TAUGHT THE FIRST HUMANS",bx-12,by+2);
+  ctx.fillStyle=YEL;ctx.font='26px LuckyG';ctx.fillText('?!',bx+196,by+2);ctx.restore();
+  ctx.save();ctx.fillStyle='#000';rr(18,76+bob*0.5,128,30,15);ctx.fill();
+  ctx.strokeStyle=YEL;ctx.lineWidth=2.5;rr(18,76+bob*0.5,128,30,15);ctx.stroke();
+  ctx.font='19px LuckyG';ctx.textAlign='left';ctx.textBaseline='middle';ctx.fillStyle=YEL;
+  ctx.fillText('FUNCYOUS',30,93+bob*0.5);ctx.restore();}}
+
+window.renderAt=function(t){
+ ctx.save();ctx.clearRect(0,0,cv.width,cv.height);ctx.scale(2,2);
+ ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);
+ const S=(a,b)=>t>=a&&t<b; const L=a=>t-a; let sx=0,sy=0;
+ // HOOK 0-7.7
+ if(S(0,0.7)){shot0(L(0));[sx,sy]=shake(t,6*(1-L(0)/0.7),9);}
+ else if(S(0.7,1.4)){vcover('cv1',L(0.7),1.1,-0.2,0);ctx.fillStyle='rgba(0,0,0,0.3)';ctx.fillRect(0,0,W,H);bigText('NOBODY TAUGHT THEM',W/2,420,62,1);}
+ else if(S(1.4,2.2)){cover(IMG.early,1.12+0.16*(L(1.4)/0.8),0,-0.15);ctx.fillStyle='rgba(0,0,0,0.35)';ctx.fillRect(0,0,W,H);bigText('HOW TO MAKE BABIES',W/2,760,52,L(1.45));}
+ else if(S(2.2,2.95)){vcover('emb',L(2.2),1.06,0,0);ctx.fillStyle='rgba(0,0,0,0.55)';ctx.fillRect(0,0,W,H);bigText('NO BOOKS.',W/2,440,72,L(2.25));}
+ else if(S(2.95,3.75)){vcover('emb',L(2.2),1.06,0,0);ctx.fillStyle='rgba(0,0,0,0.55)';ctx.fillRect(0,0,W,H);bigText('NO BOOKS.',W/2,360,46,1);bigText('NO INTERNET.',W/2,480,68,L(3.0));[sx,sy]=shake(t,2.5,8);}
+ else if(S(3.75,5.65)){vcover('f4',L(3.75),1.08+(Math.floor(L(3.75)/0.63)%2?0.09:0),0.1,0);ctx.fillStyle='rgba(0,0,0,0.5)';ctx.fillRect(0,0,W,H);bigText('SO HOW DID THEY ALL',W/2,400,40,L(3.85),'#fff','InterBlack');bigText('FIGURE IT OUT?',W/2,490,64,L(4.1));}
+ else if(S(5.65,7.7)){cover(IMG.brain,1.08+0.14*(L(5.65)/2.05),0,0);radial(W/2,430,420,'rgba(255,200,60,0.2)');bigText('THE ANSWER IS HIDING',W/2,720,34,L(5.75),'#fff','InterBlack');bigText('IN YOUR BRAIN',W/2,800,58,L(6.0));flash(clamp((t-7.5)/0.2,0,1)*0.7);[sx,sy]=shake(t,2,8);}
+ // INTRO 7.7-13.32
+ else if(S(7.7,9.7)){cover(IMG.fire,1.34-0.14*eo(L(7.7)/2),-0.25,0.1);flash(clamp(1-L(7.7)/0.15,0,1));nameLabel('The First','Humans',70,830,46,L(7.85));bigText('300,000 YEARS AGO',W/2,400,48,L(8.35));}
+ else if(S(9.7,11.2)){jcover(IMG.early,L(9.7),0.55,1.15,0.1,-0.3,0);nameLabel('The First','Humans',70,830,46,1);bigText('NO MANUAL.',W/2,420,56,L(10.6));}
+ else if(S(11.2,13.32)){vcover('cv2',L(11.2),1.06+0.08*(L(11.2)/2.1),0.1,0);ctx.fillStyle='rgba(0,0,0,0.4)';ctx.fillRect(0,0,W,H);bigText('NO TEACHERS.',W/2,420,54,L(11.3));bigText('AND YET... HERE YOU ARE.',W/2,780,34,L(12.0),'#fff','InterBlack');flash(clamp((t-13.17)/0.15,0,1)*0.6);}
+ // ESCALATION 13.32-29.95
+ else if(S(13.32,14.7)){vcover('pg',L(13.32),1.2-0.1*eo(L(13.32)/1.4),0,0);flash(clamp(1-L(13.32)/0.12,0,1)*0.5);bigText('PENGUINS?',W/2,400,62,L(13.4));bigText('NEVER TAUGHT.',W/2,480,40,L(14.0),'#fff','InterBlack');}
+ else if(S(14.7,16.1)){vcover('el',L(14.7),1.06+0.08*(L(14.7)/1.4),0,0);bigText('ELEPHANTS?',W/2,400,58,L(14.8));bigText('NEVER TAUGHT.',W/2,480,40,L(15.35),'#fff','InterBlack');[sx,sy]=shake(t,2,7);}
+ else if(S(16.1,17.6)){darkBG();radial(W/2,440,420,'rgba(255,212,0,0.24)');bigText('EVERY ANIMAL',W/2,400,44,L(16.2),'#fff','InterBlack');bigText('JUST KNOWS.',W/2,500,66,L(16.55));[sx,sy]=shake(t,3*(1-L(16.1)/1.5),9);}
+ else if(S(17.6,18.85)){cover(IMG.brain,1.25-0.12*eo(L(17.6)/1.25),0,0);ctx.fillStyle='rgba(0,0,0,0.3)';ctx.fillRect(0,0,W,H);flash(clamp(1-L(17.6)/0.12,0,1)*0.6);bigText('INSTINCT',W/2,760,88,L(17.7));}
+ else if(S(18.85,20.85)){jcover(IMG.brain,L(18.85),0.65,1.18,0.1,0.2,-0.2);ctx.fillStyle='rgba(0,0,0,0.42)';ctx.fillRect(0,0,W,H);bigText('PRE-INSTALLED',W/2,400,56,L(18.95));bigText('SOFTWARE',W/2,490,56,L(19.25),'#fff','InterBlack');}
+ else if(S(20.85,23.4)){darkBG('#141622','#232840');radial(W/2,440,420,'rgba(255,212,0,0.26)');spritePop(IMG.ms,W/2,470,380,L(20.83));bigText('YOUR BRAIN',W/2,770,40,L(20.95),'#fff','InterBlack');bigText('REWARDS YOU',W/2,850,54,L(21.35));}
+ else if(S(23.4,25.1)){cover(IMG.art,1.35-0.18*eo(L(23.4)/1.7),-0.2,0);flash(clamp(1-L(23.4)/0.12,0,1)*0.5);bigText('40,000 YEARS OLD',W/2,760,54,L(23.5));[sx,sy]=shake(t,3*(1-L(23.4)/1.7),9);}
+ else if(S(25.1,26.75)){jcover(IMG.art,L(25.1),0.55,1.2,0.1,0.4,0.1);bigText('THEY UNDERSTOOD',W/2,400,40,L(25.35),'#fff','InterBlack');bigText('EVERYTHING.',W/2,490,58,L(25.7));}
+ else if(S(26.75,28.4)){darkBG('#12070a','#1c0d12');bigText('MEANWHILE, YOU:',W/2,440,46,L(26.85),'#fff','InterBlack');}
+ else if(S(28.4,29.95)){darkBG('#12070a','#1c0d12');bigText('MEANWHILE, YOU:',W/2,350,34,1,'#fff','InterBlack');bigText("CAN'T BUILD IKEA",W/2,440,56,L(28.45));bigText('WITHOUT A TUTORIAL',W/2,520,32,L(29.0),'#fff','InterBlack');spritePop(IMG.ms,W/2,750,270,L(28.55));[sx,sy]=shake(t,2.5,8);}
+ // PAYOFF 29.95-43.4
+ else if(S(29.95,31.55)){jcover(IMG.dna,L(29.95),0.8,1.12,0.08,0,-0.2);ctx.fillStyle='rgba(0,0,0,0.45)';ctx.fillRect(0,0,W,H);bigText('THE INSANE PART?',W/2,430,58,L(30.15));}
+ else if(S(31.55,34.15)){darkBG();radial(W/2,420,400,'rgba(255,212,0,0.18)');bigText('YOUR PARENTS',W/2,380,46,L(31.65),'#fff','InterBlack');bigText('FIGURED IT OUT',W/2,460,52,L(32.0));bigText('THEIR PARENTS TOO',W/2,580,46,L(33.05));}
+ else if(S(34.15,36.25)){darkBG();radial(W/2,440,430,'rgba(255,212,0,0.25)');bigText('10,000',W/2,430,150,L(34.25));bigText('GENERATIONS IN A ROW',W/2,570,36,L(34.65),'#fff','InterBlack');flash(clamp(1-L(34.15)/0.1,0,1)*0.5);}
+ else if(S(36.25,39.1)){darkBG('#160808','#220d0d');radial(W/2,430,400,'rgba(255,60,40,0.14)');bigText('IF EVEN ONE HAD FAILED...',W/2,400,40,L(36.35),'#fff','InterBlack');bigText('YOU WOULD NOT EXIST.',W/2,500,50,L(37.75));[sx,sy]=shake(t,L(37.75)>0?4*(1-clamp(L(37.75)/0.8,0,1)):0,9);}
+ else if(S(39.1,41.45)){cover(IMG.dna,1.14+0.08*(L(39.1)/2.35),0,0.2);ctx.fillStyle='rgba(0,0,0,0.55)';ctx.fillRect(0,0,W,H);radial(W/2,440,400,'rgba(255,230,0,0.12)');bigText('YOUR DNA HAS BEEN PRACTICING',W/2,380,30,L(39.2),'#fff','InterBlack');bigText('3.8',W/2,520,140,L(40.55));}
+ else if(S(41.45,42.1)){darkBG();radial(W/2,450,420,'rgba(255,212,0,0.28)');bigText('3.8',W/2,360,100,1);bigText('BILLION',W/2,500,96,L(41.48));flash(clamp(1-L(41.45)/0.08,0,1)*0.65);[sx,sy]=shake(t,6*(1-L(41.45)/0.65),10);}
+ else if(S(42.1,43.4)){darkBG();radial(W/2,460,440,'rgba(255,212,0,0.3)');bigText('3.8 BILLION',W/2,340,76,1);bigText('YEARS.',W/2,470,96,L(42.15));spritePop(IMG.mb,W/2,780,290,L(42.35));[sx,sy]=shake(t,4*(1-clamp(L(42.15),0,1)),9);}
+ else {const p=eo(L(43.4)/0.5);vcover('tl',L(43.4),1.3-0.06*p,0,0);ctx.fillStyle='rgba(0,0,0,0.38)';ctx.fillRect(0,0,W,H);}
+ ctx.restore();
+ ctx.save();ctx.scale(2,2);chrome(t);
+ const vg=ctx.createRadialGradient(W/2,H/2,H*0.35,W/2,H/2,H*0.75);
+ vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(0,0,0,0.32)');ctx.fillStyle=vg;ctx.fillRect(0,0,W,H);
+ ctx.restore();
+};
+</script></body></html>

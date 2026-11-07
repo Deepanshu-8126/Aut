@@ -1,0 +1,319 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:'InterBlack';src:url('../../explainer-pipeline/assets/fonts/Inter-Black.ttf')}
+@font-face{font-family:'Anton';src:url('../../explainer-pipeline/assets/fonts/Anton-Regular.ttf')}
+html,body{margin:0;padding:0;background:#000}
+#c{width:540px;height:960px;display:block}
+</style></head><body><canvas id="c" width="1080" height="1920"></canvas><script>
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+const W=540,H=960,OUT='#0a0a0a';
+function R(i){let x=Math.sin(i*127.1+311.7)*43758.5453;return x-Math.floor(x);}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+function ez(u){u=clamp(u,0,1);return u*u*(3-2*u);}
+function bko(u){u=clamp(u,0,1);const c=1.70158;return 1+((c+1)*Math.pow(u-1,3)+c*Math.pow(u-1,2));}
+const IM={};let loaded=0;const SRCS=[
+ ['bg','props/BG_CITY.png'],['burger','props/BURGER.png'],
+ ['hf','h_sheet/H_FLEX.png'],['hw','h_sheet/H_WALK.png'],['hp','h_sheet/H_PUNCH.png'],
+ ['hfl','h_sheet/H_FLOP.png'],['ho','h_sheet/H_OFFER.png'],['hk','h_sheet/H_KNEES.png'],['hs','h_sheet/H_SHOCK.png'],
+ ['gi','g_sheet/G_IDLE.png'],['gr','g_sheet/G_ROAR.png'],['gst','g_sheet/G_STOMP.png'],
+ ['gl','g_sheet/G_LEAN.png'],['gsm','g_sheet/G_SMUG.png'],
+ ['hwB','h_sheet/H_WALK_B.png'],['hfB','h_sheet/H_FLEX_B.png'],['hpA','h_sheet/H_PUNCH_A.png'],
+ ['hkB','h_sheet/H_KNEES_B.png'],['grB','g_sheet/G_ROAR_B.png'],['gsmB','g_sheet/G_SMUG_B.png']];
+SRCS.forEach(([k,f])=>{const im=new Image();im.onload=()=>{loaded++;};im.src=f;IM[k]=im;});
+window.READY=0;
+const chk=setInterval(()=>{if(loaded>=SRCS.length&&document.fonts.status==='loaded'){window.READY=1;clearInterval(chk);}},50);
+document.fonts.load('80px Anton');document.fonts.load('40px InterBlack');
+
+// ---------- WORLD CAMERA ----------
+// world = BG pixel space 1080x1935. FLOOR (road) world y = 1780.
+const FLOOR=1780;
+let CAM={x:540,y:1240,z:0.78,sh:0,kick:0}; // x,y = world point at canvas center-ish
+function camBegin(){
+ ctx.save();
+ const z=CAM.z*(1+CAM.kick);
+ const jx=CAM.sh>0?(R(Math.floor(T*77))-0.5)*CAM.sh:0;
+ const jy=CAM.sh>0?(R(Math.floor(T*77)+9)-0.5)*CAM.sh*0.7:0;
+ ctx.translate(W/2+jx,H/2+jy);ctx.scale(z,z);ctx.translate(-CAM.x,-CAM.y);
+}
+function camEnd(){ctx.restore();}
+function pick(a,b,ph){return (Math.floor(ph)%2===0)?a:b;}
+function wrap25(tv){return ((tv%25)+25)%25;}
+function drawBG(){
+ ctx.fillStyle='#1a1410';ctx.fillRect(CAM.x-W/CAM.z,1935,W*2/CAM.z,600); // under-road filler
+ ctx.drawImage(IM.bg,0,0,1080,1935);
+ ctx.save();ctx.scale(-1,1);
+ ctx.drawImage(IM.bg,0,0,1080,1935);              // mirror left  (-1080..0)
+ ctx.drawImage(IM.bg,-2160,0,1080,1935);          // mirror right (1080..2160)
+ ctx.restore();
+}
+function spr(im,cx,baseY,h,rot,alpha,flip,sy){
+ const sc=h/im.height,w=im.width*sc;
+ ctx.save();ctx.globalAlpha=(alpha===undefined?1:alpha);
+ ctx.translate(cx,baseY);if(rot)ctx.rotate(rot);ctx.scale(flip?-1:1,(sy||1));
+ ctx.drawImage(im,-w/2,-h,w,h);ctx.restore();ctx.globalAlpha=1;
+}
+function shad(x,wd,y,a){ctx.fillStyle='rgba(0,0,0,'+(a||0.28)+')';ctx.beginPath();ctx.ellipse(x,y||FLOOR,wd,wd*0.16,0,0,7);ctx.fill();}
+// ---------- UI (canvas space, after camEnd) ----------
+function words(ws,fs,y){ctx.save();ctx.font=fs+'px Anton';ctx.textAlign='left';
+ let tw=0;const m=ws.map(w2=>{const x=ctx.measureText(w2[0]+' ').width;tw+=x;return x;});
+ let x=W/2-tw/2;
+ for(let i=0;i<ws.length;i++){ctx.lineWidth=fs*0.22;ctx.lineJoin='round';ctx.strokeStyle=OUT;
+  ctx.strokeText(ws[i][0],x,y);ctx.fillStyle=ws[i][1];ctx.fillText(ws[i][0],x,y);x+=m[i];}
+ ctx.restore();}
+function cap(ws,fs,y,tl,pop){if(tl<0)return;const p=clamp(tl/0.14,0,1);
+ ctx.save();ctx.translate(W/2,y);ctx.scale(pop?bko(p):1,pop?bko(p):1);ctx.translate(-W/2,-y);
+ ctx.globalAlpha=Math.min(1,p*2);words(ws,fs,y);ctx.restore();ctx.globalAlpha=1;}
+function burst(x,y,r,txt,tl){if(tl<0)return;const p=bko(clamp(tl/0.16,0,1));
+ ctx.save();ctx.translate(x,y);ctx.scale(p,p);
+ ctx.fillStyle='#ffd23e';ctx.strokeStyle=OUT;ctx.lineWidth=7;ctx.beginPath();
+ for(let i=0;i<12;i++){const a=i/12*Math.PI*2,rr=(i%2?r:r*0.55);ctx.lineTo(Math.cos(a)*rr,Math.sin(a)*rr);}
+ ctx.closePath();ctx.fill();ctx.stroke();
+ ctx.fillStyle=OUT;ctx.font=(r*0.30)+'px InterBlack';ctx.textAlign='center';ctx.fillText(txt,0,r*0.12);ctx.restore();}
+function dust(x,y,n,seed,sp){for(let i=0;i<n;i++){
+ ctx.fillStyle='rgba(185,165,140,'+(0.5*(1-sp))+')';
+ ctx.beginPath();ctx.arc(x+(R(seed+i)-0.5)*130*(0.4+sp),y-sp*80*R(seed+i+9),10+18*R(seed+i+4)*(1-sp*0.4),0,7);ctx.fill();}}
+function grain(t){for(let i=0;i<40;i++){const x=(R(i+40)*W+t*37)%W,y=(R(i+80)*H-t*53+H)%H;
+ ctx.globalAlpha=0.045;ctx.fillStyle='#000';ctx.fillRect(x,y,2,2);}ctx.globalAlpha=1;}
+function flash(a){ctx.fillStyle='rgba(255,255,255,'+a+')';ctx.fillRect(0,0,W,H);}
+function dk(a){ctx.fillStyle='rgba(8,6,10,'+a+')';ctx.fillRect(0,0,W,H);}
+function tears(cx,cy,tl){for(let i=0;i<8;i++){const p2=(tl*1.6+R(i))%1;
+ ctx.fillStyle='rgba(150,210,255,'+(0.85*(1-p2))+')';
+ const dx=(i<4?-1:1)*(30+40*p2+R(i+3)*18),dy=-10+p2*120;
+ ctx.beginPath();ctx.arc(cx+dx,cy+dy,7-3*p2,0,7);ctx.fill();}}
+function squashBurger(x,y,w){ // flattened burger + splat
+ ctx.save();ctx.translate(x,y);
+ ctx.fillStyle='#d9a441';ctx.strokeStyle=OUT;ctx.lineWidth=5;
+ ctx.beginPath();ctx.ellipse(0,0,w*0.62,w*0.13,0,0,7);ctx.fill();ctx.stroke();
+ ctx.fillStyle='#b4502e';[[-w*0.5,4],[w*0.42,2],[-w*0.1,8],[w*0.16,-3]].forEach(p=>{
+  ctx.beginPath();ctx.ellipse(p[0],p[1],w*0.14,w*0.05,R(p[0])*1.2,0,7);ctx.fill();});
+ ctx.fillStyle='#e8c23e';ctx.beginPath();ctx.ellipse(-w*0.22,-2,w*0.18,w*0.045,0.3,0,7);ctx.fill();
+ ctx.restore();}
+// Godzilla constants
+const GX=760, GH=1700;             // world x, giant height
+const HULK=450;                     // hulk world height
+let T=0;
+// ---------- SHOT 1 PANEL (shared for loop law) ----------
+function panelS1(tv,withCap){
+ const zb=clamp((tv-0.04)/0.06,0,1)*(1-clamp((tv-0.10)/0.45,0,1));  // punch bump after frame0
+ CAM={x:420,y:1300,z:0.80+0.07*zb,sh:3,kick:0};
+ camBegin();drawBG();
+ const br=1+0.02*Math.sin(tv*9.0478);
+ shad(420,150);
+ spr(pick(IM.hf,IM.hfB,wrap25(tv)/0.35),420,FLOOR,HULK*br,0.02*Math.sin(tv*7));
+ camEnd();
+ if(withCap)cap([['NEW ','#fff'],['CHALLENGER?!','#ffd23e']],52,150,tv-0.03,1);
+}
+// ---------- MAIN ----------
+window.renderAt=function(t){
+ T=t;
+ ctx.clearRect(0,0,cv.width,cv.height);ctx.save();ctx.scale(2,2);
+ ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);
+ const S=(a,b)=>t>=a&&t<b;const L=a=>t-a;
+
+ if(S(0,1.2)){panelS1(t,true);}
+
+ else if(S(1.2,2.6)){const k=L(1.2)/1.4;
+  CAM={x:380,y:1300,z:0.82,sh:0,kick:0};
+  camBegin();drawBG();
+  const wx=180+300*k;                       // walk L->R
+  const hop=Math.abs(Math.sin(k*Math.PI*4))*18;
+  const stepP=Math.sin(k*Math.PI*4);
+  shad(wx,130);
+  spr(pick(IM.hw,IM.hwB,(t-1.2)/0.35),wx,FLOOR-hop,HULK,0.03*stepP,1,true); // walk cycle, face right
+  if(Math.abs(stepP)<0.25)dust(wx-40,FLOOR,4,Math.floor(k*4),0.3);
+  camEnd();
+  cap([['EASY ','#fff'],['WIN!','#7CFC5A']],46,150,L(1.35),1);}
+
+ else if(S(2.6,4.0)){const k=L(2.6)/1.4;
+  CAM={x:480,y:1300,z:0.80,sh:0,kick:0};
+  camBegin();drawBG();
+  // giant shadow creeping over street
+  ctx.fillStyle='rgba(10,8,14,'+(0.42*ez(k))+')';
+  ctx.fillRect(-200,FLOOR-980,1500,1000);
+  shad(480,150);
+  spr(pick(IM.hf,IM.hfB,t/0.4),480,FLOOR,HULK*(1+0.03*Math.sin(t*9)),0);
+  camEnd();
+  dk(0.12*ez(k));
+  cap([['why is it ','#fff'],['getting ','#9fb8ff'],['dark?','#fff']],34,870,L(3.0),1);}
+
+ else if(S(4.0,5.6)){const k=ez(L(4.0)/1.6);
+  CAM={x:700,y:1430-790*k,z:0.78-0.04*k,sh:0,kick:0};
+  camBegin();drawBG();
+  shad(GX,330,FLOOR,0.34);
+  spr(IM.gi,GX,FLOOR,GH);                    // giant standing
+  camEnd();
+  cap([['UP...','#fff']],40,190,L(4.3),1);}
+
+ else if(S(5.6,7.0)){
+  CAM={x:700,y:620,z:0.78,sh:(L(5.9)>0&&L(5.9)<0.8)?10:2,kick:0};
+  camBegin();drawBG();
+  const rs=1+0.02*Math.sin(t*22);
+  spr(L(5.65)>0?pick(IM.gr,IM.grB,L(5.65)/0.18):IM.gr,GX,FLOOR,GH*rs); // roar chomping
+  camEnd();
+  if(L(5.9)>0&&L(5.9)<0.25)flash(0.3*(1-L(5.9)/0.25));
+  cap([['GODZILLA','#ff5b4d']],58,210,L(5.75),1);}
+
+ else if(S(7.0,8.4)){
+  CAM={x:430,y:1280,z:0.84,sh:0,kick:0};
+  camBegin();drawBG();
+  ctx.fillStyle='rgba(10,8,14,0.34)';ctx.fillRect(-200,FLOOR-980,1500,1000);
+  const gulp=1-0.04*clamp(Math.sin(L(7.3)*6),0,1);
+  shad(430,135);
+  spr(IM.hs,430,FLOOR,HULK*gulp);
+  // godzilla legs looming right edge
+  spr(IM.gi,GX+330,FLOOR,GH,0,0.9);
+  camEnd();
+  cap([['oh.','#fff']],52,820,L(7.7),1);}
+
+ else if(S(8.4,10.0)){const k=L(8.4)/1.6;
+  CAM={x:440,y:1290,z:0.84,sh:2+4*k,kick:0};
+  camBegin();drawBG();
+  ctx.fillStyle='rgba(10,8,14,0.3)';ctx.fillRect(-200,FLOOR-980,1500,1000);
+  const lean=-0.12*ez(k);
+  shad(430,140);
+  spr(pick(IM.hf,IM.hfB,t/0.3),430,FLOOR,HULK*(1+0.05*Math.sin(t*16)),lean,1,true);
+  // green power glow
+  const g=ez(k);
+  const gr2=ctx.createRadialGradient(430,FLOOR-240,8,430,FLOOR-240,180);
+  gr2.addColorStop(0,'rgba(140,255,110,'+(0.4*g)+')');gr2.addColorStop(1,'rgba(140,255,110,0)');
+  ctx.save();ctx.globalCompositeOperation='lighter';ctx.fillStyle=gr2;
+  ctx.beginPath();ctx.arc(430,FLOOR-240,180,0,7);ctx.fill();ctx.restore();
+  camEnd();
+  cap([['BIG ','#fff'],['MISTAKE ','#ff5b4d'],['LOADING...','#fff']],36,160,L(8.7),1);}
+
+ else if(S(10.0,11.2)){
+  const IMP=10.5;
+  let tf=t; if(t>IMP&&t<IMP+0.10)tf=IMP;     // HITSTOP freeze 3f
+  const k=clamp((tf-10.0)/0.5,0,1);
+  const kick=(t>IMP&&t<IMP+0.22)?0.07*(1-(t-IMP)/0.22):0;
+  CAM={x:620+120*k,y:1290,z:0.86,sh:(t>IMP&&t<IMP+0.5)?16:3,kick:kick};
+  camBegin();drawBG();
+  // godzilla foot zone = right
+  spr(IM.gi,GX+140,FLOOR,GH);
+  const hx=330+300*k;
+  const sq=(t>IMP&&t<IMP+0.14)?0.86:1;
+  shad(hx,140);
+  const punching=t>IMP-0.07;
+  if(punching&&t<IMP+0.12){spr(IM.hp,hx-55,FLOOR,HULK*1.0,0,0.30,false,sq);}
+  spr(punching?IM.hp:IM.hpA,hx,FLOOR,HULK*1.0,0,1,false,sq);
+  if(k>0.2&&k<1)for(let i=0;i<4;i++){ctx.strokeStyle='rgba(255,255,255,0.5)';ctx.lineWidth=6;
+   ctx.beginPath();ctx.moveTo(hx-160-i*40,FLOOR-200-i*30);ctx.lineTo(hx-60-i*40,FLOOR-200-i*30);ctx.stroke();}
+  camEnd();
+  if(t>IMP&&t<IMP+0.07)flash(0.85);
+  burst(392,640,86,'BONK!',L(IMP));}
+
+ else if(S(11.2,12.6)){const k=L(11.2)/1.4;
+  CAM={x:480,y:1300,z:0.8,sh:k<0.3?6:0,kick:0};
+  camBegin();drawBG();
+  spr(IM.gi,GX+220,FLOOR,GH,0,0.95);
+  // hulk arcs back and flops
+  const fx=640-380*ez(clamp(k*1.8,0,1));
+  const fy=FLOOR-Math.sin(clamp(k*1.8,0,1)*Math.PI)*260;
+  if(k<0.62){spr(IM.hfl,fx,fy,210,k*9);}
+  else{shad(265,190,FLOOR,0.3);spr(IM.hfl,265,FLOOR,200,0);}
+  if(k>0.5&&k<0.72)dust(265,FLOOR,7,3,(k-0.5)*4);
+  camEnd();
+  cap([['nothing. ','#fff'],['happened.','#ffd23e']],38,170,L(12.0),1);}
+
+ else if(S(12.6,14.2)){
+  CAM={x:420,y:1310,z:0.84,sh:0,kick:0};
+  camBegin();drawBG();
+  const sit=ez(clamp(L(12.6)/0.5,0,1));
+  shad(400,135*sit+40);
+  spr(IM.hs,400,FLOOR+170*(1-sit),HULK*0.96,0);
+  if(sit<1)dust(400,FLOOR,5,2,sit);
+  // burger pop-in on hand side
+  const bp=clamp(L(13.1)/0.2,0,1);
+  if(bp>0){spr(IM.burger,520,FLOOR-230+20*(1-bko(bp)),120*bko(bp));}
+  camEnd();
+  burst(270,310,100,'PLAN B',L(13.05));
+  cap([['secret ','#fff'],['weapon!','#ffd23e']],38,860,L(13.4),1);}
+
+ else if(S(14.2,16.0)){
+  CAM={x:460,y:1270,z:0.8,sh:0,kick:0};
+  camBegin();drawBG();
+  // godzilla leans down BEHIND hulk, head drops to the burger
+  const sniff=8*Math.sin(L(14.8)*9)*(L(14.8)>0?1:0);
+  spr(IM.gl,230,FLOOR-80+sniff+10*Math.sin(t*2.2),1150,-0.12);
+  shad(400,130);
+  spr(IM.ho,400,FLOOR,HULK*1.02+6*Math.sin(t*3));   // offer burger up
+  camEnd();
+  cap([['TRUCE?','#fff']],44,170,L(14.6),1);}
+
+ else if(S(16.0,17.6)){const k=L(16.0)/1.6;
+  CAM={x:700,y:1050,z:0.55,sh:k>0.6?3:0,kick:0};
+  camBegin();drawBG();
+  // burger placed on road as offering
+  shad(560,95,FLOOR,0.25);
+  spr(IM.burger,560,FLOOR,115);
+  // hulk steps back
+  const hx=400-120*ez(k);
+  shad(hx,128);
+  spr(k<0.75?pick(IM.hw,IM.hwB,k*4):IM.hs,hx,FLOOR,HULK*0.97,0,1,k<0.75);
+  // giant stomp foot rising (use STOMP sprite, bottom-right)
+  const fr=ez(clamp(k*1.3,0,1));
+  spr(IM.gst,GX+170,FLOOR-80-250*fr,GH*1.02,-0.05*fr);
+  // growing doom shadow over burger
+  shad(560,95+260*fr,FLOOR,0.25+0.3*fr);
+  camEnd();
+  cap([['a gift ','#fff'],['for the ','#fff'],['KING','#ffd23e']],34,160,L(16.25),1);}
+
+ else if(S(17.6,18.8)){
+  const IMP=17.9;
+  let tf=t;if(t>IMP&&t<IMP+0.10)tf=IMP;
+  const k=clamp((tf-17.6)/0.3,0,1);
+  const kick=(t>IMP&&t<IMP+0.25)?0.08*(1-(t-IMP)/0.25):0;
+  CAM={x:660,y:1120,z:0.62,sh:(t>IMP&&t<IMP+0.6)?20:2,kick:kick};
+  camBegin();drawBG();
+  // foot slams down
+  const fy=-420*(1-ez(k));
+  spr(IM.gst,GX+120,FLOOR+40+fy,GH*1.02,0);
+  if(t<=IMP){shad(560,180,FLOOR,0.5);spr(IM.burger,560,FLOOR,115);}
+  else{squashBurger(545,FLOOR+6,170);}
+  const hx=265;
+  shad(hx,125);
+  spr(IM.hs,hx,FLOOR,HULK*0.95,(t>IMP&&t<IMP+0.3)?-0.1:0);
+  if(t>IMP&&t<IMP+0.5)dust(560,FLOOR,10,7,(t-IMP)*2);
+  camEnd();
+  if(t>IMP&&t<IMP+0.07)flash(0.9);
+  if(t>IMP)burst(400,560,80,'SPLAT!',L(IMP));}
+
+ else if(S(18.8,21.0)){const k=L(18.8)/2.2;
+  CAM={x:560,y:1100,z:0.60+0.06*ez(k),sh:0,kick:0};
+  camBegin();drawBG();
+  dk(0);
+  ctx.fillStyle='rgba(10,8,14,'+(0.22)+')';ctx.fillRect(-200,FLOOR-980,1500,1000);
+  squashBurger(545,FLOOR+6,170);
+  shad(400,150);
+  spr(pick(IM.hk,IM.hkB,L(18.8)/0.4),400,FLOOR,HULK*0.96+8*Math.sin(t*5));
+  tears(400,FLOOR-330,L(18.9));
+  // godzilla legs leaving far right
+  const gx2=GX-60+340*ez(k);
+  spr(pick(IM.gsm,IM.gsmB,k*6),gx2,FLOOR,GH*0.98,0,0.95);
+  camEnd();
+  cap([['NOOO... ','#fff'],['THE ','#fff'],['BURGER!','#ffd23e']],40,170,L(19.1),1);}
+
+ else if(S(21.0,23.5)){const k=L(21.0)/2.5;
+  CAM={x:560,y:1180,z:0.66,sh:0,kick:0};
+  camBegin();drawBG();
+  squashBurger(545,FLOOR+6,150);
+  // godzilla smug walks away into distance
+  const gx3=620+180*k, gsc=1-0.28*k;
+  const ghop=Math.abs(Math.sin(k*Math.PI*5))*26;
+  shad(gx3,300*gsc,FLOOR,0.3*(1-k*0.5));
+  spr(pick(IM.gsm,IM.gsmB,k*5),gx3,FLOOR-ghop,GH*0.95*gsc);
+  if(Math.abs(Math.sin(k*Math.PI*5))<0.2)dust(gx3-80,FLOOR,6,Math.floor(k*5),0.4);
+  // tiny hulk fist shake
+  shad(330,120);
+  spr(IM.hf,330,FLOOR,HULK*0.9,0.06*Math.sin(t*13));
+  camEnd();
+  cap([['he didn\'t ','#fff'],['even ','#fff'],['FIGHT...','#ff5b4d']],34,165,L(21.5),1);}
+
+ else{ // S16 loop panel (LOOP LAW: same fn, tv=t-24.95)
+  panelS1(t-25.0,false);
+  if(t<24.6)cap([['ROUND ','#fff'],['2?!','#ffd23e']],52,830,L(23.8),1);
+  if(t<23.62)flash(0.35*(1-L(23.5)/0.12)); }
+
+ grain(t);
+ ctx.restore();
+};
+</script></body></html>

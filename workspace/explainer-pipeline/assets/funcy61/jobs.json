@@ -1,0 +1,6 @@
+[
+ {"name":"a1_atm","image":"s1_atm_fixed.jpg","seed":601,
+  "prompt":"Very slow cinematic push-in toward a sleek ATM in a bright stone wall on a sunny morning, fresh banknotes gently trembling in the dispenser slot, sunlight glinting and sliding on brushed steel, leaves and bokeh of the plaza breathing softly behind, photoreal bright airy film look, no people in foreground"},
+ {"name":"a2_bills","image":"s2_bills.jpg","seed":602,
+  "prompt":"Bright macro shot of a crisp banknote being lifted and fed by a spinning rubber friction roller from the top of the stack, the note flexing and sliding forward smoothly, paper fibers catching soft studio daylight, subtle camera drift, photoreal clean bright macro, no people"}
+]

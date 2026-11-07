@@ -1,0 +1,370 @@
+[
+  {
+    "start": 433.625,
+    "end": 435.47,
+    "kind": "ai",
+    "asset": "p10_search_plans",
+    "disclosure": "एआई दृश्य  काल्पनिक खोज तैयारी",
+    "text": "खोज की तैयारी"
+  },
+  {
+    "start": 435.47,
+    "end": 439.55,
+    "kind": "ai",
+    "asset": "search",
+    "disclosure": "एआई दृश्य  काल्पनिक खोज",
+    "text": ""
+  },
+  {
+    "start": 439.55,
+    "end": 443.08,
+    "kind": "video",
+    "asset": "857196",
+    "disclosure": "आधुनिक फुटेज  वास्तविक खोज नहीं",
+    "text": ""
+  },
+  {
+    "start": 443.08,
+    "end": 446.62,
+    "kind": "video",
+    "asset": "13171168",
+    "disclosure": "स्विस ग्लेशियर  संदर्भ फुटेज",
+    "text": "इलाका बहुत बड़ा था"
+  },
+  {
+    "start": 446.62,
+    "end": 450.7,
+    "kind": "ai",
+    "asset": "search_crevasse_new",
+    "disclosure": "एआई दृश्य  काल्पनिक खोज",
+    "text": ""
+  },
+  {
+    "start": 450.7,
+    "end": 452.46,
+    "kind": "real",
+    "asset": "nanda_west",
+    "disclosure": "नंदा देवी  बाद की संदर्भ तस्वीर",
+    "text": "ठिकाना तय नहीं"
+  },
+  {
+    "start": 452.46,
+    "end": 456.23,
+    "kind": "ai",
+    "asset": "p10_search_scan",
+    "disclosure": "एआई दृश्य  काल्पनिक खोज",
+    "text": "खोज मुश्किल क्यों थी?"
+  },
+  {
+    "start": 456.23,
+    "end": 459.06,
+    "kind": "ai",
+    "asset": "snow_rocks_new",
+    "disclosure": "एआई दृश्य  काल्पनिक बर्फ और चट्टानें",
+    "text": ""
+  },
+  {
+    "start": 459.06,
+    "end": 462.12,
+    "kind": "ai",
+    "asset": "winter_weather_new",
+    "disclosure": "एआई दृश्य  काल्पनिक सर्दी",
+    "text": ""
+  },
+  {
+    "start": 462.12,
+    "end": 465.5,
+    "kind": "ai",
+    "asset": "p10_rope_team",
+    "disclosure": "एआई दृश्य  काल्पनिक ग्लेशियर",
+    "text": ""
+  },
+  {
+    "start": 465.5,
+    "end": 470.25,
+    "kind": "real",
+    "asset": "camp95",
+    "disclosure": "नंदा देवी कैंप १९९५  मिशन नहीं",
+    "text": "इलाका बदल सकता है"
+  },
+  {
+    "start": 470.25,
+    "end": 476.4,
+    "kind": "ai",
+    "asset": "return",
+    "disclosure": "एआई दृश्य  काल्पनिक खोज",
+    "text": ""
+  },
+  {
+    "start": 476.4,
+    "end": 480.26,
+    "kind": "ai",
+    "asset": "different_roles",
+    "disclosure": "एआई दृश्य  काल्पनिक टीम",
+    "text": ""
+  },
+  {
+    "start": 480.26,
+    "end": 486.55,
+    "kind": "ai",
+    "asset": "cache",
+    "disclosure": "एआई दृश्य  काल्पनिक सामान",
+    "text": "सुरक्षा भी जरूरी"
+  },
+  {
+    "start": 486.55,
+    "end": 491.26,
+    "kind": "ai",
+    "asset": "search_instrument_new",
+    "disclosure": "एआई दृश्य  काल्पनिक जांच उपकरण",
+    "text": ""
+  },
+  {
+    "start": 491.26,
+    "end": 494.76,
+    "kind": "video",
+    "asset": "climber_new",
+    "disclosure": "आधुनिक फुटेज  वास्तविक खोज नहीं",
+    "text": ""
+  },
+  {
+    "start": 494.76,
+    "end": 497.56,
+    "kind": "real",
+    "asset": "nanda_north",
+    "disclosure": "नंदा देवी  बाद की संदर्भ तस्वीर",
+    "text": "सटीक ठिकाना नहीं मिला"
+  },
+  {
+    "start": 497.56,
+    "end": 504.62,
+    "kind": "graphic",
+    "asset": "hypothesis",
+    "disclosure": "सांकेतिक चित्र  वास्तविक घटना नहीं",
+    "text": ""
+  },
+  {
+    "start": 504.62,
+    "end": 509.5,
+    "kind": "graphic",
+    "asset": "uncertainty",
+    "disclosure": "सांकेतिक चित्र  साबित तस्वीर नहीं",
+    "text": "संभावना  पक्का सबूत नहीं"
+  },
+  {
+    "start": 509.5,
+    "end": 516.38,
+    "kind": "video",
+    "asset": "weather_extra",
+    "disclosure": "संदर्भ फुटेज  स्थान अज्ञात",
+    "text": "सटीक ठिकाना अज्ञात"
+  },
+  {
+    "start": 516.38,
+    "end": 518.49,
+    "kind": "real",
+    "asset": "nanda_outer",
+    "disclosure": "नंदा देवी  बाद की संदर्भ तस्वीर",
+    "text": ""
+  },
+  {
+    "start": 518.49,
+    "end": 524.85,
+    "kind": "graphic",
+    "asset": "two_devices",
+    "disclosure": "सांकेतिक चित्र  असली उपकरण नहीं",
+    "text": "एक दूसरी मशीन भी थी"
+  },
+  {
+    "start": 524.85,
+    "end": 529.28,
+    "kind": "real",
+    "asset": "nanda_kot",
+    "disclosure": "नंदा कोट  १९९२  संदर्भ तस्वीर",
+    "text": "अलग पहाड़  अलग मशीन"
+  },
+  {
+    "start": 529.28,
+    "end": 537.47,
+    "kind": "graphic",
+    "asset": "memo_second",
+    "disclosure": "स्रोत: अमेरिकी विदेश विभाग  १४ अप्रैल १९७८",
+    "text": ""
+  },
+  {
+    "start": 537.47,
+    "end": 542.54,
+    "kind": "graphic",
+    "asset": "contrast",
+    "disclosure": "सांकेतिक चित्र  असली उपकरण नहीं",
+    "text": "गलतफहमी यहाँ होती है"
+  },
+  {
+    "start": 542.54,
+    "end": 545.5,
+    "kind": "graphic",
+    "asset": "contrast_reveal",
+    "disclosure": "सांकेतिक चित्र  असली उपकरण नहीं",
+    "text": "दूसरी मशीन हटना"
+  },
+  {
+    "start": 545.5,
+    "end": 549.3,
+    "kind": "graphic",
+    "asset": "contrast_missing",
+    "disclosure": "सांकेतिक चित्र  असली उपकरण नहीं",
+    "text": "पहली मशीन मिलने का सबूत नहीं"
+  },
+  {
+    "start": 549.3,
+    "end": 552.54,
+    "kind": "graphic",
+    "asset": "two_mountains",
+    "disclosure": "सांकेतिक चित्र  भौगोलिक नक्शा नहीं",
+    "text": "दो पहाड़  दो अलग मशीनें"
+  },
+  {
+    "start": 552.54,
+    "end": 558.16,
+    "kind": "graphic",
+    "asset": "memo_awareness",
+    "disclosure": "स्रोत: अमेरिकी विदेश विभाग  १४ अप्रैल १९७८",
+    "text": ""
+  },
+  {
+    "start": 558.16,
+    "end": 561.83,
+    "kind": "real",
+    "asset": "desai",
+    "disclosure": "कार्टर और देसाई  जून १९७८  अलग अवसर",
+    "text": ""
+  },
+  {
+    "start": 561.83,
+    "end": 565.35,
+    "kind": "ai",
+    "asset": "p10_report_compare",
+    "disclosure": "एआई दृश्य  काल्पनिक अध्ययन",
+    "text": "खबर के बाद नए सवाल"
+  },
+  {
+    "start": 565.35,
+    "end": 572.25,
+    "kind": "graphic",
+    "asset": "questions",
+    "disclosure": "सांकेतिक चित्र",
+    "text": "किसे क्या पता था?"
+  },
+  {
+    "start": 572.25,
+    "end": 576.28,
+    "kind": "real",
+    "asset": "nanda2016",
+    "disclosure": "नंदा देवी  २०१६  संदर्भ तस्वीर",
+    "text": ""
+  },
+  {
+    "start": 576.28,
+    "end": 580.09,
+    "kind": "graphic",
+    "asset": "press_scrutiny",
+    "disclosure": "सांकेतिक चित्र  असली अखबार नहीं",
+    "text": "१९७८ में खबर सामने आई"
+  },
+  {
+    "start": 580.09,
+    "end": 585.45,
+    "kind": "ai",
+    "asset": "recording",
+    "disclosure": "एआई दृश्य  वास्तविक खबर की तस्वीर नहीं",
+    "text": ""
+  },
+  {
+    "start": 585.45,
+    "end": 588.78,
+    "kind": "graphic",
+    "asset": "questions_india",
+    "disclosure": "सांकेतिक चित्र",
+    "text": "भारत में भी सवाल उठे"
+  },
+  {
+    "start": 588.78,
+    "end": 600.12,
+    "kind": "graphic",
+    "asset": "memo_reporting",
+    "disclosure": "स्रोत: अमेरिकी विदेश विभाग  १४ अप्रैल १९७८",
+    "text": ""
+  },
+  {
+    "start": 600.12,
+    "end": 605.61,
+    "kind": "real",
+    "asset": "parliament",
+    "disclosure": "संसद में कार्टर  जनवरी १९७८  अलग अवसर",
+    "text": ""
+  },
+  {
+    "start": 605.61,
+    "end": 608.14,
+    "kind": "video",
+    "asset": "river139",
+    "disclosure": "संदर्भ फुटेज  नदी का स्थान स्थापित नहीं",
+    "text": ""
+  },
+  {
+    "start": 608.14,
+    "end": 614.76,
+    "kind": "video",
+    "asset": "river548",
+    "disclosure": "संदर्भ फुटेज  नदी की पहचान नहीं",
+    "text": "नदियों की चिंता"
+  },
+  {
+    "start": 614.76,
+    "end": 620.83,
+    "kind": "graphic",
+    "asset": "capsule_question",
+    "disclosure": "सांकेतिक चित्र  असली कैप्सूल नहीं",
+    "text": "अगर कैप्सूल टूटे?"
+  },
+  {
+    "start": 620.83,
+    "end": 626.62,
+    "kind": "graphic",
+    "asset": "concern_proof",
+    "disclosure": "सांकेतिक चित्र",
+    "text": "चिंता और सबूत अलग हैं"
+  },
+  {
+    "start": 626.62,
+    "end": 630.49,
+    "kind": "ai",
+    "asset": "p10_field_sample",
+    "disclosure": "एआई दृश्य  काल्पनिक नमूना जांच",
+    "text": ""
+  },
+  {
+    "start": 630.49,
+    "end": 635.26,
+    "kind": "ai",
+    "asset": "samples_lab_new",
+    "disclosure": "एआई दृश्य  काल्पनिक प्रयोगशाला",
+    "text": "जाँचे गए नमूनों में प्रदूषण नहीं मिला"
+  },
+  {
+    "start": 635.26,
+    "end": 640.85,
+    "kind": "graphic",
+    "asset": "sample_limit",
+    "disclosure": "सांकेतिक चित्र",
+    "text": "कैप्सूल की हालत अज्ञात"
+  },
+  {
+    "start": 640.85,
+    "end": 650.625,
+    "kind": "video",
+    "asset": "lab412",
+    "disclosure": "आधुनिक लैब  वास्तविक जांच नहीं",
+    "text": "नतीजा उसी नमूने और समय का"
+  }
+]

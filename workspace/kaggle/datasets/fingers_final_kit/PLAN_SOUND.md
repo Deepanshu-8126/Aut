@@ -1,0 +1,11 @@
+# Funcyous spine-style test: why fingers wrinkle in water
+
+Topic: familiar body mechanism, US English. YouTube US autocomplete returns 'why do fingers wrinkle in water' and related variants; this is not a search-volume estimate or viral proof.
+
+Script draft: Ever notice your fingertips wrinkle after a long soak? It isn't just skin soaking up water. Your nervous system signals tiny blood vessels in your fingertips to narrow. That reduces the volume underneath, pulling the skin into folds. Some studies suggest these wrinkles can help us handle wet objects, but scientists are still studying why the response evolved. Your fingers are reacting, not just getting soggy.
+
+Facts: water absorption affects outer skin, but the characteristic response depends on nerves and blood-vessel constriction, so avoid an absolute denial of water absorption. Possible wet-grip benefit is supported by some studies but isn't conclusively established as evolutionary purpose. https://www.utmb.edu/mdnews/welcome/episode/why-do-we-prune-in-water ; https://www.scientificamerican.com/article/why-do-our-fingers-and-toes-wrinkle-during-a-bath/ . Visual anatomy simplified, not a literal model; label AI concepts.
+
+Sound map before production: Funcyous #464 music, soft under uninterrupted am_adam narration. One gentle water-drop cue on hook; low unobtrusive interface tick on nerve signal; subtle compressed click for vessels narrowing; soft papery fold for wrinkle appearance; soft water/grip cue on wet-object test; return hook tick near closing. All cues conditional on measured voice timing and visual actions. No soundtrack layering onto completed mix. Measure final loudness and true peak; check for speech masking and cue timing. Listen-through by human remains essential.
+
+Visual plan: thumbnail selected by user; one consistent character in a bathroom, selective blink keyframe only if aligned; close-up cut to finger and code-driven vector cross-section showing narrowing vessel, tissue and folds (explicit simplified diagram); water/hand grip illustration with matched keyframes if aligned; return to character for loop. Three-word captions from measured speech. Avoid invented anatomy, misleading grip certainty, and images morphed with identity changes.

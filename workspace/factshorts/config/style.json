@@ -1,0 +1,11 @@
+{
+  "style_name": "White Minimal Box v1",
+  "background": "#FFFFFF + dot_grid 24px 42%opacity-black",
+  "top_pill": {"fill": "#0A0A0A", "radius": 38, "height": 76, "font": "Inter Bold 34"},
+  "title": {"font": "Inter Black 112", "color": "#000000", "line_height": 0.98},
+  "subtitle": {"font": "Inter SemiBold 46", "color": "#555555"},
+  "bottom_bar": {"fill": "#0A0A0A", "height": 104, "radius": 40, "font": "Inter Bold 44"},
+  "accents": {"yellow": "#FFD60A", "blue": "#3A86FF", "red": "#FF3B30", "green": "#00C853"},
+  "layout": {"canvas": "1080x1920", "margin": 56, "safe_area": 90},
+  "illustration": {"glow": "#FFD60A 36px blur 45%", "shadow": "0 10 26 rgba(0,0,0,0.11)"}
+}

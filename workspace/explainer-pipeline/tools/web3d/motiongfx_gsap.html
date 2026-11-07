@@ -1,0 +1,101 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:'Teko';src:url('file:///home/user/explainer-pipeline/assets/fonts/Teko.ttf')}
+@font-face{font-family:'InterB';src:url('file:///home/user/explainer-pipeline/assets/fonts/Inter-Black.ttf')}
+@font-face{font-family:'InterS';src:url('file:///home/user/explainer-pipeline/assets/fonts/Inter-SemiBold.ttf')}
+@font-face{font-family:'Mono';src:url('file:///home/user/explainer-pipeline/assets/fonts/JetBrainsMono-Bold.ttf')}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:540px;height:960px;overflow:hidden;background:#fff}
+#stage{position:relative;width:540px;height:960px;
+ background-image:radial-gradient(circle,#d8d8d8 1.1px,transparent 1.1px);background-size:27px 27px}
+.sec{position:absolute;inset:0;visibility:hidden}
+.pill{position:absolute;top:84px;left:50%;transform:translateX(-50%);background:#111;color:#fff;
+ font-family:InterB;font-size:21px;letter-spacing:3px;padding:12px 26px;border-radius:999px;white-space:nowrap}
+.gold{color:#D4A017}.red{color:#E23B2E}
+#underline{position:absolute;top:150px;left:45px;height:3px;width:450px;background:#D4A017;transform:scaleX(0);transform-origin:left}
+#bignum{position:absolute;top:255px;width:100%;text-align:center;font-family:Teko;font-size:230px;line-height:1;color:#111}
+#bigkm{font-size:90px;color:#D4A017}
+#biglabel{position:absolute;top:530px;width:100%;text-align:center;font-family:InterS;font-size:22px;letter-spacing:5px;color:#555}
+#sweep{position:absolute;top:585px;left:170px;width:200px;height:5px;background:#111;transform:scaleX(0)}
+.bar{position:absolute;left:70px;height:46px;background:#111;border-radius:8px;transform:scaleX(0);transform-origin:left}
+.barlab{position:absolute;left:70px;font-family:InterS;font-size:17px;color:#555;letter-spacing:2px}
+.barval{position:absolute;font-family:Teko;font-size:40px;color:#111}
+.chip{position:absolute;background:#E23B2E;color:#fff;font-family:Mono;font-size:16px;padding:9px 16px;border-radius:7px;transform:scale(0)}
+.kin{position:absolute;width:100%;text-align:center;font-family:Teko;color:#111;line-height:.95}
+#svgmap{position:absolute;top:250px;left:45px}
+#fspill{position:absolute;top:46%;left:50%;transform:translate(-50%,-50%) scale(0);background:#111;color:#fff;font-family:InterB;font-size:34px;letter-spacing:4px;padding:22px 44px;border-radius:999px}
+.dot{position:absolute;bottom:120px;width:12px;height:12px;border-radius:50%;background:#111;transform:scale(0)}
+#flash{position:absolute;inset:0;border:0px solid #D4A017;border-radius:0;opacity:0}
+</style></head><body><div id="stage">
+ <div class="sec" id="s1"><div class="pill">RAM SETU &nbsp;<span class="gold">—</span>&nbsp; 5 FACTS</div><div id="underline"></div></div>
+ <div class="sec" id="s2"><div id="bignum"><span id="cnt">0</span><span id="bigkm"> KM</span></div>
+   <div id="biglabel">SETU KI KUL LAMBAI</div><div id="sweep"></div></div>
+ <div class="sec" id="s3">
+   <div class="barlab" style="top:300px">GEHRAI (KAM SE KAM)</div><div class="bar" id="b1" style="top:328px;width:150px"></div><div class="barval" id="v1" style="top:325px;left:240px">3 M</div>
+   <div class="barlab" style="top:430px">GEHRAI (ZYADA SE ZYADA)</div><div class="bar" id="b2" style="top:458px;width:380px"></div><div class="barval" id="v2" style="top:455px;left:465px">10 M</div>
+   <div class="chip" id="chip1" style="top:580px;left:150px;rotate:-4deg">SPACE SE SAAF DIKHTA HAI!</div></div>
+ <div class="sec" id="s4">
+   <div class="kin" id="k1" style="top:300px;font-size:95px">CARBON DATING</div>
+   <div class="kin" id="k2" style="top:400px;font-size:150px"><span class="gold">7000+</span></div>
+   <div class="kin" id="k3" style="top:555px;font-size:95px">SAAL PURANA?</div></div>
+ <div class="sec" id="s5">
+   <svg id="svgmap" width="450" height="460" viewBox="0 0 450 460">
+     <path d="M 60 20 Q 140 60 150 150 Q 155 210 120 250" fill="none" stroke="#bbb" stroke-width="5" stroke-linecap="round"/>
+     <circle cx="330" cy="400" r="52" fill="none" stroke="#bbb" stroke-width="5"/>
+     <path id="route" d="M 120 250 Q 210 300 330 400" fill="none" stroke="#D4A017" stroke-width="7" stroke-dasharray="14 11" stroke-linecap="round"/>
+     <circle id="pinA" cx="120" cy="250" r="0" fill="#E23B2E"/><circle id="pinB" cx="330" cy="400" r="0" fill="#E23B2E"/>
+   </svg>
+   <div class="chip" id="chip2" style="top:200px;left:60px;background:#111">DHANUSHKODI</div>
+   <div class="chip" id="chip3" style="top:700px;left:290px;background:#111">MANNAR</div></div>
+ <div class="sec" id="s6"><div id="fspill">FACT <span class="gold">SHORTS</span></div>
+   <div class="dot" style="left:234px"></div><div class="dot" style="left:264px"></div><div class="dot" style="left:294px"></div>
+   <div id="flash"></div></div>
+</div>
+<script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+<script>
+const tl = gsap.timeline({paused:true});
+const S=(id)=>tl.set(id,{visibility:'visible'},'<');
+// S1 0-1.4 pill drop + underline
+tl.set('#s1',{visibility:'visible'},0);
+tl.fromTo('#s1 .pill',{y:-160},{y:0,duration:0.8,ease:'elastic.out(1,0.55)'},0.05);
+tl.fromTo('#underline',{scaleX:0},{scaleX:1,duration:0.6,ease:'power4.out'},0.55);
+// S2 1.4-3.4 countup
+tl.set('#s2',{visibility:'visible'},1.35);
+const c={v:0};
+tl.fromTo('#bignum',{scale:0.6,autoAlpha:0},{scale:1,autoAlpha:1,duration:0.5,ease:'back.out(2.2)'},1.4);
+tl.to(c,{v:48,duration:1.1,ease:'power2.out',onUpdate:()=>{document.getElementById('cnt').textContent=Math.round(c.v)}},1.45);
+tl.fromTo('#biglabel',{y:30,autoAlpha:0},{y:0,autoAlpha:1,duration:0.45,ease:'power3.out'},1.7);
+tl.fromTo('#sweep',{scaleX:0},{scaleX:1,duration:0.5,ease:'power4.inOut'},2.0);
+tl.to('#s2',{autoAlpha:0,y:-50,duration:0.4,ease:'power2.in'},3.15);
+tl.to('#s1',{autoAlpha:0,duration:0.4},3.15);
+// S3 3.5-5.3 bars
+tl.set('#s3',{visibility:'visible'},3.5);
+tl.fromTo('#b1',{scaleX:0},{scaleX:1,duration:0.65,ease:'power4.out'},3.55);
+tl.fromTo('#b2',{scaleX:0},{scaleX:1,duration:0.8,ease:'power4.out'},3.75);
+tl.fromTo('#v1',{autoAlpha:0,x:-20},{autoAlpha:1,x:0,duration:0.4},3.9);
+tl.fromTo('#v2',{autoAlpha:0,x:-20},{autoAlpha:1,x:0,duration:0.4},4.15);
+tl.fromTo('#chip1',{scale:0,rotate:-15},{scale:1,rotate:-4,duration:0.55,ease:'back.out(3)'},4.45);
+tl.to('#s3',{autoAlpha:0,y:-50,duration:0.4,ease:'power2.in'},5.2);
+// S4 5.5-7.0 kinetic words
+tl.set('#s4',{visibility:'visible'},5.5);
+tl.fromTo('#k1',{scale:0.3,autoAlpha:0,rotate:-5},{scale:1,autoAlpha:1,rotate:0,duration:0.4,ease:'back.out(2.5)'},5.55);
+tl.fromTo('#k2',{scale:0.3,autoAlpha:0,rotate:4},{scale:1,autoAlpha:1,rotate:0,duration:0.45,ease:'back.out(2.5)'},5.9);
+tl.fromTo('#k3',{scale:0.3,autoAlpha:0,rotate:-3},{scale:1,autoAlpha:1,rotate:0,duration:0.4,ease:'back.out(2.5)'},6.3);
+tl.to('#s4',{autoAlpha:0,scale:1.15,duration:0.4,ease:'power2.in'},6.95);
+// S5 7.2-8.7 map route draw
+tl.set('#s5',{visibility:'visible'},7.2);
+tl.fromTo('#chip2',{scale:0},{scale:1,duration:0.4,ease:'back.out(3)'},7.25);
+const route=document.getElementById('route');const L=route.getTotalLength();
+route.style.strokeDasharray=L; route.style.strokeDashoffset=L;
+tl.to('#route',{strokeDashoffset:0,duration:0.9,ease:'power2.inOut'},7.45);
+tl.fromTo('#pinA',{attr:{r:0}},{attr:{r:13},duration:0.3,ease:'back.out(3)'},7.4);
+tl.fromTo('#pinB',{attr:{r:0}},{attr:{r:13},duration:0.3,ease:'back.out(3)'},8.25);
+tl.fromTo('#chip3',{scale:0},{scale:1,duration:0.4,ease:'back.out(3)'},8.3);
+tl.to('#s5',{autoAlpha:0,duration:0.35,ease:'power2.in'},8.65);
+// S6 8.8-10 logo + dots + flash
+tl.set('#s6',{visibility:'visible'},8.8);
+tl.to('#fspill',{scale:1,duration:0.6,ease:'elastic.out(1,0.5)'},8.85);
+tl.to('.dot',{scale:1,duration:0.3,ease:'back.out(3)',stagger:0.12},9.1);
+tl.fromTo('#flash',{borderWidth:0,opacity:0.9},{borderWidth:70,opacity:0,duration:0.8,ease:'power3.out'},9.0);
+window.renderAt=function(t){tl.seek(t,false);return true;};
+document.fonts.ready.then(()=>{window.READY=true;});
+</script></body></html>

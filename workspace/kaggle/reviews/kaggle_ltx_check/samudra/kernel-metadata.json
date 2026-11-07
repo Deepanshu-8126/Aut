@@ -1,0 +1,23 @@
+{
+  "id": "ukboy7u787/factory-ltx25-samudra",
+  "id_no": 140241945,
+  "title": "Factory LTX25 Samudra",
+  "code_file": "factory-ltx25-samudra.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "keywords": [
+    "gpu"
+  ],
+  "dataset_sources": [
+    "ukboy7u787/funcy62-jobs"
+  ],
+  "kernel_sources": [],
+  "competition_sources": [],
+  "model_sources": [],
+  "docker_image": "gcr.io/kaggle-private-byod/python@sha256:9a6bcfda6d03b2cd9aa347ee8c1bae62043328ed0f4afe9bda014e4f8bbf9435",
+  "machine_shape": "NvidiaTeslaT4"
+}

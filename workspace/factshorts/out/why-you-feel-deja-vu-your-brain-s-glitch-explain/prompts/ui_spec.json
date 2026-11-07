@@ -1,0 +1,46 @@
+{
+  "style_name": "White Minimal Box v1 (renderer-locked)",
+  "canvas": {
+    "w": 1080,
+    "h": 1920,
+    "margin": 56,
+    "safe": 90
+  },
+  "background": "#FFFFFF + dot grid 24px 42%",
+  "top_pill": {
+    "fill": "#0A0A0A",
+    "radius": 38,
+    "height": 76,
+    "font": "Inter Bold 34px"
+  },
+  "title": {
+    "font": "Inter Black 112px",
+    "color": "#0A0A0A",
+    "lh": 0.98
+  },
+  "subtitle": {
+    "font": "Inter SemiBold 46px",
+    "color": "#555555"
+  },
+  "bottom_bar": {
+    "fill": "#0A0A0A",
+    "height": 104,
+    "radius": 40,
+    "font": "Inter Bold 44px"
+  },
+  "colors": {
+    "yellow": "#FFD60A",
+    "blue": "#3A86FF",
+    "red": "#FF3B30",
+    "green": "#00C853",
+    "gray": "#555555",
+    "ink": "#0A0A0A"
+  },
+  "fonts": [
+    "Regular",
+    "Medium",
+    "SemiBold",
+    "Bold",
+    "Black"
+  ]
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "soak_hand_raise",
+    "image": "soak.jpg",
+    "seed": 131,
+    "prompt": "A young man at a bathroom sink gently lifts one wet hand out of the water, looking at his fingertips with natural curiosity. Water drips from his hand. His arms and fingers move naturally and stay anatomically correct. Keep the same character, clothing, bathroom and fixed camera."
+  },
+  {
+    "name": "inspect_fingertips",
+    "image": "reveal.jpg",
+    "seed": 132,
+    "prompt": "The young man naturally turns his raised wet hand a little and examines his fingertips with an intrigued expression. He blinks and breathes gently. His hand stays in front of him away from his face. Exact same character and setting, fixed camera, five natural fingers."
+  },
+  {
+    "name": "holding_wet_marble",
+    "image": "grip.jpg",
+    "seed": 133,
+    "prompt": "A young man gently holds the small clear glass marble between thumb and index finger, slowly turns it and watches it with curiosity. Water droplets drip naturally into the sink. Hand stays attached to the arm, natural five finger anatomy, fixed camera and consistent bathroom."
+  }
+]

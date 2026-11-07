@@ -1,0 +1,41 @@
+"""SKYREELS TEST - SkyReels-V2 I2V 1.3B 540P on Kaggle T4 (speed test, stopwatch)."""
+import os, json, gc, subprocess, sys, time
+os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
+OUT = "/kaggle/working/out"; os.makedirs(OUT, exist_ok=True)
+JOBS_DIR = None
+for root, _, files in os.walk("/kaggle/input"):
+    if "jobs.json" in files: JOBS_DIR = root; break
+assert JOBS_DIR
+print("[sr] JOBS_DIR =", JOBS_DIR, flush=True)
+subprocess.run([sys.executable, "-m", "pip", "install", "-q",
+                "diffusers>=0.35", "transformers", "accelerate", "ftfy", "imageio[ffmpeg]"], check=True)
+import torch
+from diffusers import SkyReelsV2ImageToVideoPipeline, AutoencoderKLWan, UniPCMultistepScheduler
+from diffusers.utils import export_to_video, load_image
+
+MID = "Skywork/SkyReels-V2-I2V-1.3B-540P-Diffusers"
+t0 = time.time()
+vae = AutoencoderKLWan.from_pretrained(MID, subfolder="vae", torch_dtype=torch.float32)
+pipe = SkyReelsV2ImageToVideoPipeline.from_pretrained(MID, vae=vae, torch_dtype=torch.float16)
+pipe.scheduler = UniPCMultistepScheduler.from_config(pipe.scheduler.config, flow_shift=5.0)
+pipe.enable_model_cpu_offload()   # v2: OOM fix — umt5-xxl + fp32 VAE don't fit with transformer on 15GB T4
+try: pipe.vae.enable_tiling()
+except Exception: pass
+print(f"[sr] LOADED in {time.time()-t0:.0f}s", flush=True)
+
+jobs = json.load(open(f"{JOBS_DIR}/jobs.json"))
+for j in jobs:
+    name = "sr_" + j["name"]; out = f"{OUT}/{name}.mp4"
+    if os.path.exists(out): continue
+    t1 = time.time()
+    print("[sr run]", name, flush=True)
+    fr = pipe(image=load_image(f"{JOBS_DIR}/{j['image']}"),
+              prompt=j["prompt"],
+              negative_prompt=j.get("negative", "blurry, distorted, low quality, watermark"),
+              height=960, width=544, num_frames=97,
+              num_inference_steps=24, guidance_scale=5.0,
+              generator=torch.Generator("cuda").manual_seed(j.get("seed", 42))).frames[0]
+    export_to_video(fr, out, fps=24)
+    print(f"[sr done] {name} in {time.time()-t1:.0f}s  <<< STOPWATCH", flush=True)
+    gc.collect(); torch.cuda.empty_cache()
+print("=== SR ALL DONE ===")

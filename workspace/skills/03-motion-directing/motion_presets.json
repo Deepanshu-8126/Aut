@@ -1,0 +1,32 @@
+{
+  "hypermotion": {
+    "label_pop_duration_sec": 0.25,
+    "label_overshoot": 1.04,
+    "flash_cut_duration_sec": 0.12,
+    "flash_cut_max_alpha": 110,
+    "caption_group_words": 5,
+    "active_word_bg_rgb": [255, 214, 10],
+    "active_word_text_rgb": [10, 14, 22]
+  },
+  "motionmaxxing": {
+    "default_from_scale": 1.0,
+    "default_to_scale": 1.13,
+    "pan_px": 24.0,
+    "pulse_rate_hz": 1.8,
+    "pulse_rings": 3,
+    "target_lufs": -14.0,
+    "vo_duck_active_gain": 0.045,
+    "vo_duck_idle_gain": 0.11,
+    "whoosh_freq_start_hz": 160.0,
+    "whoosh_freq_end_hz": 65.0,
+    "label_tick_freq_hz": 1480.0
+  },
+  "remotion_motion_graphics": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "safe_margin_x": 90,
+    "caption_band_y0": 1420,
+    "caption_band_y1": 1600
+  }
+}

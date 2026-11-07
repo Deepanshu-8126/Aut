@@ -1,0 +1,81 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+html,body{margin:0;padding:0;background:#050403;}
+canvas{display:block;width:540px;height:960px;margin:auto;}
+</style></head><body><canvas id="cv" width="1080" height="1920" data-composition-id="root" data-width="1080" data-height="1920" data-duration="34"></canvas><script>
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+const W=540,H=960;
+const GND='#090807',PAN='#14110e',HAIR='#332b22',TXT='#e6dec7',SEC='#968875';
+const RED='#d93829',AMB='#e09f3e';
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const eo=t=>1-Math.pow(1-clamp(t,0,1),3);
+
+window.READY=1;window.FONTSOK=1;window.__timelines={root:{duration:34}};
+
+window.renderAt=function(t){
+  ctx.clearRect(0,0,cv.width,cv.height);
+  ctx.save();ctx.scale(2,2);
+  ctx.fillStyle=GND;ctx.fillRect(0,0,W,H);
+
+  // Background Dossier Grid
+  ctx.strokeStyle='rgba(220,160,80,0.03)';ctx.lineWidth=1;
+  for(let x=0;x<W;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+  for(let y=0;y<H;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+
+  // Header Bar
+  ctx.fillStyle='#1c1611';ctx.fillRect(0,20,W,55);
+  ctx.strokeStyle='#4a3b2b';ctx.lineWidth=1.5;ctx.strokeRect(0,20,W,55);
+  ctx.font='18px sans-serif';ctx.fillStyle='#d4cbb4';ctx.textAlign='center';
+  ctx.fillText('CHRONIC FIELD DOSSIER — CASE FILE 12',W/2,52);
+
+  // Telemetry Clock T+
+  ctx.fillStyle='rgba(20,16,12,0.9)';ctx.fillRect(W-130,85,115,30);
+  ctx.strokeStyle=RED;ctx.lineWidth=1.5;ctx.strokeRect(W-130,85,115,30);
+  ctx.font='18px monospace';ctx.textAlign='left';ctx.fillStyle=RED;
+  ctx.fillText(`T+${t.toFixed(1)}s`,W-120,105);
+
+  let title="THE GATES OF HELL", desc="Karakum Desert, Turkmenistan. Burning since 1971.";
+  if(t>5){title="ACCIDENTAL COLLAPSE"; desc="Soviet drilling punctured a massive methane cavern.";}
+  if(t>12){title="FIFTY YEARS OF FIRE"; desc="Expected to burn out in days -- it never stopped.";}
+  if(t>20){title="ETERNAL INFERNO"; desc="Uncharted gas reserves feeding thousands of vents.";}
+  if(t>28){title="WHAT KEEPS IT BURNING?", desc="Comment A, B or C below 👇";}
+
+  // Evidence Card / Panel
+  ctx.fillStyle=PAN;ctx.fillRect(30,140,W-60,340);
+  ctx.strokeStyle=HAIR;ctx.lineWidth=1.5;ctx.strokeRect(30,140,W-60,340);
+
+  ctx.font='bold 26px sans-serif';ctx.textAlign='center';ctx.fillStyle=TXT;
+  ctx.fillText(title,W/2,190);
+  ctx.font='15px sans-serif';ctx.fillStyle=SEC;
+  ctx.fillText(desc,W/2,230);
+
+  // Action-Recon Flame Pit Pulse Center
+  const cx=W/2, cy=340;
+  const r=50+18*Math.sin(t*6);
+  ctx.strokeStyle=RED;ctx.lineWidth=3;
+  ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.stroke();
+  ctx.strokeStyle=AMB;ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.arc(cx,cy,r*0.6,0,Math.PI*2);ctx.stroke();
+  ctx.fillStyle=RED;ctx.beginPath();ctx.arc(cx,cy,8,0,Math.PI*2);ctx.fill();
+
+  // Known / Unresolved box (VI style)
+  ctx.fillStyle='rgba(20,16,12,0.95)';ctx.fillRect(30,510,W-60,200);
+  ctx.strokeStyle=AMB;ctx.lineWidth=1.5;ctx.strokeRect(30,510,W-60,200);
+
+  ctx.font='14px monospace';ctx.textAlign='left';ctx.fillStyle=AMB;
+  ctx.fillText('[KNOWN] 70m wide crater ignited in 1971',50,550);
+  ctx.fillStyle=RED;
+  ctx.fillText('[UNKNOWN] Exact volume of trapped reserves',50,600);
+  ctx.fillStyle=TXT;
+  ctx.fillText('STATUS: PERPETUAL COMBUSTION ANOMALY',50,650);
+
+  // Captions bottom bar
+  ctx.fillStyle='rgba(10,8,6,0.95)';ctx.fillRect(20,H-160,W-40,120);
+  ctx.strokeStyle=RED;ctx.lineWidth=1;ctx.strokeRect(20,H-160,W-40,120);
+  ctx.font='bold 20px sans-serif';ctx.textAlign='center';ctx.fillStyle='#FFD60A';
+  ctx.fillText(title,W/2,H-115);
+  ctx.font='14px sans-serif';ctx.fillStyle=TXT;
+  ctx.fillText(desc,W/2,H-80);
+
+  ctx.restore();
+};
+</script></body></html>

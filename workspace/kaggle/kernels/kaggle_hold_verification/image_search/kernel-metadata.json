@@ -1,0 +1,1 @@
+{"id": "ukboy7u787/raazvik-image-search-hold-verify", "title": "RAAZVIK image search hold verify", "code_file": "verify_search.py", "language": "python", "kernel_type": "script", "is_private": true, "enable_gpu": false, "enable_internet": false, "dataset_sources": ["ukboy7u787/raazvik-nanda-image-search-hold-backup"], "competition_sources": [], "kernel_sources": []}

@@ -1,0 +1,13 @@
+{
+  "id": "ukboy7u787/factory-h3-turbo",
+  "title": "Factory H3 Turbo",
+  "code_file": "worker6.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "dataset_sources": ["ukboy7u787/devi-h3-jobs"],
+  "competition_sources": [],
+  "kernel_sources": []
+}

@@ -1,0 +1,29 @@
+Input #0, wav, from 'mix_v3_pre.wav':
+  Metadata:
+    encoder         : Lavf61.1.100
+  Duration: 00:00:31.80, bitrate: 1152 kb/s
+  Stream #0:0: Audio: pcm_s24le ([1][0][0][0] / 0x0001), 48000 Hz, mono, s32 (24 bit), 1152 kb/s
+Stream mapping:
+  Stream #0:0 -> #0:0 (pcm_s24le (native) -> pcm_s16le (native))
+Press [q] to stop, [?] for help
+Output #0, null, to 'pipe:':
+  Metadata:
+    encoder         : Lavf62.3.100
+  Stream #0:0: Audio: pcm_s16le, 192000 Hz, mono, s16, 3072 kb/s
+    Metadata:
+      encoder         : Lavc62.11.100 pcm_s16le
+size=N/A time=00:00:25.70 bitrate=N/A speed=51.4x elapsed=0:00:00.50    [Parsed_loudnorm_0 @ 0x7f6c90001840] 
+{
+	"input_i" : "-19.88",
+	"input_tp" : "-2.42",
+	"input_lra" : "2.70",
+	"input_thresh" : "-30.44",
+	"output_i" : "-16.28",
+	"output_tp" : "-1.50",
+	"output_lra" : "2.50",
+	"output_thresh" : "-26.85",
+	"normalization_type" : "dynamic",
+	"target_offset" : "0.28"
+}
+[out#0/null @ 0x560c02df83c0] video:0KiB audio:11925KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size=N/A time=00:00:31.80 bitrate=N/A speed=  54x elapsed=0:00:00.58    

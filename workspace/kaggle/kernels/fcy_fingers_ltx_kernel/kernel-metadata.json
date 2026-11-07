@@ -1,0 +1,18 @@
+{
+  "id": "ukboy7u787/funcyous-fingers-ltx-motion-test",
+  "title": "Funcyous Fingers LTX Motion Test",
+  "code_file": "fingers_ltx.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "ukboy7u787/funcyous-fingers-motion-jobs"
+  ],
+  "kernel_sources": [],
+  "competition_sources": [],
+  "model_sources": [],
+  "machine_shape": "NvidiaTeslaT4"
+}

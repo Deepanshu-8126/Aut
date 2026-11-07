@@ -1,0 +1,274 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:'Anton';src:url('../../explainer-pipeline/assets/fonts/Anton-Regular.ttf');}
+@font-face{font-family:'InterBlack';src:url('../../explainer-pipeline/assets/fonts/Inter-Black.ttf');}
+html,body{margin:0;background:#000;}canvas{width:540px;height:960px;display:block;}
+</style></head><body><canvas id="cv" width="1080" height="1920"></canvas><script>
+const cv=document.getElementById('cv');let ctx=cv.getContext('2d');
+const OC=document.createElement('canvas');OC.width=1080;OC.height=1920;const OCTX=OC.getContext('2d');
+const W=540,H=960,FPS=30,DUR=32.85;
+const OUT='#0a0a12';
+function R(i){let x=Math.sin(i*127.1+311.7)*43758.5453;return x-Math.floor(x);}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+function ez(u){u=clamp(u,0,1);return u*u*(3-2*u);}
+function bko(u){u=clamp(u,0,1);const c=1.70158;return 1+((c+1)*Math.pow(u-1,3)+c*Math.pow(u-1,2));}
+const IM={};let loaded=0;const SRCS=[
+ ['HK','img/AI_HOOK_hd.jpg'],['WB','img/AI_WOMB_hd.jpg'],['BD','img/AI_BODY_hd.jpg'],['SP','img/AI_SPLIT_hd.jpg'],
+ ['KG','img/REAL_KARYOGRAM_XY.png'],['XX','img/REAL_XX.jpg'],['SM','img/REAL_SMEAR.jpg']];
+SRCS.forEach(([k,f])=>{const im=new Image();im.onload=()=>{loaded++;};im.src=f;IM[k]=im;});
+window.READY=0;
+Promise.all([document.fonts.load('40px Anton'),document.fonts.load('800 40px InterBlack')]).then(()=>{window.FONTOK=1;});
+const chk=setInterval(()=>{if(loaded>=SRCS.length&&window.FONTOK===1){window.READY=1;clearInterval(chk);}},50);
+function cshot(im,z,px,py){const iw=im.naturalWidth,ih=im.naturalHeight;
+ const s=Math.max(W/iw,H/ih)*z;const sw=W/s,sh=H/s;
+ let sx=(iw-sw)/2+(px||0),sy=(ih-sh)/2+(py||0);
+ sx=clamp(sx,0,iw-sw);sy=clamp(sy,0,ih-sh);
+ ctx.drawImage(im,sx,sy,sw,sh,0,0,W,H);}
+function rshot(im,z,px,py){const iw=im.naturalWidth,ih=im.naturalHeight;
+ ctx.save();ctx.filter='blur(14px) brightness(0.5)';
+ const cr=Math.max(W/iw,H/ih)*1.12;const bw=iw*cr,bh=ih*cr;
+ ctx.drawImage(im,(W-bw)/2,(H-bh)/2,bw,bh);ctx.filter='none';
+ const fr=Math.min(W/iw,H/ih)*z;const fw=iw*fr,fh=ih*fr;
+ ctx.drawImage(im,(W-fw)/2+(px||0),(H-fh)/2+(py||0),fw,fh);ctx.restore();}
+const GC=document.createElement('canvas');GC.width=W;GC.height=H;
+(function(){const g2=GC.getContext('2d');const id=g2.createImageData(W,H);
+ let sd=12345;for(let i=0;i<id.data.length;i+=4){sd=(sd*1103515245+12345)&0x7fffffff;
+  const v=110+(sd%37);id.data[i]=id.data[i+1]=id.data[i+2]=v;id.data[i+3]=255;}
+ g2.putImageData(id,0,0);})();
+function grain(t){const ga=0.09*Math.max(0,Math.min(1,t/0.6,(DUR-t)/0.6));
+ if(ga<0.005)return;
+ const fi=Math.floor(t*30)%49;const ox=(fi*53)%97,oy=(fi*97)%139;
+ ctx.save();ctx.globalAlpha=ga;ctx.globalCompositeOperation='overlay';
+ ctx.drawImage(GC,-ox,-oy);ctx.drawImage(GC,-ox+W,-oy);
+ ctx.drawImage(GC,-ox,-oy+H);ctx.drawImage(GC,-ox+W,-oy+H);
+ ctx.restore();}
+function vig(){const g=ctx.createRadialGradient(W/2,H/2,H*0.35,W/2,H/2,H*0.72);
+ g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,10,0.36)');
+ ctx.fillStyle=g;ctx.fillRect(0,0,W,H);}
+function words(ws,fs,y){ctx.save();ctx.font=fs+'px Anton';ctx.textAlign='left';
+ let tot=0;for(const[w]of ws)tot+=ctx.measureText(w).width;
+ let x=(W-tot)/2;
+ for(const[w,c]of ws){ctx.lineWidth=fs*0.18;ctx.strokeStyle=OUT;ctx.lineJoin='round';
+  ctx.strokeText(w,x,y);ctx.fillStyle=c;ctx.fillText(w,x,y);x+=ctx.measureText(w).width;}
+ ctx.restore();}
+function cap(ws,fs,y,tl){if(tl<0)return;const p=clamp(tl/0.14,0,1);const s=0.65+0.35*bko(p);
+ ctx.save();ctx.translate(W/2,y);ctx.scale(s,s);ctx.globalAlpha=Math.min(1,p*1.6);
+ ctx.translate(-W/2,-y);words(ws,fs,y);ctx.restore();}
+function stamp(txt,x,y,r,tl,col){if(tl<0)return;const p=bko(clamp(tl/0.18,0,1));
+ ctx.save();ctx.translate(x,y);ctx.scale(p,p);ctx.rotate(-0.06);
+ ctx.fillStyle=col||'#17c3ff';ctx.strokeStyle=OUT;ctx.lineWidth=5;
+ ctx.font='800 '+r+'px InterBlack';const tw=ctx.measureText(txt).width;
+ ctx.beginPath();ctx.roundRect(-tw/2-16,-r*0.75,tw+32,r*1.5,10);ctx.fill();ctx.stroke();
+ ctx.fillStyle='#04121c';ctx.textAlign='center';ctx.fillText(txt,0,r*0.36);ctx.restore();}
+function lbl(txt){ctx.save();ctx.font='800 13px InterBlack';const w=ctx.measureText(txt).width;
+ ctx.globalAlpha=0.9;ctx.fillStyle='rgba(5,10,18,0.78)';ctx.beginPath();ctx.roundRect(W-w-34,96,w+22,24,6);ctx.fill();
+ ctx.fillStyle='#9adbff';ctx.textAlign='left';ctx.fillText(txt,W-w-23,113);ctx.restore();}
+function ring(x,y,r,t){ctx.save();const p=0.5+0.5*Math.sin(t*6);
+ ctx.strokeStyle='rgba(255,80,80,'+(0.55+0.4*p)+')';ctx.lineWidth=4;
+ ctx.beginPath();ctx.arc(x,y,r+4*p,0,7);ctx.stroke();ctx.restore();}
+function particles(t,x0,x1,y0,y1,n,hue){for(let i=0;i<n;i++){
+ const p=(t*0.25+R(i))%1;const x=x0+(x1-x0)*R(i+30), y=y1+(y0-y1)*p;
+ ctx.globalAlpha=0.7*Math.sin(p*Math.PI);ctx.fillStyle=hue;
+ ctx.beginPath();ctx.arc(x,y,1.5+2.5*R(i+60),0,7);ctx.fill();}ctx.globalAlpha=1;}
+function flash(a){ctx.fillStyle='rgba(255,255,255,'+a+')';ctx.fillRect(0,0,W,H);}
+// heartbeat envelope (lub-dub)
+function hb(tt,bpm){const ph=(tt*bpm/60)%1;return Math.exp(-ph*7)+0.45*Math.exp(-(((ph-0.32)+1)%1)*12);}
+// parallax floating blood cells (code-drawn)
+function cells(tt,n,al){for(let i=0;i<n;i++){
+ const sp=8+14*R(i+3),dir=R(i+9)>0.5?1:-1;
+ const x=((R(i)*640+tt*sp*dir)%640+640)%640-50;
+ const y=R(i+7)*1060-50+6*Math.sin(tt*0.8+i*2.3);
+ const r=16+32*R(i+5);
+ const g=ctx.createRadialGradient(x,y,r*0.25,x,y,r);
+ g.addColorStop(0,'rgba(165,22,28,'+(al*0.5)+')');g.addColorStop(0.75,'rgba(125,14,20,'+al+')');g.addColorStop(1,'rgba(125,14,20,0)');
+ ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,r,0,7);ctx.fill();}}
+// animated ECG trace with sweeping head
+function ecgW(ph){let dy=0;
+ if(ph>60&&ph<66)dy=-6;else if(ph>=66&&ph<74)dy=26*(ph-66)/8;
+ else if(ph>=74&&ph<86)dy=26-62*(ph-74)/12;else if(ph>=86&&ph<94)dy=-36+36*(ph-86)/8;
+ else if(ph>110&&ph<126)dy=-9*Math.sin((ph-110)/16*Math.PI);return dy;}
+function ecg(tt,y,col,al){if(al<=0.01)return;ctx.save();ctx.globalAlpha=al;
+ ctx.strokeStyle=col;ctx.lineWidth=2.5;ctx.shadowColor=col;ctx.shadowBlur=9;
+ const hx=((tt*230)%(W+200))-100;
+ ctx.beginPath();let st=false;
+ for(let x=Math.max(-8,hx-380);x<=Math.min(W+8,hx);x+=3){
+  const ph=((x)%150+150)%150;const dy=ecgW(ph);
+  if(!st){ctx.moveTo(x,y-dy);st=true;}else ctx.lineTo(x,y-dy);}
+ if(st)ctx.stroke();
+ if(hx>-8&&hx<W+8){ctx.fillStyle=col;ctx.beginPath();ctx.arc(hx,y-ecgW(((hx)%150+150)%150),4,0,7);ctx.fill();}
+ ctx.restore();}
+// microscope scan band + HUD corner brackets
+function scan(tt,al){const y=((tt*150)%(H+240))-120;
+ const g=ctx.createLinearGradient(0,y-70,0,y+6);
+ g.addColorStop(0,'rgba(160,255,230,0)');g.addColorStop(1,'rgba(160,255,230,'+(al*0.55)+')');
+ ctx.fillStyle=g;ctx.fillRect(0,y-70,W,76);
+ ctx.fillStyle='rgba(200,255,240,'+al+')';ctx.fillRect(0,y,W,2);}
+function brk(al){ctx.save();ctx.globalAlpha=al;ctx.strokeStyle='#9adbff';ctx.lineWidth=3;
+ const m=26,s=34;
+ [[m,150,1,1],[W-m,150,-1,1],[m,H-150,1,-1],[W-m,H-150,-1,-1]].forEach(p=>{
+  ctx.beginPath();ctx.moveTo(p[0]+p[2]*s,p[1]);ctx.lineTo(p[0],p[1]);ctx.lineTo(p[0],p[1]+p[3]*s);ctx.stroke();});
+ ctx.restore();}
+// S1 hook scene (shared by opener + loop tail for perfect seam)
+function drawHook(tt){
+ const zz=1.0+0.04*clamp(tt/2.343,0,1)+0.016*hb(tt,72)+0.016*Math.sin(2*Math.PI*tt/0.857);
+ const hpx=23*Math.sin(tt*4.1);
+ ctx.filter='contrast(1.14) saturate(1.15)';
+ cshot(IM.HK,zz,hpx,0);ctx.filter='none';
+ // Story-led hook beat: reveal the person, not just a moving graphic.
+ const person=ez((tt-0.58)/0.14)*(1-ez((tt-1.40)/0.18));
+ if(person>0){ctx.save();ctx.globalAlpha=person*0.90;
+  cshot(IM.BD,1.14+0.025*ez((tt-0.58)/0.95),0,-25);ctx.restore();}
+ ctx.save();ctx.globalCompositeOperation='lighter';ctx.globalAlpha=0.12*hb(tt,72);
+ cshot(IM.HK,zz,hpx,0);ctx.restore();
+ cells(tt*5,16,0.42);
+ particles(tt,60,480,120,900,10,'rgba(255,120,120,0.4)');
+ vig();
+ ecg(tt,792,'#4ff0c0',0.45*clamp((tt-0.15)/0.35,0,1));
+ cap([['HER BLOOD ','#fff'],['ISN\'T','#ff5b4d'],[' HERS','#fff']],42,140,tt+1.0);
+}
+// VO map: 0 hook | 2.343 tested blood | 6.592 male XY | 9.339 skin | 10.597 mouth | 11.943 every cell
+// 13.606 female | 14.980 XX | 16.385 not sick | 17.852 test not wrong | 19.736 twin blood | 23.851 never left
+// 25.924 today | 26.967 runs on brothers blood | 29.262 ONE BODY | 30.573 TWO DNA | end 32.85
+window.renderAt=function(t){
+ const nt=[0, 1.8, 4.64, 6.68, 7.34, 7.88, 8.22, 9.68, 10.8, 12.24, 14.88, 16.42, 19.18, 19.86, 20.68, 21.55];const ot=[0, 2.343, 6.592, 9.339, 10.597, 13.606, 14.98, 16.385, 17.852, 19.736, 23.851, 25.924, 29.262, 30.573, 31.6, 32.85];
+ let j=0;while(j<nt.length-2 && t>=nt[j+1])j++;
+ t=ot[j]+(ot[j+1]-ot[j])*Math.max(0,Math.min(1,(t-nt[j])/(nt[j+1]-nt[j])));
+ const T=t;
+ ctx.setTransform(1,0,0,1,0,0);
+ ctx.clearRect(0,0,cv.width,cv.height);ctx.save();ctx.scale(2,2);
+ let shx=0,shy=0;
+ const shk=(t0,dur,amp)=>{const p=(T-t0)/dur;if(p>=0&&p<1){const d=1-p;shx+=Math.sin(T*211.3+t0)*amp*d;shy+=Math.cos(T*187.7+t0*2)*amp*d;}};
+ shk(6.65,0.32,5);shk(14.98,0.28,3.5);shk(23.95,0.34,5);
+ const dw=Math.max(0,Math.min(1,T/1.0,(DUR-T)/1.0));
+ const cdx=dw*(1.6*Math.sin(2*Math.PI*T*8/DUR)+0.9*Math.sin(2*Math.PI*T*19/DUR));
+ const cdy=dw*(1.3*Math.sin(2*Math.PI*T*11/DUR)+0.7*Math.sin(2*Math.PI*T*27/DUR));
+ ctx.translate(shx+cdx,shy+cdy);
+ ctx.fillStyle='#000';ctx.fillRect(-8,-8,W+16,H+16);
+ const S=(a,b)=>t>=a&&t<b;const L=a=>t-a;
+ if(S(0,2.343)){
+  drawHook(t);
+ }
+ else if(S(2.343,6.592)){
+  const k=L(2.343)/4.25;const zstep=(t>4.6?0.06:0);
+  rshot(IM.SM,1.0+0.18*k+zstep,0,30-60*k);
+  scan(t,0.15);brk(0.5+0.15*Math.sin(t*3));
+  vig();lbl('REAL MICROSCOPY \u2014 BLOOD');
+  cap([['doctors ','#fff'],['tested','#ffd23e'],[' her blood','#fff']],30,845,L(2.343));
+  if(L(2.343)<0.1)flash(0.2*(1-L(2.343)/0.1));
+ }
+ else if(S(6.592,9.339)){
+  const k=L(6.592)/2.75;const e=ez(k);
+  const punch=0.05*Math.exp(-Math.max(0,L(6.592))*5);
+  const z=1.1+0.75*e+punch,px=-389*e,py=-246*e;
+  rshot(IM.KG,z,px,py);
+  const fr=(W/1920)*z;const x0=(W-1920*fr)/2+px,y0=(H-1505*fr)/2+py;
+  if(t>6.9){const rx=x0+1766*fr,ry=y0+1302*fr;
+   ctx.fillStyle='rgba(255,70,70,'+(0.08+0.07*Math.sin(t*6))+')';
+   ctx.beginPath();ctx.arc(rx,ry,34+18*e,0,7);ctx.fill();
+   ring(rx,ry,34+18*e,t);}
+  scan(t*0.7,0.1);
+  vig();lbl('REAL KARYOGRAM \u2014 NHGRI');
+  stamp('46,XY',160,220,40,L(6.95),'#ff5b4d');
+  cap([['MALE','#ff5b4d'],[' chromosomes \u2014 in her blood','#fff']],27,845,L(6.75));
+  if(L(6.592)<0.1)flash(0.3*(1-L(6.592)/0.1));
+ }
+ else if(S(9.339,13.606)){
+  const k=L(9.339)/4.27;
+  const bz=1.02+0.1*k+0.005*hb(t,76);
+  ctx.filter='contrast(1.1) saturate(1.1)';
+  cshot(IM.BD,bz,0,-20*k);
+  ctx.filter='none';
+  ctx.save();ctx.globalCompositeOperation='lighter';ctx.globalAlpha=0.07+0.11*hb(t,76);
+  cshot(IM.BD,bz,0,-20*k);ctx.restore();
+  particles(t,80,460,180,860,10,'rgba(80,240,200,0.35)');
+  vig();
+  if(t<10.597)cap([['but her ','#fff'],['SKIN','#4ff0c0'],['...','#fff']],32,845,L(9.339));
+  else if(t<11.943)cap([['her ','#fff'],['MOUTH','#4ff0c0'],['...','#fff']],32,845,L(10.597));
+  else cap([['her ','#fff'],['MOUTH','#4ff0c0'],['...','#fff']],32,845,1);
+  if(L(9.339)<0.1)flash(0.18*(1-L(9.339)/0.1));
+ }
+ else if(S(13.606,16.385)){
+  const k=L(13.606)/2.78;
+  rshot(IM.XX,1.05+0.22*ez(k),0,0);
+  scan(t,0.14);brk(0.5+0.15*Math.sin(t*3));
+  vig();lbl('REAL MICROSCOPY \u2014 REPRESENTATIVE');
+  stamp('46,XX',160,220,40,L(14.98),'#4ff0c0');
+  cap([['FEMALE.','#4ff0c0'],[' tested tissue.','#fff']],29,845,L(13.606));
+  if(L(13.606)<0.1)flash(0.22*(1-L(13.606)/0.1));
+ }
+ else if(S(16.385,19.736)){
+  const k=L(16.385)/3.35;const zstep=(t>17.852?0.07:0);
+  rshot(IM.SM,1.3+0.12*k+zstep,-80,-40+50*k);
+  ctx.fillStyle='rgba(10,5,30,0.25)';ctx.fillRect(0,0,W,H);
+  scan(t*1.2,0.12);brk(0.45);
+  vig();lbl('REAL MICROSCOPY \u2014 BLOOD');
+  if(t<17.852)cap([['she wasn\'t ','#fff'],['sick','#ffd23e'],['.','#fff']],32,845,L(16.385));
+  else cap([['the test wasn\'t ','#fff'],['wrong','#ff5b4d'],['.','#fff']],32,845,L(17.852));
+  if(t>17.852&&t<17.952)flash(0.15);
+ }
+ else if(S(19.736,25.924)){
+  const k=L(19.736)/6.19;const zstep=(t>22.6?0.05:0);
+  const wz=1.0+0.12*ez(k)+zstep;
+  ctx.save();ctx.translate(2.5*Math.sin(t*1.33),4*Math.sin(t*0.95));
+  ctx.filter='contrast(1.08) saturate(1.12)';
+  cshot(IM.WB,wz,0,10-30*k);
+  ctx.filter='none';
+  ctx.save();ctx.globalCompositeOperation='lighter';ctx.globalAlpha=0.06+0.10*hb(t,72);
+  cshot(IM.WB,wz,0,10-30*k);ctx.restore();
+  ctx.restore();
+  particles(t,100,440,220,760,12,'rgba(255,205,160,0.32)');
+  vig();lbl('AI RECONSTRUCTION');
+  if(t<23.851){
+   cap([['before birth...','#fff']],30,130,L(19.736));
+   cap([['his blood ','#ff8c5a'],['flowed into her veins','#fff']],25,845,L(21.6));
+  } else {
+   cap([['his cells ','#ff5b4d'],['NEVER LEFT','#fff']],32,845,L(23.851));
+  }
+  if(t>22.6&&t<22.7)flash(0.14);
+  if(L(23.851)>0&&L(23.851)<0.1)flash(0.25*(1-L(23.851)/0.1));
+ }
+ else if(S(25.924,29.262)){
+  const k=L(25.924)/3.34;
+  const bz=1.2+0.1*k+0.007*hb(t,84);
+  ctx.filter='contrast(1.12) saturate(1.3)';
+  cshot(IM.BD,bz,0,-120-20*k);
+  ctx.filter='none';
+  ctx.save();ctx.globalCompositeOperation='lighter';ctx.globalAlpha=0.09+0.13*hb(t,84);
+  cshot(IM.BD,bz,0,-120-20*k);ctx.restore();
+  particles(t,80,460,200,820,12,'rgba(255,140,80,0.45)');
+  vig();
+  ecg(t,180,'#ff6a4d',0.5);
+  cap([['her blood cells carry ','#fff'],['her brother\'s DNA','#ff8c5a']],25,845,L(26.0));
+  if(L(25.924)<0.1)flash(0.2*(1-L(25.924)/0.1));
+ }
+ else{ // S9 payoff + loop
+  const k=clamp(L(29.262)/3.59,0,1);
+  const sz=1.02+0.07*k+0.004*Math.sin(t*3.2);
+  ctx.filter='contrast(1.14) saturate(1.15)';
+  cshot(IM.SP,sz,0,0);
+  ctx.filter='none';
+  ctx.save();ctx.globalCompositeOperation='lighter';ctx.globalAlpha=0.05+0.05*Math.sin(t*3.2);
+  cshot(IM.SP,sz,0,0);ctx.restore();
+  particles(t,30,210,150,850,7,'rgba(255,79,216,0.4)');
+  particles(t+1.7,330,510,150,850,7,'rgba(23,195,255,0.4)');
+  vig();
+  const lk=(t>31.6)?ez((t-31.6)/0.9):0;
+  ctx.save();ctx.globalAlpha=1-lk;
+  stamp('ONE BODY',270,400,38,L(29.262),'#eafcff');
+  stamp('TWO DNA',270,490,38,L(30.573),'#ff4fd8');
+  ctx.restore();
+  if(lk>0){
+   // render hook scene to offscreen, composite with alpha for seamless loop
+   const MAIN=ctx;ctx=OCTX;
+   ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,1080,1920);
+   ctx.save();ctx.scale(2,2);
+   ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);
+   drawHook(Math.max(0,t-32.8333));
+   ctx.restore();
+   ctx=MAIN;
+   ctx.globalAlpha=lk;ctx.drawImage(OC,0,0,W,H);ctx.globalAlpha=1;
+  }
+ }
+ grain(t);
+ ctx.restore();
+};
+</script></body></html>

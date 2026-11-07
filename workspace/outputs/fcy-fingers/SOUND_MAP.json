@@ -1,0 +1,66 @@
+[
+  {
+    "file": "mk788",
+    "trim": 0.56,
+    "duration": 0.32,
+    "time": 0.0,
+    "gain": 0.04,
+    "event": "hook"
+  },
+  {
+    "file": "mk1492",
+    "trim": 0,
+    "duration": 0.25,
+    "time": 1.35,
+    "gain": 0.035,
+    "event": "finger close-up"
+  },
+  {
+    "file": "mk677",
+    "trim": 0,
+    "duration": 0.2,
+    "time": 5.8,
+    "gain": 0.04,
+    "event": "nerve signal"
+  },
+  {
+    "file": "mk1489",
+    "trim": 0.12,
+    "duration": 0.3,
+    "time": 8.95,
+    "gain": 0.035,
+    "event": "vessel narrows"
+  },
+  {
+    "file": "mk1492",
+    "trim": 0,
+    "duration": 0.25,
+    "time": 12.2,
+    "gain": 0.035,
+    "event": "folds form"
+  },
+  {
+    "file": "mk677",
+    "trim": 0,
+    "duration": 0.2,
+    "time": 14.35,
+    "gain": 0.03,
+    "event": "grip study"
+  },
+  {
+    "file": "mk677",
+    "trim": 0,
+    "duration": 0.2,
+    "time": 16.7,
+    "gain": 0.015,
+    "event": "grip contact"
+  },
+  {
+    "file": "mk1489",
+    "trim": 0.12,
+    "duration": 0.3,
+    "time": 19.0,
+    "gain": 0.03,
+    "event": "return to character"
+  }
+]

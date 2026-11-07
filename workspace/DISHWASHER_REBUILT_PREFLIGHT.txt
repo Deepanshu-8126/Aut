@@ -1,0 +1,38 @@
+==========================================================================
+PRE-FLIGHT GRADER v1   |   AAAA_Dishwasher_Short.mp4   |   32.0s
+==========================================================================
+
+[HOOK]
+  ⚠️  First-frame punch (contrast+detail)         6/10  std=35 edge=3.9 (need std>45, edge>8)
+  ✅ Motion in first second                     10/10  maxdiff=22.0 (need >6)
+  ✅ First-frame exposure                        5/5   mean=64
+  ✅ Visual info holds through 1s                5/5   edge 0s=3.9 1s=5.1
+
+[RETENTION]
+  ⚠️  Duration band                               8/10  32.0s — ok band, needs mid-video re-hooks
+  ✅ No static holds (NO STATIC HOLDS law)      15/15  longest frozen stretch=1.0s (need <1.5s)
+  ✅ Pacing (hard visual events)                 5/5   21 cuts, 6.6/10s (need >=2)
+  ✅ Loop seam (ending→opening)                  5/5   diff=0.4 (lower=smoother loop)
+
+[PACKAGING]
+  ✅ Title length                                8/8   47 chars (ideal 40-75)
+  ✅ Curiosity markers in title                  7/7   2/4 markers (?, number, trigger-word, dash)
+  ✅ Primary keyword placement                   5/5   'dishwasher' in title=True desc=True (seeds the right test audience)
+  ✅ Hashtags (3-5 incl #shorts)                 5/5   3 tags, #shorts=True (>15 voids ALL)
+
+[TECH]
+  ✅ Resolution 1080x1920                        4/4   1080x1920 @ 30fps
+  ✅ Loudness (-14 LUFS target)                  4/4   I=-16.8 LUFS
+  ✅ True peak <= -1 dB                          2/2   peak=-2.2 dBFS
+
+==========================================================================
+SCORE: 94/100   →   VERDICT: SHIP ✅
+==========================================================================
+
+MANUAL GATES (machine can't judge — tick before upload):
+  [ ] TOPIC GATE: winner-DNA match? real search demand? gap not saturation?
+  [ ] Title does NOT answer its own question (no answer-leak)
+  [ ] Spoken keyword lands in first 2s of VO (YT transcribes)
+  [ ] HUMAN 3-SECOND TEST: 4/5 people ask "phir kya hua?"
+HONESTY: this predicts freeze-risk only. The real judge is the seed pool @72h.
+Log actual results in docs/GRADER_LOG.md so the grader learns YOUR channel.

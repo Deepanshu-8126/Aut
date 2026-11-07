@@ -1,0 +1,32 @@
+{
+ "video": "FUNCYOUS_DISHWASHER_V3_REVIEW.mp4",
+ "duration": 32.0,
+ "cuts_at": [
+  1.0,
+  1.5,
+  2.0,
+  2.5,
+  4.0,
+  5.0,
+  6.5,
+  7.5,
+  10.0,
+  11.5,
+  16.0,
+  18.0,
+  20.0,
+  23.0,
+  24.5,
+  29.5
+ ],
+ "cut_rate_per10s": 5.0,
+ "static_holds_at": [],
+ "motion_mean": 9.18,
+ "hook_motion_0_1s": 21.96,
+ "hook_motion_0_2s": 24.34,
+ "hook_weakest_halfsec_0_2s": 10.7,
+ "SWIPE_GATE": "PASS",
+ "loop_seam_diff": 0.4,
+ "dead_air_ratio": 0.015
+}
+EVIDENCE → TEST_V3

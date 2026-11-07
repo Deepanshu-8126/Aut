@@ -1,0 +1,14 @@
+[
+  {
+    "name": "ear_pressure",
+    "image": "earache.jpg",
+    "seed": 241,
+    "prompt": "A young man in an airplane cabin slowly and naturally raises his hand and touches his ear as he feels mild pressure. His eyes and eyebrows show curiosity and discomfort. He blinks and breathes, looks toward the window, while his head and hand move gently. Anatomically correct five fingers, same character, plane seat and fixed camera."
+  },
+  {
+    "name": "swallow_relief",
+    "image": "relief.jpg",
+    "seed": 242,
+    "prompt": "A young man sitting in an airplane gently swallows once, then relaxes with an expression of relief, eyebrows soften, and he slowly smiles. He breathes and his head subtly moves naturally. His hands remain down. Same character and airplane cabin, fixed camera."
+  }
+]

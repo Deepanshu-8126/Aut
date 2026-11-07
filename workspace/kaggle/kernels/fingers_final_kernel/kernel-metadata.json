@@ -1,0 +1,17 @@
+{
+  "id": "ukboy7u787/funcyous-fingers-final-edit-review",
+  "title": "Funcyous Fingers Final Edit Review",
+  "code_file": "fingers_edit.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "dataset_sources": [
+    "ukboy7u787/funcyous-fingers-final-edit-inputs"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

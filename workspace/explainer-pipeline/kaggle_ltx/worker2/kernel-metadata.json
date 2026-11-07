@@ -1,0 +1,13 @@
+{
+  "id": "ukboy7u787/factory-fast-worker",
+  "title": "Factory Fast Worker",
+  "code_file": "worker2.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "dataset_sources": ["ukboy7u787/factory-jobs"],
+  "competition_sources": [],
+  "kernel_sources": []
+}

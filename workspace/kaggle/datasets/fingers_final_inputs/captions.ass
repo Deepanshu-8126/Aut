@@ -1,0 +1,41 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 2
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Caption,Inter Black,65,&H00FFFFFF,&H00FFFFFF,&H00101110,&H99000000,-1,0,0,0,100,100,0,0,3,5,0,2,45,45,235,1
+Style: Headline,Inter Black,61,&H004AD3FF,&H004AD3FF,&H00101318,&HAA000000,-1,0,0,0,100,100,0,0,1,5,2,8,40,40,125,1
+Style: Label,Inter Black,28,&H00F4EDED,&H00FFFFFF,&H00101318,&HAA000000,-1,0,0,0,100,100,0,0,3,4,0,1,45,45,370,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.12,0:00:00.76,Caption,,0,0,0,,EVER NOTICE YOUR
+Dialogue: 0,0:00:00.76,0:00:02.00,Caption,,0,0,0,,FINGERTIPS WRINKLE AFTER
+Dialogue: 0,0:00:02.00,0:00:02.72,Caption,,0,0,0,,A LONG SOAK?
+Dialogue: 0,0:00:03.26,0:00:03.60,Caption,,0,0,0,,IT IS NOT
+Dialogue: 0,0:00:03.60,0:00:04.62,Caption,,0,0,0,,JUST SKIN SOAKING
+Dialogue: 0,0:00:04.62,0:00:05.32,Caption,,0,0,0,,UP WATER.
+Dialogue: 0,0:00:05.78,0:00:06.58,Caption,,0,0,0,,YOUR NERVOUS SYSTEM
+Dialogue: 0,0:00:06.58,0:00:07.74,Caption,,0,0,0,,SIGNALS TINY BLOOD
+Dialogue: 0,0:00:07.74,0:00:08.44,Caption,,0,0,0,,VESSELS IN YOUR
+Dialogue: 0,0:00:14.36,0:00:15.46,Caption,,0,0,0,,SOME STUDIES SUGGEST
+Dialogue: 0,0:00:15.46,0:00:16.44,Caption,,0,0,0,,THESE WRINKLES CAN
+Dialogue: 0,0:00:16.44,0:00:17.20,Caption,,0,0,0,,HELP US HANDLE
+Dialogue: 0,0:00:17.20,0:00:18.44,Caption,,0,0,0,,WET OBJECTS, BUT
+Dialogue: 0,0:00:18.44,0:00:19.52,Caption,,0,0,0,,SCIENTISTS ARE STILL
+Dialogue: 0,0:00:19.52,0:00:20.46,Caption,,0,0,0,,STUDYING WHY THE
+Dialogue: 0,0:00:20.46,0:00:21.44,Caption,,0,0,0,,RESPONSE EVOLVED.
+Dialogue: 0,0:00:22.22,0:00:23.02,Caption,,0,0,0,,YOUR FINGERS ARE
+Dialogue: 0,0:00:23.02,0:00:24.18,Caption,,0,0,0,,REACTING, NOT JUST
+Dialogue: 0,0:00:24.18,0:00:25.04,Caption,,0,0,0,,GETTING SOGGY.
+Dialogue: 0,0:00:00.00,0:00:03.20,Headline,,0,0,0,,WHY DO FINGERS WRINKLE?
+Dialogue: 0,0:00:03.20,0:00:05.78,Headline,,0,0,0,,NOT JUST WATER
+Dialogue: 0,0:00:05.78,0:00:08.75,Headline,,0,0,0,,NERVE SIGNAL
+Dialogue: 0,0:00:13.86,0:00:18.44,Headline,,0,0,0,,MAY HELP WET GRIP
+Dialogue: 0,0:00:18.44,0:00:21.70,Headline,,0,0,0,,WHY? STILL STUDIED
+Dialogue: 0,0:00:21.70,0:00:25.60,Headline,,0,0,0,,YOUR BODY REACTS
+Dialogue: 0,0:00:05.78,0:00:08.75,Label,,0,0,0,,SIMPLIFIED AI CONCEPT

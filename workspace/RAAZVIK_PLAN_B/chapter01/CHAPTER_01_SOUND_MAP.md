@@ -1,0 +1,3 @@
+# Chapter 1 sound map — working edit
+
+Voice-39 master 00:00–01:14 is continuous; no cuts or changes. This picture-edit pass uses VO only, not a finished sound mix. No library SFX is layered or implied to be 1965 field audio. Music/SFX selection, track licenses, level balance and a complete ear check remain release blockers. Planned only after source selection: low atmospheric documentary bed; subtle wind under the 1965 storm passage; quiet electronic/diagram movement under RTG explanation; a brief restrained transition at the missing-device reveal. No gunfire, explosions, siren, false Geiger readings, or overlapping duplicate SFX.

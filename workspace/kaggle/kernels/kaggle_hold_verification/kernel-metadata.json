@@ -1,0 +1,1 @@
+{"id": "ukboy7u787/raazvik-hold-backup-verify", "title": "RAAZVIK hold backup verify", "code_file": "verify_hold.py", "language": "python", "kernel_type": "script", "is_private": true, "enable_gpu": false, "enable_internet": false, "dataset_sources": ["ukboy7u787/raazvik-nanda-devi-complete-hold-backup"], "competition_sources": [], "kernel_sources": []}

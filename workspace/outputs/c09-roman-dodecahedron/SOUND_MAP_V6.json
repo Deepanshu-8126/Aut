@@ -1,0 +1,82 @@
+[
+  {
+    "file": "mk788",
+    "trim": 0.566,
+    "duration": 0.7,
+    "time": 0,
+    "gain": 0.09,
+    "event": "hook"
+  },
+  {
+    "file": "mk1489",
+    "trim": 0.122,
+    "duration": 0.42,
+    "time": 3.75,
+    "gain": 0.09,
+    "event": "detail"
+  },
+  {
+    "file": "mk1104",
+    "trim": 0.06,
+    "duration": 0.38,
+    "time": 5.0,
+    "gain": 0.09,
+    "event": "Europe map"
+  },
+  {
+    "file": "mk1143",
+    "trim": 0.194,
+    "duration": 0.72,
+    "time": 6.9,
+    "gain": 0.04,
+    "event": "unknown"
+  },
+  {
+    "file": "mk1489",
+    "trim": 0.122,
+    "duration": 0.42,
+    "time": 8.9,
+    "gain": 0.09,
+    "event": "measuring theory"
+  },
+  {
+    "file": "mk1489",
+    "trim": 0.122,
+    "duration": 0.42,
+    "time": 9.75,
+    "gain": 0.09,
+    "event": "knitting theory"
+  },
+  {
+    "file": "mk1489",
+    "trim": 0.122,
+    "duration": 0.42,
+    "time": 10.62,
+    "gain": 0.09,
+    "event": "ritual theory"
+  },
+  {
+    "file": "mk1104",
+    "trim": 0.06,
+    "duration": 0.38,
+    "time": 11.48,
+    "gain": 0.09,
+    "event": "England map"
+  },
+  {
+    "file": "mk1530",
+    "trim": 0,
+    "duration": 0.42,
+    "time": 12.85,
+    "gain": 0.09,
+    "event": "museum example, not the find"
+  },
+  {
+    "file": "mk494",
+    "trim": 0.443,
+    "duration": 2.3,
+    "time": 14.76,
+    "gain": 0.04,
+    "event": "final question"
+  }
+]

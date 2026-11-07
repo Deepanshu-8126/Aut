@@ -1,0 +1,83 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:'OswaldB';src:url('../../explainer-pipeline/assets/fonts/Oswald-Bold.ttf');}
+@font-face{font-family:'Mono';src:url('../../explainer-pipeline/assets/fonts/JetBrainsMono-Bold.ttf');}
+@font-face{font-family:'Elite';src:url('../../explainer-pipeline/assets/fonts/SpecialElite.ttf');}
+html,body{margin:0;padding:0;background:#000;}
+canvas{display:block;width:540px;height:960px;margin:auto;}
+</style></head><body><canvas id="cv" width="1080" height="1920"></canvas><script>
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+const W=540,H=960;
+const GND='#0B0C0E',PAN='#141619',HAIR='#2E3238',TXT='#ECEAE4',SEC='#8B9097';
+const RED='#FF4A2E',AMB='#E8B44A';
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const eo=t=>1-Math.pow(1-clamp(t,0,1),3);
+
+window.READY=1;window.FONTSOK=1;
+
+window.renderAt=function(t){
+  ctx.clearRect(0,0,cv.width,cv.height);
+  ctx.save();ctx.scale(2,2);
+  ctx.fillStyle=GND;ctx.fillRect(0,0,W,H);
+
+  // Background Dossier Grid
+  ctx.strokeStyle='rgba(255,255,255,0.03)';ctx.lineWidth=1;
+  for(let x=0;x<W;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+  for(let y=0;y<H;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+
+  // Header Bar
+  ctx.fillStyle='#17140f';ctx.fillRect(0,20,W,55);
+  ctx.strokeStyle='#3a332a';ctx.lineWidth=1.5;ctx.strokeRect(0,20,W,55);
+  ctx.font='18px Elite';ctx.fillStyle='#d4cbb4';ctx.textAlign='center';
+  ctx.fillText('CHRONIC FIELD DOSSIER — CASE FILE 11',W/2,52);
+
+  // Telemetry Clock T+
+  ctx.fillStyle='rgba(20,22,25,0.9)';ctx.fillRect(W-130,85,115,30);
+  ctx.strokeStyle=RED;ctx.lineWidth=1.5;ctx.strokeRect(W-130,85,115,30);
+  ctx.font='18px Mono';ctx.textAlign='left';ctx.fillStyle=RED;
+  ctx.fillText(`T+${t.toFixed(1)}s`,W-120,105);
+
+  // Scene narrative logic based on t (34s duration)
+  let title="THE HONEYGUIDE BIRD", desc="Deep in the African bush, a tiny bird seeks out humans.";
+  if(t>5){title="SPECIALIZED TRILL CALL"; desc="A unique frequency that humans learned to mimic.";}
+  if(t>12){title="INTERSPECIES CONTRACT"; desc="Guiding men to hives in exchange for beeswax.";}
+  if(t>20){title="KNOWN / UNKNOWN"; desc="Cooperation proven -- evolutionary origin debated.";}
+  if(t>28){title="WHAT MADE THIS BOND?"; desc="Comment A, B or C below 👇";}
+
+  // Evidence Card / Panel
+  ctx.fillStyle=PAN;ctx.fillRect(30,140,W-60,340);
+  ctx.strokeStyle=HAIR;ctx.lineWidth=1.5;ctx.strokeRect(30,140,W-60,340);
+
+  ctx.font='26px OswaldB';ctx.textAlign='center';ctx.fillStyle=TXT;
+  ctx.fillText(title,W/2,190);
+  ctx.font='15px Elite';ctx.fillStyle=SEC;
+  ctx.fillText(desc,W/2,230);
+
+  // Sonar / Action-Recon Ring in Center
+  const cx=W/2, cy=350;
+  const r=40+15*Math.sin(t*5);
+  ctx.strokeStyle=RED;ctx.lineWidth=2.5;
+  ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.stroke();
+  ctx.fillStyle=RED;ctx.beginPath();ctx.arc(cx,cy,6,0,Math.PI*2);ctx.fill();
+
+  // Known / Unresolved box (VI style)
+  ctx.fillStyle='rgba(20,22,25,0.95)';ctx.fillRect(30,510,W-60,200);
+  ctx.strokeStyle=AMB;ctx.lineWidth=1.5;ctx.strokeRect(30,510,W-60,200);
+
+  ctx.font='14px Mono';ctx.textAlign='left';ctx.fillStyle=AMB;
+  ctx.fillText('[KNOWN] Bird guides humans to hidden hives',50,550);
+  ctx.fillStyle=RED;
+  ctx.fillText('[UNKNOWN] How did this partnership start?',50,600);
+  ctx.fillStyle=TXT;
+  ctx.fillText('STATUS: UNRESOLVED EVOLUTIONARY ANOMALY',50,650);
+
+  // Captions bottom bar
+  ctx.fillStyle='rgba(10,12,16,0.95)';ctx.fillRect(20,H-160,W-40,120);
+  ctx.strokeStyle=RED;ctx.lineWidth=1;ctx.strokeRect(20,H-160,W-40,120);
+  ctx.font='20px OswaldB';ctx.textAlign='center';ctx.fillStyle='#FFD60A';
+  ctx.fillText(title,W/2,H-115);
+  ctx.font='14px Elite';ctx.fillStyle=TXT;
+  ctx.fillText(desc,W/2,H-80);
+
+  ctx.restore();
+};
+</script></body></html>

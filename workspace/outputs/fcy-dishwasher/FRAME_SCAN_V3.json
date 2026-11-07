@@ -1,0 +1,6 @@
+{
+  "frames_read": 960,
+  "blank_frames_mean_below_2": [],
+  "near_identical_adjacent_frames": 236,
+  "note": "Low-resolution brightness/frame-difference scan; not semantic human review."
+}

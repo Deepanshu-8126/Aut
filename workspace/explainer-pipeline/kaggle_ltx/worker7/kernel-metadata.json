@@ -1,0 +1,15 @@
+{
+ "id": "ukboy7u787/factory-ltx25-samudra",
+ "title": "Factory LTX25 Samudra",
+ "code_file": "worker7.py",
+ "language": "python",
+ "kernel_type": "script",
+ "is_private": true,
+ "enable_gpu": true,
+ "enable_internet": true,
+ "dataset_sources": [
+  "ukboy7u787/funcy62-jobs"
+ ],
+ "competition_sources": [],
+ "kernel_sources": []
+}

@@ -1,0 +1,7 @@
+# C09 — Skull-based rebuild plan (not yet QC-passed)
+
+Reference: `outputs/c08-skull/c08.html`, `SCRIPT.md`, `SOUND_MAP.md`, `UPLOAD_KIT_TESTED.txt`; `docs/CHRONIC_INDEX.md` recent c07/c08 updates override older contradictory Dossier voice/braam defaults; `docs/CHRONIC_DBC_WOW_TRAINING_REVIEW.md` and `GRADER_LOG.md`.
+
+What the first C09 review missed: predominantly rectangular graphic panels, no real Skull-style opening dossier push and close loop, insufficient shot changes and fullscreen real-photo treatment, generally too small source labels, no dramatic earned reveal, no scene-specific moving visuals except ring/map. Its PIL treatment was NOT the C08 HTML renderer or a full C08-style pass.
+
+Rebuild: protect English voice-30 and fact boundaries. Use C08's full-bleed photo + dramatic readability, tactile case cover + open and matching closing cover, subject-focused closeups and evidence marks, specific source identification, roughly 2–3-second contextual shot changes, one-clock motion, designed dossier wear and grain, map ring with marker tied to its geography, evidence comparisons + uncertainty stamps. Use actual footage only when relevant and honestly identified. No braam. Retain source/rights table, selected AI sketch disclosure and English-only VO. Captions need final audio-aligned review. Sound changes must be rebuilt from original sources and checked, no layering over previous mixed sound. Full human A/V QC remains required; a match to C08 style is not a factual or quality guarantee.

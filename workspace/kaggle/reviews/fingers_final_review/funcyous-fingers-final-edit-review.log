@@ -1,0 +1,337 @@
+[{"stream_name":"stdout","time":0.837787964,"data":"Rendering complete edit on Kaggle...\n"}
+,{"stream_name":"stdout","time":14.526038954,"data":"Full decode passed\n"}
+,{"stream_name":"stdout","time":14.629771571,"data":"{\n"}
+,{"stream_name":"stdout","time":14.629802541,"data":"    \"programs\": [\n"}
+,{"stream_name":"stdout","time":14.629807141,"data":"\n"}
+,{"stream_name":"stdout","time":14.629810511,"data":"    ],\n"}
+,{"stream_name":"stdout","time":14.629813711,"data":"    \"streams\": [\n"}
+,{"stream_name":"stdout","time":14.629817161,"data":"        {\n"}
+,{"stream_name":"stdout","time":14.629820351,"data":"            \"codec_name\": \"h264\",\n"}
+,{"stream_name":"stdout","time":14.629823591,"data":"            \"width\": 1080,\n"}
+,{"stream_name":"stdout","time":14.629826921,"data":"            \"height\": 1920,\n"}
+,{"stream_name":"stdout","time":14.629830311,"data":"            \"r_frame_rate\": \"30/1\"\n"}
+,{"stream_name":"stdout","time":14.629833791,"data":"        },\n"}
+,{"stream_name":"stdout","time":14.629836571,"data":"        {\n"}
+,{"stream_name":"stdout","time":14.629839171,"data":"            \"codec_name\": \"aac\",\n"}
+,{"stream_name":"stdout","time":14.629842101,"data":"            \"r_frame_rate\": \"0/0\"\n"}
+,{"stream_name":"stdout","time":14.629845181,"data":"        }\n"}
+,{"stream_name":"stdout","time":14.629847931,"data":"    ],\n"}
+,{"stream_name":"stdout","time":14.629850651,"data":"    \"format\": {\n"}
+,{"stream_name":"stdout","time":14.629853481,"data":"        \"duration\": \"25.600000\"\n"}
+,{"stream_name":"stdout","time":14.630630941,"data":"    }\n"}
+,{"stream_name":"stdout","time":14.630665811,"data":"}\n"}
+,{"stream_name":"stderr","time":14.734076368,"data":"Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/kaggle/working/Fingers_Short_1080p_REVIEW.mp4':\n"}
+,{"stream_name":"stderr","time":14.734106928,"data":"  Metadata:\n"}
+,{"stream_name":"stderr","time":14.734110558,"data":"    major_brand     : isom\n"}
+,{"stream_name":"stderr","time":14.734113548,"data":"    minor_version   : 512\n"}
+,{"stream_name":"stderr","time":14.734116308,"data":"    compatible_brands: isomiso2avc1mp41\n"}
+,{"stream_name":"stderr","time":14.734119248,"data":"    encoder         : Lavf60.16.100\n"}
+,{"stream_name":"stderr","time":14.734122048,"data":"  Duration: 00:00:25.60, start: 0.000000, bitrate: 3091 kb/s\n"}
+,{"stream_name":"stderr","time":14.734124898,"data":"  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1080x1920 [SAR 1:1 DAR 9:16], 2899 kb/s, 30 fps, 30 tbr, 15360 tbn (default)\n"}
+,{"stream_name":"stderr","time":14.734128008,"data":"    Metadata:\n"}
+,{"stream_name":"stderr","time":14.734130898,"data":"      handler_name    : VideoHandler\n"}
+,{"stream_name":"stderr","time":14.734133758,"data":"      vendor_id       : [0][0][0][0]\n"}
+,{"stream_name":"stderr","time":14.734136467999999,"data":"      encoder         : Lavc60.31.102 libx264\n"}
+,{"stream_name":"stderr","time":14.734148598,"data":"  Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, mono, fltp, 183 kb/s (default)\n"}
+,{"stream_name":"stderr","time":14.734151728,"data":"    Metadata:\n"}
+,{"stream_name":"stderr","time":14.734154458,"data":"      handler_name    : SoundHandler\n"}
+,{"stream_name":"stderr","time":14.734157198,"data":"      vendor_id       : [0][0][0][0]\n"}
+,{"stream_name":"stderr","time":14.737557757,"data":"Stream mapping:\n"}
+,{"stream_name":"stderr","time":14.737573287,"data":"  Stream #0:1 (aac) -\u003e ebur128:default (graph 0)\n"}
+,{"stream_name":"stderr","time":14.737576917,"data":"  ebur128:out0 (graph 0) -\u003e Stream #0:0 (pcm_s16le)\n"}
+,{"stream_name":"stderr","time":14.737633667,"data":"  Stream #0:0 -\u003e #0:1 (h264 (native) -\u003e wrapped_avframe (native))\n"}
+,{"stream_name":"stderr","time":14.737637907,"data":"Press [q] to stop, [?] for help\n"}
+,{"stream_name":"stderr","time":14.774671832,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 0.0999792  TARGET:-23 LUFS    M:-120.7 S:-120.7     I: -70.0 LUFS       LRA:   0.0 LU  FTPK: -46.7 dBFS  TPK: -46.7 dBFS\n"}
+,{"stream_name":"stderr","time":14.777867872,"data":"Output #0, null, to 'pipe:':\n"}
+,{"stream_name":"stderr","time":14.777882402,"data":"  Metadata:\n"}
+,{"stream_name":"stderr","time":14.777886202,"data":"    major_brand     : isom\n"}
+,{"stream_name":"stderr","time":14.777889502,"data":"    minor_version   : 512\n"}
+,{"stream_name":"stderr","time":14.777892762,"data":"    compatible_brands: isomiso2avc1mp41\n"}
+,{"stream_name":"stderr","time":14.777896002,"data":"    encoder         : Lavf60.16.100\n"}
+,{"stream_name":"stderr","time":14.777979122,"data":"  Stream #0:0: Audio: pcm_s16le, 48000 Hz, mono, s16, 768 kb/s\n"}
+,{"stream_name":"stderr","time":14.777984362,"data":"    Metadata:\n"}
+,{"stream_name":"stderr","time":14.777987632,"data":"      encoder         : Lavc60.31.102 pcm_s16le\n"}
+,{"stream_name":"stderr","time":14.777991002,"data":"  Stream #0:1(und): Video: wrapped_avframe, yuv420p(progressive), 1080x1920 [SAR 1:1 DAR 9:16], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)\n"}
+,{"stream_name":"stderr","time":14.777995212,"data":"    Metadata:\n"}
+,{"stream_name":"stderr","time":14.777998132,"data":"      handler_name    : VideoHandler\n"}
+,{"stream_name":"stderr","time":14.778001272000001,"data":"      vendor_id       : [0][0][0][0]\n"}
+,{"stream_name":"stderr","time":14.778004432,"data":"      encoder         : Lavc60.31.102 wrapped_avframe\n"}
+,{"stream_name":"stderr","time":14.785352791,"data":"frame=    0 fps=0.0 q=-0.0 size=       0kB time=00:00:00.00 bitrate=N/A speed=   0x    \r[Parsed_ebur128_0 @ 0x5556fba6b900] t: 0.199979   TARGET:-23 LUFS    M:-120.7 S:-120.7     I: -70.0 LUFS       LRA:   0.0 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.79906791,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 0.299979   TARGET:-23 LUFS    M:-120.7 S:-120.7     I: -70.0 LUFS       LRA:   0.0 LU  FTPK:  -3.5 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.802055549,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 0.399979   TARGET:-23 LUFS    M: -16.8 S:-120.7     I: -16.8 LUFS       LRA:   0.0 LU  FTPK:  -3.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.812248728,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 0.499979   TARGET:-23 LUFS    M: -15.0 S:-120.7     I: -15.8 LUFS       LRA:   0.0 LU  FTPK:  -2.9 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.820999297,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 0.599979   TARGET:-23 LUFS    M: -15.0 S:-120.7     I: -15.5 LUFS       LRA:   0.0 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.831352955,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 0.699979   TARGET:-23 LUFS    M: -15.1 S:-120.7     I: -15.4 LUFS       LRA:   0.0 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.839960434,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 0.799979   TARGET:-23 LUFS    M: -15.6 S:-120.7     I: -15.5 LUFS       LRA:   0.0 LU  FTPK:  -3.0 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.843422774,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 0.899979   TARGET:-23 LUFS    M: -16.4 S:-120.7     I: -15.6 LUFS       LRA:   0.0 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.852149393,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 0.999979   TARGET:-23 LUFS    M: -16.9 S:-120.7     I: -15.8 LUFS       LRA:   0.0 LU  FTPK:  -4.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.855224912,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 1.09998    TARGET:-23 LUFS    M: -16.8 S:-120.7     I: -15.9 LUFS       LRA:   0.0 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.869544001,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 1.19998    TARGET:-23 LUFS    M: -16.4 S:-120.7     I: -15.9 LUFS       LRA:   0.0 LU  FTPK:  -2.9 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.87316084,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 1.29998    TARGET:-23 LUFS    M: -17.4 S:-120.7     I: -16.1 LUFS       LRA:   0.0 LU  FTPK:  -4.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.878709409,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 1.39998    TARGET:-23 LUFS    M: -18.2 S:-120.7     I: -16.2 LUFS       LRA:   0.0 LU  FTPK: -14.8 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.891146648,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 1.49998    TARGET:-23 LUFS    M: -17.5 S:-120.7     I: -16.3 LUFS       LRA:   0.0 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.894543587,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 1.59998    TARGET:-23 LUFS    M: -18.8 S:-120.7     I: -16.5 LUFS       LRA:   0.0 LU  FTPK:  -7.3 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.901426926,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 1.69998    TARGET:-23 LUFS    M: -17.5 S:-120.7     I: -16.5 LUFS       LRA:   0.0 LU  FTPK:  -4.3 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.911501125000001,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 1.79998    TARGET:-23 LUFS    M: -16.3 S:-120.7     I: -16.5 LUFS       LRA:   0.0 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.921147074,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 1.89998    TARGET:-23 LUFS    M: -17.6 S:-120.7     I: -16.6 LUFS       LRA:   0.0 LU  FTPK:  -2.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.929007843,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 1.99998    TARGET:-23 LUFS    M: -17.4 S:-120.7     I: -16.6 LUFS       LRA:   0.0 LU  FTPK:  -3.7 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.933341752,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 2.09998    TARGET:-23 LUFS    M: -16.7 S:-120.7     I: -16.6 LUFS       LRA:   0.0 LU  FTPK:  -2.7 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.947116851,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 2.19998    TARGET:-23 LUFS    M: -16.1 S:-120.7     I: -16.6 LUFS       LRA:   0.0 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.9545814,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 2.29998    TARGET:-23 LUFS    M: -15.2 S:-120.7     I: -16.5 LUFS       LRA:   0.0 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.965687748,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 2.39998    TARGET:-23 LUFS    M: -15.1 S:-120.7     I: -16.4 LUFS       LRA:   0.0 LU  FTPK:  -4.7 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.968351068,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 2.49998    TARGET:-23 LUFS    M: -16.1 S:-120.7     I: -16.4 LUFS       LRA:   0.0 LU  FTPK:  -9.7 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.983277436,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 2.59998    TARGET:-23 LUFS    M: -15.8 S:-120.7     I: -16.4 LUFS       LRA:   0.0 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":14.984642386,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 2.69998    TARGET:-23 LUFS    M: -16.0 S:-120.7     I: -16.4 LUFS       LRA:   0.0 LU  FTPK:  -3.8 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.000566614,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 2.79998    TARGET:-23 LUFS    M: -16.7 S:-120.7     I: -16.4 LUFS       LRA:   0.0 LU  FTPK: -15.3 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.004426223,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 2.89998    TARGET:-23 LUFS    M: -17.4 S:-120.7     I: -16.4 LUFS       LRA:   0.0 LU  FTPK: -23.0 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.015889352,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 2.99998    TARGET:-23 LUFS    M: -21.2 S: -16.8     I: -16.5 LUFS       LRA:  20.0 LU  FTPK: -23.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.023477731,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 3.09998    TARGET:-23 LUFS    M: -33.5 S: -16.8     I: -16.5 LUFS       LRA:  20.0 LU  FTPK: -25.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.02903468,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 3.19998    TARGET:-23 LUFS    M: -35.6 S: -17.0     I: -16.5 LUFS       LRA:  20.1 LU  FTPK: -27.0 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.051224037,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 3.29998    TARGET:-23 LUFS    M: -24.7 S: -17.1     I: -16.7 LUFS       LRA:  20.1 LU  FTPK:  -2.7 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.058614376,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 3.39998    TARGET:-23 LUFS    M: -18.6 S: -17.0     I: -16.7 LUFS       LRA:   0.3 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.059885536,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 3.49998    TARGET:-23 LUFS    M: -17.1 S: -17.2     I: -16.7 LUFS       LRA:   0.4 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.069505195,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 3.59998    TARGET:-23 LUFS    M: -15.4 S: -17.1     I: -16.7 LUFS       LRA:   0.4 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.074391405,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 3.69998    TARGET:-23 LUFS    M: -15.7 S: -17.2     I: -16.6 LUFS       LRA:   0.4 LU  FTPK:  -5.9 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.080285564,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 3.79998    TARGET:-23 LUFS    M: -16.4 S: -17.2     I: -16.6 LUFS       LRA:   0.4 LU  FTPK:  -4.0 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.082559784,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 3.89998    TARGET:-23 LUFS    M: -16.7 S: -17.2     I: -16.6 LUFS       LRA:   0.4 LU  FTPK:  -7.8 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.092072342,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 3.99998    TARGET:-23 LUFS    M: -18.3 S: -17.3     I: -16.7 LUFS       LRA:   0.5 LU  FTPK:  -7.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.095426762,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 4.09998    TARGET:-23 LUFS    M: -16.5 S: -17.2     I: -16.7 LUFS       LRA:   0.5 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.100231701,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 4.19998    TARGET:-23 LUFS    M: -15.7 S: -17.1     I: -16.6 LUFS       LRA:   0.5 LU  FTPK:  -2.9 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.10765436,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 4.29998    TARGET:-23 LUFS    M: -15.8 S: -17.0     I: -16.6 LUFS       LRA:   0.5 LU  FTPK:  -7.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.117793989,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 4.39998    TARGET:-23 LUFS    M: -15.9 S: -17.0     I: -16.6 LUFS       LRA:   0.4 LU  FTPK: -10.7 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.119316599,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 4.49998    TARGET:-23 LUFS    M: -15.6 S: -16.9     I: -16.6 LUFS       LRA:   0.4 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.125081818,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 4.59998    TARGET:-23 LUFS    M: -16.4 S: -16.8     I: -16.6 LUFS       LRA:   0.4 LU  FTPK:  -3.7 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.134176667,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 4.69998    TARGET:-23 LUFS    M: -16.1 S: -16.8     I: -16.6 LUFS       LRA:   0.4 LU  FTPK:  -3.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.136654207,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 4.79998    TARGET:-23 LUFS    M: -15.2 S: -16.8     I: -16.5 LUFS       LRA:   0.5 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.146556985,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 4.89998    TARGET:-23 LUFS    M: -16.8 S: -16.8     I: -16.5 LUFS       LRA:   0.5 LU  FTPK:  -2.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.151426695,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 4.99998    TARGET:-23 LUFS    M: -17.5 S: -16.8     I: -16.5 LUFS       LRA:   0.5 LU  FTPK:  -7.1 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.159245084,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 5.09998    TARGET:-23 LUFS    M: -15.6 S: -16.7     I: -16.5 LUFS       LRA:   0.5 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.167450992,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 5.19998    TARGET:-23 LUFS    M: -16.3 S: -16.8     I: -16.5 LUFS       LRA:   0.5 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.175125262,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 5.29998    TARGET:-23 LUFS    M: -16.5 S: -17.0     I: -16.5 LUFS       LRA:   0.5 LU  FTPK: -12.7 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.176306921,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 5.39998    TARGET:-23 LUFS    M: -17.1 S: -17.1     I: -16.5 LUFS       LRA:   0.5 LU  FTPK: -24.1 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.18726821,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 5.49998    TARGET:-23 LUFS    M: -23.4 S: -17.2     I: -16.6 LUFS       LRA:   0.5 LU  FTPK: -25.0 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.193313929,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 5.59998    TARGET:-23 LUFS    M: -31.2 S: -17.6     I: -16.6 LUFS       LRA:   0.5 LU  FTPK: -22.9 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.199298808,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 5.69998    TARGET:-23 LUFS    M: -34.1 S: -17.8     I: -16.6 LUFS       LRA:   0.5 LU  FTPK: -23.1 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.203132128,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 5.79998    TARGET:-23 LUFS    M: -32.4 S: -17.8     I: -16.6 LUFS       LRA:   0.8 LU  FTPK: -12.3 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.235027104,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 5.89998    TARGET:-23 LUFS    M: -18.8 S: -17.4     I: -16.6 LUFS       LRA:   0.8 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.238945974,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 5.99998    TARGET:-23 LUFS    M: -16.5 S: -17.1     I: -16.6 LUFS       LRA:   0.8 LU  FTPK:  -3.3 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.242859343,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 6.09998    TARGET:-23 LUFS    M: -14.9 S: -16.8     I: -16.6 LUFS       LRA:   0.8 LU  FTPK:  -3.8 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.244459163,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 6.19998    TARGET:-23 LUFS    M: -14.2 S: -16.7     I: -16.5 LUFS       LRA:   0.8 LU  FTPK:  -3.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.252942732,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 6.29998    TARGET:-23 LUFS    M: -15.3 S: -16.6     I: -16.5 LUFS       LRA:   0.9 LU  FTPK:  -7.7 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.255873681,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 6.39998    TARGET:-23 LUFS    M: -15.1 S: -16.6     I: -16.5 LUFS       LRA:   0.7 LU  FTPK:  -2.4 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.259422091,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 6.49998    TARGET:-23 LUFS    M: -16.4 S: -16.7     I: -16.5 LUFS       LRA:   0.7 LU  FTPK: -10.0 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.261629541,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 6.59998    TARGET:-23 LUFS    M: -16.7 S: -16.9     I: -16.5 LUFS       LRA:   0.7 LU  FTPK:  -4.1 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.26543075,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 6.69998    TARGET:-23 LUFS    M: -16.9 S: -16.8     I: -16.5 LUFS       LRA:   0.7 LU  FTPK:  -7.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.27046846,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 6.79998    TARGET:-23 LUFS    M: -16.6 S: -16.7     I: -16.5 LUFS       LRA:   0.7 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.273801859,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 6.89998    TARGET:-23 LUFS    M: -16.3 S: -16.7     I: -16.5 LUFS       LRA:   0.7 LU  FTPK:  -3.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.279735168,"data":"frame=  205 fps=0.0 q=-0.0 size=N/A time=00:00:06.80 bitrate=N/A speed=12.6x    \r[Parsed_ebur128_0 @ 0x5556fba6b900] t: 6.99998    TARGET:-23 LUFS    M: -15.8 S: -16.5     I: -16.5 LUFS       LRA:   0.8 LU  FTPK:  -4.1 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.282969238,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 7.09998    TARGET:-23 LUFS    M: -15.8 S: -16.7     I: -16.5 LUFS       LRA:   0.8 LU  FTPK:  -6.1 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.290190587,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 7.19998    TARGET:-23 LUFS    M: -18.3 S: -17.0     I: -16.5 LUFS       LRA:   0.8 LU  FTPK: -13.4 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.295697846,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 7.29998    TARGET:-23 LUFS    M: -18.5 S: -17.0     I: -16.5 LUFS       LRA:   0.8 LU  FTPK:  -2.5 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.299190696,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 7.39998    TARGET:-23 LUFS    M: -18.5 S: -16.9     I: -16.5 LUFS       LRA:   0.6 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.302214135,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 7.49998    TARGET:-23 LUFS    M: -17.5 S: -17.0     I: -16.5 LUFS       LRA:   0.6 LU  FTPK:  -3.5 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.308411365,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 7.59998    TARGET:-23 LUFS    M: -16.9 S: -17.1     I: -16.6 LUFS       LRA:   0.6 LU  FTPK:  -4.8 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.313147584,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 7.69998    TARGET:-23 LUFS    M: -15.7 S: -16.9     I: -16.5 LUFS       LRA:   0.6 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.316881793,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 7.79998    TARGET:-23 LUFS    M: -15.8 S: -17.0     I: -16.5 LUFS       LRA:   0.6 LU  FTPK:  -4.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.322230393,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 7.89998    TARGET:-23 LUFS    M: -17.0 S: -17.0     I: -16.5 LUFS       LRA:   0.6 LU  FTPK:  -9.3 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.328500352,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 7.99998    TARGET:-23 LUFS    M: -15.5 S: -16.8     I: -16.5 LUFS       LRA:   0.6 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.332416852,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 8.09998    TARGET:-23 LUFS    M: -16.7 S: -17.1     I: -16.5 LUFS       LRA:   0.6 LU  FTPK:  -9.5 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.336161561,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 8.19998    TARGET:-23 LUFS    M: -17.1 S: -17.1     I: -16.5 LUFS       LRA:   0.6 LU  FTPK:  -4.9 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.34327779,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 8.29998    TARGET:-23 LUFS    M: -16.5 S: -17.0     I: -16.5 LUFS       LRA:   0.6 LU  FTPK:  -3.0 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.34547155,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 8.39998    TARGET:-23 LUFS    M: -17.4 S: -16.8     I: -16.5 LUFS       LRA:   0.6 LU  FTPK:  -3.4 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.350242279,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 8.49998    TARGET:-23 LUFS    M: -16.9 S: -16.7     I: -16.5 LUFS       LRA:   0.6 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.353483539,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 8.59998    TARGET:-23 LUFS    M: -16.6 S: -16.5     I: -16.5 LUFS       LRA:   0.6 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.357318578,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 8.69998    TARGET:-23 LUFS    M: -16.3 S: -16.4     I: -16.5 LUFS       LRA:   0.6 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.361006968,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 8.79998    TARGET:-23 LUFS    M: -17.6 S: -16.3     I: -16.6 LUFS       LRA:   0.7 LU  FTPK:  -4.3 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.368236837,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 8.89998    TARGET:-23 LUFS    M: -17.5 S: -16.5     I: -16.6 LUFS       LRA:   0.7 LU  FTPK:  -3.7 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.373925216,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 8.99998    TARGET:-23 LUFS    M: -19.2 S: -16.8     I: -16.6 LUFS       LRA:   0.7 LU  FTPK: -14.5 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.377479106,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 9.09998    TARGET:-23 LUFS    M: -21.4 S: -17.0     I: -16.6 LUFS       LRA:   0.7 LU  FTPK: -12.8 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.383456475,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 9.19998    TARGET:-23 LUFS    M: -18.9 S: -17.0     I: -16.6 LUFS       LRA:   0.7 LU  FTPK:  -3.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.387140105,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 9.29998    TARGET:-23 LUFS    M: -17.8 S: -16.9     I: -16.7 LUFS       LRA:   0.7 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.388597205,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 9.39998    TARGET:-23 LUFS    M: -16.6 S: -17.0     I: -16.7 LUFS       LRA:   0.7 LU  FTPK:  -3.1 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.394938804,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 9.49998    TARGET:-23 LUFS    M: -16.4 S: -17.0     I: -16.7 LUFS       LRA:   0.7 LU  FTPK:  -4.4 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.398933673,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 9.59998    TARGET:-23 LUFS    M: -17.8 S: -17.2     I: -16.7 LUFS       LRA:   0.7 LU  FTPK:  -9.1 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.402423183,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 9.69998    TARGET:-23 LUFS    M: -20.8 S: -17.3     I: -16.7 LUFS       LRA:   0.7 LU  FTPK: -24.7 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.406398702,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 9.79998    TARGET:-23 LUFS    M: -25.7 S: -17.6     I: -16.7 LUFS       LRA:   0.7 LU  FTPK: -25.5 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.409997772,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 9.89998    TARGET:-23 LUFS    M: -30.6 S: -17.7     I: -16.7 LUFS       LRA:   0.7 LU  FTPK: -22.8 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.412587701,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 9.99998    TARGET:-23 LUFS    M: -34.9 S: -18.0     I: -16.7 LUFS       LRA:   0.8 LU  FTPK: -24.8 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.417472261,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 10.1       TARGET:-23 LUFS    M: -35.5 S: -18.1     I: -16.7 LUFS       LRA:   1.0 LU  FTPK: -27.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.42111796,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 10.2       TARGET:-23 LUFS    M: -35.4 S: -18.2     I: -16.7 LUFS       LRA:   1.1 LU  FTPK: -21.4 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.42327572,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 10.3       TARGET:-23 LUFS    M: -19.9 S: -17.9     I: -16.8 LUFS       LRA:   1.2 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.42728302,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 10.4       TARGET:-23 LUFS    M: -19.4 S: -18.1     I: -16.8 LUFS       LRA:   1.2 LU  FTPK:  -5.4 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.431613019,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 10.5       TARGET:-23 LUFS    M: -16.9 S: -18.1     I: -16.8 LUFS       LRA:   1.3 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.433126779,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 10.6       TARGET:-23 LUFS    M: -15.4 S: -17.9     I: -16.8 LUFS       LRA:   1.3 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.438552048,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 10.7       TARGET:-23 LUFS    M: -15.2 S: -17.7     I: -16.7 LUFS       LRA:   1.3 LU  FTPK:  -3.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.443077058,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 10.8       TARGET:-23 LUFS    M: -14.8 S: -17.8     I: -16.7 LUFS       LRA:   1.3 LU  FTPK:  -5.1 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.447102127,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 10.9       TARGET:-23 LUFS    M: -15.5 S: -17.8     I: -16.7 LUFS       LRA:   1.3 LU  FTPK:  -5.3 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.450893497,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 11         TARGET:-23 LUFS    M: -15.6 S: -17.9     I: -16.7 LUFS       LRA:   1.3 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.454344186,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 11.1       TARGET:-23 LUFS    M: -17.2 S: -17.8     I: -16.7 LUFS       LRA:   1.3 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.456332876,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 11.2       TARGET:-23 LUFS    M: -16.5 S: -17.8     I: -16.7 LUFS       LRA:   1.3 LU  FTPK:  -2.8 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.459592766,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 11.3       TARGET:-23 LUFS    M: -16.2 S: -17.7     I: -16.7 LUFS       LRA:   1.3 LU  FTPK:  -4.1 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.465390225,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 11.4       TARGET:-23 LUFS    M: -17.0 S: -17.8     I: -16.7 LUFS       LRA:   1.3 LU  FTPK:  -6.1 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.468441814,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 11.5       TARGET:-23 LUFS    M: -16.0 S: -17.7     I: -16.7 LUFS       LRA:   1.3 LU  FTPK:  -4.9 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.471928844,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 11.6       TARGET:-23 LUFS    M: -15.9 S: -17.6     I: -16.7 LUFS       LRA:   1.3 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.475701763,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 11.7       TARGET:-23 LUFS    M: -15.6 S: -17.6     I: -16.7 LUFS       LRA:   1.3 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.480096273000001,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 11.8       TARGET:-23 LUFS    M: -15.3 S: -17.4     I: -16.7 LUFS       LRA:   1.3 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.483155332,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 11.9       TARGET:-23 LUFS    M: -15.4 S: -17.3     I: -16.6 LUFS       LRA:   1.3 LU  FTPK:  -3.7 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.488147522,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 12         TARGET:-23 LUFS    M: -16.6 S: -17.3     I: -16.6 LUFS       LRA:   1.2 LU  FTPK:  -5.8 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.491961801,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 12.1       TARGET:-23 LUFS    M: -18.2 S: -17.3     I: -16.6 LUFS       LRA:   1.2 LU  FTPK: -20.3 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.495591941,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 12.2       TARGET:-23 LUFS    M: -20.4 S: -17.5     I: -16.7 LUFS       LRA:   1.2 LU  FTPK: -26.5 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.500044701,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 12.3       TARGET:-23 LUFS    M: -25.1 S: -17.8     I: -16.7 LUFS       LRA:   1.2 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.50403401,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 12.4       TARGET:-23 LUFS    M: -17.6 S: -17.4     I: -16.7 LUFS       LRA:   1.2 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.508121139,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 12.5       TARGET:-23 LUFS    M: -15.7 S: -17.2     I: -16.7 LUFS       LRA:   1.2 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.510440079,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 12.6       TARGET:-23 LUFS    M: -14.6 S: -17.0     I: -16.7 LUFS       LRA:   1.2 LU  FTPK:  -3.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.513476639,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 12.7       TARGET:-23 LUFS    M: -14.1 S: -16.8     I: -16.6 LUFS       LRA:   1.2 LU  FTPK:  -3.5 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.518236798,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 12.8       TARGET:-23 LUFS    M: -16.1 S: -16.8     I: -16.6 LUFS       LRA:   1.2 LU  FTPK:  -5.7 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.522052048,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 12.9       TARGET:-23 LUFS    M: -16.0 S: -16.5     I: -16.6 LUFS       LRA:   1.3 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.526324577,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 13         TARGET:-23 LUFS    M: -15.9 S: -16.3     I: -16.6 LUFS       LRA:   1.3 LU  FTPK:  -3.5 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.530149856,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 13.1       TARGET:-23 LUFS    M: -15.8 S: -16.2     I: -16.6 LUFS       LRA:   1.3 LU  FTPK:  -4.5 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.534151476,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 13.2       TARGET:-23 LUFS    M: -15.9 S: -16.1     I: -16.6 LUFS       LRA:   1.3 LU  FTPK:  -6.3 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.537172636,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 13.3       TARGET:-23 LUFS    M: -18.0 S: -16.4     I: -16.6 LUFS       LRA:   1.5 LU  FTPK: -20.0 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.539719685,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 13.4       TARGET:-23 LUFS    M: -17.6 S: -16.2     I: -16.6 LUFS       LRA:   1.5 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.544602795,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 13.5       TARGET:-23 LUFS    M: -16.7 S: -16.1     I: -16.6 LUFS       LRA:   1.5 LU  FTPK:  -2.9 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.548982164,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 13.6       TARGET:-23 LUFS    M: -16.8 S: -16.3     I: -16.6 LUFS       LRA:   1.5 LU  FTPK:  -9.9 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.550823994,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 13.7       TARGET:-23 LUFS    M: -16.8 S: -16.6     I: -16.6 LUFS       LRA:   1.5 LU  FTPK: -16.9 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.554863943,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 13.8       TARGET:-23 LUFS    M: -19.2 S: -16.7     I: -16.7 LUFS       LRA:   1.5 LU  FTPK: -13.4 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.558281523,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 13.9       TARGET:-23 LUFS    M: -26.2 S: -16.8     I: -16.7 LUFS       LRA:   1.5 LU  FTPK: -16.8 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.5821076,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 14         TARGET:-23 LUFS    M: -29.4 S: -17.0     I: -16.7 LUFS       LRA:   1.5 LU  FTPK: -25.4 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.587046159,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 14.1       TARGET:-23 LUFS    M: -30.2 S: -17.1     I: -16.7 LUFS       LRA:   1.5 LU  FTPK: -25.8 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.597579578,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 14.2       TARGET:-23 LUFS    M: -33.7 S: -17.3     I: -16.7 LUFS       LRA:   1.5 LU  FTPK: -25.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.602085957,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 14.3       TARGET:-23 LUFS    M: -34.8 S: -17.5     I: -16.7 LUFS       LRA:   1.5 LU  FTPK: -21.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.605745877,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 14.4       TARGET:-23 LUFS    M: -33.8 S: -17.6     I: -16.7 LUFS       LRA:   1.5 LU  FTPK: -21.4 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.613101996,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 14.5       TARGET:-23 LUFS    M: -29.4 S: -17.9     I: -16.7 LUFS       LRA:   1.5 LU  FTPK: -12.0 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.619458975,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 14.6       TARGET:-23 LUFS    M: -19.6 S: -17.8     I: -16.7 LUFS       LRA:   1.5 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.627137414,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 14.7       TARGET:-23 LUFS    M: -18.1 S: -17.9     I: -16.7 LUFS       LRA:   1.5 LU  FTPK:  -7.3 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.631138344,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 14.8       TARGET:-23 LUFS    M: -17.1 S: -18.0     I: -16.7 LUFS       LRA:   1.5 LU  FTPK:  -7.3 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.634704483,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 14.9       TARGET:-23 LUFS    M: -14.9 S: -17.8     I: -16.7 LUFS       LRA:   1.5 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.642131012,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 15         TARGET:-23 LUFS    M: -15.3 S: -17.6     I: -16.7 LUFS       LRA:   1.5 LU  FTPK:  -3.4 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.647005802,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 15.1       TARGET:-23 LUFS    M: -15.3 S: -17.5     I: -16.7 LUFS       LRA:   1.5 LU  FTPK:  -7.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.656465071,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 15.2       TARGET:-23 LUFS    M: -15.4 S: -17.3     I: -16.7 LUFS       LRA:   1.5 LU  FTPK:  -8.5 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.66045373,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 15.3       TARGET:-23 LUFS    M: -17.0 S: -17.2     I: -16.7 LUFS       LRA:   1.5 LU  FTPK:  -2.9 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.668220549,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 15.4       TARGET:-23 LUFS    M: -18.2 S: -17.7     I: -16.7 LUFS       LRA:   1.5 LU  FTPK:  -6.5 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.671437418,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 15.5       TARGET:-23 LUFS    M: -15.7 S: -17.5     I: -16.7 LUFS       LRA:   1.5 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.679266958,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 15.6       TARGET:-23 LUFS    M: -16.0 S: -17.6     I: -16.7 LUFS       LRA:   1.5 LU  FTPK:  -5.4 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.683500617,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 15.7       TARGET:-23 LUFS    M: -16.9 S: -17.8     I: -16.7 LUFS       LRA:   1.5 LU  FTPK: -17.0 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.692126726,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 15.8       TARGET:-23 LUFS    M: -16.2 S: -17.7     I: -16.7 LUFS       LRA:   1.5 LU  FTPK:  -6.0 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.703523235,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 15.9       TARGET:-23 LUFS    M: -19.6 S: -17.9     I: -16.7 LUFS       LRA:   1.5 LU  FTPK:  -8.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.707551024,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 16         TARGET:-23 LUFS    M: -17.9 S: -18.0     I: -16.7 LUFS       LRA:   1.5 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.713868453,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 16.1       TARGET:-23 LUFS    M: -17.1 S: -18.1     I: -16.7 LUFS       LRA:   1.5 LU  FTPK:  -5.0 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.725314672,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 16.2       TARGET:-23 LUFS    M: -17.8 S: -18.0     I: -16.7 LUFS       LRA:   1.5 LU  FTPK:  -6.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.73745967,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 16.3       TARGET:-23 LUFS    M: -17.8 S: -17.9     I: -16.7 LUFS       LRA:   1.5 LU  FTPK:  -8.1 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.746065599,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 16.4       TARGET:-23 LUFS    M: -19.8 S: -18.2     I: -16.7 LUFS       LRA:   1.5 LU  FTPK:  -5.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.750208019,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 16.5       TARGET:-23 LUFS    M: -19.4 S: -18.4     I: -16.7 LUFS       LRA:   1.6 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.766202786000001,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 16.6       TARGET:-23 LUFS    M: -18.6 S: -18.3     I: -16.7 LUFS       LRA:   1.6 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.771316976,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 16.7       TARGET:-23 LUFS    M: -18.3 S: -18.1     I: -16.7 LUFS       LRA:   1.6 LU  FTPK:  -4.1 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.786634484,"data":"frame=  500 fps=477 q=-0.0 size=N/A time=00:00:16.63 bitrate=N/A speed=15.9x    \r[Parsed_ebur128_0 @ 0x5556fba6b900] t: 16.8       TARGET:-23 LUFS    M: -17.7 S: -18.0     I: -16.7 LUFS       LRA:   1.6 LU  FTPK:  -5.0 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.789024394,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 16.9       TARGET:-23 LUFS    M: -18.3 S: -18.0     I: -16.8 LUFS       LRA:   1.6 LU  FTPK:  -7.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.802257232,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 17         TARGET:-23 LUFS    M: -18.9 S: -17.8     I: -16.8 LUFS       LRA:   1.6 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.810262271,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 17.1       TARGET:-23 LUFS    M: -18.0 S: -17.6     I: -16.8 LUFS       LRA:   1.6 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.81719356,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 17.2       TARGET:-23 LUFS    M: -17.7 S: -17.5     I: -16.8 LUFS       LRA:   1.6 LU  FTPK:  -2.9 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.825233019,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 17.3       TARGET:-23 LUFS    M: -16.8 S: -17.3     I: -16.8 LUFS       LRA:   1.6 LU  FTPK:  -4.3 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.835482208,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 17.4       TARGET:-23 LUFS    M: -15.9 S: -17.0     I: -16.8 LUFS       LRA:   1.6 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.840441377,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 17.5       TARGET:-23 LUFS    M: -15.4 S: -16.8     I: -16.8 LUFS       LRA:   1.6 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.859289935,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 17.6       TARGET:-23 LUFS    M: -15.3 S: -16.9     I: -16.8 LUFS       LRA:   1.6 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.862080574,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 17.7       TARGET:-23 LUFS    M: -14.9 S: -16.8     I: -16.7 LUFS       LRA:   1.6 LU  FTPK:  -2.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.876276073,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 17.8       TARGET:-23 LUFS    M: -15.9 S: -16.9     I: -16.7 LUFS       LRA:   1.6 LU  FTPK:  -4.9 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.877742102,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 17.9       TARGET:-23 LUFS    M: -17.5 S: -17.2     I: -16.7 LUFS       LRA:   1.6 LU  FTPK:  -7.8 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.892216601,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 18         TARGET:-23 LUFS    M: -18.1 S: -17.3     I: -16.7 LUFS       LRA:   1.6 LU  FTPK:  -6.5 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.89793553,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 18.1       TARGET:-23 LUFS    M: -22.0 S: -17.5     I: -16.8 LUFS       LRA:   1.6 LU  FTPK: -13.0 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.909269909,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 18.2       TARGET:-23 LUFS    M: -22.6 S: -17.6     I: -16.8 LUFS       LRA:   1.6 LU  FTPK: -14.1 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.917764807,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 18.3       TARGET:-23 LUFS    M: -24.2 S: -17.7     I: -16.8 LUFS       LRA:   1.6 LU  FTPK: -25.0 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.927259136,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 18.4       TARGET:-23 LUFS    M: -29.3 S: -17.8     I: -16.8 LUFS       LRA:   1.6 LU  FTPK:  -8.3 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.934634115,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 18.5       TARGET:-23 LUFS    M: -20.7 S: -18.1     I: -16.8 LUFS       LRA:   1.6 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.958224282,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 18.6       TARGET:-23 LUFS    M: -18.4 S: -17.9     I: -16.8 LUFS       LRA:   1.6 LU  FTPK:  -5.4 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.959623072,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 18.7       TARGET:-23 LUFS    M: -16.5 S: -17.7     I: -16.8 LUFS       LRA:   1.6 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.969470111,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 18.8       TARGET:-23 LUFS    M: -15.6 S: -17.7     I: -16.8 LUFS       LRA:   1.6 LU  FTPK:  -3.9 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.97506336,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 18.9       TARGET:-23 LUFS    M: -15.8 S: -17.6     I: -16.8 LUFS       LRA:   1.6 LU  FTPK:  -3.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.983263129000001,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 19         TARGET:-23 LUFS    M: -16.7 S: -17.8     I: -16.8 LUFS       LRA:   1.6 LU  FTPK:  -4.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.984876259,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 19.1       TARGET:-23 LUFS    M: -17.9 S: -17.8     I: -16.8 LUFS       LRA:   1.6 LU  FTPK:  -5.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.996088127,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 19.2       TARGET:-23 LUFS    M: -19.3 S: -17.8     I: -16.8 LUFS       LRA:   1.6 LU  FTPK: -12.0 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":15.999226257,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 19.3       TARGET:-23 LUFS    M: -19.5 S: -17.7     I: -16.8 LUFS       LRA:   1.6 LU  FTPK:  -4.0 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.008173176,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 19.4       TARGET:-23 LUFS    M: -19.0 S: -17.7     I: -16.8 LUFS       LRA:   1.6 LU  FTPK:  -9.3 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.015247155,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 19.5       TARGET:-23 LUFS    M: -17.8 S: -17.6     I: -16.9 LUFS       LRA:   1.6 LU  FTPK:  -2.3 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.021148214,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 19.6       TARGET:-23 LUFS    M: -16.8 S: -17.6     I: -16.9 LUFS       LRA:   1.6 LU  FTPK:  -4.5 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.026045634,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 19.7       TARGET:-23 LUFS    M: -17.1 S: -17.6     I: -16.9 LUFS       LRA:   1.6 LU  FTPK:  -8.1 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.032311113,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 19.8       TARGET:-23 LUFS    M: -16.2 S: -17.5     I: -16.9 LUFS       LRA:   1.6 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.036025642,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 19.9       TARGET:-23 LUFS    M: -15.4 S: -17.1     I: -16.8 LUFS       LRA:   1.6 LU  FTPK:  -3.0 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.046193211,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 20         TARGET:-23 LUFS    M: -15.3 S: -17.1     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -6.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.04940477,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 20.1       TARGET:-23 LUFS    M: -15.4 S: -17.2     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -4.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.05645024,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 20.2       TARGET:-23 LUFS    M: -16.2 S: -17.2     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -9.5 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.062724709,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 20.3       TARGET:-23 LUFS    M: -16.7 S: -17.1     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.070657288,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 20.4       TARGET:-23 LUFS    M: -17.1 S: -17.3     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -2.7 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.075920747,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 20.5       TARGET:-23 LUFS    M: -16.7 S: -17.4     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -3.0 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.082447086,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 20.6       TARGET:-23 LUFS    M: -16.0 S: -17.4     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -3.5 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.086465806,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 20.7       TARGET:-23 LUFS    M: -17.4 S: -17.6     I: -16.8 LUFS       LRA:   1.4 LU  FTPK: -10.5 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.092882965,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 20.8       TARGET:-23 LUFS    M: -17.2 S: -17.5     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.097432694,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 20.9       TARGET:-23 LUFS    M: -17.4 S: -17.4     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -4.5 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.102470364,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 21         TARGET:-23 LUFS    M: -18.6 S: -17.4     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -4.7 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.111186203,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 21.1       TARGET:-23 LUFS    M: -17.8 S: -17.3     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -4.4 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.115090652,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 21.2       TARGET:-23 LUFS    M: -18.5 S: -17.2     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -3.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.124385101,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 21.3       TARGET:-23 LUFS    M: -17.3 S: -16.9     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.13224664,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 21.4       TARGET:-23 LUFS    M: -16.9 S: -16.8     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -3.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.13609792,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 21.5       TARGET:-23 LUFS    M: -18.0 S: -17.0     I: -16.8 LUFS       LRA:   1.4 LU  FTPK: -13.9 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.142891428,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 21.6       TARGET:-23 LUFS    M: -18.7 S: -17.2     I: -16.9 LUFS       LRA:   1.4 LU  FTPK: -19.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.148588878,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 21.7       TARGET:-23 LUFS    M: -23.2 S: -17.5     I: -16.9 LUFS       LRA:   1.4 LU  FTPK: -21.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.153764037,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 21.8       TARGET:-23 LUFS    M: -29.3 S: -17.6     I: -16.9 LUFS       LRA:   1.4 LU  FTPK: -21.7 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.166624986,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 21.9       TARGET:-23 LUFS    M: -31.4 S: -17.9     I: -16.9 LUFS       LRA:   1.4 LU  FTPK: -24.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.174449975,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 22         TARGET:-23 LUFS    M: -32.5 S: -17.9     I: -16.9 LUFS       LRA:   1.4 LU  FTPK: -25.0 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.182171744,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 22.1       TARGET:-23 LUFS    M: -33.8 S: -18.0     I: -16.9 LUFS       LRA:   1.4 LU  FTPK: -24.9 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.188984163,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 22.2       TARGET:-23 LUFS    M: -34.4 S: -18.1     I: -16.9 LUFS       LRA:   1.4 LU  FTPK: -22.5 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.198120852,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 22.3       TARGET:-23 LUFS    M: -32.0 S: -18.3     I: -16.9 LUFS       LRA:   1.4 LU  FTPK: -13.5 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.201976551,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 22.4       TARGET:-23 LUFS    M: -17.9 S: -17.8     I: -16.9 LUFS       LRA:   1.4 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.214443019,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 22.5       TARGET:-23 LUFS    M: -17.7 S: -18.0     I: -16.9 LUFS       LRA:   1.4 LU  FTPK:  -7.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.220291939,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 22.6       TARGET:-23 LUFS    M: -16.1 S: -17.9     I: -16.9 LUFS       LRA:   1.4 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.225885938,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 22.7       TARGET:-23 LUFS    M: -14.9 S: -17.8     I: -16.9 LUFS       LRA:   1.4 LU  FTPK:  -3.5 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.238248077,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 22.8       TARGET:-23 LUFS    M: -15.7 S: -17.7     I: -16.9 LUFS       LRA:   1.4 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.241234336,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 22.9       TARGET:-23 LUFS    M: -14.7 S: -17.9     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.256490324,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 23         TARGET:-23 LUFS    M: -14.4 S: -17.7     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.257178534,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 23.1       TARGET:-23 LUFS    M: -14.6 S: -17.6     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.267916153,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 23.2       TARGET:-23 LUFS    M: -14.8 S: -17.4     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -3.4 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.279668801,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 23.3       TARGET:-23 LUFS    M: -14.0 S: -17.2     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.28622844,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 23.4       TARGET:-23 LUFS    M: -14.5 S: -17.2     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.293263139,"data":"frame=  699 fps=451 q=-0.0 size=N/A time=00:00:23.30 bitrate=N/A speed=  15x    \r[Parsed_ebur128_0 @ 0x5556fba6b900] t: 23.5       TARGET:-23 LUFS    M: -15.4 S: -17.3     I: -16.8 LUFS       LRA:   1.4 LU  FTPK: -22.1 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.303479228,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 23.6       TARGET:-23 LUFS    M: -16.6 S: -17.5     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -8.4 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.307963918,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 23.7       TARGET:-23 LUFS    M: -20.8 S: -17.6     I: -16.8 LUFS       LRA:   1.4 LU  FTPK: -13.0 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.320036446,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 23.8       TARGET:-23 LUFS    M: -27.1 S: -17.7     I: -16.8 LUFS       LRA:   1.4 LU  FTPK: -23.4 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.324100535,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 23.9       TARGET:-23 LUFS    M: -24.6 S: -17.8     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -5.8 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.339479643,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 24         TARGET:-23 LUFS    M: -21.2 S: -17.7     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.341178553,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 24.1       TARGET:-23 LUFS    M: -20.8 S: -17.8     I: -16.8 LUFS       LRA:   1.4 LU  FTPK: -11.9 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.349834382,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 24.2       TARGET:-23 LUFS    M: -19.1 S: -17.8     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -5.5 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.363276811,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 24.3       TARGET:-23 LUFS    M: -18.7 S: -18.0     I: -16.8 LUFS       LRA:   1.4 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.36723736,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 24.4       TARGET:-23 LUFS    M: -18.8 S: -18.0     I: -16.9 LUFS       LRA:   1.4 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.376632809,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 24.5       TARGET:-23 LUFS    M: -18.5 S: -17.9     I: -16.9 LUFS       LRA:   1.4 LU  FTPK: -10.0 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.384799488,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 24.6       TARGET:-23 LUFS    M: -18.5 S: -17.8     I: -16.9 LUFS       LRA:   1.4 LU  FTPK:  -7.1 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.395460827,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 24.7       TARGET:-23 LUFS    M: -17.1 S: -17.5     I: -16.9 LUFS       LRA:   1.4 LU  FTPK:  -2.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.403768516,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 24.8       TARGET:-23 LUFS    M: -17.6 S: -17.4     I: -16.9 LUFS       LRA:   1.4 LU  FTPK:  -4.4 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.413911504,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 24.9       TARGET:-23 LUFS    M: -18.1 S: -17.4     I: -16.9 LUFS       LRA:   1.4 LU  FTPK: -15.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.423163763,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 25         TARGET:-23 LUFS    M: -19.4 S: -17.4     I: -16.9 LUFS       LRA:   1.4 LU  FTPK: -16.3 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.430126302,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 25.1       TARGET:-23 LUFS    M: -25.1 S: -17.4     I: -16.9 LUFS       LRA:   1.4 LU  FTPK: -27.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.437382941,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 25.2       TARGET:-23 LUFS    M: -33.4 S: -17.4     I: -16.9 LUFS       LRA:   1.4 LU  FTPK: -29.1 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.44842746,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 25.3       TARGET:-23 LUFS    M: -35.5 S: -17.4     I: -16.9 LUFS       LRA:   1.4 LU  FTPK: -30.2 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.456040739,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 25.4       TARGET:-23 LUFS    M: -40.0 S: -17.9     I: -16.9 LUFS       LRA:   1.4 LU  FTPK: -35.3 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.465515668,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 25.5       TARGET:-23 LUFS    M: -42.5 S: -18.0     I: -16.9 LUFS       LRA:   1.4 LU  FTPK: -38.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.465542358,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] t: 25.6       TARGET:-23 LUFS    M: -45.2 S: -18.3     I: -16.9 LUFS       LRA:   1.4 LU  FTPK: -42.6 dBFS  TPK:  -2.2 dBFS\n"}
+,{"stream_name":"stderr","time":16.474215346,"data":"[out#0/null @ 0x5556fbab0a00] video:360kB audio:2400kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown\n"}
+,{"stream_name":"stderr","time":16.474245337,"data":"frame=  768 fps=442 q=-0.0 Lsize=N/A time=00:00:25.56 bitrate=N/A speed=14.7x    \n"}
+,{"stream_name":"stderr","time":16.474249197,"data":"[Parsed_ebur128_0 @ 0x5556fba6b900] Summary:\n"}
+,{"stream_name":"stderr","time":16.474267457,"data":"\n"}
+,{"stream_name":"stderr","time":16.474270937,"data":"  Integrated loudness:\n"}
+,{"stream_name":"stderr","time":16.474273897,"data":"    I:         -16.9 LUFS\n"}
+,{"stream_name":"stderr","time":16.474275747,"data":"    Threshold: -27.4 LUFS\n"}
+,{"stream_name":"stderr","time":16.474277547,"data":"\n"}
+,{"stream_name":"stderr","time":16.474279467,"data":"  Loudness range:\n"}
+,{"stream_name":"stderr","time":16.474281287,"data":"    LRA:         1.4 LU\n"}
+,{"stream_name":"stderr","time":16.474283127,"data":"    Threshold: -37.3 LUFS\n"}
+,{"stream_name":"stderr","time":16.474284947,"data":"    LRA low:   -18.0 LUFS\n"}
+,{"stream_name":"stderr","time":16.474286817,"data":"    LRA high:  -16.5 LUFS\n"}
+,{"stream_name":"stderr","time":16.474288617,"data":"\n"}
+,{"stream_name":"stderr","time":16.474290397,"data":"  True peak:\n"}
+,{"stream_name":"stderr","time":16.474292267,"data":"    Peak:       -2.2 dBFS\n"}
+,{"stream_name":"stdout","time":16.52389058,"data":"KAGGLE EDIT COMPLETE\n"}
+,{"stream_name":"stderr","time":18.689028975,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":18.689061595,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":19.04576841,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":19.04578853,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":20.760521962,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":21.772531033,"data":"[NbConvertApp] Writing 287688 bytes to __results__.html\n"}
+]

@@ -1,0 +1,269 @@
+{
+  "topic": "Why You Feel Deja Vu — Your Brain's Glitch Explained",
+  "episode": 42,
+  "category": "BRAIN FACTS",
+  "parts": [
+    {
+      "idx": 1,
+      "badge": "HOOK",
+      "title": "Your Brain Creates False Memories",
+      "subtitle": "Why You Feel Deja Vu",
+      "layout": "hook",
+      "art": "brain_hero",
+      "bottom": "HOOK • 97% people feel it",
+      "metrics": [
+        {
+          "value": "97%",
+          "label": "people feel it",
+          "count": 97,
+          "suffix": "%",
+          "icon": "people"
+        }
+      ],
+      "callouts": [
+        {
+          "kind": "label",
+          "text": "TEMPORAL LOBE",
+          "sub": "memory encoding",
+          "anchor": [
+            700,
+            1300
+          ],
+          "xy": [
+            700,
+            1320
+          ],
+          "color": "yellow",
+          "side": "right"
+        }
+      ],
+      "duration": 4.5,
+      "total": 7
+    },
+    {
+      "idx": 2,
+      "badge": "FACT 1",
+      "title": "Your Eyes Are Lying",
+      "subtitle": "The 200ms Delay",
+      "layout": "diagram",
+      "art": "brain_flat",
+      "art2": "eye",
+      "bottom": "FACT 1 • 200ms delay",
+      "metrics": [
+        {
+          "value": "200ms",
+          "label": "reality to brain",
+          "icon": "eye"
+        }
+      ],
+      "callouts": [
+        {
+          "kind": "arrows",
+          "arrows": [
+            {
+              "p0": [
+                470,
+                1230
+              ],
+              "p1": [
+                700,
+                1230
+              ],
+              "color": "blue",
+              "width": 7,
+              "glow": true
+            }
+          ]
+        }
+      ],
+      "duration": 4.5,
+      "total": 7
+    },
+    {
+      "idx": 3,
+      "badge": "FACT 2",
+      "title": "Double Checking Glitch",
+      "subtitle": "Hippocampus Misfire",
+      "layout": "diagram",
+      "art": "brain_cut",
+      "art2": "chip",
+      "bottom": "FACT 2 • memory collision",
+      "metrics": [
+        {
+          "value": "NEW = OLD",
+          "label": "encoding conflict",
+          "icon": "warning"
+        }
+      ],
+      "callouts": [
+        {
+          "kind": "label",
+          "text": "HIPPOCAMPUS",
+          "sub": "the memory hub",
+          "anchor": [
+            560,
+            900
+          ],
+          "xy": [
+            600,
+            860
+          ],
+          "color": "yellow",
+          "side": "right"
+        },
+        {
+          "kind": "label",
+          "text": "SHORT-TERM",
+          "sub": "input arriving now",
+          "anchor": [
+            150,
+            1230
+          ],
+          "xy": [
+            90,
+            1270
+          ],
+          "color": "blue",
+          "side": "left"
+        },
+        {
+          "kind": "label",
+          "text": "LONG-TERM",
+          "sub": "stored memory",
+          "anchor": [
+            930,
+            1230
+          ],
+          "xy": [
+            760,
+            1270
+          ],
+          "color": "purple",
+          "side": "right"
+        }
+      ],
+      "duration": 4.5,
+      "total": 7
+    },
+    {
+      "idx": 4,
+      "badge": "FACT 3",
+      "title": "It Lasts 10-30 Seconds",
+      "subtitle": "The Glitch Timeline",
+      "layout": "timeline",
+      "art": "clock_brain",
+      "bottom": "FACT 3 • 10-30 sec glitch",
+      "columns": [
+        {
+          "icon": "brain",
+          "head": "97%",
+          "sub": "experience it"
+        },
+        {
+          "icon": "clock",
+          "head": "10-30 sec",
+          "sub": "average"
+        },
+        {
+          "icon": "people",
+          "head": "then gone",
+          "sub": "feeling fades"
+        }
+      ],
+      "footnote": "The memory glitch fades within seconds — before you can hold on to it",
+      "duration": 4.5,
+      "total": 7
+    },
+    {
+      "idx": 5,
+      "badge": "FACT 4",
+      "title": "Tired Brains Get It More",
+      "subtitle": "Sleep debt shows up",
+      "layout": "chart",
+      "art": "sleep",
+      "bottom": "FACT 4 • tired = more",
+      "headline": "Less sleep, more deja vu",
+      "bars": [
+        {
+          "label": "Well-Rested",
+          "value": 50,
+          "color": "gray"
+        },
+        {
+          "label": "Tired",
+          "value": 100,
+          "display": "2x",
+          "color": "yellow"
+        }
+      ],
+      "footnote": "Sleep-deprivation participants report about double the frequency",
+      "duration": 4.5,
+      "total": 7
+    },
+    {
+      "idx": 6,
+      "badge": "FACT 5",
+      "title": "It's Actually Healthy",
+      "subtitle": "Your Memory System Working",
+      "layout": "hook",
+      "art": "shield_brain",
+      "bottom": "FACT 5 • healthy sign",
+      "metrics": [
+        {
+          "value": "NORMAL",
+          "label": "not a warning sign",
+          "icon": "check"
+        }
+      ],
+      "callouts": [
+        {
+          "kind": "label",
+          "text": "HEALTHY PROCESS",
+          "sub": "your memory testing itself",
+          "anchor": [
+            800,
+            1240
+          ],
+          "xy": [
+            600,
+            1290
+          ],
+          "color": "green",
+          "side": "right"
+        }
+      ],
+      "duration": 4.5,
+      "total": 7
+    },
+    {
+      "idx": 7,
+      "badge": "PAYOFF",
+      "title": "So Next Time You Feel It",
+      "subtitle": "Smile, Your Brain Is Updating",
+      "layout": "payoff",
+      "art": "brain_glow",
+      "bottom": "PAYOFF • not magic, just brain",
+      "headline": "Not magic, just your brain double-checking reality",
+      "columns": [
+        {
+          "icon": "clock",
+          "head": "200ms",
+          "sub": "perception delay"
+        },
+        {
+          "icon": "pulse",
+          "head": "collision",
+          "sub": "old + new blend"
+        },
+        {
+          "icon": "check",
+          "head": "healthy",
+          "sub": "self-correcting"
+        }
+      ],
+      "cta": "Follow for more brain glitches",
+      "duration": 4.5,
+      "total": 7
+    }
+  ]
+}

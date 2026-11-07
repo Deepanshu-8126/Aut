@@ -1,0 +1,44 @@
+CHRONIC — THE ROMAN DODECAHEDRON
+
+VIDEO
+CHRONIC_ROMAN_V6_1080_UPSCALED.mp4
+16.8 seconds • English • 1080 x 1920 upscaled from a 540 x 960 render • 30fps • voice-30 synthetic narration
+
+TITLE
+Roman Dodecahedron: Why Did They Make It? 🏛️
+
+DESCRIPTION
+In 2023, archaeologists found an intact Roman dodecahedron near Norton Disney, England. More than a hundred of these twelve-sided objects have been found, but their purpose remains uncertain.
+
+A measuring tool, a knitting aid, or a ritual object? None of these ideas has been proven. Which explanation makes the most sense to you: A, B or C? 👇
+
+New unsolved mysteries from history and Earth.
+
+Sources:
+https://www.npr.org/2024/01/24/1226575715/archaeologists-roman-empire-dodecahedron-england
+https://www.nottingham.ac.uk/news/norton-disney-dodecahedron
+
+Museum photos are examples of other dodecahedra, not the 2023 Norton Disney find. The knitting scene and illustrated thumbnail are AI-generated.
+
+Image credits, cropped and edited:
+• Romainbehar, Lyon dodecahedron, CC0: https://commons.wikimedia.org/wiki/File:Grand_dodeca%C3%A8dre_romain_-_Lyon.jpg
+• Eamonn O'Mahony / Hunt Museum, bronze dodecahedron, CC0: https://commons.wikimedia.org/wiki/File:Bronze_dodecahedron.jpg
+• Vassil, Vienne dodecahedron, CC0: https://commons.wikimedia.org/wiki/File:Dodecaedre_Vienne_28072011.jpg
+• Tongeren museum example, CC0: https://commons.wikimedia.org/wiki/File:Pentagon-dodeca%C3%ABder_in_brons,_150_tot_400_NC,_vindplaats-_Tongeren,_Leopoldwal,_1939,_collectie_Gallo-Romeins_Museum_Tongeren,_4002.jpg
+• Map: Natural Earth, public domain https://www.naturalearthdata.com/about/terms-of-use/
+• Music and SFX: Mixkit 871 and Mixkit library effects, https://mixkit.co/license/
+
+#shorts #history #archaeology
+
+PINNED COMMENT
+I lean toward a practical use—but there isn't a confirmed answer. A: measuring, B: knitting, or C: ritual? 👇
+
+TAGS
+Roman dodecahedron, Roman mystery, ancient Rome, mystery object, Roman artifact, archaeology, archaeological mystery, unsolved history, Norton Disney, ancient objects, dodecahedron, unexplained artifacts, ancient history, Roman Britain, archaeological finds, history shorts, historical mystery, ancient technology, mystery documentary, museum artifacts
+
+FILES
+Thumbnail: CHRONIC_ROMAN_DODECAHEDRON_THUMBNAIL.jpg
+Subtitles: CHRONIC_ROMAN_V6_DRAFT.srt
+
+FINAL CHECKS
+Full video decode passed. Sampled final encoded frames inspected. Integrated loudness and true peak: see TEST_REPORT_V6.md. Captions based on automatic word alignment, not a human transcription. Full human watch/listen and caption timing QC are still required before publishing. This is an English narrated render upscaled from 540x960, not native 1080p or real moving excavation footage. Review applicable synthetic-content disclosure and confirm current Mixkit terms at upload.

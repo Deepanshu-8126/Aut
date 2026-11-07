@@ -1,0 +1,9 @@
+file 'slide_img-1.jpg'
+duration 4
+file 'slide_img-2.jpg'
+duration 4
+file 'slide_img-3.jpg'
+duration 4
+file 'slide_img-4.jpg'
+duration 4
+file 'slide_img-4.jpg'

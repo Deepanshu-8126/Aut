@@ -1,0 +1,7 @@
+out/*/_frames/
+out/*/_*.wav
+out/*/_*.log
+assets/cache/
+__pycache__/
+*.pyc
+.venv/
