@@ -1,0 +1,336 @@
+{
+  "title": "Java Type Casting: Resizing Data",
+  "dayLabel": "Day 9 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Imagine you have a small cup of water and a large bucket. You can easily pour the cup into the bucket. But what if you try to pour the whole bucket into that tiny cup? This is the core idea behind type casting.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Type Casting in Java",
+          "subtitle": "Converting data types correctly",
+          "badge": "DAY 9 • JAVA BASICS",
+          "tags": [
+            "Java",
+            "Casting",
+            "Data Types"
+          ]
+        },
+        "chapter": "M1 Setup and Basics"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Type casting is simply converting a value from one data type to another. In Java, every variable has a specific size. When we move data between different sized containers, we are performing type casting.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "What is Type Casting?",
+          "items": [
+            "Converting one data type to another",
+            "Changing how Java views a value",
+            "Moving data between different container sizes"
+          ]
+        },
+        "keyIdea": "Type casting is like resizing data",
+        "camera": [
+          {
+            "at": "converting",
+            "zoom": 1.0,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Imagine you have a price of nine dollars and ninety-nine cents. If your system only allows whole numbers, you cannot store that decimal. You need a way to force that value into an integer. That is why we need casting.",
+      "remotion": {
+        "type": "ComparisonCard",
+        "props": {
+          "title": "The Problem",
+          "leftTitle": "Original Value",
+          "leftPoints": [
+            "9.99 (Double)",
+            "Needs more space",
+            "Has decimal part"
+          ],
+          "rightTitle": "Target Variable",
+          "rightPoints": [
+            "9 (Integer)",
+            "Needs less space",
+            "Whole numbers only"
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "decimal",
+            "text": "Decimals take more space",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "Java handles casting in two ways. Widening casting happens automatically when we go from a small type to a large type. Narrowing casting must be done manually because we might lose some data in the process.",
+      "remotion": {
+        "type": "ArchitectureFlow",
+        "props": {
+          "title": "Two Types of Casting",
+          "steps": [
+            {
+              "title": "Widening",
+              "desc": "Small to Large (Automatic)"
+            },
+            {
+              "title": "Narrowing",
+              "desc": "Large to Small (Manual)"
+            }
+          ],
+          "activeStepIndex": 0
+        },
+        "keyIdea": "Widening is safe, Narrowing is risky"
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Look at this hierarchy. A byte is the smallest, while a double is the largest. When we move from left to right, Java does the work for us. But moving from right to left requires our permission.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "The Casting Path",
+          "nodes": [
+            {
+              "id": "b",
+              "label": "byte"
+            },
+            {
+              "id": "i",
+              "label": "int"
+            },
+            {
+              "id": "d",
+              "label": "double"
+            }
+          ],
+          "edges": [
+            {
+              "from": "b",
+              "to": "i",
+              "label": "Auto"
+            },
+            {
+              "from": "i",
+              "to": "d",
+              "label": "Auto"
+            }
+          ],
+          "steps": [
+            {
+              "at": "hierarchy",
+              "label": "Small to Large",
+              "focus": [
+                "b",
+                "i",
+                "d"
+              ]
+            },
+            {
+              "at": "left",
+              "label": "Widening Path",
+              "arrow": 0
+            }
+          ]
+        },
+        "camera": [
+          {
+            "at": "hierarchy",
+            "zoom": 1.2,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "narration": "Let's look at Widening first. Here, we take an integer called myInt and assign it to a double called myDouble. Since a double is larger than an integer, Java handles this conversion without any extra code.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Here,",
+        "props": {
+          "filename": "Main.java",
+          "language": "java",
+          "code": "public class Main {\n  public static void main(String[] args) {\n    int myInt = 9;\n    double myDouble = myInt;\n    System.out.println(myInt);\n    System.out.println(myDouble);\n  }\n}",
+          "highlightLines": [
+            4
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "myDouble",
+            "text": "Automatic casting",
+            "kind": "tip"
+          }
+        ],
+        "camera": [
+          {
+            "at": "double",
+            "zoom": 1.6,
+            "x": 50,
+            "y": 40
+          }
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "narration": "When we run this, the integer nine becomes nine point zero. Java automatically added the decimal point because a double variable always expects a decimal value. No data was lost here.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "java Main.java",
+          "output": [
+            "9",
+            "9.0"
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "zero",
+            "text": "9 becomes 9.0",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "narration": "Now for Narrowing. We have a double with the value nine point seven eight. To put this into an integer, we must use parentheses with the word int inside. This tells Java we know we are losing the decimal.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Now",
+        "props": {
+          "filename": "Main.java",
+          "language": "java",
+          "code": "public class Main {\n  public static void main(String[] args) {\n    double myDouble = 9.78d;\n    int myInt = (int) myDouble;\n    System.out.println(myDouble);\n    System.out.println(myInt);\n  }\n}",
+          "highlightLines": [
+            4
+          ]
+        },
+        "camera": [
+          {
+            "at": "parentheses",
+            "zoom": 1.8,
+            "x": 50,
+            "y": 40
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "int",
+            "text": "Manual casting",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "narration": "Notice the output. The original value was nine point seven eight, but the integer only shows nine. The decimal part is completely removed, not rounded. This is why narrowing is considered manual and risky.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "java Main.java",
+          "output": [
+            "9.78",
+            "9"
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "removed",
+            "text": "Data loss happens",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "narration": "What happens if you forget the manual cast? If you try to assign a double to an int directly, the compiler will stop you. It will say incompatible types. It is protecting you from losing data accidentally.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "What",
+        "props": {
+          "filename": "Error.java",
+          "language": "java",
+          "code": "double d = 10.5;\nint i = d; // Error here",
+          "highlightLines": [
+            2
+          ]
+        },
+        "camera": [
+          {
+            "at": "compiler",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 30
+          }
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "narration": "The terminal will show an error message. It says possible lossy conversion from double to int. Whenever you see this, remember that you need to add the manual cast in parentheses.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "javac Error.java",
+          "output": [
+            "Error: incompatible types: possible lossy conversion from double to int"
+          ]
+        }
+      }
+    },
+    {
+      "id": 12,
+      "narration": "Let's recap. Widening is automatic and safe. Narrowing is manual and uses parentheses. Remember that narrowing chops off the decimal, it does not round the number. Got it?",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "Key Takeaways",
+          "items": [
+            "Widening: Small to Large (Automatic)",
+            "Narrowing: Large to Small (Manual)",
+            "Manual cast uses (targetType) syntax",
+            "Narrowing removes decimals, no rounding"
+          ]
+        },
+        "camera": [
+          {
+            "at": "recap",
+            "zoom": 1.0,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 13,
+      "narration": "Here is your practice task. Create a double variable with the value 55.99. Cast it into an integer and print the result. See if it rounds up or just stays at 55.",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Try it yourself!",
+          "subtitle": "Cast 55.99 to an integer",
+          "youtubePrompt": "Subscribe for Day 10!"
+        }
+      }
+    }
+  ]
+}
