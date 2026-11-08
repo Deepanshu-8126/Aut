@@ -1,0 +1,332 @@
+{
+  "title": "Java Constants: The final Keyword",
+  "dayLabel": "Day 10 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Imagine you have a rule that never changes, like the value of Pi or your birth year. In Java, we use the final keyword to lock these values so they can never be changed by mistake.",
+      "remotion": {
+        "type": "TitleCard",
+        "chapter": "M1 Setup and Basics",
+        "props": {
+          "title": "Locking Your Values",
+          "subtitle": "Constants with the final keyword",
+          "badge": "DAY 10 • JAVA",
+          "tags": [
+            "Java",
+            "Basics",
+            "Final"
+          ]
+        }
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Think of a standard variable like a pencil. You can erase and rewrite it as many times as you want. But a constant is like writing with a permanent marker. Once it is on the paper, it stays there forever.",
+      "remotion": {
+        "type": "ComparisonCard",
+        "keyIdea": "Constants are permanent",
+        "props": {
+          "title": "Pencil vs Marker",
+          "leftTitle": "Variable",
+          "leftPoints": [
+            "Written in pencil",
+            "Can be erased",
+            "Value changes often"
+          ],
+          "rightTitle": "Constant",
+          "rightPoints": [
+            "Permanent marker",
+            "Cannot be erased",
+            "Value stays fixed"
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "forever",
+            "text": "Immutable values",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Suppose you are building a banking app. The tax rate should stay fixed. If a programmer accidentally changes that rate later in the code, the whole system breaks. We need a way to prevent that human error.",
+      "remotion": {
+        "type": "ArchitectureFlow",
+        "props": {
+          "title": "Why Use Constants?",
+          "activeStepIndex": 1,
+          "steps": [
+            {
+              "title": "The Risk",
+              "desc": "Accidental changes to critical data"
+            },
+            {
+              "title": "The Solution",
+              "desc": "Use 'final' to lock the value"
+            },
+            {
+              "title": "The Result",
+              "desc": "Safer and more readable code"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": 4,
+      "narration": "To make a constant, we add the keyword final before the data type. A keyword is a special word that Java already understands. This tells the compiler that this variable is now a permanent constant.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "keyIdea": "Syntax of a constant",
+        "props": {
+          "title": "Constant Structure",
+          "nodes": [
+            {
+              "id": "final",
+              "label": "final",
+              "sub": "Keyword"
+            },
+            {
+              "id": "type",
+              "label": "double",
+              "sub": "Data Type"
+            },
+            {
+              "id": "name",
+              "label": "PI",
+              "sub": "Name"
+            }
+          ],
+          "edges": [
+            {
+              "from": "final",
+              "to": "type"
+            },
+            {
+              "from": "type",
+              "to": "name"
+            }
+          ],
+          "steps": [
+            {
+              "at": "final",
+              "label": "Start with final",
+              "focus": [
+                "final"
+              ]
+            },
+            {
+              "at": "compiler",
+              "label": "Locks the variable",
+              "focus": [
+                "name"
+              ]
+            }
+          ]
+        },
+        "camera": [
+          {
+            "at": "keyword",
+            "zoom": 1.0,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Here is the smallest piece of code to create a constant. We use the keyword final, then the type double, and the name PI in uppercase. In Java, we use uppercase for constants to make them stand out.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Here",
+        "props": {
+          "filename": "MathConstants.java",
+          "language": "java",
+          "code": "public class MathConstants {\n  public static void main(String[] args) {\n    final double PI = 3.14159;\n    System.out.println(PI);\n  }\n}",
+          "highlightLines": [
+            3
+          ]
+        },
+        "camera": [
+          {
+            "at": "double",
+            "zoom": 1.6,
+            "x": 50,
+            "y": 35
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "uppercase",
+            "text": "Convention: Use ALL_CAPS",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "narration": "Look at this line. The word final acts like a physical lock on the container. A variable is just a container for data. Adding final makes that container tamper-proof so no one can swap the data inside.",
+      "remotion": {
+        "type": "TypingCode",
+        "props": {
+          "filename": "MathConstants.java",
+          "language": "java",
+          "code": "public class MathConstants {\n  public static void main(String[] args) {\n    final double PI = 3.14159;\n    System.out.println(PI);\n  }\n}",
+          "highlightLines": [
+            3
+          ]
+        },
+        "camera": [
+          {
+            "at": "final",
+            "zoom": 1.8,
+            "x": 30,
+            "y": 35
+          }
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "narration": "Now we run the command. The compiler checks the code and the terminal prints the value. It works just like a normal variable for reading, but it is protected from being changed later.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "java MathConstants.java",
+          "output": [
+            "3.14159"
+          ]
+        }
+      }
+    },
+    {
+      "id": 8,
+      "narration": "Let's try to break the rules. After setting PI, I will try to change it to three point zero. This is a common mistake beginners make when they forget a variable is marked as final.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "try",
+        "previous_code": "public class MathConstants {\n  public static void main(String[] args) {\n    final double PI = 3.14159;\n    System.out.println(PI);\n  }\n}",
+        "props": {
+          "filename": "MathConstants.java",
+          "language": "java",
+          "code": "public class MathConstants {\n  public static void main(String[] args) {\n    final double PI = 3.14159;\n    PI = 3.0;\n    System.out.println(PI);\n  }\n}",
+          "highlightLines": [
+            4
+          ]
+        },
+        "camera": [
+          {
+            "at": "change",
+            "zoom": 1.7,
+            "x": 40,
+            "y": 45
+          }
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "narration": "When we try to run this, the Java compiler stops us immediately. It gives an error saying: cannot assign a value to final variable. This error is actually your friend because it caught a potential bug.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "javac MathConstants.java",
+          "output": [
+            "MathConstants.java:4: error: cannot assign a value to final variable PI",
+            "    PI = 3.0;",
+            "    ^",
+            "1 error"
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "error",
+            "text": "Compiler prevents the change",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "narration": "We can use our constant in calculations, like finding the area of a circle. The value of PI is safe, and our code is much easier to read because we used a meaningful name instead of a number.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "calculations",
+        "previous_code": "public class MathConstants {\n  public static void main(String[] args) {\n    final double PI = 3.14159;\n    PI = 3.0;\n    System.out.println(PI);\n  }\n}",
+        "props": {
+          "filename": "CircleArea.java",
+          "language": "java",
+          "code": "public class CircleArea {\n  public static void main(String[] args) {\n    final double PI = 3.14159;\n    double radius = 5.0;\n    double area = PI * radius * radius;\n    System.out.println(\"Area: \" + area);\n  }\n}",
+          "highlightLines": [
+            5
+          ]
+        },
+        "camera": [
+          {
+            "at": "area",
+            "zoom": 1.5,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "narration": "Let's recap. Use the final keyword to create constants. Always use uppercase names with underscores. Once a final variable is set, it cannot be changed. This makes your programs much more reliable.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "Recap: Java Constants",
+          "items": [
+            "final keyword locks a variable",
+            "Constants cannot be reassigned",
+            "Use ALL_CAPS for naming",
+            "Prevents accidental data changes"
+          ]
+        }
+      }
+    },
+    {
+      "id": 12,
+      "narration": "Here is your practice task. Create a constant for the speed of light in a vacuum, which is about three hundred million meters per second. Try to print it out. Use the final keyword and uppercase letters.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "Practice Task",
+          "items": [
+            "Create a constant: SPEED_OF_LIGHT",
+            "Use the 'long' or 'double' data type",
+            "Assign the value 299792458",
+            "Print the constant to the terminal"
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "Practice",
+            "text": "Hint: Use 'final long'",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 13,
+      "narration": "Great job today. You just learned how to make your Java code more predictable and professional. Keep practicing, and I will see you in the next lesson.",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Day 10 Complete",
+          "subtitle": "You mastered Java Constants!",
+          "youtubePrompt": "Subscribe for Day 11"
+        }
+      }
+    }
+  ]
+}
