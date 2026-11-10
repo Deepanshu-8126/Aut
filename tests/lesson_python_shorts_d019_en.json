@@ -1,0 +1,161 @@
+{
+  "title": "Python List Comprehension",
+  "dayLabel": "Day 19 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Want cleaner Python code? Imagine squaring ten numbers. Usually, this takes four lines. But you can do it in just one using list comprehension.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "One-Line Python Magic",
+          "subtitle": "Master List Comprehension",
+          "badge": "DAY 19 • PYTHON SHORTS",
+          "tags": [
+            "Python",
+            "Coding",
+            "Beginner"
+          ]
+        },
+        "chapter": "M3 Pythonic Code",
+        "keyIdea": "List comprehension saves space"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Think of a factory. Instead of moving items manually, you set a rule, and the list fills up automatically. It is fast and efficient.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "The Comprehension Process",
+          "nodes": [
+            {
+              "id": "rule",
+              "label": "Expression",
+              "sub": "The Rule"
+            },
+            {
+              "id": "loop",
+              "label": "Iteration",
+              "sub": "The Loop"
+            },
+            {
+              "id": "list",
+              "label": "New List",
+              "sub": "The Result"
+            }
+          ],
+          "edges": [
+            {
+              "from": "rule",
+              "to": "loop"
+            },
+            {
+              "from": "loop",
+              "to": "list"
+            }
+          ],
+          "steps": [
+            {
+              "at": "rule",
+              "label": "Define the rule",
+              "focus": [
+                "rule"
+              ]
+            },
+            {
+              "at": "fills",
+              "label": "Generate list",
+              "focus": [
+                "list"
+              ],
+              "arrow": 1
+            }
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "factory",
+            "text": "Automatic creation",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Look at this. Inside brackets, we write 'x times x' for each 'x' in our range. One line does it all. This is Pythonic code.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Look",
+        "props": {
+          "filename": "squares.py",
+          "language": "python",
+          "code": "squares = [x*x for x in range(10)]\nprint(squares)",
+          "highlightLines": [
+            1
+          ]
+        },
+        "camera": [
+          {
+            "at": "brackets",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 30
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "range",
+            "text": "Loop happens here",
+            "kind": "note"
+          }
+        ],
+        "keyIdea": "Expression first, then loop"
+      }
+    },
+    {
+      "id": 4,
+      "narration": "The old way uses a loop and append. The new way is one clean line. It is easier to read and looks professional.",
+      "remotion": {
+        "type": "ComparisonCard",
+        "props": {
+          "title": "Why Use It?",
+          "leftTitle": "Traditional",
+          "leftPoints": [
+            "Create empty list",
+            "Write for-loop",
+            "Use .append()"
+          ],
+          "rightTitle": "Comprehension",
+          "rightPoints": [
+            "One line",
+            "No .append() needed",
+            "Faster execution"
+          ]
+        },
+        "camera": [
+          {
+            "at": "clean",
+            "zoom": 1.0,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Try making a list of even numbers today. It is a great habit to learn. Subscribe for more daily Python tips!",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Your Turn!",
+          "subtitle": "Task: List of even numbers",
+          "youtubePrompt": "Subscribe for Day 20"
+        }
+      }
+    }
+  ],
+  "aspectRatio": "9:16"
+}
