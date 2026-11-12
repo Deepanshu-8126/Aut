@@ -1,0 +1,177 @@
+{
+  "title": "Python Functions: The Toaster Analogy",
+  "dayLabel": "Day 20 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Writing the same code twice is a mistake. You need a function. Think of a function like a toaster. You give it bread, and it does the work for you every single time.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Stop Repeating Yourself",
+          "subtitle": "Python Functions Basics",
+          "badge": "DAY 20 • FUNCTIONS",
+          "tags": [
+            "Python",
+            "Logic",
+            "Beginner"
+          ]
+        },
+        "chapter": "M1 Basics",
+        "keyIdea": "Functions make code reusable"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "A function is just a named block of code. You define the steps once, then call that name whenever you need them. It turns a long script into simple, reusable parts.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "How a Function Works",
+          "nodes": [
+            {
+              "id": "in",
+              "label": "Input",
+              "sub": "Bread"
+            },
+            {
+              "id": "fn",
+              "label": "Function",
+              "sub": "Toaster"
+            },
+            {
+              "id": "out",
+              "label": "Output",
+              "sub": "Toast"
+            }
+          ],
+          "edges": [
+            {
+              "from": "in",
+              "to": "fn",
+              "label": "Call"
+            },
+            {
+              "from": "fn",
+              "to": "out",
+              "label": "Result"
+            }
+          ],
+          "steps": [
+            {
+              "at": "define",
+              "label": "Define the logic once",
+              "focus": [
+                "fn"
+              ]
+            },
+            {
+              "at": "call",
+              "label": "Trigger the function",
+              "arrow": 0
+            },
+            {
+              "at": "Result",
+              "label": "Get the output",
+              "arrow": 1
+            }
+          ]
+        },
+        "camera": [
+          {
+            "at": "Function",
+            "zoom": 1.2,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "named",
+            "text": "Give it a clear name",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Use def to define your function. Here, we name it greet. To run the code inside, we just type the name with parentheses. This is called calling the function.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Use",
+        "props": {
+          "filename": "hello.py",
+          "language": "python",
+          "code": "def greet():\n    print(\"Hello there!\")\n\ngreet()\ngreet()",
+          "highlightLines": [
+            1,
+            4
+          ]
+        },
+        "camera": [
+          {
+            "at": "def",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 20
+          },
+          {
+            "at": "calling",
+            "zoom": 1.7,
+            "x": 50,
+            "y": 70
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "def",
+            "text": "Short for 'Define'",
+            "kind": "note"
+          },
+          {
+            "anchor": "parentheses",
+            "text": "Don't forget these!",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "When we run this, Python sees the greet call and jumps to the code inside. Since we called it twice, it prints the message twice. One definition, many uses.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "python hello.py",
+          "output": [
+            "Hello there!",
+            "Hello there!"
+          ]
+        },
+        "camera": [
+          {
+            "at": "twice",
+            "zoom": 1.4,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "keyIdea": "Define once, call many times"
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Functions save time and stop repetition. Your task: write a function that prints your favorite food. Check the channel for more Python tips and keep coding!",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Ready to build?",
+          "subtitle": "Try the practice task now!",
+          "youtubePrompt": "Subscribe for Day 21"
+        }
+      }
+    }
+  ],
+  "aspectRatio": "9:16"
+}
