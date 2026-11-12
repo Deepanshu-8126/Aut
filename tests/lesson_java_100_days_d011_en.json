@@ -1,0 +1,342 @@
+{
+  "title": "Java If-Else: Making Decisions",
+  "dayLabel": "Day 11 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "In real life, we make decisions every second. If the traffic light is green, you go. If it is red, you stop. Today, we teach your Java code how to think.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Making Choices with If-Else",
+          "subtitle": "Control flow for beginners",
+          "badge": "DAY 11 • JAVA",
+          "tags": [
+            "Java",
+            "Logic",
+            "Beginner"
+          ]
+        },
+        "chapter": "Control Flow"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Think of a decision as a fork in the road. Your code reaches a point where it must choose one path or the other. We call this a condition.",
+      "remotion": {
+        "type": "ArchitectureFlow",
+        "props": {
+          "title": "The Fork in the Road",
+          "activeStepIndex": 0,
+          "steps": [
+            {
+              "title": "Condition",
+              "desc": "A question that results in True or False."
+            },
+            {
+              "title": "True Path",
+              "desc": "Code that runs if the answer is Yes."
+            },
+            {
+              "title": "False Path",
+              "desc": "Code that runs if the answer is No."
+            }
+          ]
+        },
+        "keyIdea": "Decisions create paths in code",
+        "camera": [
+          {
+            "at": "fork",
+            "zoom": 1.0,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Why do we need this? Imagine a banking app. It should only let you withdraw money if your balance is high enough. Without if-else, it would just give money to everyone.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "Why Logic Matters",
+          "items": [
+            "Validate user input",
+            "Secure sensitive actions",
+            "Personalize the experience",
+            "Handle errors gracefully"
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "withdraw",
+            "text": "Logic protects the data",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "Let's look at the map of an if-else statement. First comes the condition. If it is true, we enter the first block. If not, we skip to the else block.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "If-Else Logic Flow",
+          "nodes": [
+            {
+              "id": "start",
+              "label": "Start"
+            },
+            {
+              "id": "cond",
+              "label": "Is Age >= 18?",
+              "sub": "Condition"
+            },
+            {
+              "id": "ifBlock",
+              "label": "Print 'Adult'"
+            },
+            {
+              "id": "elseBlock",
+              "label": "Print 'Minor'"
+            }
+          ],
+          "edges": [
+            {
+              "from": "start",
+              "to": "cond"
+            },
+            {
+              "from": "cond",
+              "to": "ifBlock",
+              "label": "True"
+            },
+            {
+              "from": "cond",
+              "to": "elseBlock",
+              "label": "False"
+            }
+          ],
+          "steps": [
+            {
+              "at": "First",
+              "label": "Check the condition",
+              "focus": [
+                "cond"
+              ]
+            },
+            {
+              "at": "true",
+              "label": "Follow the true path",
+              "arrow": 1
+            },
+            {
+              "at": "else",
+              "label": "Otherwise, follow false",
+              "arrow": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Now, the smallest real code. We create an integer variable for age. Then we use the if keyword. This is the simplest way to start.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "We",
+        "props": {
+          "filename": "Main.java",
+          "language": "java",
+          "code": "int age = 20;\n\nif (age >= 18) {\n    System.out.println(\"You can vote!\");\n}",
+          "highlightLines": [
+            3
+          ]
+        },
+        "camera": [
+          {
+            "at": "if",
+            "zoom": 1.6,
+            "x": 50,
+            "y": 40
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "if",
+            "text": "if is a keyword",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "narration": "Look at the parentheses. Inside, we put our condition. A condition is a comparison that results in a boolean, which means it is either true or false.",
+      "remotion": {
+        "type": "TypingCode",
+        "props": {
+          "filename": "Main.java",
+          "language": "java",
+          "code": "int age = 20;\n\nif (age >= 18) {\n    System.out.println(\"You can vote!\");\n}",
+          "highlightLines": [
+            3
+          ]
+        },
+        "camera": [
+          {
+            "at": "parentheses",
+            "zoom": 1.8,
+            "x": 40,
+            "y": 35
+          }
+        ],
+        "keyIdea": "Conditions are True or False"
+      }
+    },
+    {
+      "id": 7,
+      "narration": "The curly braces create a block. A block is a group of code that belongs together. Everything inside these braces only runs if the condition is true.",
+      "remotion": {
+        "type": "TypingCode",
+        "props": {
+          "filename": "Main.java",
+          "language": "java",
+          "code": "int age = 20;\n\nif (age >= 18) {\n    System.out.println(\"You can vote!\");\n}",
+          "highlightLines": [
+            3,
+            4,
+            5
+          ]
+        },
+        "camera": [
+          {
+            "at": "braces",
+            "zoom": 1.5,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "block",
+            "text": "Braces group your code",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "narration": "Let's run it. Since 20 is indeed greater than or equal to 18, the computer prints our message. If age was 15, nothing would happen.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "java Main.java",
+          "output": [
+            "You can vote!"
+          ]
+        }
+      }
+    },
+    {
+      "id": 9,
+      "narration": "But we want to say something if the person is too young. We add the else block. Think of else as the 'otherwise' option.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "We",
+        "props": {
+          "filename": "Main.java",
+          "language": "java",
+          "code": "int age = 15;\n\nif (age >= 18) {\n    System.out.println(\"You can vote!\");\n} else {\n    System.out.println(\"Too young.\");\n}",
+          "highlightLines": [
+            5,
+            6,
+            7
+          ]
+        },
+        "previous_code": "int age = 20;\n\nif (age >= 18) {\n    System.out.println(\"You can vote!\");\n}",
+        "camera": [
+          {
+            "at": "else",
+            "zoom": 1.6,
+            "x": 50,
+            "y": 65
+          }
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "narration": "Now watch the output again. Since age is now 15, the first condition fails. The computer jumps straight to the else block and prints our second message.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "java Main.java",
+          "output": [
+            "Too young."
+          ]
+        }
+      }
+    },
+    {
+      "id": 11,
+      "narration": "A common mistake beginners make is putting a semicolon right after the if statement. This tells Java the decision is over immediately, which breaks your logic.",
+      "remotion": {
+        "type": "ComparisonCard",
+        "props": {
+          "title": "Avoid this Mistake",
+          "leftTitle": "Wrong",
+          "leftPoints": [
+            "if (age > 18);",
+            "Semicolon ends the if",
+            "Code always runs"
+          ],
+          "rightTitle": "Correct",
+          "rightPoints": [
+            "if (age > 18) {",
+            "Uses curly braces",
+            "Logic works correctly"
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "semicolon",
+            "text": "No semicolon after if()",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "narration": "Let's recap. If checks a condition. Else provides a backup plan. Always use curly braces to keep your code organized and easy to read.",
+      "remotion": {
+        "type": "SummaryList",
+        "props": {
+          "title": "Key Takeaways",
+          "items": [
+            "If starts the decision",
+            "Conditions go in parentheses",
+            "Else runs if the condition is false",
+            "Braces define the block of code"
+          ]
+        }
+      }
+    },
+    {
+      "id": 13,
+      "narration": "Here is a practice task for you. Create a variable called temperature. If it is greater than 30, print 'It is hot'. Otherwise, print 'It is cold'.",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Practice Time!",
+          "subtitle": "Try the temperature challenge",
+          "youtubePrompt": "Subscribe for Day 12"
+        }
+      }
+    }
+  ]
+}
