@@ -1,0 +1,174 @@
+{
+  "title": "Python Function Arguments",
+  "dayLabel": "Day 21 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Ever wondered how one piece of code handles different data every time? That is the power of function arguments. They make your code flexible.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Function Arguments",
+          "subtitle": "Giving your code inputs",
+          "badge": "DAY 21 • PYTHON SHORTS",
+          "tags": [
+            "Python",
+            "Functions",
+            "Beginner"
+          ]
+        },
+        "chapter": "M4 Functions",
+        "keyIdea": "Arguments are inputs for functions"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Think of a function like a mail slot. The slot is the argument. You can drop in any letter, and the function processes whatever you provide.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "How Arguments Work",
+          "nodes": [
+            {
+              "id": "input",
+              "label": "Input (Argument)",
+              "sub": "The data you send"
+            },
+            {
+              "id": "func",
+              "label": "Function",
+              "sub": "The machine"
+            },
+            {
+              "id": "output",
+              "label": "Result",
+              "sub": "The output"
+            }
+          ],
+          "edges": [
+            {
+              "from": "input",
+              "to": "func",
+              "label": "Passes into"
+            },
+            {
+              "from": "func",
+              "to": "output",
+              "label": "Produces"
+            }
+          ],
+          "steps": [
+            {
+              "at": "slot",
+              "label": "The slot is the placeholder",
+              "focus": [
+                "input"
+              ]
+            },
+            {
+              "at": "processes",
+              "label": "Function uses the input",
+              "arrow": 0
+            }
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "argument",
+            "text": "Argument: The input value",
+            "kind": "tip"
+          }
+        ],
+        "camera": [
+          {
+            "at": "slot",
+            "zoom": 1.0,
+            "x": 50,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Look at this code. We put 'user' in parentheses. When we call greet with 'Alice', it replaces the placeholder with her actual name.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Look",
+        "props": {
+          "filename": "greet.py",
+          "language": "python",
+          "code": "def greet(user):\n    print(f\"Hello {user}!\")\n\ngreet(\"Alice\")\ngreet(\"Bob\")",
+          "highlightLines": [
+            1
+          ]
+        },
+        "popups": [
+          {
+            "anchor": "user",
+            "text": "This is the parameter",
+            "kind": "note"
+          },
+          {
+            "anchor": "Alice",
+            "text": "This is the argument",
+            "kind": "tip"
+          }
+        ],
+        "lineNotes": {
+          "1": "Placeholder name"
+        },
+        "camera": [
+          {
+            "at": "user",
+            "zoom": 1.8,
+            "x": 40,
+            "y": 25
+          },
+          {
+            "at": "Alice",
+            "zoom": 1.5,
+            "x": 40,
+            "y": 60
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "narration": "Run it, and it says 'Hello Alice'. Change the input to 'Bob', and the same function gives a new result. Reusable and clean.",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "python greet.py",
+          "output": [
+            "Hello Alice!",
+            "Hello Bob!"
+          ]
+        },
+        "camera": [
+          {
+            "at": "Alice",
+            "zoom": 1.4,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "keyIdea": "One function, multiple uses"
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Try this: write a function that takes a city name and prints a welcome message. Subscribe for more daily Python tips!",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Practice Time!",
+          "subtitle": "Create a function with one argument",
+          "youtubePrompt": "Subscribe for Day 22!"
+        }
+      }
+    }
+  ],
+  "aspectRatio": "9:16"
+}
