@@ -1,0 +1,179 @@
+{
+  "title": "Python Defaults and Keyword Arguments",
+  "dayLabel": "Day 22 / 100",
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Ever wanted to make function inputs optional? In Python, you can set default values so your code stays clean even when data is missing.",
+      "remotion": {
+        "type": "TitleCard",
+        "props": {
+          "title": "Optional Arguments",
+          "subtitle": "Defaults and Keywords",
+          "badge": "DAY 22 • PYTHON",
+          "tags": [
+            "Python",
+            "Functions",
+            "Beginner"
+          ]
+        },
+        "chapter": "Functions",
+        "keyIdea": "Default values prevent errors"
+      }
+    },
+    {
+      "id": 2,
+      "narration": "Think of a coffee machine. If you do not pick a size, it gives you a medium by default. But if you ask for Large, it overrides that choice. That is a default argument.",
+      "remotion": {
+        "type": "DiagramFlow",
+        "props": {
+          "title": "The Coffee Machine Logic",
+          "nodes": [
+            {
+              "id": "user",
+              "label": "User"
+            },
+            {
+              "id": "machine",
+              "label": "Machine",
+              "sub": "Default: Medium"
+            },
+            {
+              "id": "cup",
+              "label": "Coffee Cup"
+            }
+          ],
+          "edges": [
+            {
+              "from": "user",
+              "to": "machine",
+              "label": "No input"
+            },
+            {
+              "from": "machine",
+              "to": "cup",
+              "label": "Gives Medium"
+            }
+          ],
+          "steps": [
+            {
+              "at": "default",
+              "label": "Machine uses pre-set value",
+              "focus": [
+                "machine"
+              ]
+            },
+            {
+              "at": "overrides",
+              "label": "User input replaces default",
+              "arrow": 0
+            }
+          ]
+        },
+        "camera": [
+          {
+            "at": "machine",
+            "zoom": 1.3,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "Medium",
+            "text": "The 'Default' setting",
+            "kind": "tip"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "narration": "Here, the message defaults to Hello. When we call greet for Alice, it uses that default. For Bob, we use a keyword to change the message specifically.",
+      "remotion": {
+        "type": "TypingCode",
+        "type_anchor": "Here",
+        "props": {
+          "filename": "greet.py",
+          "language": "python",
+          "code": "def greet(name, msg=\"Hello\"):\n    print(f\"{msg}, {name}!\")\n\ngreet(\"Alice\")\ngreet(\"Bob\", msg=\"Hi\")",
+          "highlightLines": [
+            1,
+            4,
+            5
+          ]
+        },
+        "camera": [
+          {
+            "at": "Hello",
+            "zoom": 1.7,
+            "x": 60,
+            "y": 25
+          },
+          {
+            "at": "keyword",
+            "zoom": 1.6,
+            "x": 50,
+            "y": 70
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "Alice",
+            "text": "Uses default 'Hello'",
+            "kind": "note"
+          },
+          {
+            "anchor": "Bob",
+            "text": "Overrides with 'Hi'",
+            "kind": "tip"
+          }
+        ],
+        "keyIdea": "Keyword arguments use the name"
+      }
+    },
+    {
+      "id": 4,
+      "narration": "Alice gets the default Hello, but Bob gets the custom message. This flexibility is why Python is so popular. Try adding a default value to your next function!",
+      "remotion": {
+        "type": "TerminalRun",
+        "props": {
+          "command": "python greet.py",
+          "output": [
+            "Hello, Alice!",
+            "Hi, Bob!"
+          ]
+        },
+        "camera": [
+          {
+            "at": "Alice",
+            "zoom": 1.4,
+            "x": 50,
+            "y": 50
+          }
+        ],
+        "popups": [
+          {
+            "anchor": "custom",
+            "text": "Keyword overrode default",
+            "kind": "note"
+          }
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "narration": "Recap: Defaults fill the gaps, and keywords clarify your intent. Practice task: Write a function for a pizza order with a default topping of cheese!",
+      "remotion": {
+        "type": "OutroCard",
+        "props": {
+          "title": "Flex Your Functions",
+          "subtitle": "Mastered Day 22",
+          "youtubePrompt": "Check the channel for Day 23!"
+        },
+        "keyIdea": "Defaults make functions robust"
+      }
+    }
+  ],
+  "aspectRatio": "9:16"
+}
